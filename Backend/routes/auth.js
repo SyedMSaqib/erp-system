@@ -2,6 +2,10 @@ const express = require("express")
 const router = express.Router()
 const user = require("../models/users")
 const { check, validationResult } = require("express-validator")
+var bcrypt = require('bcryptjs');
+var jwt = require('jsonwebtoken');
+const key="02192000"
+var salt = bcrypt.genSaltSync(10);
 
 //Signup authentication
 router.post("/signup", [check("name").isLength({min:3}),check("email").isEmail(), check("password").isLength({ min: 6 })], async (req, res) => {
@@ -9,18 +13,27 @@ router.post("/signup", [check("name").isLength({min:3}),check("email").isEmail()
     if (!result.isEmpty()) return res.json(result)
   
     try{
-    const checkUser = await user.findOne({email:req.body.email})
+    let checkUser = await user.findOne({email:req.body.email})
     if (checkUser) 
     return res.status(403).send({ error:`${checkUser.email} already exists` })
     const { name, email, password } = req.body
-    console.log(name+email+password)
+    
+    var hashedPassword = bcrypt.hashSync(password, salt);
 
     const newUser=await user.create({
       name:name,
       email: email,
-      password: password,
+      password: hashedPassword,
     })
-    res.json({newUser})
+    checkUser={
+      user:{
+        id:newUser.id
+      }
+    }
+    var token = jwt.sign(checkUser,key);
+
+
+    res.json({token})
     console.log({newUser})
     }
     catch(err)
@@ -31,5 +44,30 @@ router.post("/signup", [check("name").isLength({min:3}),check("email").isEmail()
 
 }
 )
+
+//Login authentication
+router.post("/login",[check("email").isEmail(), check("password").isLength({ min: 6 })], async (req, res) => {
+  const result = validationResult(req)
+  if (!result.isEmpty()) return res.status(500).json(result)
+
+  let checkUser = await user.findOne({email:req.body.email})
+  if(checkUser===null)
+  return res.status(401).send("Invalid Email")
+  const password=checkUser.password  
+  const compare=bcrypt.compareSync(req.body.password,password )
+  const User={
+    user:{
+      id:checkUser.id
+    }
+  }
+  var token = jwt.sign(User,key);
+  if(compare)
+  return res.json({token})
+  return res.status(401).send("Invalid password")
+  
+
+}
+)
+
 
 module.exports = router
