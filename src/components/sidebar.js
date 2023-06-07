@@ -25,7 +25,7 @@ export default function Sidebar() {
      }
 
     return (
-      <div className='w-60'>
+      <div className='w-60 fixed'>
         <div className="flex">
             <div className="flex flex-col h-screen p-3 bg-white shadow w-60">
                 <div className="space-y-3">
