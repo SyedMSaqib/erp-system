@@ -5,9 +5,7 @@ import ProductContext from './productContext'
 const ProductState = (props) => {
     const host="http://localhost:5000"
     const productDb=
-        [
-
-    ]
+        []
 
       const [product, setproduct] = useState(productDb)
       
@@ -51,12 +49,13 @@ const ProductState = (props) => {
               method: "POST", 
                
               headers: {
+                "Content-Type":"application/json",
                 "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ3ZTRlNTYyZThjNWNhZmRmZWY2MzdmIn0sImlhdCI6MTY4NTk5OTE5MH0.tANfZWBhWrVuSXEhNvIAutanlz2LpwO0ZaJrDfN3cj0"
                 
               },
               body: JSON.stringify({name,category,description}),
             });
-            return response.json(); 
+            
           
 
 
