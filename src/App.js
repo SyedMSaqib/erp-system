@@ -4,11 +4,15 @@ import './App.css';
 import Sidebar from './components/sidebar';
 import AddProduct from './components/addProduct';
 import ViewProduct from './components/viewProduct';
+import ProductState from './context/productState';
 
 
 
 function App() {
   return (
+    
+<ProductState>
+
     <BrowserRouter>
     <div className='flex'>
     <Sidebar/>
@@ -18,6 +22,8 @@ function App() {
     </Routes>
     </div>
     </BrowserRouter>
+</ProductState>
+    
   );
 }
 
