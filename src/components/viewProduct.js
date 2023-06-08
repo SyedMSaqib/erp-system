@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Card from './viewProductCard';
 import ProductContext from '../context/productContext';
 const ViewProduct = () => {
-  const {product,setProdcut}=useContext(ProductContext)
+  const {product}=useContext(ProductContext)
   
   return (
     
