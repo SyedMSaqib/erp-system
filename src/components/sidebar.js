@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
-
+import Saslogo from '../logos/sasLogo2.png'
 export default function Sidebar() {
 
 
@@ -25,16 +25,16 @@ export default function Sidebar() {
      }
 
     return (
-      <div className='w-60 fixed'>
-        <div className="flex">
-            <div className="flex flex-col h-screen p-3 bg-slate-300 shadow w-60">
+      <div className='w-60 fixed '>
+        <div className="flex ">
+            <div className="shadow-lg flex flex-col h-screen p-3 bg-slate-300 shadow w-60">
                 <div className="space-y-3">
                     <div className="flex items-center">
-                        <h2 className="text-xl font-bold pl-7">SAS-ERP</h2>
+                        <img className='ml-16 w-28' src={Saslogo}></img>
                     </div>
                     <div className="flex-1">
                         <ul className="pt-2 pb-4 space-y-1 text-sm">
-                            <li className="rounded-sm">
+                            <li className="rounded-sm shadow-lg pt-5 max-w-xs transition duration-300 ease-in-out hover:scale-110">
                                 <a
                                     href="#"
                                     className="flex items-center p-2 space-x-3 rounded-md"
@@ -56,7 +56,7 @@ export default function Sidebar() {
                                     <span>Home</span>
                                 </a>
                             </li>
-                            <li className="rounded-sm">
+                            <li className="rounded-sm shadow-lg pt-2 max-w-xs transition duration-300 ease-in-out hover:scale-110">
                                 <a
                                     href="#"
                                     className="flex items-center p-2 space-x-3 rounded-md"
@@ -78,7 +78,7 @@ export default function Sidebar() {
                                     <span>Inbox</span>
                                 </a>
                             </li>
-                            <li className="rounded-sm">
+                            <li className="rounded-sm shadow-lg pt-2 max-w-xs transition duration-300 ease-in-out hover:scale-110">
                                 <a
                                     
                                     className="flex items-center p-2 space-x-3 rounded-md cursor-pointer"
@@ -107,7 +107,7 @@ export default function Sidebar() {
                             
                                    
                             <span>{data.map((data)=>(
-                                <li className="rounded-sm">
+                                <li className="rounded-sm ">
 
                                     <Link
                                     to={data.path}
@@ -122,7 +122,7 @@ export default function Sidebar() {
                                 </li>
                             ))}</span>
                         )}
-                            <li className="rounded-sm">
+                            <li className="rounded-sm shadow-lg pt-2 max-w-xs transition duration-300 ease-in-out hover:scale-110">
                                 <Link
                                     to="/product"
                                     className="flex items-center p-2 space-x-3 rounded-md"
