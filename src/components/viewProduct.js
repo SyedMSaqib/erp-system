@@ -1,8 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Card from './viewProductCard';
 import ProductContext from '../context/productContext';
 const ViewProduct = () => {
-  const {product}=useContext(ProductContext)
+  const {product,getAllProducts}=useContext(ProductContext)
+  useEffect(() => {
+    getAllProducts()
+  
+  }, [])
   
   return (
     
