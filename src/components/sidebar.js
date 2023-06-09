@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import Saslogo from '../logos/sasLogo2.png'
 export default function Sidebar() {
 
-
     const data=[{
         name:"View Products",
         path:"/viewProduct",
