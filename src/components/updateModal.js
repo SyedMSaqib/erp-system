@@ -15,6 +15,7 @@ const UpdateModal = () => {
     }
     const onClick=(event)=>{
       event.preventDefault();
+      if(product!==null)
       updateProduct(productId,product.name,product.description,product.category,product.quantity,product.price)
       
      
