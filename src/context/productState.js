@@ -9,6 +9,7 @@ const ProductState = (props) => {
 
       const [product, setproduct] = useState(productDb)
       const [productId, setproductId] = useState(null)
+      const [updateFormValues, setupdateFormValues] = useState(null)
       
       
       const getAllProducts=async()=>{
@@ -99,7 +100,7 @@ const ProductState = (props) => {
     
       return (
 
-    <ProductContext.Provider value={{product,deleteProduct,addProduct,updateProduct,getAllProducts,setproductId,productId}}>
+    <ProductContext.Provider value={{product,deleteProduct,addProduct,updateProduct,getAllProducts,setproductId,productId,updateFormValues,setupdateFormValues}}>
 
         {props.children}
     </ProductContext.Provider>

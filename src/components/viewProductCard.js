@@ -8,7 +8,15 @@ import { Link } from 'react-router-dom'
 
 const ViewProductCard = (props) => {
   const productContext=useContext(ProductContext )
-  const {deleteProduct,setproductId}=productContext 
+  const {deleteProduct,setproductId,setupdateFormValues}=productContext 
+  const productData=()=>{
+    setproductId(props.data._id)
+    setupdateFormValues({name:props.data.name,
+                         category:props.data.category,
+                        price: props.data.price,
+                      quantity:props.data.quantity,
+                    description:props.data.description})
+  }
   
   return (
    
@@ -17,7 +25,7 @@ const ViewProductCard = (props) => {
            
             <div className='flex '>
 
-        <Link className='pl-40 '  to={'/update'} onClick={()=>{setproductId(props.data._id)}} ><UpdateButton/></Link>
+        <Link className='pl-40 '  to={'/update'} onClick={productData} ><UpdateButton/></Link>
         
 
             <button className='pl-3' onClick={()=>{ deleteProduct(props.data._id)}}><DeleteButton/></button>

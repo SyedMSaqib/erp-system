@@ -1,11 +1,15 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import ProductContext from '../context/productContext'
 
 const UpdateModal = () => {
+    
   
     const productContext=useContext(ProductContext)
-    const{updateProduct,productId}=productContext
-    const [product, setproduct] = useState({name:"",category:"",description:"",quantity:"",price:""})
+    const{updateProduct,productId,updateFormValues}=productContext
+    const [product, setproduct] = useState({updateFormValues})
+    useEffect(() => {
+        setproduct(updateFormValues);
+      }, [updateFormValues]);
     const handleChange=(e)=>{
       setproduct({...product,[e.target.name]:e.target.value})
     }
@@ -13,14 +17,15 @@ const UpdateModal = () => {
       event.preventDefault();
       updateProduct(productId,product.name,product.description,product.category,product.quantity,product.price)
       
-  
+     
     }
+    
     
     
     return (
       <div className="  shadow-xl w-full lg:ml-96 mr-52 my-20 md:ml-96 mr-52 my-20 sm:ml-96 mr-52 my-20  ">
         <div className='lg:pl-20 border-2 rounded-lg pr-28 md:pl-20 pr-28 sm:pl-20 pr-28'>
-  
+     {console.log(product)}   
        
       <h1 className='font-semibold py-8'>Update Product</h1>
   <form className='pt-10'>
@@ -31,7 +36,7 @@ const UpdateModal = () => {
         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-password">
           Name
         </label>
-        <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type="description" placeholder="" name='name' onChange={handleChange}/>
+        <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type="description" placeholder="" name='name' onChange={handleChange} value={updateFormValues?product.name:""}/>
       
       </div>
     </div>
@@ -43,19 +48,19 @@ const UpdateModal = () => {
         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-password">
           Category
         </label>
-        <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type="description" placeholder="" minLength={5} name='category' onChange={handleChange}/>
+        <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type="description" placeholder="" minLength={5} name='category' onChange={handleChange} value={updateFormValues?product.category:""}/>
         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-password">
           Price
         </label>
-        <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type="description" placeholder="" minLength={5} name='price' onChange={handleChange}/>
+        <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type="description" placeholder="" minLength={5} name='price' onChange={handleChange} value={updateFormValues?product.price:""}/>
         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-password">
           Quantity
         </label>
-        <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type="description" placeholder="" minLength={5} name='quantity' onChange={handleChange}/>
+        <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type="description" placeholder="" minLength={5} name='quantity' onChange={handleChange} value={updateFormValues?product.quantity:""}/>
         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-password">
           Description
         </label>
-        <input className=" h-40 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type="description" placeholder="" name='description' onChange={handleChange}/>
+        <input className=" h-40 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type="description" placeholder="" name='description' onChange={handleChange} value={updateFormValues? product.description:""}/>
       
       </div>
     </div>
