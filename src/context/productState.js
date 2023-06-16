@@ -30,7 +30,7 @@ const ProductState = (props) => {
       }
     
     
-      const addProduct=async(name,description,category)=>{
+      const addProduct=async(name,description,category,price,quantity)=>{
         
         const newProduct={
             _id: "647e4e692e8c5cafdfef6381",
@@ -38,6 +38,8 @@ const ProductState = (props) => {
             name: name,
             description: description,
             category: category,
+            price:price,
+            quantity:quantity,
             date: "2023-06-05T21:06:49.039Z",
             __v: 0
           }
@@ -53,17 +55,42 @@ const ProductState = (props) => {
                 "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ3ZTRlNTYyZThjNWNhZmRmZWY2MzdmIn0sImlhdCI6MTY4NTk5OTE5MH0.tANfZWBhWrVuSXEhNvIAutanlz2LpwO0ZaJrDfN3cj0"
                 
               },
-              body: JSON.stringify({name,category,description}),
+              body: JSON.stringify({name,category,description,price,quantity}),
             });
-            
-          
-
-
-
-
-
         
     }
+
+    const updateProduct=async(name,description,category,price,quantity)=>{
+        
+      const newProduct={
+          _id: "647e4e692e8c5cafdfef6381",
+          user: "647e4e562e8c5cafdfef637f",
+          name: name,
+          description: description,
+          category: category,
+          price:price,
+          quantity:quantity,
+          date: "2023-06-05T21:06:49.039Z",
+          __v: 0
+        }
+        setproduct(product.concat(newProduct))
+      
+      //Add product Api call
+      
+          const response = await fetch(`${host}/product/add`, {
+            method: "POST", 
+             
+            headers: {
+              "Content-Type":"application/json",
+              "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ3ZTRlNTYyZThjNWNhZmRmZWY2MzdmIn0sImlhdCI6MTY4NTk5OTE5MH0.tANfZWBhWrVuSXEhNvIAutanlz2LpwO0ZaJrDfN3cj0"
+              
+            },
+            body: JSON.stringify({name,category,description,price,quantity}),
+          });
+      
+  }
+
+
     const deleteProduct=async(id)=>{
         
         const updatedProduct=product.filter((data)=>{

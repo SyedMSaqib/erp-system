@@ -6,13 +6,13 @@ const AddProduct = () => {
   
   const productContext=useContext(ProductContext)
   const{addProduct}=productContext
-  const [product, setproduct] = useState({name:"",category:"",description:""})
+  const [product, setproduct] = useState({name:"",category:"",description:"",quantity:"",price:""})
   const handleChange=(e)=>{
     setproduct({...product,[e.target.name]:e.target.value})
   }
   const onClick=(event)=>{
     event.preventDefault();
-    addProduct(product.name,product.description,product.category)
+    addProduct(product.name,product.description,product.category,product.quantity,product.price)
     
 
   }
@@ -45,6 +45,14 @@ const AddProduct = () => {
         Category
       </label>
       <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type="description" placeholder="" minLength={5} name='category' onChange={handleChange}/>
+      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-password">
+        Price
+      </label>
+      <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type="description" placeholder="" minLength={5} name='price' onChange={handleChange}/>
+      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-password">
+        Quantity
+      </label>
+      <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type="description" placeholder="" minLength={5} name='quantity' onChange={handleChange}/>
       <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-password">
         Description
       </label>
