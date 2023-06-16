@@ -10,6 +10,8 @@ router.post(
     check("name").isLength({ min: 3 }),
     check("description").isLength({ min: 3 }),
     check("category").isLength({ min: 3 }),
+    check("quantity").isLength({ min: 1 }),
+    check("price").isLength({ min: 1 }),
   ],
   validator,
   async (req, res) => {
@@ -17,12 +19,14 @@ router.post(
     if (!result.isEmpty()) return res.json(result)
     try {
       if (req.user == null) return res.status(404).send("Invalid token, or empty")
-      const { name, description, category } = req.body
+      const { name, description, category, price, quantity } = req.body
       const newProduct = await product.create({
         user: req.user.id,
         name: name,
         description: description,
         category: category,
+        price: price,
+        quantity:quantity,
       })
       res.json(newProduct)
     } catch (err) {
@@ -59,11 +63,7 @@ router.delete("/delete/:id", validator, async (req, res) => {
 })
 
 
-router.put("/update/:id",[
-  check("name").isLength({ min: 3 }),
-  check("description").isLength({ min: 3 }),
-  check("category").isLength({ min: 3 }),
-],
+router.put("/update/:id",
 validator,
 async (req, res) => {
   const result = validationResult(req)
@@ -76,7 +76,7 @@ async (req, res) => {
     if (!productFromDb) return res.status(404).json("No such product exists")
 
     if (productFromDb.user.toString() !== req.user.id) return res.status(404).send("Unauthorized user")
-    const {name,description,category}=req.body
+    const {name,description,category,price,quantity}=req.body
     const newProduct={}
     if(name)
     newProduct.name=name
@@ -84,6 +84,10 @@ async (req, res) => {
     newProduct.description=description
     if(category)
     newProduct.category=category
+    if(price)
+    newProduct.price=price
+    if(quantity)
+    newProduct.quantity=quantity
     const productUpdate = await product.findByIdAndUpdate(id,{$set:newProduct},{new:true})
 
     res.json(productUpdate)

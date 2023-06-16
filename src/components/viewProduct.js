@@ -10,10 +10,10 @@ const ViewProduct = () => {
   
   return (
     
-    <div className='flex flex-wrap ml-52 '>
+    <div className='flex flex-wrap ml-60 mt-20 '>
       
         {product.map((product)=>{
-         return <div className='lg:w-1/3 p-4 md:w-1/2 sm:w-1/1 '> <Card key={product._id} data={product}/></div>
+         return <div className=' pt-5 pl-1   '> <Card key={product._id} data={product}/></div>
         })}
     </div>
   );
