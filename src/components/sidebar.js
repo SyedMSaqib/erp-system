@@ -77,7 +77,7 @@ export default function Sidebar() {
                                     <span>Inbox</span>
                                 </a>
                             </li>
-                            <li className="rounded-sm shadow-lg pt-2 max-w-xs transition duration-300 ease-in-out hover:scale-110">
+                            <li onClick={click} className="rounded-sm shadow-lg pt-2 max-w-xs transition duration-300 ease-in-out hover:scale-110">
                                 <a
                                     
                                     className="flex items-center p-2 space-x-3 rounded-md cursor-pointer"
@@ -96,7 +96,7 @@ export default function Sidebar() {
                                             d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
                                         />
                                     </svg>
-                                    <span onClick={click}>Products</span>
+                                    <span >Products</span>
                                    
   
 
