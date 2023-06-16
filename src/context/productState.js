@@ -8,6 +8,7 @@ const ProductState = (props) => {
         []
 
       const [product, setproduct] = useState(productDb)
+      const [productId, setproductId] = useState(null)
       
       
       const getAllProducts=async()=>{
@@ -33,8 +34,6 @@ const ProductState = (props) => {
       const addProduct=async(name,description,category,price,quantity)=>{
         
         const newProduct={
-            _id: "647e4e692e8c5cafdfef6381",
-            user: "647e4e562e8c5cafdfef637f",
             name: name,
             description: description,
             category: category,
@@ -60,25 +59,13 @@ const ProductState = (props) => {
         
     }
 
-    const updateProduct=async(name,description,category,price,quantity)=>{
-        
-      const newProduct={
-          _id: "647e4e692e8c5cafdfef6381",
-          user: "647e4e562e8c5cafdfef637f",
-          name: name,
-          description: description,
-          category: category,
-          price:price,
-          quantity:quantity,
-          date: "2023-06-05T21:06:49.039Z",
-          __v: 0
-        }
-        setproduct(product.concat(newProduct))
+    const updateProduct=async(id,name,description,category,price,quantity)=>{
+          
+      //Update product Api call
       
-      //Add product Api call
-      
-          const response = await fetch(`${host}/product/add`, {
-            method: "POST", 
+        console.log(id)
+          const response = await fetch(`${host}/product/update/${id}`, {
+            method: "PUT", 
              
             headers: {
               "Content-Type":"application/json",
@@ -112,7 +99,7 @@ const ProductState = (props) => {
     
       return (
 
-    <ProductContext.Provider value={{product,deleteProduct,addProduct,getAllProducts}}>
+    <ProductContext.Provider value={{product,deleteProduct,addProduct,updateProduct,getAllProducts,setproductId,productId}}>
 
         {props.children}
     </ProductContext.Provider>
