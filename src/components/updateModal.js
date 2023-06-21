@@ -1,9 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react'
 import ProductContext from '../context/productContext'
+import { useNavigate } from "react-router-dom";
+
 
 const UpdateModal = () => {
     
-  
+    let Navigate = useNavigate(); 
     const productContext=useContext(ProductContext)
     const{updateProduct,productId,updateFormValues}=productContext
     const [product, setproduct] = useState({updateFormValues})
@@ -17,6 +19,7 @@ const UpdateModal = () => {
       event.preventDefault();
       if(product!==null)
       updateProduct(productId,product.name,product.description,product.category,product.quantity,product.price)
+      Navigate("/viewProduct")
       
      
     }
