@@ -1,8 +1,20 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react';
 
-const viewCustomer = () => {
+import customerContext from '../../context/customerContext';
+const ViewCustomer = () => {
+  const {customer,getAllcustomers}=useContext(customerContext)
+  useEffect(() => {
+    getAllcustomers()
+  
+  }, [])
+  
+
+
+  
   return (
+    
     <div>
+   
         <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5 ml-96">
   <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
     <thead class="bg-gray-50">
@@ -18,7 +30,7 @@ const viewCustomer = () => {
         <th class="flex gap-3 px-6 py-4 font-normal text-gray-900">
          
           <div class="text-sm">
-            <div class="font-medium text-gray-700">Steven Jobs</div>
+            <div class="font-medium text-gray-700">{customer.name}</div>
             <div class="text-gray-400">jobs@sailboatui.com</div>
           </div>
         </th>
@@ -27,10 +39,10 @@ const viewCustomer = () => {
             class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600"
           >
             <span class="h-1.5 w-1.5 rounded-full bg-green-600"></span>
-            Active
+            0292249921
           </span>
         </td>
-        <td class=" px-20 py-4">Product </td>
+        <td class=" px-20 py-4">12321421412421412412 </td>
         
         <td class="px-6 py-4">
           <div class="flex justify-end gap-4">
@@ -194,4 +206,4 @@ const viewCustomer = () => {
   )
 }
 
-export default viewCustomer
+export default ViewCustomer

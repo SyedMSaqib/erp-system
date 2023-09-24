@@ -7,13 +7,14 @@ import ViewProduct from './components/viewProduct';
 import ProductState from './context/productState';
 import UpdateModal from './components/updateModal';
 import ViewCustomer from './components/customer/viewCustomer';
+import CustomerState from './context/customerState';
 
 
 
 function App() {
   return (
   
-  
+  <CustomerState>
 <ProductState>
 
     <BrowserRouter>
@@ -28,7 +29,7 @@ function App() {
     </div>
     </BrowserRouter>
 </ProductState>
-    
+    </CustomerState>
   );
 }
 

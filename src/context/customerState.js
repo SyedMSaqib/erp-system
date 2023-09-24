@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import customerContext from './productContext'
+import React, { useContext,useState } from 'react'
+import CustomerContext from '../context/customerContext'
 
 
-const customerState = (props) => {
+const CustomerState = (props) => {
     const host="http://localhost:5000"
     const customerDb=
         []
@@ -56,7 +56,7 @@ const customerState = (props) => {
         
     }
 
-    const updateCustomer=async(name,email,phone)=>{
+    const updateCustomer=async(id,name,email,phone)=>{
           
       //Update customer Api call
       
@@ -96,11 +96,19 @@ const customerState = (props) => {
     
       return (
 
-    <customerContext.Provider value={{ setCustomerId,setCustomer,customer,deleteCustomer,updateCustomer,addCustomer,getAllcustomers, customerId,updateFormValues,setupdateFormValues}}>
-
-        {props.children}
-    </customerContext.Provider>
+        <CustomerContext.Provider value={{
+          customer,
+          getAllcustomers,
+          addCustomer,
+          updateCustomer,
+          deleteCustomer,
+          customerId,
+          updateFormValues,
+          setupdateFormValues,
+        }}>
+          {props.children}
+        </CustomerContext.Provider>
   )
 }
 
-export default ProductState
+export default CustomerState
