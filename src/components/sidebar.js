@@ -63,7 +63,7 @@ export default function Sidebar() {
   return (
     <div className="w-60 fixed">
       <div className="flex">
-        <div className="shadow-lg flex flex-col h-screen p-3 bg-slate-300 shadow w-60">
+        <div className="shadow-lg flex flex-col h-screen p-3 bg-slate-100  w-60">
           <div className="space-y-3">
             <div className="flex items-center">
               <img className="ml-16 w-28" src={Saslogo} alt="Logo" />
@@ -105,7 +105,7 @@ export default function Sidebar() {
                           <li key={subTab.key}>
                             <Link
                               to={subTab.path}
-                              className="flex items-center p-2 space-x-3 rounded-md"
+                              className="flex items-center p-2 space-x-1 rounded-md"
                             >
                               <span className="pl-9 text-xs font-bold">
                                 {subTab.name}
