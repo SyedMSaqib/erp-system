@@ -9,6 +9,7 @@ import UpdateModal from './components/updateModal';
 import ViewCustomer from './components/customer/viewCustomer';
 import CustomerState from './context/customerState';
 import UpdateCustomer from './components/customer/updateCustomer';
+import AddCustomers from './components/customer/addCustomers';
 
 
 
@@ -22,12 +23,14 @@ function App() {
     <div className='flex'>
     <Sidebar/>
     
+    
     <Routes>
     <Route path="/addProduct" element={<AddProduct/>}/>
     <Route path="/viewProduct" element={<ViewProduct/>}/>
     <Route path="/update" element={<UpdateModal/>}/>
     <Route path="/viewCustomers" element={<ViewCustomer/>}/>
     <Route path="/updateCustomers" element={<UpdateCustomer/>}/>
+    <Route path="/addCustomers" element={<AddCustomers/>}/>
     </Routes>
     </div>
     </BrowserRouter>

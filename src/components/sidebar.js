@@ -15,9 +15,9 @@ export default function Sidebar() {
           key: 2,
         },
         {
-          name: 'Add Product', // Added "Add Product" sub-tab
+          name: 'Add Product',
           path: '/addProduct',
-          key: 5, // You can choose a unique key for this sub-tab
+          key: 5,
         },
       ],
     },
@@ -31,7 +31,11 @@ export default function Sidebar() {
           path: '/viewCustomers',
           key: 4,
         },
-        // Add more sub-tabs under "Customers" if needed
+        {
+          name: 'Add Customer',
+          path: '/addCustomers',
+          key: 6, 
+        },
       ],
     },
   ];
