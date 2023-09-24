@@ -23,13 +23,13 @@ const ViewCustomer = () => {
               <th scope="col" className="px-6 py-4 font-medium text-gray-900">
                 Name
               </th>
-              <th scope="col" className="px-20 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-28 py-4 font-medium text-gray-900">
                 Phone
               </th>
-              <th scope="col" className="px-20 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-28 py-4 font-medium text-gray-900">
                 Id
               </th>
-              <th scope="col" className="px-20 py-4 font-medium text-gray-900"></th>
+              <th scope="col" className="px-28 py-4 font-medium text-gray-900"></th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
@@ -41,9 +41,9 @@ const ViewCustomer = () => {
                     <div className="text-gray-400">{customerItem.email}</div>
                   </div>
                 </td>
-                <td className="px-20 py-4">
-                  <span className="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
-                    <span className="h-1.5 w-1.5 rounded-full bg-green-600"></span>
+                <td className=" px-20 py-4">
+                  <span className=" inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
+                    <span className=" h-1.5 w-1.5 rounded-full bg-green-600"></span>
                     {customerItem.phone}
                   </span>
                 </td>
