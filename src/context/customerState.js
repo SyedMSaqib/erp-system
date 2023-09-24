@@ -105,6 +105,7 @@ const CustomerState = (props) => {
           customerId,
           updateFormValues,
           setupdateFormValues,
+          setCustomerId,
         }}>
           {props.children}
         </CustomerContext.Provider>

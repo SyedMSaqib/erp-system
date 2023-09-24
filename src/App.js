@@ -8,6 +8,7 @@ import ProductState from './context/productState';
 import UpdateModal from './components/updateModal';
 import ViewCustomer from './components/customer/viewCustomer';
 import CustomerState from './context/customerState';
+import UpdateCustomer from './components/customer/updateCustomer';
 
 
 
@@ -20,11 +21,13 @@ function App() {
     <BrowserRouter>
     <div className='flex'>
     <Sidebar/>
-    <ViewCustomer/>
+    
     <Routes>
     <Route path="/addProduct" element={<AddProduct/>}/>
     <Route path="/viewProduct" element={<ViewProduct/>}/>
     <Route path="/update" element={<UpdateModal/>}/>
+    <Route path="/viewCustomers" element={<ViewCustomer/>}/>
+    <Route path="/updateCustomers" element={<UpdateCustomer/>}/>
     </Routes>
     </div>
     </BrowserRouter>
