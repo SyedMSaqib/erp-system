@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext,useNavigate, useState } from 'react'
 import ProductContext from '../context/productContext'
 
 const AddProduct = () => {
   
-  
+ 
   const productContext=useContext(ProductContext)
   const{addProduct}=productContext
   const [product, setproduct] = useState({name:"",category:"",description:"",quantity:"",price:""})
@@ -13,6 +13,7 @@ const AddProduct = () => {
   const onClick=(event)=>{
     event.preventDefault();
     addProduct(product.name,product.description,product.category,product.quantity,product.price)
+    
     
 
   }
