@@ -26,15 +26,26 @@ export default function Sidebar() {
       path: '/customers',
       key: 3,
       subTabs: [
+       
+        {
+          name: 'Add Customer',
+          path: '/addCustomers',
+          key: 5, 
+        },
+        {
+          name: 'Add sales',
+          path: '/AddCustomersSale',
+          key: 6, 
+        },
+        {
+          name: 'View Sales',
+          path: '/viewCustomerSale',
+          key: 7, 
+        },
         {
           name: 'View Customers',
           path: '/viewCustomers',
           key: 4,
-        },
-        {
-          name: 'Add Customer',
-          path: '/addCustomers',
-          key: 6, 
         },
       ],
     },

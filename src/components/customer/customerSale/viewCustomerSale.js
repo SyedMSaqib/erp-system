@@ -18,13 +18,13 @@ const ViewCustomerSale = () => {
               <th scope="col" className="px-6 py-4 font-medium text-gray-900">
                 Customer ID
               </th>
-              <th scope="col" className="px-28 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-20 py-4 font-medium text-gray-900">
                 Product
               </th>
               <th scope="col" className="px-20 py-4 font-medium text-gray-900">
                 Quantity
               </th>
-              <th scope="col" className="px-28 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-20 py-4 font-medium text-gray-900">
                 Date
               </th>
             </tr>

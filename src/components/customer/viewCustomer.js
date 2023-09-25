@@ -16,7 +16,7 @@ const ViewCustomer = () => {
 
   return (
     <div>
-      <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5 ml-72">
+      <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5 ml-64">
         <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
           <thead className="bg-gray-50">
             <tr>
@@ -47,7 +47,21 @@ const ViewCustomer = () => {
                     {customerItem.phone}
                   </span>
                 </td>
-                <td className="px-20 py-4">{customerItem._id}</td>
+                <td className="px-20 py-4">{customerItem._id}{<button
+                  onClick={() => {
+                    // Function to copy the customer ID to clipboard
+                    const textField = document.createElement("textarea")
+                    textField.innerText = customerItem._id
+                    document.body.appendChild(textField)
+                    textField.select()
+                    document.execCommand("copy")
+                    textField.remove()
+                  }}
+                  className="pl-3 text-blue-500 hover:text-blue-600 "
+                >
+                  Copy ID
+                </button>}</td>
+                
                 <td className="px-6 py-4">
                   <div className="flex justify-end gap-4">
                     <button
@@ -74,7 +88,7 @@ const ViewCustomer = () => {
                     </button>
                     <Link
                       x-data="{ tooltip: 'Edit' }"
-                      to={`/updateCustomers`} 
+                      to={`/updateCustomers`}
                       onClick={() => updateCustomer(customerItem)}
                     >
                       <svg
@@ -95,6 +109,7 @@ const ViewCustomer = () => {
                     </Link>
                   </div>
                 </td>
+                
               </tr>
             ))}
           </tbody>
