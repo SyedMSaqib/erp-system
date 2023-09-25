@@ -10,6 +10,9 @@ import ViewCustomer from './components/customer/viewCustomer';
 import CustomerState from './context/customerState';
 import UpdateCustomer from './components/customer/updateCustomer';
 import AddCustomers from './components/customer/addCustomers';
+import ViewCustomerSale from './components/customer/customerSale/viewCustomerSale';
+import CustomerSaleState from './context/customerSaleState';
+import AddCustomersSale from './components/customer/customerSale/addCustomerSale';
 
 
 
@@ -18,10 +21,12 @@ function App() {
   
   <CustomerState>
 <ProductState>
+  <CustomerSaleState>
 
     <BrowserRouter>
     <div className='flex'>
     <Sidebar/>
+    
     
     
     <Routes>
@@ -31,11 +36,15 @@ function App() {
     <Route path="/viewCustomers" element={<ViewCustomer/>}/>
     <Route path="/updateCustomers" element={<UpdateCustomer/>}/>
     <Route path="/addCustomers" element={<AddCustomers/>}/>
+    <Route path="/AddCustomersSale/" element={<AddCustomersSale/>}/>
+    <Route path="/viewCustomerSale" element={<ViewCustomerSale/>}/>
     </Routes>
     </div>
     </BrowserRouter>
+    </CustomerSaleState>
 </ProductState>
     </CustomerState>
+    
   );
 }
 
