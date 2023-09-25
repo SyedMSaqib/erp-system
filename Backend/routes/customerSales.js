@@ -20,7 +20,7 @@ router.post(
       // customerId= customerId.toString();
       const newCustomersale = await customerSale.create({
         user: req.user.id,
-        customer: customerId,
+        customerId: customerId,
         quantity: quantity,
         product:product,
       })
