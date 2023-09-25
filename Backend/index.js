@@ -7,6 +7,8 @@ const product=require("./routes/product")
 var cors = require('cors')
 const customer = require('./routes/customer')
 const customerSale = require('./routes/customerSales')
+const employee = require('./routes/employee')
+
 
 
 dbConnection()
@@ -17,6 +19,7 @@ app.use('/auth', auth)
 app.use('/product', product)
 app.use('/customer',customer)
 app.use('/customerSale',customerSale)
+app.use('/employees',employee)
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`)
