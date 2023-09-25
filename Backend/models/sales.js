@@ -7,7 +7,7 @@ const productSchema = new Schema({
     ref: "user",
   },
 
-  customer: {
+  customerId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "customer",
   },
