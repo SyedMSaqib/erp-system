@@ -13,6 +13,10 @@ import AddCustomers from './components/customer/addCustomers';
 import ViewCustomerSale from './components/customer/customerSale/viewCustomerSale';
 import CustomerSaleState from './context/customerSaleState';
 import AddCustomersSale from './components/customer/customerSale/addCustomerSale';
+import EmployeeState from './context/employeeState';
+import ViewEmployee from './components/employee/viewEmployee';
+import AddEmployees from './components/employee/addEmployee';
+import UpdateEmployee from './components/employee/updateEmployee';
 
 
 
@@ -22,6 +26,7 @@ function App() {
   <CustomerState>
 <ProductState>
   <CustomerSaleState>
+    <EmployeeState>
 
     <BrowserRouter>
     <div className='flex'>
@@ -38,9 +43,13 @@ function App() {
     <Route path="/addCustomers" element={<AddCustomers/>}/>
     <Route path="/AddCustomersSale/" element={<AddCustomersSale/>}/>
     <Route path="/viewCustomerSale" element={<ViewCustomerSale/>}/>
+    <Route path="/viewEmployee" element={<ViewEmployee/>}/>
+    <Route path="/AddEmployee" element={<AddEmployees/>}/>
+    <Route path="/UpdateEmployee" element={<UpdateEmployee/>}/>
     </Routes>
     </div>
     </BrowserRouter>
+    </EmployeeState>
     </CustomerSaleState>
 </ProductState>
     </CustomerState>
