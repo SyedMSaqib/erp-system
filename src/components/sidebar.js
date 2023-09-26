@@ -26,26 +26,43 @@ export default function Sidebar() {
       path: '/customers',
       key: 3,
       subTabs: [
-       
-        {
-          name: 'Add Customer',
-          path: '/addCustomers',
-          key: 5, 
-        },
-        {
-          name: 'Add sales',
-          path: '/AddCustomersSale',
-          key: 6, 
-        },
-        {
-          name: 'View Sales',
-          path: '/viewCustomerSale',
-          key: 7, 
-        },
         {
           name: 'View Customers',
           path: '/viewCustomers',
           key: 4,
+        },
+        {
+          name: 'Add Customer',
+          path: '/addCustomers',
+          key: 6,
+        },
+        {
+          name: 'Add Sale', // Added "Add Sale" sub-tab
+          path: '/AddCustomersSale',
+          key: 10, // You can choose a unique key for this sub-tab
+        },
+        {
+          name: 'View Sale', // Added "View Sale" sub-tab
+          path: '/viewCustomerSale',
+          key: 11, // You can choose a unique key for this sub-tab
+        },
+      ],
+    },
+    // Add "Employees" section with sub-tabs
+    {
+      name: 'Employees',
+      path: '/employees',
+      key: 7,
+      subTabs: [
+        {
+          name: 'View Employees',
+          path: '/viewEmployee',
+          key: 8,
+        },
+        {
+          name: 'Add Employees',
+          path: '/addEmployee',
+          key: 9,
         },
       ],
     },
@@ -54,27 +71,37 @@ export default function Sidebar() {
   const [open, setOpen] = useState(false);
   const [showInventorySubTabs, setShowInventorySubTabs] = useState(false);
   const [showCustomerSubTabs, setShowCustomerSubTabs] = useState(false);
+  const [showEmployeeSubTabs, setShowEmployeeSubTabs] = useState(false);
 
   const toggleMenu = () => {
     setOpen(!open);
     setShowCustomerSubTabs(false);
     setShowInventorySubTabs(false);
+    setShowEmployeeSubTabs(false);
   };
 
   const toggleCustomerSubTabs = () => {
     setShowCustomerSubTabs(!showCustomerSubTabs);
     setShowInventorySubTabs(false);
+    setShowEmployeeSubTabs(false);
   };
 
   const toggleInventorySubTabs = () => {
     setShowInventorySubTabs(!showInventorySubTabs);
     setShowCustomerSubTabs(false);
+    setShowEmployeeSubTabs(false);
+  };
+
+  const toggleEmployeeSubTabs = () => {
+    setShowEmployeeSubTabs(!showEmployeeSubTabs);
+    setShowCustomerSubTabs(false);
+    setShowInventorySubTabs(false);
   };
 
   return (
     <div className="w-60 fixed">
       <div className="flex">
-        <div className="shadow-lg flex flex-col h-screen p-3 bg-slate-100  w-60">
+        <div className="shadow-lg flex flex-col h-screen p-3 bg-slate-300 shadow w-60">
           <div className="space-y-3">
             <div className="flex items-center">
               <img className="ml-16 w-28" src={Saslogo} alt="Logo" />
@@ -89,6 +116,8 @@ export default function Sidebar() {
                         ? toggleCustomerSubTabs
                         : tab.name === 'Inventory'
                         ? toggleInventorySubTabs
+                        : tab.name === 'Employees'
+                        ? toggleEmployeeSubTabs
                         : toggleMenu
                     }
                     className="rounded-sm shadow-lg pt-2 max-w-xs transition duration-300 ease-in-out hover:scale-110 cursor-pointer"
@@ -116,7 +145,7 @@ export default function Sidebar() {
                           <li key={subTab.key}>
                             <Link
                               to={subTab.path}
-                              className="flex items-center p-2 space-x-1 rounded-md"
+                              className="flex items-center p-2 space-x-3 rounded-md"
                             >
                               <span className="pl-9 text-xs font-bold">
                                 {subTab.name}
@@ -127,6 +156,22 @@ export default function Sidebar() {
                       </ul>
                     )}
                     {tab.subTabs && tab.name === 'Inventory' && showInventorySubTabs && (
+                      <ul className="pl-6 space-y-2">
+                        {tab.subTabs.map((subTab) => (
+                          <li key={subTab.key}>
+                            <Link
+                              to={subTab.path}
+                              className="flex items-center p-2 space-x-3 rounded-md"
+                            >
+                              <span className="pl-9 text-xs font-bold">
+                                {subTab.name}
+                              </span>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    {tab.subTabs && tab.name === 'Employees' && showEmployeeSubTabs && (
                       <ul className="pl-6 space-y-2">
                         {tab.subTabs.map((subTab) => (
                           <li key={subTab.key}>
