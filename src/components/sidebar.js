@@ -32,20 +32,21 @@ export default function Sidebar() {
           key: 4,
         },
         {
+          name: 'View Sales', 
+          path: '/viewCustomerSale',
+          key: 11, 
+        },
+        {
           name: 'Add Customer',
           path: '/addCustomers',
           key: 6,
         },
         {
-          name: 'Add Sale', // Added "Add Sale" sub-tab
+          name: 'Add Sale', 
           path: '/AddCustomersSale',
-          key: 10, // You can choose a unique key for this sub-tab
+          key: 10, 
         },
-        {
-          name: 'View Sale', // Added "View Sale" sub-tab
-          path: '/viewCustomerSale',
-          key: 11, // You can choose a unique key for this sub-tab
-        },
+        
       ],
     },
     // Add "Employees" section with sub-tabs
