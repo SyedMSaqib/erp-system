@@ -14,7 +14,7 @@ const AddCustomers = () => {
       }
       const onClick=(event)=>{
         event.preventDefault();
-        addCustomer(Customer.name,Customer.email,Customer.phone)
+        addCustomer(Customer.name,Customer.phone,Customer.email)
         Navigate('/viewCustomers')
       }
 
@@ -48,7 +48,7 @@ const AddCustomers = () => {
               <div class="bg-white flex min-h-[60px] flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:shadow-inner">
                 <input
                   type="text"
-                  name="email"
+                  name="phone"
                   
                   class="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
                   placeholder="Phone" onChange={handleChange}
@@ -64,8 +64,8 @@ const AddCustomers = () => {
             <div class="grid">
               <div class="bg-white flex min-h-[60px] flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:shadow-inner">
                 <input
-                  type="phone"
-                  name="phone"
+                  
+                  name="email"
                   
                   class="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
                   placeholder="E-mail" onChange={handleChange}
