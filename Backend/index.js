@@ -8,6 +8,7 @@ var cors = require('cors')
 const customer = require('./routes/customer')
 const customerSale = require('./routes/customerSales')
 const employee = require('./routes/employee')
+const attendance = require('./routes/attendance')
 
 
 
@@ -20,6 +21,7 @@ app.use('/product', product)
 app.use('/customer',customer)
 app.use('/customerSale',customerSale)
 app.use('/employees',employee)
+app.use('/attendance',attendance)
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`)
