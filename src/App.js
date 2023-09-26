@@ -17,6 +17,10 @@ import EmployeeState from './context/employees/employeeState';
 import ViewEmployee from './components/employee/viewEmployee';
 import AddEmployees from './components/employee/addEmployee';
 import UpdateEmployee from './components/employee/updateEmployee';
+import ViewAttendance from './components/attendance/viewAttendance';
+import AttendanceState from './context/attendance/attendanceState';
+import AttendanceDatePicker from './components/attendance/attendanceDatePicker';
+
 
 
 
@@ -27,6 +31,7 @@ function App() {
 <ProductState>
   <CustomerSaleState>
     <EmployeeState>
+      <AttendanceState>
 
     <BrowserRouter>
     <div className='flex'>
@@ -46,9 +51,12 @@ function App() {
     <Route path="/viewEmployee" element={<ViewEmployee/>}/>
     <Route path="/AddEmployee" element={<AddEmployees/>}/>
     <Route path="/UpdateEmployee" element={<UpdateEmployee/>}/>
+    <Route path="/viewAttendance" element={<ViewAttendance/>}/>
+    <Route path="/attendanceDate" element={<AttendanceDatePicker/>}/>
     </Routes>
     </div>
     </BrowserRouter>
+    </AttendanceState>
     </EmployeeState>
     </CustomerSaleState>
 </ProductState>
