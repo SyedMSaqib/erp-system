@@ -1,19 +1,19 @@
 
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import './App.css';
-import Sidebar from './components/sidebar';
-import AddProduct from './components/addProduct';
-import ViewProduct from './components/viewProduct';
-import ProductState from './context/productState';
-import UpdateModal from './components/updateModal';
+import Sidebar from './components/sidebar/sidebar';
+import AddProduct from './components/product/addProduct';
+import ViewProduct from './components/product/viewProduct';
+import ProductState from './context/product/productState';
+import UpdateModal from './components/product/updateModal';
 import ViewCustomer from './components/customer/viewCustomer';
-import CustomerState from './context/customerState';
+import CustomerState from './context/customer/customerState';
 import UpdateCustomer from './components/customer/updateCustomer';
 import AddCustomers from './components/customer/addCustomers';
 import ViewCustomerSale from './components/customer/customerSale/viewCustomerSale';
-import CustomerSaleState from './context/customerSaleState';
+import CustomerSaleState from './context/customerSale/customerSaleState';
 import AddCustomersSale from './components/customer/customerSale/addCustomerSale';
-import EmployeeState from './context/employeeState';
+import EmployeeState from './context/employees/employeeState';
 import ViewEmployee from './components/employee/viewEmployee';
 import AddEmployees from './components/employee/addEmployee';
 import UpdateEmployee from './components/employee/updateEmployee';

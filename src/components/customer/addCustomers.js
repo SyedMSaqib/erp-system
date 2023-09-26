@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react"
-import CustomerContext from "../../context/customerContext";
+import CustomerContext from "../../context/customer/customerContext";
 import { useNavigate } from "react-router-dom";
 
 

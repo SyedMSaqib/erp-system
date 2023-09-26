@@ -1,5 +1,5 @@
 import React, { useContext,useState } from 'react'
-import CustomerContext from '../context/customerContext'
+import CustomerContext from './customerContext'
 
 
 const CustomerState = (props) => {

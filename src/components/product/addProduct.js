@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import ProductContext from '../context/productContext'
+import ProductContext from '../../context/product/productContext'
 import { useNavigate } from 'react-router-dom';
 
 const AddProduct = () => {

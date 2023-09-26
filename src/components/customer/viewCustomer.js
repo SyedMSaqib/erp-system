@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react"
-import customerContext from "../../context/customerContext"
+import customerContext from "../../context/customer/customerContext"
 import { Link } from "react-router-dom"
 
 const ViewCustomer = () => {

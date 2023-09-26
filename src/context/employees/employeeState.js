@@ -1,5 +1,5 @@
 import React, {  useState } from 'react';
-import EmployeeContext from '../context/employeeContext';
+import EmployeeContext from './employeeContext';
 
 const EmployeeState = (props) => {
   const host = 'http://localhost:5000';

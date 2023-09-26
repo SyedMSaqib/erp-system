@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import EmployeeContext from "../../context/employeeContext";
+import EmployeeContext from "../../context/employees/employeeContext";
 import { Link } from "react-router-dom";
 
 const ViewEmployee = () => {

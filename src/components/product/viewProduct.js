@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import ProductContext from ".././context/productContext";
+import ProductContext from "../../context/product/productContext";
 import { Link } from "react-router-dom";
 
 const ViewProduct = () => {

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import customerSaleContext from "../../../context/customerSaleContext";
+import customerSaleContext from "../../../context/customerSale/customerSaleContext";
 import { useNavigate } from 'react-router-dom';
 const AddCustomerSale = () => {
     
