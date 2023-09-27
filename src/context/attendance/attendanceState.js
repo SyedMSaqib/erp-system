@@ -10,6 +10,19 @@ const AttendanceState = (props) => {
   const [updateFormValues, setUpdateFormValues] = useState(null);
   const [date, setdate] = useState(null)
 
+
+  function formatDate(inputDate) {
+    const date = new Date(inputDate);
+    const day = date.getDate();
+    const month = date.getMonth() + 1; 
+    const year = date.getFullYear();
+    
+    
+    
+  
+    return `${month}/${day}/${year}`;
+  }
+
   const getAllAttendance = async () => {
     // Get attendance records API call
     const response = await fetch(`${host}/Attendance/fetchAllAttendance`, {
@@ -23,22 +36,23 @@ const AttendanceState = (props) => {
     setAttendance(data);
   };
 
-  const addAttendance = async (employeeId, name, attendance) => {
+  const addAttendance = async (employeeId, name, attendance,date) => {
     const newAttendance = {
       employeeId,
       name,
       attendance,
+      date
     };
-    setAttendance([...attendance, newAttendance]);
+    setAttendance( newAttendance);
 
     // Add attendance record API call
-    const response = await fetch(`${host}/attendance/add`, {
+    const response = await fetch(`${host}/attendance/addAttendance`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ3ZTRlNTYyZThjNWNhZmRmZWY2MzdmIn0sImlhdCI6MTY4NTk5OTE5MH0.tANfZWBhWrVuSXEhNvIAutanlz2LpwO0ZaJrDfN3cj0',
       },
-      body: JSON.stringify({ employeeId, name, attendance }),
+      body: JSON.stringify({ employeeId, name, attendance,date }),
     });
   };
 
@@ -80,7 +94,8 @@ const AttendanceState = (props) => {
         setUpdateFormValues,
         setAttendanceId,
         setdate,
-        date
+        date,
+        formatDate
       }}
     >
       {props.children}
