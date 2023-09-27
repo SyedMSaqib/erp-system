@@ -20,6 +20,7 @@ import UpdateEmployee from './components/employee/updateEmployee';
 import ViewAttendance from './components/attendance/viewAttendance';
 import AttendanceState from './context/attendance/attendanceState';
 import AttendanceDatePicker from './components/attendance/attendanceDatePicker';
+import AddAttendance from './components/attendance/addAttendance';
 
 
 
@@ -37,7 +38,7 @@ function App() {
     <div className='flex'>
     <Sidebar/>
     
-    
+    {/* <AddAttendance/> */}
     
     <Routes>
     <Route path="/addProduct" element={<AddProduct/>}/>
@@ -53,6 +54,7 @@ function App() {
     <Route path="/UpdateEmployee" element={<UpdateEmployee/>}/>
     <Route path="/viewAttendance" element={<ViewAttendance/>}/>
     <Route path="/attendanceDate" element={<AttendanceDatePicker/>}/>
+    <Route path="/addAttendance" element={<AddAttendance/>}/>
     </Routes>
     </div>
     </BrowserRouter>
