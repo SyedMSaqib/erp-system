@@ -37,6 +37,19 @@ const AddAttendance = () => {
           true,
           Date
         )
+      
+    })
+    employees.map((emp)=>{
+      const employeeExists = attendanceData.some((record) => record._id === emp._id);
+      if (!employeeExists)
+      {
+        addAttendance(
+          emp._id,
+          emp.name,
+          false,
+          Date  
+        )
+      }
     })
     Navigate('/addAttendanceDate')
 }
