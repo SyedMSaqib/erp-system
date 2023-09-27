@@ -65,6 +65,11 @@ export default function Sidebar() {
           path: '/addEmployee',
           key: 9,
         },
+        {
+          name: 'Attendance',
+          path: '/attendanceDate',
+          key: 12, // Choose a unique key for this sub-tab
+        },
       ],
     },
   ];
