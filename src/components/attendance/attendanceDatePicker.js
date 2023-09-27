@@ -18,6 +18,9 @@ const AttendanceDatePicker = () => {
   const onClick=()=>{
     Navigate('/viewAttendance')
   }
+  const onClickSecond=()=>{
+    Navigate('/addAttendance')
+  }
 
   return (
     <div className="ml-48 my-10">
@@ -46,13 +49,20 @@ const AttendanceDatePicker = () => {
             placeholder="Select date"
           />
         </div>
+        <div className="w-52 flex justify-center space-x-9">
 
         <div onClick={onClick} class="text-center py-10">
-          <button class="p-2 pl-5 pr-5 bg-transparent border-2 border-slate-400 text-indigo-500 text-lg rounded-lg transition-colors duration-700 transform hover:bg-slate-400 hover:text-gray-100 focus:border-4 focus:border-indigo-300">
-            Select
+          <button class="px-10 bg-slate-400 border-2 border-slate-600 text-gray-100  text-lg rounded-lg">
+            View Attendace
+          </button>
+        </div>
+        <div onClick={onClickSecond} class="text-center py-10">
+          <button class="px-10 bg-slate-400 border-2 border-slate-600 text-gray-100  text-lg rounded-lg ">
+            Add Attendance
           </button>
         </div>
       </div>
+        </div>
     </div>
   )
 };
