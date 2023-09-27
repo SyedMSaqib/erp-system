@@ -56,7 +56,7 @@ const onClick = (event) => {
                         </div>
                         <a href="#" class="text-sm font-medium text-primary-600 hover:underline">Forgot password?</a>
                     </div>
-                    <button onClick={onClick} type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign in</button>
+                    <button onClick={onClick} type="submit" class="w-full text-black bg-slate-400 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign in</button>
                     <p class="text-sm font-light text-gray-500">
                         Don’t have an account yet? <a href="#" class="font-medium text-primary-600 hover:underline">Sign up</a>
                     </p>
