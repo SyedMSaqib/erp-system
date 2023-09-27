@@ -3,24 +3,14 @@ import AttendanceContext from "../../context/attendance/attendanceContext";
 import { Link } from "react-router-dom";
 
 const ViewAttendance = () => {
-  const { attendance, getAllAttendance, deleteAttendance, date } = useContext(AttendanceContext);
+  const { attendance, getAllAttendance, deleteAttendance, date ,formatDate} = useContext(AttendanceContext);
 
   useEffect(() => {
     getAllAttendance();
   }, []);
 
   
-  function formatDate(inputDate) {
-    const date = new Date(inputDate);
-    const day = date.getDate();
-    const month = date.getMonth() + 1; // Months are zero-indexed, so we add 1
-    const year = date.getFullYear();
-    
-    // Ensure single digits have leading zeros
-    
-  
-    return `${month}/${day}/${year}`;
-  }
+ 
   const formattedDate = formatDate(date);  
 
   const filteredAttendance = attendance.filter((attendance) => {
