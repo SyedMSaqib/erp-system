@@ -4,6 +4,7 @@ import AttendanceContext from './attendanceContext';
 const AttendanceState = (props) => {
   const host = 'http://localhost:5000';
   const initialAttendanceData = [];
+  const authToken = localStorage.getItem('authToken');
 
   const [attendance, setAttendance] = useState(initialAttendanceData);
   const [attendanceId, setAttendanceId] = useState(null);
@@ -29,7 +30,7 @@ const AttendanceState = (props) => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ3ZTRlNTYyZThjNWNhZmRmZWY2MzdmIn0sImlhdCI6MTY4NTk5OTE5MH0.tANfZWBhWrVuSXEhNvIAutanlz2LpwO0ZaJrDfN3cj0',
+        'auth-token': authToken,
       },
     });
     const data = await response.json();
@@ -50,7 +51,7 @@ const AttendanceState = (props) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ3ZTRlNTYyZThjNWNhZmRmZWY2MzdmIn0sImlhdCI6MTY4NTk5OTE5MH0.tANfZWBhWrVuSXEhNvIAutanlz2LpwO0ZaJrDfN3cj0',
+        'auth-token':authToken,
       },
       body: JSON.stringify({ employeeId, name, attendance,date }),
     });
@@ -62,7 +63,7 @@ const AttendanceState = (props) => {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ3ZTRlNTYyZThjNWNhZmRmZWY2MzdmIn0sImlhdCI6MTY4NTk5OTE5MH0.tANfZWBhWrVuSXEhNvIAutanlz2LpwO0ZaJrDfN3cj0',
+        'auth-token': authToken,
       },
       body: JSON.stringify({ employeeId, name, attendance }),
     });
@@ -76,7 +77,7 @@ const AttendanceState = (props) => {
     const response = await fetch(`${host}/attendance/deleteAttendance/${id}`, {
       method: 'DELETE',
       headers: {
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ3ZTRlNTYyZThjNWNhZmRmZWY2MzdmIn0sImlhdCI6MTY4NTk5OTE5MH0.tANfZWBhWrVuSXEhNvIAutanlz2LpwO0ZaJrDfN3cj0',
+        'auth-token': authToken,
       },
     });
   };
