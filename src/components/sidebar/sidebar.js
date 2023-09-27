@@ -56,20 +56,27 @@ export default function Sidebar() {
       key: 7,
       subTabs: [
         {
+          name: 'Add Employees',
+          path: '/addEmployee',
+          key: 9,
+        },
+       
+        {
+          name: 'Add Attendance',
+          path:'/addAttendanceDate',
+          key: 13,
+        },
+        {
           name: 'View Employees',
           path: '/viewEmployee',
           key: 8,
         },
         {
-          name: 'Add Employees',
-          path: '/addEmployee',
-          key: 9,
-        },
-        {
-          name: 'Attendance',
+          name: 'View Attendance',
           path: '/attendanceDate',
           key: 12, // Choose a unique key for this sub-tab
         },
+       
       ],
     },
   ];

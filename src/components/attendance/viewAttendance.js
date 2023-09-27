@@ -17,7 +17,7 @@ const ViewAttendance = () => {
   
     return new Date(attendance.date).toLocaleDateString() === formattedDate;
   });
-  console.log(formattedDate)
+  
 
   //'9/12/2024'
   return (

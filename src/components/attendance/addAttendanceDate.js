@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-const AttendanceDatePicker = () => {
+const AddAttendanceDate = () => {
     const {setdate}=useContext(attendanceContext)
   const [selectedDate, setSelectedDate] = useState('');
 
@@ -17,10 +17,9 @@ const AttendanceDatePicker = () => {
   const Navigate=useNavigate()
   const onClick=()=>{
     setdate(selectedDate)
-    Navigate('/viewAttendance')
+    Navigate('/addAttendance')
   }
   
-
   return (
     <div className="ml-48 my-10">
       <div className='ml-44'>
@@ -51,15 +50,14 @@ const AttendanceDatePicker = () => {
         <div className="w-52 flex justify-center space-x-9">
 
         <div onClick={onClick} class="text-center py-10">
-          <button class="px-10 bg-slate-400 border-2 border-slate-600 text-gray-100  text-lg rounded-lg">
-            View Attendace
+        <button class="px-10 bg-slate-400 border-2 border-slate-600 text-gray-100  text-lg rounded-lg">
+            Add Attendace
           </button>
         </div>
-        
       </div>
         </div>
     </div>
   )
 };
 
-export default AttendanceDatePicker;
+export default AddAttendanceDate;

@@ -21,6 +21,7 @@ import ViewAttendance from './components/attendance/viewAttendance';
 import AttendanceState from './context/attendance/attendanceState';
 import AttendanceDatePicker from './components/attendance/attendanceDatePicker';
 import AddAttendance from './components/attendance/addAttendance';
+import AddAttendanceDate from './components/attendance/addAttendanceDate';
 
 
 
@@ -55,6 +56,7 @@ function App() {
     <Route path="/viewAttendance" element={<ViewAttendance/>}/>
     <Route path="/attendanceDate" element={<AttendanceDatePicker/>}/>
     <Route path="/addAttendance" element={<AddAttendance/>}/>
+    <Route path="/addAttendanceDate" element={<AddAttendanceDate/>}/>
     </Routes>
     </div>
     </BrowserRouter>

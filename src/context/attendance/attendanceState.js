@@ -43,7 +43,7 @@ const AttendanceState = (props) => {
       attendance,
       date
     };
-    setAttendance( newAttendance);
+    setAttendance( [newAttendance]);
 
     // Add attendance record API call
     const response = await fetch(`${host}/attendance/addAttendance`, {

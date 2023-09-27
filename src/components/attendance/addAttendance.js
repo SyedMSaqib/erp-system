@@ -38,7 +38,7 @@ const AddAttendance = () => {
           Date
         )
     })
-    Navigate('/attendanceDate')
+    Navigate('/addAttendanceDate')
 }
 
   return (
@@ -60,7 +60,7 @@ const AddAttendance = () => {
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
             {employees.map((employee, index) => (
-              <tr className="hover:bg-gray-50" key={employee.id}>
+              <tr className="hover:bg-gray-50" key={index}>
                 <td className="flex gap-3 px-6 py-4 font-normal text-gray-900">
                   {index + 1}
                 </td>
