@@ -83,6 +83,7 @@ const AuthState = (props) => {
         signup,
         setEmail,
         setPassword,
+        signup
        
       }}
     >

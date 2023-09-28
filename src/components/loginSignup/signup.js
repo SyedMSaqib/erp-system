@@ -1,14 +1,13 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import authContext from '../../context/auth/authContext'
-import { Link, useNavigate } from 'react-router-dom';
-import Sidebar from '../sidebar/sidebar';
+import { Link } from 'react-router-dom';
 
 
 
-const SignIn = () => {
+
+const SignUp = () => {
   const authToken = localStorage.getItem('authToken');
-const {email,setEmail,password,setPassword,login}=useContext(authContext)
-const [value, setvalue] = useState(true)
+const {email,setEmail,password,setPassword,signup}=useContext(authContext)
 
 
 const handleChange = (e) => {
@@ -22,21 +21,21 @@ const handleChange = (e) => {
 };
 const onClick = (event) => {
   event.preventDefault();
-  login(email,password);
+  signup(email,password);
  
-  
+ 
   
 
   
   
 };
   return (
-    <section className={value ? "bg-white min-h-screen flex justify-center items-center ml-96" : "hidden"}>
+    <section className="bg-white min-h-screen flex justify-center items-center ml-96">
     <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 ml-44">
       <div className="w-full bg-white rounded-lg shadow-md md:mt-0 sm:max-w-md xl:p-0">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-            Sign in to your account
+            Sign up for an account
           </h1>
           <form className="space-y-4 md:space-y-6" action="#">
                     <div>
@@ -58,10 +57,8 @@ const onClick = (event) => {
                         </div>
                         <a href="#" class="text-sm font-medium text-primary-600 hover:underline">Forgot password?</a>
                     </div>
-                    <button onClick={onClick} type="submit" class="w-full text-black bg-slate-400 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign in</button>
-                    <Link onClick={()=>{setvalue(false)}}  class="text-sm font-light text-gray-500">
-                        Don’t have an account yet? <a href="#" class="font-medium text-primary-600 hover:underline">Sign up</a>
-                    </Link>
+                    <button onClick={onClick} type="submit" class="w-full text-black bg-slate-400 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign Up</button>
+                    
                 </form>
             </div>
         </div>
@@ -71,4 +68,4 @@ const onClick = (event) => {
   )
 }
 
-export default SignIn
+export default SignUp

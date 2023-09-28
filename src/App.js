@@ -24,6 +24,7 @@ import AddAttendance from './components/attendance/addAttendance';
 import AddAttendanceDate from './components/attendance/addAttendanceDate';
 import SignIn from './components/loginSignup/signIn';
 import AuthState from './context/auth/authState';
+import SignUp from './components/loginSignup/signup';
 
 function App() {
   const authToken = localStorage.getItem('authToken');
@@ -57,6 +58,7 @@ function App() {
                       <Route path="/addAttendanceDate" element={<AddAttendanceDate />} />
                       <Route path="/signIn" element={<SignIn />} />
                       <Route path="/sidebar" element={<SignIn />} />
+                      <Route path="/signUp" element={<SignUp />} />
                     </Routes>
                   </div>
                 </BrowserRouter>
