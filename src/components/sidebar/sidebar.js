@@ -7,7 +7,7 @@ export default function Sidebar() {
   const logout = () => {
     
     localStorage.removeItem('authToken');
-    Navigate('/')
+    Navigate('/signIn')
     
 
   };
@@ -118,7 +118,11 @@ export default function Sidebar() {
     setShowCustomerSubTabs(false);
     setShowInventorySubTabs(false);
   };
+  const authToken=localStorage.getItem('authToken');
+  if(authToken===null)
+  return null
 
+else
   return (
     <div className="w-60 fixed">
     <div className="flex">

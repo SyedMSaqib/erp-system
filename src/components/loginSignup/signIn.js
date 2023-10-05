@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import authContext from '../../context/auth/authContext'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link,  } from 'react-router-dom';
 
 
 
@@ -24,7 +24,7 @@ const handleChange = (e) => {
 };
 useEffect(() => {
   
-  const timer = setTimeout(() => {
+ 
    
     if(responeFromServer.ok)
     {
@@ -32,16 +32,17 @@ useEffect(() => {
       setvalue(false)
       
     } 
-  }, );
+ 
  
 
-  return () => clearTimeout(timer);
+  
 }, [login])
-async function fun()
+const  fun=async()=>
 {
-  console.log(authToken)
+ 
   await login(email,password);
    authToken =  localStorage.getItem('authToken');
+   if(authToken!==null)
    settokenUpdate(true)
 }
 const onClick = (event) => {
@@ -50,8 +51,8 @@ const onClick = (event) => {
   
  
 };
-
-if(authToken!==null)
+const AuthToken =  localStorage.getItem('authToken');
+if(AuthToken!==null)
 return null
 
 else

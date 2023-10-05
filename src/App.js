@@ -40,12 +40,10 @@ function App() {
       if (authToken !== null) {
         setauthenticated(true);
       } else {
-        setauthenticated(false); // Set to false if there's no authToken
+        setauthenticated(false); 
       }
       console.log(authToken)
 
-  
-    // ...
   }, [tokenUpdate]);
   
 
@@ -81,6 +79,7 @@ function App() {
                       <Route path="/addAttendance" element={<AddAttendance />} />
                       <Route path="/addAttendanceDate" element={<AddAttendanceDate />} />
                       <Route path="/" element={<SignIn settokenUpdate ={settokenUpdate} />} />
+                      <Route path="/signIn" element={<SignIn settokenUpdate ={settokenUpdate} />} />
                       <Route path="/sidebar" element={<SignIn />} />
                       <Route path="/signUp" element={<SignUp />} />
                     </Routes>
