@@ -10,6 +10,7 @@ const ProductState = (props) => {
       const [product, setproduct] = useState(productDb)
       const [productId, setproductId] = useState(null)
       const [updateFormValues, setupdateFormValues] = useState(null)
+      const authToken = localStorage.getItem('authToken');
       
       
       const getAllProducts=async()=>{
@@ -20,7 +21,7 @@ const ProductState = (props) => {
              
             headers: {
               "Content-Type": "application/json",
-              "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ3ZTRlNTYyZThjNWNhZmRmZWY2MzdmIn0sImlhdCI6MTY4NTk5OTE5MH0.tANfZWBhWrVuSXEhNvIAutanlz2LpwO0ZaJrDfN3cj0"
+              "auth-token": authToken
               
             },
             
@@ -52,7 +53,7 @@ const ProductState = (props) => {
                
               headers: {
                 "Content-Type":"application/json",
-                "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ3ZTRlNTYyZThjNWNhZmRmZWY2MzdmIn0sImlhdCI6MTY4NTk5OTE5MH0.tANfZWBhWrVuSXEhNvIAutanlz2LpwO0ZaJrDfN3cj0"
+                "auth-token": authToken
                 
               },
               body: JSON.stringify({name,category,description,price,quantity}),
@@ -70,7 +71,7 @@ const ProductState = (props) => {
              
             headers: {
               "Content-Type":"application/json",
-              "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ3ZTRlNTYyZThjNWNhZmRmZWY2MzdmIn0sImlhdCI6MTY4NTk5OTE5MH0.tANfZWBhWrVuSXEhNvIAutanlz2LpwO0ZaJrDfN3cj0"
+              "auth-token": authToken
               
             },
             body: JSON.stringify({name,category,description,price,quantity}),
@@ -90,7 +91,7 @@ const ProductState = (props) => {
             method: "DELETE", 
              
             headers: {
-              "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ3ZTRlNTYyZThjNWNhZmRmZWY2MzdmIn0sImlhdCI6MTY4NTk5OTE5MH0.tANfZWBhWrVuSXEhNvIAutanlz2LpwO0ZaJrDfN3cj0"
+              "auth-token": authToken
               
             },
             

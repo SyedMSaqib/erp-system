@@ -8,6 +8,7 @@ const EmployeeState = (props) => {
   const [employees, setEmployees] = useState(employeeDb);
   const [employeeId, setEmployeeId] = useState(null);
   const [updateFormValues, setUpdateFormValues] = useState(null);
+  const authToken = localStorage.getItem('authToken');
 
   const getAllEmployees = async () => {
     try {
@@ -16,7 +17,7 @@ const EmployeeState = (props) => {
         headers: {
           'Content-Type': 'application/json',
           
-          "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ3ZTRlNTYyZThjNWNhZmRmZWY2MzdmIn0sImlhdCI6MTY4NTk5OTE5MH0.tANfZWBhWrVuSXEhNvIAutanlz2LpwO0ZaJrDfN3cj0",
+         "auth-token": authToken
         },
       });
       const data = await response.json();
@@ -40,7 +41,7 @@ const EmployeeState = (props) => {
         headers: {
           'Content-Type': 'application/json',
           
-          "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ3ZTRlNTYyZThjNWNhZmRmZWY2MzdmIn0sImlhdCI6MTY4NTk5OTE5MH0.tANfZWBhWrVuSXEhNvIAutanlz2LpwO0ZaJrDfN3cj0",
+         "auth-token": authToken
         },
         body: JSON.stringify({ name, email, phone }),
       });
@@ -59,7 +60,7 @@ const EmployeeState = (props) => {
         headers: {
           'Content-Type': 'application/json',
           
-          "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ3ZTRlNTYyZThjNWNhZmRmZWY2MzdmIn0sImlhdCI6MTY4NTk5OTE5MH0.tANfZWBhWrVuSXEhNvIAutanlz2LpwO0ZaJrDfN3cj0",
+         "auth-token": authToken
         },
         body: JSON.stringify({ name, email, phone }),
       });
@@ -84,7 +85,7 @@ const EmployeeState = (props) => {
         method: 'DELETE',
         headers: {
           
-            "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ3ZTRlNTYyZThjNWNhZmRmZWY2MzdmIn0sImlhdCI6MTY4NTk5OTE5MH0.tANfZWBhWrVuSXEhNvIAutanlz2LpwO0ZaJrDfN3cj0",
+           "auth-token": authToken
         },
       });
 
