@@ -7,7 +7,8 @@ export default function Sidebar() {
   const logout = () => {
     
     localStorage.removeItem('authToken');
-    Navigate('/signIn')
+    return window.location.href = '/signIn';
+   
     
 
   };
