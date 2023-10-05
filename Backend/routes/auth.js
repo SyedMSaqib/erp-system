@@ -10,7 +10,7 @@ var salt = bcrypt.genSaltSync(10);
 //Signup authentication
 router.post("/signup", [check("name").isLength({min:3}),check("email").isEmail(), check("password").isLength({ min: 6 })], async (req, res) => {
     const result = validationResult(req)
-    if (!result.isEmpty()) return res.json(result)
+    if (!result.isEmpty()) return res.status(500).json(result)
   
     try{
     let checkUser = await user.findOne({email:req.body.email})
@@ -33,12 +33,11 @@ router.post("/signup", [check("name").isLength({min:3}),check("email").isEmail()
     var token = jwt.sign(checkUser,key);
 
 
-    res.json({token})
-    console.log({newUser})
+    res.status(200).json({token})
     }
     catch(err)
     {
-        res.json({err})
+        res.status(500).json({err})
        
     }
 

@@ -7,7 +7,9 @@ const AuthState = (props) => {
  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
   const [responeFromServer, setresponeFromServer] = useState("")
+  const [responeFromServerSignUp, setresponeFromServerSignUp] = useState("")
   
  
 
@@ -46,23 +48,19 @@ const AuthState = (props) => {
     }
   };
   
-  const signup = async (email, password) => {
+  const signup = async (email, password,name) => {
     try {
+      
       const response = await fetch(`${host}/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password ,name }),
       });
   
       if (response.ok) {
-        const data = await response.json();
-        const token = data.token; 
-  
-      
-        localStorage.setItem('authToken', token);
-  
+        setresponeFromServerSignUp(response)
         
       } else {
       
@@ -87,7 +85,10 @@ const AuthState = (props) => {
         setEmail,
         setPassword,
         signup,
-        responeFromServer
+        responeFromServer,
+        setName,
+        name,
+        responeFromServerSignUp
        
       }}
     >
