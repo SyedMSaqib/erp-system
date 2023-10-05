@@ -23,9 +23,9 @@ import AttendanceDatePicker from './components/attendance/attendanceDatePicker';
 import AddAttendance from './components/attendance/addAttendance';
 import AddAttendanceDate from './components/attendance/addAttendanceDate';
 import SignIn from './components/loginSignup/signIn';
-
 import SignUp from './components/loginSignup/signup';
 import AuthState from './context/auth/authState'
+import Loader from "react-spinners/PacmanLoader";
 
 
 function App() {
@@ -34,6 +34,16 @@ function App() {
   
   const [authenticated, setauthenticated] = useState(false)
   const [tokenUpdate, settokenUpdate] = useState(false)
+  const [loading, setloading] = useState(false)
+  let [color, setColor] = useState("#b91c1c");
+
+  useEffect(() => {
+    setloading(true)
+    setTimeout(() => {
+      setloading(false)
+    }, 5000);
+  }, [])
+  
   
   useEffect(() => {
     authToken=localStorage.getItem('authToken');
@@ -59,7 +69,16 @@ function App() {
             <EmployeeState>
               <AttendanceState>
                 <BrowserRouter>
-                  <div className='flex'>
+                {loading ?<div className='h-screen flex items-center justify-center'>
+                <Loader 
+        color={color}
+        loading={loading}
+        size={15}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+        />
+        </div> 
+                 : <div className='flex'>
                   {authenticated ? <Sidebar /> : null}
                   {console.log("in"+authenticated)}
                     <Routes>
@@ -84,6 +103,7 @@ function App() {
                       <Route path="/signUp" element={<SignUp />} />
                     </Routes>
                   </div>
+                  }
                 </BrowserRouter>
               </AttendanceState>
             </EmployeeState>
