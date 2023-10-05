@@ -1,14 +1,16 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import authContext from '../../context/auth/authContext'
 import { Link, useNavigate } from 'react-router-dom';
-import Sidebar from '../sidebar/sidebar';
 
 
 
-const SignIn = () => {
-  const authToken = localStorage.getItem('authToken');
-const {email,setEmail,password,setPassword,login}=useContext(authContext)
+
+const SignIn = ({settokenUpdate}) => {
+  var authToken =null
+const {email,setEmail,password,setPassword,login,responeFromServer}=useContext(authContext)
 const [value, setvalue] = useState(true)
+
+
 
 
 const handleChange = (e) => {
@@ -20,16 +22,39 @@ const handleChange = (e) => {
     setPassword(value);
   }
 };
+useEffect(() => {
+  
+  const timer = setTimeout(() => {
+   
+    if(responeFromServer.ok)
+    {
+      
+      setvalue(false)
+      
+    } 
+  }, );
+ 
+
+  return () => clearTimeout(timer);
+}, [login])
+async function fun()
+{
+  console.log(authToken)
+  await login(email,password);
+   authToken =  localStorage.getItem('authToken');
+   settokenUpdate(true)
+}
 const onClick = (event) => {
   event.preventDefault();
-  login(email,password);
+  fun()
+  
  
-  
-  
-
-  
-  
 };
+
+if(authToken!==null)
+return null
+
+else
   return (
     <section className={value ? "bg-white min-h-screen flex justify-center items-center ml-96" : "hidden"}>
     <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 ml-44">
@@ -56,9 +81,9 @@ const onClick = (event) => {
                               <label for="remember" class="text-gray-500">Remember me</label>
                             </div>
                         </div>
-                        <a href="#" class="text-sm font-medium text-primary-600 hover:underline">Forgot password?</a>
+                        <Link to={"/sidebar"} class="text-sm font-medium text-primary-600 hover:underline">Forgot password?</Link>
                     </div>
-                    <button onClick={onClick} type="submit" class="w-full text-black bg-slate-400 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign in</button>
+                    <Link   onClick={onClick} type='submit' class="w-full text-black bg-slate-400 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-40">Sign in</Link>
                     <Link onClick={()=>{setvalue(false)}}  class="text-sm font-light text-gray-500">
                         Don’t have an account yet? <a href="#" class="font-medium text-primary-600 hover:underline">Sign up</a>
                     </Link>

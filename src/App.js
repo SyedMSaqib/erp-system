@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import './App.css';
 import Sidebar from './components/sidebar/sidebar';
@@ -23,12 +23,35 @@ import AttendanceDatePicker from './components/attendance/attendanceDatePicker';
 import AddAttendance from './components/attendance/addAttendance';
 import AddAttendanceDate from './components/attendance/addAttendanceDate';
 import SignIn from './components/loginSignup/signIn';
-import AuthState from './context/auth/authState';
+
 import SignUp from './components/loginSignup/signup';
+import AuthState from './context/auth/authState'
+
 
 function App() {
-  const authToken = localStorage.getItem('authToken');
-  const authenticated = authToken !== null;
+  
+  var authToken=null
+  
+  const [authenticated, setauthenticated] = useState(false)
+  const [tokenUpdate, settokenUpdate] = useState(false)
+  
+  useEffect(() => {
+    authToken=localStorage.getItem('authToken');
+      if (authToken !== null) {
+        setauthenticated(true);
+      } else {
+        setauthenticated(false); // Set to false if there's no authToken
+      }
+      console.log(authToken)
+
+  
+    // ...
+  }, [tokenUpdate]);
+  
+
+ 
+  
+
  
   return (
     <AuthState>
@@ -39,7 +62,8 @@ function App() {
               <AttendanceState>
                 <BrowserRouter>
                   <div className='flex'>
-                    {authenticated ? <Sidebar /> : <SignIn />}
+                  {authenticated ? <Sidebar /> : null}
+                  {console.log("in"+authenticated)}
                     <Routes>
                       <Route path="/addProduct" element={<AddProduct />} />
                       <Route path="/viewProduct" element={<ViewProduct />} />
@@ -56,7 +80,7 @@ function App() {
                       <Route path="/attendanceDate" element={<AttendanceDatePicker />} />
                       <Route path="/addAttendance" element={<AddAttendance />} />
                       <Route path="/addAttendanceDate" element={<AddAttendanceDate />} />
-                      <Route path="/signIn" element={<SignIn />} />
+                      <Route path="/" element={<SignIn settokenUpdate ={settokenUpdate} />} />
                       <Route path="/sidebar" element={<SignIn />} />
                       <Route path="/signUp" element={<SignUp />} />
                     </Routes>
