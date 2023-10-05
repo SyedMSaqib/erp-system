@@ -25,14 +25,8 @@ const handleChange = (e) => {
 const checkSignUp = async () => {
   try {
     await signup(email, password, name);
-    console.log("signuppage");
-    console.log(responeFromServerSignUp);
     return window.location.href = '/signIn';
-    
-
-    if (responeFromServerSignUp===200) {
-      return window.location.href = '/signIn';
-    }
+  
   } catch (error) {
     console.error("Error during signup:", error);
     
