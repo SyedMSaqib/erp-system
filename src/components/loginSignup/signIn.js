@@ -85,9 +85,9 @@ else
                         <Link to={"/sidebar"} class="text-sm font-medium text-primary-600 hover:underline">Forgot password?</Link>
                     </div>
                     <Link   onClick={onClick} type='submit' class="w-full text-black bg-slate-400 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-40">Sign in</Link>
-                    <Link onClick={()=>{setvalue(false)}}  class="text-sm font-light text-gray-500">
-                        Don’t have an account yet? <a href="#" class="font-medium text-primary-600 hover:underline">Sign up</a>
-                    </Link>
+                    <div   class="text-sm font-light text-gray-500">
+                        Don’t have an account yet? <Link to={"/signUp"} class="font-medium text-primary-600 hover:underline">Sign up</Link>
+                    </div>
                 </form>
             </div>
         </div>
