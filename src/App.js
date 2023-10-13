@@ -35,7 +35,7 @@ function App() {
   const [authenticated, setauthenticated] = useState(false)
   const [tokenUpdate, settokenUpdate] = useState(false)
   const [loading, setloading] = useState(false)
-  let [color, setColor] = useState("#b91c1c");
+  let [color, setColor] = useState("#64748b");
 
   useEffect(() => {
     setloading(true)
@@ -52,8 +52,6 @@ function App() {
       } else {
         setauthenticated(false); 
       }
-      console.log(authToken)
-
   }, [tokenUpdate]);
   
 
@@ -80,7 +78,6 @@ function App() {
         </div> 
                  : <div className='flex'>
                   {authenticated ? <Sidebar /> : null}
-                  {console.log("in"+authenticated)}
                     <Routes>
                       <Route path="/addProduct" element={<AddProduct />} />
                       <Route path="/viewProduct" element={<ViewProduct />} />
