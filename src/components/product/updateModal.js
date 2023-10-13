@@ -27,6 +27,7 @@ const UpdateModal = () => {
     
     
     return (
+      <div className="flex justify-center items-center w-screen " >
       <div className="  shadow-xl w-full lg:ml-96 mr-52 my-20 md:ml-96 mr-52 my-20 sm:ml-96 mr-52 my-20  ">
         <div className='lg:pl-20 border-2 rounded-lg pr-28 md:pl-20 pr-28 sm:pl-20 pr-28'>
      {console.log(product)}   
@@ -70,7 +71,7 @@ const UpdateModal = () => {
     </div>
   
     
-    <div className='lg:ml-48 pl-11 sm:ml-96 md:ml-36'>
+    <div className="flex justify-center   " >
   
   
     <button onClick={onClick}  class="relative px-5 py-3 overflow-hidden font-medium text-gray-600 bg-gray-100 border border-gray-100 rounded-lg shadow-inner group">
@@ -86,6 +87,7 @@ const UpdateModal = () => {
       </div>
     </div>
   </form>
+  </div>
   </div>
     </div>
   

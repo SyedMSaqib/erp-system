@@ -8,7 +8,7 @@ const key="02192000"
 var salt = bcrypt.genSaltSync(10);
 
 //Signup authentication
-router.post("/signup", [check("name").isLength({min:3}),check("email").isEmail(), check("password").isLength({ min: 6 })], async (req, res) => {
+router.post("/signup", [check("name").isLength({min:3}),check("email").isEmail(), check("password").isLength({ min: 8 })], async (req, res) => {
     const result = validationResult(req)
     if (!result.isEmpty()) return res.status(500).json(result)
   

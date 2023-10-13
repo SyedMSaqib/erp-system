@@ -64,7 +64,7 @@ const AuthState = (props) => {
         
       } else {
       
-        console.error("Signup failed:", response.statusText);
+        console.error("Signup failed:", response);
       }
     } catch (error) {
       console.error("Signup failed:", error);
