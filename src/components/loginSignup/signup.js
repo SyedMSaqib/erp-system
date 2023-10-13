@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react"
 import authContext from "../../context/auth/authContext"
 import validator from "validator"
+import BgImg from '../photos/loginBg.jpg'
 
 const SignUp = () => {
   const { email, setEmail, password, setPassword, signup, setName, name, responeFromServerSignUp } =
@@ -66,12 +67,15 @@ const SignUp = () => {
   }
 
   return (
-    <div className="flex justify-center items-center w-screen h-screen">
+    <div className="flex justify-center items-center w-screen h-screen bg-cover" style={{ backgroundImage: `url(${BgImg})` }} >
       <section className="">
+      
         <div className="max-w-md w-full">
-          <div className="bg-slate-300 rounded-lg shadow-md p-6 md:p-8">
-            <h1 className="text-xl md:text-2xl font-bold leading-tight tracking-tight text-gray-900 text-center">
-              Sign up for an account
+          
+          <div className="bg-white   rounded-lg shadow-md p-6 md:p-8">
+          <div className="flex justify-center text-xl font-bold">SAS ERP</div>
+            <h1 className="text-sm font-semibold leading-tight tracking-tight text-gray-900 text-center">
+              Sign up 
             </h1>
             <div className="mb-4">
               {validation === "email" ? (
@@ -92,7 +96,7 @@ const SignUp = () => {
                 name="name"
                 id="name"
                 className="bg-gray-100 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                placeholder="Saqib"
+                placeholder="eg: Saqib"
                 required=""
               />
             </div>

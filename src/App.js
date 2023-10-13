@@ -26,7 +26,7 @@ import SignIn from "./components/loginSignup/signIn"
 import SignUp from "./components/loginSignup/signup"
 import AuthState from "./context/auth/authState"
 import Loader from "react-spinners/PacmanLoader"
-import loadingGif from "./loader.gif"
+import loadingGif from "./components/photos/loader.gif"
 
 function App() {
   var authToken = null
@@ -34,7 +34,7 @@ function App() {
   const [authenticated, setauthenticated] = useState(false)
   const [tokenUpdate, settokenUpdate] = useState(false)
   const [loading, setloading] = useState(false)
-  let [color, setColor] = useState("#64748b")
+
 
   useEffect(() => {
     setloading(true)
@@ -65,7 +65,7 @@ function App() {
                       <img
                         src={loadingGif}
                         alt="Loading"
-                        className="w-48 h-36"
+                        className="w-48 h-32"
                       />
                       <span >Loading...</span>
                     </div>
