@@ -19,6 +19,7 @@ const AddEmployees = () => {
   };
 
   return (
+    <div className="flex justify-center items-center w-screen " >
     <div className="shadow-xl w-full lg:ml-96 mr-52 my-20 md:ml-96 mr-52 my-20 sm:ml-96 mr-52 my-20">
       <div className="pl-8 py-8 px-8  pr-8">
         <div>
@@ -89,6 +90,7 @@ const AddEmployees = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };
