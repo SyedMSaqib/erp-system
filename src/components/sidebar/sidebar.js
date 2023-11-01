@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Saslogo from '../sidebar/logos/sasLogo2.png';
 
 export default function Sidebar() {
-  const Navigate = useNavigate();
   const authToken = localStorage.getItem('authToken');
   const [openTab, setOpenTab] = useState(null);
 
@@ -96,7 +95,7 @@ export default function Sidebar() {
   return (
     <div className="w-60 fixed">
       <div className="flex">
-        <div className="shadow-lg flex flex-col h-screen p-3 bg-slate-300 shadow w-60">
+        <div className=" flex flex-col h-screen p-3 bg-white text-gray shadow-xl z-[999] w-60">
           <div className="space-y-3">
             <div className="flex items-center">
               <img className="ml-16 w-28" src={Saslogo} alt="Logo" />
@@ -107,27 +106,14 @@ export default function Sidebar() {
                   <li
                     key={tab.key}
                     onClick={() => toggleTab(tab.key)}
-                    className="rounded-sm shadow-lg pt-2 max-w-xs transition duration-300 ease-in-out hover:scale-110 cursor-pointer"
+                    
                   >
-                    <div className="flex items-center p-2 space-x-3 rounded-md">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-6 h-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                        />
-                      </svg>
-                      <span>{tab.name}</span>
+                    <div className="rounded-sm shadow-lg pt-2 max-w-xs transition duration-300 ease-in-out hover:scale-110 cursor-pointer h-10">
+                      <span className='pl-5 ' >{tab.name}</span>
                     </div>
                     {tab.subTabs && openTab === tab.key && (
-                      <ul className="pl-6 space-y-2">
+                      <ul className="pl-6 space-y-2 shadow ">
+                        <span className='divide-y-[1px] divide-gray-500 divide-opacity-40'></span>
                         {tab.subTabs.map((subTab) => (
                           <li key={subTab.key}>
                             <Link
