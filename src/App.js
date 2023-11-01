@@ -29,6 +29,7 @@ import Loader from "react-spinners/PacmanLoader"
 import loadingGif from "./components/photos/loader.gif"
 
 function App() {
+  
   var authToken = null
 
   const [authenticated, setauthenticated] = useState(false)
