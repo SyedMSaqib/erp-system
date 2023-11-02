@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import Saslogo from "../sidebar/logos/sasLogo2.png"
 import LoggedInUser from "../sidebar/logos/userSvgLogo"
@@ -6,6 +6,11 @@ import authContext from "../../context/auth/authContext"
 
 export default function Sidebar() {
   const { UserName } = useContext(authContext)
+  if(localStorage.getItem("name")===null)
+  localStorage.setItem('name',UserName)
+  const nameFromStorage = localStorage.getItem("name");
+  
+  console.log(nameFromStorage)
   const authToken = localStorage.getItem("authToken")
   const [openTab, setOpenTab] = useState(null)
 
@@ -91,6 +96,7 @@ export default function Sidebar() {
 
   const logout = () => {
     localStorage.removeItem("authToken")
+    localStorage.removeItem("name")
     return (window.location.href = "/signIn")
   }
 
@@ -109,7 +115,7 @@ export default function Sidebar() {
               </div>
 
               <div className="py-6 text-xs ">
-                Logged In: <span className="font-bold">{UserName.toUpperCase()}</span>
+                Logged In: <span className="font-bold">{ nameFromStorage.toUpperCase()}</span>
               </div>
             </div>
 
