@@ -74,7 +74,7 @@ const onClick = (event) => {
 const AuthToken =  localStorage.getItem('authToken');
 if(AuthToken!==null||value===false)
 {
-  navigate("/viewProduct")
+  navigate("/dashboard")
   return null
 }
 

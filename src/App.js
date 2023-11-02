@@ -27,6 +27,9 @@ import SignUp from "./components/loginSignup/signup"
 import AuthState from "./context/auth/authState"
 import loadingGif from "./components/photos/loader.gif"
 import  { Toaster } from 'react-hot-toast';
+import Dashboard from "./components/dashboard/dashBoardCom"
+
+
 
 function App() {
   
@@ -55,13 +58,13 @@ function App() {
 
   return (
     <AuthState>
-      <div><Toaster/></div>
+      <Toaster/>
       <CustomerState>
         <ProductState>
           <CustomerSaleState>
             <EmployeeState>
               <AttendanceState>
-                <BrowserRouter>
+                { <BrowserRouter>
                   {loading ? (
                     <div className="flex flex-col justify-center items-center w-screen h-screen">
                       <img
@@ -94,10 +97,13 @@ function App() {
                         <Route path="/signIn" element={<SignIn settokenUpdate={settokenUpdate} />} />
                         <Route path="/sidebar" element={<SignIn />} />
                         <Route path="/signUp" element={<SignUp />} />
+                        <Route path="/dashboard" element={<Dashboard/>} />
+                        
                       </Routes>
                     </div>
                   )}
-                </BrowserRouter>
+                </BrowserRouter> }
+               
               </AttendanceState>
             </EmployeeState>
           </CustomerSaleState>
