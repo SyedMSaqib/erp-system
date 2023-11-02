@@ -13,7 +13,7 @@ const Areachart = () => {
     value: sale.quantity,
   }));
 
-  // Calculate the maximum value in your data
+
   const maxDataValue = Math.max(...data.map(item => item.value));
   
   return (
