@@ -30,7 +30,7 @@ const Areachart = () => {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
-          <YAxis domain={[0, maxDataValue + 100]} /> {/* Adjust the domain as needed */}
+          <YAxis domain={[0, maxDataValue]} /> {/* Adjust the domain as needed */}
           <Tooltip />
           <Area type="monotone" dataKey="value" stroke="#8884d8" fill="#8884d8" />
         </AreaChart>
