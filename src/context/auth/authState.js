@@ -10,6 +10,7 @@ const AuthState = (props) => {
   const [name, setName] = useState('');
   const [responeFromServer, setresponeFromServer] = useState("")
   const [responeFromServerSignUp, setresponeFromServerSignUp] = useState("")
+  const [UserName, setUserName] = useState("")
   
  
 
@@ -27,10 +28,8 @@ const AuthState = (props) => {
       if (response.ok) {
         setresponeFromServer(response)
         const data = await response.json();
-       
         const token = data.token; 
-  
-       
+        setUserName(data.name)
         localStorage.setItem('authToken', token);
         
         
@@ -88,7 +87,8 @@ const AuthState = (props) => {
         responeFromServer,
         setName,
         name,
-        responeFromServerSignUp
+        responeFromServerSignUp,
+        UserName
        
       }}
     >

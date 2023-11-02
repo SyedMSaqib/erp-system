@@ -2,14 +2,14 @@ import React, { useContext, useState, useEffect } from "react"
 import authContext from "../../context/auth/authContext"
 import validator from "validator"
 import BgImg from '../photos/loginBg.jpg'
-
+import toast  from 'react-hot-toast';
 const SignUp = () => {
   const { email, setEmail, password, setPassword, signup, setName, name, responeFromServerSignUp } =
     useContext(authContext)
   const [validation, setvalidation] = useState("")
-  const [validateEmail, setvalidateEmail] = useState("")
-  const [validatePassword, setvalidatePassword] = useState("")
-  const [validateName, setvalidateName] = useState("")
+  const [validateEmail, setvalidateEmail] = useState(false)
+  const [validatePassword, setvalidatePassword] = useState(false)
+  const [validateName, setvalidateName] = useState(false)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -25,6 +25,7 @@ const SignUp = () => {
   const signUp = async () => {
     try {
       await signup(email, password, name)
+      toast.success("Account Created Successfully.")
       return (window.location.href = "/signIn")
     } catch (error) {
       console.error("Error during signup:", error)
@@ -53,6 +54,7 @@ const SignUp = () => {
       setvalidateEmail(false)
       setvalidatePassword(false)
     }
+  
   }
   useEffect(() => {
     if (validateEmail && validatePassword && validateName) {

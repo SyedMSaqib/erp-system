@@ -28,26 +28,26 @@ const ViewProduct = () => {
 
   return (
     <div className="flex justify-center items-center w-screen " >
-      <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5 ml-64">
+      <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md lg:m-5 lg:ml-64 sm:ml-10">
         <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
           <thead className="bg-gray-50">
             <tr>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+              <th scope="col" className="lg:px-6 sm:px-2 lg:py-4 sm:py-2 sm:w-5 font-medium text-gray-900">
                 Name
               </th>
-              <th scope="col" className="px-12 py-4 font-medium text-gray-900">
+              <th scope="col" className="lg:px-12 lg:py-4 font-medium text-gray-900">
                 Description
               </th>
-              <th scope="col" className="px-12 py-4 font-medium text-gray-900">
+              <th scope="col" className="lg:px-12 lg:py-4 font-medium text-gray-900">
                 Category
               </th>
-              <th scope="col" className="px-12 py-4 font-medium text-gray-900">
+              <th scope="col" className="lg:px-12 lg:py-4 font-medium text-gray-900">
                 Price
               </th>
-              <th scope="col" className="px-12 py-4 font-medium text-gray-900">
+              <th scope="col" className="lg:px-12 lg:py-4 font-medium text-gray-900">
                 Quantity
               </th>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900"></th>
+              <th scope="col" className="lg:px-6 lg:py-4 font-medium text-gray-900"></th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">

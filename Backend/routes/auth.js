@@ -61,7 +61,10 @@ router.post("/login",[check("email").isEmail(), check("password").isLength({ min
   }
   var token = jwt.sign(User,key);
   if(compare)
-  return res.json({token})
+  return res.json({
+    token: token,
+    name: checkUser.name
+  });  
   return res.status(401).send("Invalid password")
   
 

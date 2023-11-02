@@ -25,8 +25,8 @@ import AddAttendanceDate from "./components/attendance/addAttendanceDate"
 import SignIn from "./components/loginSignup/signIn"
 import SignUp from "./components/loginSignup/signup"
 import AuthState from "./context/auth/authState"
-import Loader from "react-spinners/PacmanLoader"
 import loadingGif from "./components/photos/loader.gif"
+import  { Toaster } from 'react-hot-toast';
 
 function App() {
   
@@ -41,7 +41,7 @@ function App() {
     setloading(true)
     setTimeout(() => {
       setloading(false)
-    }, 5000)
+    }, 3000)
   }, [])
 
   useEffect(() => {
@@ -55,6 +55,7 @@ function App() {
 
   return (
     <AuthState>
+      <div><Toaster/></div>
       <CustomerState>
         <ProductState>
           <CustomerSaleState>

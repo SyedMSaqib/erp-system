@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
 import authContext from '../../context/auth/authContext'
-import { Link,  } from 'react-router-dom';
+import { Link, useNavigate,  } from 'react-router-dom';
 import validator from 'validator';
 import BgImg from '../photos/loginBg.jpg'
+import toast  from 'react-hot-toast';
+
 
 
 
@@ -13,6 +15,7 @@ const {email,setEmail,password,setPassword,login,responeFromServer}=useContext(a
 const [value, setvalue] = useState(true)
 const [validation, setvalidation] = useState(true)
 const [checkEmailPassword, setcheckEmailPassword] = useState(true)
+const navigate = useNavigate();
 
 
 
@@ -27,18 +30,11 @@ const handleChange = (e) => {
   }
 };
 useEffect(() => {
-  
- 
-   
+
     if(responeFromServer.ok)
     {
-      
       setvalue(false)
-      
     } 
-    
- 
-
   
 }, [login])
 const  checkAuth=async()=>
@@ -47,17 +43,24 @@ const  checkAuth=async()=>
  {
   setvalidation(true)
    await login(email,password);
+   if(await responeFromServer.ok)
+   toast.success("Login successfully")
    if(!responeFromServer.ok)
    {
     setcheckEmailPassword(false)
    }
    authToken =  localStorage.getItem('authToken');
    if(authToken!==null)
+   {
    settokenUpdate(true)
+   toast.success("Login Succcess") 
+  }
   }
   else
   {
     setvalidation(false)
+    toast.error("Login Failed")
+
   }
 }
 const onClick = (event) => {
@@ -70,7 +73,10 @@ const onClick = (event) => {
 };
 const AuthToken =  localStorage.getItem('authToken');
 if(AuthToken!==null||value===false)
-return null
+{
+  navigate("/viewProduct")
+  return null
+}
 
 else
   return (
