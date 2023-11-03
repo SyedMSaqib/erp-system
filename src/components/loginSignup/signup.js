@@ -4,6 +4,8 @@ import validator from "validator"
 import BgImg from '../photos/loginBg.jpg'
 import toast  from 'react-hot-toast';
 import SasLogo from '../sidebar/logos/sasLogo2.png'
+import Footer from '../loginSignup/footer'
+
 
 const SignUp = () => {
   const { email, setEmail, password, setPassword, signup, setName, name, responeFromServerSignUp } =
@@ -152,7 +154,7 @@ const SignUp = () => {
                     <label className="text-gray-500">Remember me</label>
                   </div>
                 </div>
-                <a href="#" className="text-sm font-medium text-primary-600 hover:underline">
+                <a href="#" className="text-sm font-medium text-primary-600 hover:underline pl-3">
                   Forgot password?
                 </a>
               </div>
@@ -166,6 +168,9 @@ const SignUp = () => {
           </div>
         </div>
       </section>
+      <div className='fixed bottom-0 right-0 mr-4 mb-4'>
+  <Footer />
+</div>
     </div>
   )
 }

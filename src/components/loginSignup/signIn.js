@@ -5,6 +5,7 @@ import validator from 'validator';
 import BgImg from '../photos/loginBg.jpg'
 import toast  from 'react-hot-toast';
 import SasLogo from '../sidebar/logos/sasLogo2.png'
+import Footer from '../loginSignup/footer'
 
 
 
@@ -114,7 +115,7 @@ else
                               <label for="remember" className="text-gray-500">Remember me</label>
                             </div>
                         </div>
-                        <Link to={"/sidebar"} className="text-sm font-medium text-primary-600 hover:underline">Forgot password?</Link>
+                        <Link  className="text-sm font-medium text-primary-600 hover:underline pl-3">Forgot password?</Link>
                     </div>
                     <Link   onClick={onClick} type='submit' className="w-full text-black bg-slate-400 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-40">Sign in</Link>
                     <div   className="text-sm font-light text-gray-500">
@@ -125,28 +126,11 @@ else
         </div>
         
     </div>
-
 </section>
-{/* <footer className="bg-white rounded-lg shadow  light:bg-gray-800  ">
-    <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-      <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" className="hover:underline">Flowbite™</a>. All Rights Reserved.
-    </span>
-    <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
-        <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6 ">About</a>
-        </li>
-        <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6">Privacy Policy</a>
-        </li>
-        <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6">Licensing</a>
-        </li>
-        <li>
-            <a href="#" className="hover:underline">Contact</a>
-        </li>
-    </ul>
-    </div>
-</footer> */}
+<div className='fixed bottom-0 right-0 mr-4 mb-4'>
+  <Footer />
+</div>
+
 </div>
 
   )
