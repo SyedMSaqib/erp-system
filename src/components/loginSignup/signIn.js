@@ -4,6 +4,7 @@ import { Link, useNavigate,  } from 'react-router-dom';
 import validator from 'validator';
 import BgImg from '../photos/loginBg.jpg'
 import toast  from 'react-hot-toast';
+import SasLogo from '../sidebar/logos/sasLogo2.png'
 
 
 
@@ -85,10 +86,13 @@ else
     <div >
       <div className="w-full bg-white rounded-lg shadow-md md:mt-0 sm:max-w-md xl:p-0">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-         <div className="flex justify-center text-xl font-bold">SAS ERP</div>
+          <div className=' flex justify-center'>
+
+         <img className="w-24" src={SasLogo} alt="Logo" />
+          </div>
           
-          <h1 className="text-sm font-semibold leading-tight tracking-tight text-gray-900 md:text-2xl">
-            Sign in to your account
+          <h1 className="flex justify-center font-mono  text-sm  leading-tight tracking-tight text-gray-900 md:text-xl">
+            SIGN IN
           </h1>
           <form className="space-y-4 md:space-y-6" action="#">
                     <div>

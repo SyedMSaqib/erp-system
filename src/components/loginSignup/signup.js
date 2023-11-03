@@ -3,6 +3,8 @@ import authContext from "../../context/auth/authContext"
 import validator from "validator"
 import BgImg from '../photos/loginBg.jpg'
 import toast  from 'react-hot-toast';
+import SasLogo from '../sidebar/logos/sasLogo2.png'
+
 const SignUp = () => {
   const { email, setEmail, password, setPassword, signup, setName, name, responeFromServerSignUp } =
     useContext(authContext)
@@ -75,10 +77,14 @@ const SignUp = () => {
         <div className="max-w-md w-full">
           
           <div className="bg-white   rounded-lg shadow-md p-6 md:p-8">
-          <div className="flex justify-center text-xl font-bold">SAS ERP</div>
-            <h1 className="text-sm font-semibold leading-tight tracking-tight text-gray-900 text-center">
-              Sign up 
-            </h1>
+          <div className=' flex justify-center'>
+
+         <img className="w-24" src={SasLogo} alt="Logo" />
+          </div>
+          
+          <h1 className="flex justify-center font-mono  text-sm  py-6 leading-tight tracking-tight text-gray-900 md:text-xl">
+            SIGN UP
+          </h1>
             <div className="mb-4">
               {validation === "email" ? (
                 <span className="text-red-700 block mb-2 text-sm font-medium">Enter correct email!</span>

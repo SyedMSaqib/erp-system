@@ -57,6 +57,7 @@ function App() {
   }, [tokenUpdate])
 
   return (
+    <div className="bg-slate-50">
     <AuthState>
       <Toaster/>
       <CustomerState>
@@ -66,11 +67,11 @@ function App() {
               <AttendanceState>
                 { <BrowserRouter>
                   {loading ? (
-                    <div className="flex flex-col justify-center items-center w-screen h-screen">
+                    <div className="flex flex-col justify-center items-center w-screen h-screen bg-white">
                       <img
                         src={loadingGif}
                         alt="Loading"
-                        className="w-48 h-32"
+                        className="w-48 h-32 bg-white"
                       />
                       <span >Loading...</span>
                     </div>
@@ -110,6 +111,7 @@ function App() {
         </ProductState>
       </CustomerState>
     </AuthState>
+    </div>
   )
 }
 

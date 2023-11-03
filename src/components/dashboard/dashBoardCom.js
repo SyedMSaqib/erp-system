@@ -6,7 +6,7 @@ import Arreachart from './areaChart'
 const Dashboard = () => {
   return (
     <>
-    <div className='  pl-60 py-24'><Barchart/></div>
+    <div className='  pl-60 py-24 '><Barchart/></div>
     < Arreachart/>
     </>
   )

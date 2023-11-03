@@ -2,24 +2,15 @@ import React from 'react';
 
 const UserSvgLogo = () => {
   return (
-    <svg
-      height="40px"
-      width="40px"
-      viewBox="0 0 508.27 508.27"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path fill="#C19D7B" d="M254.135,417.399c47.809,0,88.159-27.804,102.4-66.458l-102.4-24.752l-102.4,24.752 C165.976,389.595,206.326,417.399,254.135,417.399z" />
-      <path fill="#56545F" d="M281.261,80.36h-54.252c-44.419,0-80.36,35.942-80.36,80.36v61.033H361.96v-61.033 C361.621,116.302,325.679,80.36,281.261,80.36z" />
-      <g>
-        <circle fill="#EEB490" cx="178.183" cy="222.093" r="31.534" />
-        <circle fill="#EEB490" cx="330.087" cy="222.093" r="31.534" />
-        <path fill="#EEB490" d="M207.004,289.907v41.367c0,26.109,21.023,47.131,47.131,47.131l0,0 c26.109,0,47.131-21.023,47.131-47.131v-41.367H207.004z" />
-      </g>
-      <path fill="#FACCB4" d="M274.819,150.209c-19.327,29.499-72.223,35.603-101.044,36.959c0,1.356,0,2.713,0,4.069v58.999 c0,44.419,35.942,80.36,80.36,80.36s80.36-35.942,80.36-80.36v-59.338c0-2.374,0-5.086-0.339-7.46 C299.232,173.944,274.819,150.209,274.819,150.209z" />
-      <polygon fill="#FF667C" points="305.674,112.572 254.135,0 202.596,112.572 128.678,57.981 146.649,150.209 254.135,150.209 361.621,150.209 379.592,57.981 " />
-      <path fill="#EEB490" d="M254.135,468.26c-76.63,0-144.106-30.177-183.099-76.291c-5.425,9.833-8.477,21.701-8.477,33.907 v82.395h383.152v-82.395c0-12.207-3.052-23.735-8.477-33.907 C398.241,438.082,330.766,468.26,254.135,468.26z" />
-      <path fill="#8A6753" d="M254.135,468.26c76.63,0-144.106-30.177-183.099-76.291c-8.138-15.258-22.04-26.787-38.654-30.856 l-42.045-10.172c-14.241,38.654-54.591,66.458-102.4,66.458s-88.159-27.804-102.4-66.458l-42.045,10.172 c-16.615,4.069-30.517,15.597-38.654,30.856C110.029,438.082,177.505,468.26,254.135,468.26z" />
-    </svg>
+    <svg width="40px" height="40px" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+    </defs>
+    <g style={{ stroke: 'none', strokeWidth: 0, strokeDasharray: 'none', strokeLinecap: 'butt', strokeLinejoin: 'miter', strokeMiterlimit: 10, fill: 'none', fillRule: 'nonzero', opacity: 1 }} transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
+        <path d="M 45 88 c -11.049 0 -21.18 -2.003 -29.021 -8.634 C 6.212 71.105 0 58.764 0 45 C 0 20.187 20.187 0 45 0 c 24.813 0 45 20.187 45 45 c 0 13.765 -6.212 26.105 -15.979 34.366 C 66.181 85.998 56.049 88 45 88 z" style={{ stroke: 'none', strokeWidth: 1, strokeDasharray: 'none', strokeLinecap: 'butt', strokeLinejoin: 'miter', strokeMiterlimit: 10, fill: 'rgb(200,209,230)', fillRule: 'nonzero', opacity: 1 }} transform=" matrix(1 0 0 1 0 0)" strokeLinecap="round" />
+        <path d="M 45 60.71 c -11.479 0 -20.818 -9.339 -20.818 -20.817 c 0 -11.479 9.339 -20.818 20.818 -20.818 c 11.479 0 20.817 9.339 20.817 20.818 C 65.817 51.371 56.479 60.71 45 60.71 z" style={{ stroke: 'none', strokeWidth: 1, strokeDasharray: 'none', strokeLinecap: 'butt', strokeLinejoin: 'miter', strokeMiterlimit: 10, fill: 'rgb(247,247,247)', fillRule: 'nonzero', opacity: 1 }} transform=" matrix(1 0 0 1 0 0)" strokeLinecap="round" />
+        <path d="M 45 90 c -10.613 0 -20.922 -3.773 -29.028 -10.625 c -0.648 -0.548 -0.88 -1.444 -0.579 -2.237 C 20.034 64.919 31.933 56.71 45 56.71 s 24.966 8.209 29.607 20.428 c 0.301 0.793 0.069 1.689 -0.579 2.237 C 65.922 86.227 55.613 90 45 90 z" style={{ stroke: 'none', strokeWidth: 1, strokeDasharray: 'none', strokeLinecap: 'butt', strokeLinejoin: 'miter', strokeMiterlimit: 10, fill: 'rgb(247,247,247)', fillRule: 'nonzero', opacity: 1 }} transform=" matrix(1 0 0 1 0 0)" strokeLinecap="round" />
+    </g>
+</svg>
   );
 };
 

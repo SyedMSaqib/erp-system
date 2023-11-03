@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import Saslogo from "../sidebar/logos/sasLogo2.png"
 import LoggedInUser from "../sidebar/logos/userSvgLogo"
+import LogoutUser from "../sidebar/logos/logout"
 import authContext from "../../context/auth/authContext"
 
 export default function Sidebar() {
@@ -103,22 +104,11 @@ export default function Sidebar() {
   return (
     <div className="w-60 fixed ">
       <div className="flex">
-        <div className=" flex flex-col h-screen p-3 lg:bg-white  text-gray shadow-xl z-[999] w-60 ">
+        <div className=" flex flex-col h-screen p-3 bg-slate-100  text-gray shadow-2xl z-[999] w-60 ">
           <div className="space-y-3">
             <div className="flex items-center">
               <img className="ml-10 w-36 py-10" src={Saslogo} alt="Logo" />
             </div>
-
-            <div className="pr-14 text-gray-600  flex justify-center ">
-              <div className="">
-                <LoggedInUser />
-              </div>
-
-              <div className="py-6 text-xs ">
-                Logged In: <span className="font-bold">{ nameFromStorage.toUpperCase()}</span>
-              </div>
-            </div>
-
             <div className="flex-1 ">
               <ul className="pt-2 pb-4 space-y-1 text-sm">
                 <Link to={"/dashboard"}>
@@ -151,16 +141,27 @@ export default function Sidebar() {
               </ul>
             </div>
           </div>
+          
 
-          <div onClick={logout} className="flex justify-center space-x-3 rounded-md cursor-pointer mt-auto ">
-            <button className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-black white:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800">
-              <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white white:bg-gray-900 rounded-md group-hover:bg-opacity-0 ">
-                logout
-              </span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+          <div className="space-x-3  mt-auto">
+            <div className="pl-4">
+  <LoggedInUser />
+
+            </div>
+  <div className="flex items-center">
+    <div className="font-semibold text-sm text-gray-600 pl-1">{nameFromStorage.toUpperCase()}</div>
+    <div onClick={logout} className="pl-24 pb-4 cursor-pointer"><LogoutUser/></div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+
+          
+       
+       
+     
+   
   )
 }

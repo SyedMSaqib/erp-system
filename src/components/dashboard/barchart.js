@@ -32,11 +32,12 @@ const Barchart = () => {
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
-        <YAxis domain={[0, maxValue]} /> {/* Set the Y-Axis domain based on the maximum value */}
+        <YAxis domain={[0, maxValue]} /> 
         <Tooltip />
         <Legend />
         <Bar dataKey="value" fill="#8884d8" />
       </BarChart>
+       
     </div>
   );
 }
