@@ -74,11 +74,11 @@ const SignUp = () => {
 
   return (
     <div className="flex justify-center items-center w-screen h-screen bg-cover" style={{ backgroundImage: `url(${BgImg})` }} >
-      <section className="">
+      <section className='mb-12'> 
       
         <div className="max-w-md w-full">
           
-          <div className="bg-white   rounded-lg shadow-md p-6 md:p-8">
+          <div className="bg-gray-50 rounded-lg shadow-md p-6 md:p-8">
           <div className=' flex justify-center'>
 
          <img className="w-24" src={SasLogo} alt="Logo" />
@@ -168,7 +168,7 @@ const SignUp = () => {
           </div>
         </div>
       </section>
-      <div className='fixed bottom-0 right-0 mr-4 mb-4'>
+      <div className='fixed bottom-0 '>
   <Footer />
 </div>
     </div>

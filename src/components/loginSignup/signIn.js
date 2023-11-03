@@ -83,9 +83,9 @@ if(AuthToken!==null||value===false)
 else
   return (
 <div className="flex justify-center items-center w-screen h-screen bg-cover" style={{ backgroundImage: `url(${BgImg})` }} >
-    <section>
+    <section className='mb-10'>
     <div >
-      <div className="w-full bg-white rounded-lg shadow-md md:mt-0 sm:max-w-md xl:p-0">
+      <div className="w-full bg-gray-50  rounded-lg shadow-md md:mt-0 sm:max-w-md xl:p-0">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
           <div className=' flex justify-center'>
 
@@ -127,7 +127,7 @@ else
         
     </div>
 </section>
-<div className='fixed bottom-0 right-0 mr-4 mb-4'>
+<div className='fixed bottom-0 '>
   <Footer />
 </div>
 
