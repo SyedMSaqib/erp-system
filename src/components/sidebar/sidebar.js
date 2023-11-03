@@ -112,7 +112,7 @@ export default function Sidebar() {
             <div className="flex-1 ">
               <ul className="pt-2 pb-4 space-y-1 text-sm">
                 <Link to={"/dashboard"}>
-                  <div className="rounded-sm shadow-lg pt-2 max-w-xs transition duration-300 ease-in-out hover:scale-110 cursor-pointer h-10 bg-slate-50">
+                  <div className="rounded-sm shadow-lg pt-2 max-w-xs transition duration-300 ease-in-out hover:scale-110 text-gray-600 font-semibold cursor-pointer h-10 bg-gray-100 border-slate-600">
                     <span to={"/dashboard"} className="pl-5 ">
                       Dashboard
                     </span>
@@ -121,11 +121,11 @@ export default function Sidebar() {
 
                 {data.map((tab) => (
                   <li key={tab.key} onClick={() => toggleTab(tab.key)}>
-                    <div className="rounded-sm shadow-lg pt-2 max-w-xs transition duration-300 ease-in-out hover:scale-110 cursor-pointer h-10 bg-slate-50">
-                      <span className="pl-5 ">{tab.name}</span>
+                    <div className="rounded-sm shadow-lg pt-2 max-w-xs transition duration-300 ease-in-out hover:scale-110 cursor-pointer h-10 bg-gray-100">
+                      <span className="pl-5 text-gray-600 font-semibold ">{tab.name}</span>
                     </div>
                     {tab.subTabs && openTab === tab.key && (
-                      <ul className="pl-6 space-y-2 shadow bg-slate-50 ">
+                      <ul className="pl-6 space-y-2 shadow text-gray-600 bg-gray-100 ">
                         {/* <span className='divide-y-[1px] divide-gray-500 divide-opacity-40'></span> */}
                         {tab.subTabs.map((subTab) => (
                           <li key={subTab.key}>
