@@ -39,7 +39,7 @@ useEffect(() => {
     } 
   
 }, [login])
-const  checkAuth=async()=>
+const checkAuth=async()=>
 {
  if(validator.isEmail(email))
  {
@@ -47,15 +47,18 @@ const  checkAuth=async()=>
    await login(email,password);
    if(await responeFromServer.ok)
    toast.success("Login successfully")
+   
    if(!responeFromServer.ok)
    {
-    setcheckEmailPassword(false)
+     setcheckEmailPassword(false)
    }
    authToken =  localStorage.getItem('authToken');
    if(authToken!==null)
    {
    settokenUpdate(true)
    toast.success("Login Succcess") 
+  setvalidation(true)
+
   }
   }
   else
@@ -64,15 +67,19 @@ const  checkAuth=async()=>
     toast.error("Login Failed")
 
   }
+  
 }
-const onClick = (event) => {
+const onClick = async(event) => {
   event.preventDefault();
   checkAuth()
 
-  
-  
- 
 };
+
+useEffect(() => {
+  if(checkEmailPassword===false)
+  toast.error("Login Failed")
+}, [checkEmailPassword])
+
 const AuthToken =  localStorage.getItem('authToken');
 if(AuthToken!==null||value===false)
 {
@@ -99,11 +106,11 @@ else
                     <div>
                         {validation===false?<span className='text-red-700 block mb-2 text-sm font-medium'>Enter correct email!</span>:
                         checkEmailPassword===false?<span className='text-red-700 block mb-2 text-sm font-medium'>Email or Password incorrect!</span>:""}
-                        <label  for="email" className="block mb-2 text-sm font-medium text-gray-900">Your email</label>
+                        <label  htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Your email</label>
                         <input onChange={handleChange} type="email" name="email" id="email" className="bg-gray-100 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="name@company.com" required=""/>
                     </div>
                     <div>
-                        <label for="password" className="block mb-2 text-sm font-medium text-gray-900">Password</label>
+                        <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Password</label>
                         <input onChange={handleChange} type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-100 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required=""/>
                     </div>
                     <div className="flex items-center justify-between">
@@ -112,7 +119,7 @@ else
                               <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-100 focus:ring-3 focus:ring-primary-300" required=""/>
                             </div>
                             <div className="ml-3 text-sm">
-                              <label for="remember" className="text-gray-500">Remember me</label>
+                              <label htmlFor="remember" className="text-gray-500">Remember me</label>
                             </div>
                         </div>
                         <Link  className="text-sm font-medium text-primary-600 hover:underline pl-3">Forgot password?</Link>

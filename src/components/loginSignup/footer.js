@@ -74,7 +74,7 @@ const Footer = () => {
       </div>
 
       <div className="w-full bg-transparent  text-center text-gray-500">
-        © 2023 Copyright 
+        © 2023 Copyright-All rights reserved
         <a
           className="text-neutral-800 dark:text-neutral-400 pl-3"
           href="https://tw-elements.com/"
