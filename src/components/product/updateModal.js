@@ -1,7 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react'
 import ProductContext from '../../context/product/productContext'
 import { useNavigate } from "react-router-dom";
-
+import toast from 'react-hot-toast';
+import validator from 'validator';
 
 const UpdateModal = () => {
     
@@ -9,6 +10,12 @@ const UpdateModal = () => {
     const productContext=useContext(ProductContext)
     const{updateProduct,productId,updateFormValues}=productContext
     const [product, setproduct] = useState({updateFormValues})
+    const [ProductName, setProductName] = useState(false);
+    const [ProductPrice, setProductPrice] = useState(false);
+    const [ProductQuantity, setProductQuantity] = useState(false);
+    const NameValidator=(str)=> {
+      return /^[A-Za-z\s]+$/.test(str);
+    }
     useEffect(() => {
         setproduct(updateFormValues);
       }, [updateFormValues]);
@@ -17,13 +24,51 @@ const UpdateModal = () => {
     }
     const onClick=(event)=>{
       event.preventDefault();
-      if(product!==null)
-      updateProduct(productId,product.name,product.description,product.category,product.quantity,product.price)
-      Navigate("/viewProduct")
-      
+      if (product !== null) {
+        if (product.category === '' || product.description === '') {
+          toast.error('Please Enter All Fields');
+        } else {
+          if(NameValidator(product.name))
+          {
+            setProductName(true)
+          } else {
+            toast.error('Enter Valid Name');
+            setProductPrice(false);
+            setProductQuantity(false);
+          }
+          if (validator.isNumeric(product.quantity)) {
+            setProductQuantity(true);
+          } else {
+            toast.error('Enter Valid Quantity');
+            setProductName(false);
+            setProductPrice(false);
+          }
+          if (validator.isNumeric(product.price)) {
+            setProductPrice(true);
+          } else {
+            toast.error('Enter Valid Price');
+            setProductName(false);
+            setProductQuantity(false);
+          }
+        }}
+       
+    
      
     }
-    
+    useEffect(() => {
+      if(ProductName&&ProductPrice&&ProductQuantity)
+      {
+        AddProductToDb()
+      }
+      console.log([ProductName,ProductPrice,ProductQuantity])
+    }, [ProductName,ProductPrice,ProductQuantity])
+
+  
+  const AddProductToDb=()=>{
+    updateProduct(productId,product.name,product.description,product.category,product.quantity,product.price)
+    toast.success(`${product.name} Updated Successfuly`)
+  Navigate("/viewProduct")
+  }
     
     
     return (
