@@ -1,30 +1,85 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ProductContext from '../../context/product/productContext'
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import validator from 'validator';
+
+
+
 const AddProduct = () => {
   
   const Navigate = useNavigate();
   const productContext=useContext(ProductContext)
   const{addProduct}=productContext
   const [product, setproduct] = useState({name:"",category:"",description:"",quantity:"",price:""})
+ const [ProductName, setProductName] = useState(false)
+ const [ProductPrice, setProductPrice] = useState(false)
+ const [ProductQuantity, setProductQuantity] = useState(false)
+ const NameValidator=(str)=> {
+  return /^[A-Za-z\s]+$/.test(str);
+}
   const handleChange=(e)=>{
     setproduct({...product,[e.target.name]:e.target.value})
   }
   const onClick=(event)=>{
     event.preventDefault();
-    addProduct(product.name,product.description,product.category,product.quantity,product.price)
-    toast.success("Successfully added item")
-    Navigate('/viewProduct');
     
+    if(product.category===""||product.description==="")
+    return toast.error("Please Enter All Fields")
 
+    if(NameValidator(product.name))
+    {
+      setProductName(true)
+    }
+    else
+  { 
+    toast.error("Enter Valid Name")
+     setProductPrice(false)
+    setProductQuantity(false)
+    }
+    if(validator.isNumeric(product.quantity))
+    {
+      setProductQuantity(true)
+    }
+    else
+    {
+    toast.error("Enter Valid Quantity")
+      setProductName(false)
+      setProductPrice(false)
+    }
+    if(validator.isNumeric(product.price))
+    {
+      setProductPrice(true)
+    }
+    else
+    {
+    toast.error("Enter Valid Price")
+      setProductName(false)
+      setProductQuantity(false)
+    }
   }
+ 
+    useEffect(() => {
+      if(ProductName&&ProductPrice&&ProductQuantity)
+      {
+        AddProductToDb()
+      }
+      console.log([ProductName,ProductPrice,ProductQuantity])
+    }, [ProductName,ProductPrice,ProductQuantity])
+    
+    const AddProductToDb=()=>{
+      addProduct(product.name,product.description,product.category,product.quantity,product.price)
+      toast.success(`${product.name} added to Inventory`)
+      Navigate('/viewProduct');
+    }
+  
+  
   
   
   return (
-    <div className="flex justify-center items-center w-screen " >
-    <div className="  shadow-xl w-full lg:ml-96 mr-52 my-20 md:ml-96 mr-52 my-20 sm:ml-96 mr-52 my-20  ">
-      <div className='lg:pl-20 border-2 rounded-lg pr-28 md:pl-20 pr-28 sm:pl-20 pr-28'>
+    <div className="flex justify-center items-center w-screen h-screen mt-28" >
+    <div className="  shadow-xl w-full ml-96 mr-52 my-20   ">
+      <div className='pl-20 border-2 rounded-lg pr-28 '>
 
       
     <h1 className='font-semibold py-8'>Add Product</h1>
