@@ -8,7 +8,7 @@ import Footer from '../loginSignup/footer'
 
 
 const SignUp = () => {
-  const { email, setEmail, password, setPassword, signup, setName, name, responeFromServerSignUp } =
+  const { email, setEmail, password, setPassword, signup, setName, name,  } =
     useContext(authContext)
   const [validation, setvalidation] = useState("")
   const [validateEmail, setvalidateEmail] = useState(false)
@@ -69,7 +69,7 @@ const SignUp = () => {
   const onClick = async (event) => {
     event.preventDefault()
     await checkSignUp()
-    console.log(validateEmail + " " + validatePassword)
+    
   }
 
   return (
