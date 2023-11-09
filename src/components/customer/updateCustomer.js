@@ -1,12 +1,17 @@
 import React, { useContext, useState, useEffect } from 'react';
 import CustomerContext from '../../context/customer/customerContext';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import validator from 'validator';
 
 const UpdateCustomer = () => {
   const Navigate = useNavigate();
   const customerContext = useContext(CustomerContext);
   const { updateCustomer, customerId, updateFormValues } = customerContext;
-  const [customer, setCustomer] = useState(updateFormValues );
+  const [customer, setCustomer] = useState(updateFormValues);
+  const [NameValid, setNameValid] = useState(false);
+  const [PhNoValid, setPhNoValid] = useState(false);
+  const [EmailValid, setEmailValid] = useState(false);
 
   useEffect(() => {
     if (updateFormValues) {
@@ -14,18 +19,50 @@ const UpdateCustomer = () => {
     }
   }, [updateFormValues]);
 
-  const handleChange = (e) => {
-    setCustomer({ ...customer, [e.target.name]: e.target.value });
+  const NameValidator = (str) => {
+    return /^[A-Za-z\s]+$/.test(str);
   };
 
   const onClick = (event) => {
     event.preventDefault();
-    if (customer !== null) {
-      updateCustomer(customerId, customer.name, customer.email,customer.phone);
+
+    if (customer.name === '' || customer.phone === '' || customer.email === '') {
+      return toast.error('Please Enter All Fields');
+    }
+
+    if (NameValidator(customer.name)) {
+      setNameValid(true);
+    } else {
+      toast.error('Enter Valid Name');
+      setNameValid(false);
+    }
+
+    if (validator.isNumeric(customer.phone)) {
+      setPhNoValid(true);
+    } else {
+      toast.error('Enter Valid Phone Number');
+      setPhNoValid(false);
+    }
+
+    if (validator.isEmail(customer.email)) {
+      setEmailValid(true);
+    } else {
+      toast.error('Enter Valid Email Address');
+      setEmailValid(false);
+    }
+
+    
+  };
+  useEffect(() => {
+    if (NameValid && PhNoValid && EmailValid) {
+      updateCustomer(customerId, customer.name, customer.email, customer.phone);
       Navigate('/viewCustomers');
     }
+  }, [NameValid ,PhNoValid , EmailValid])
+  
+  const handleChange = (e) => {
+    setCustomer({ ...customer, [e.target.name]: e.target.value });
   };
-  console.log(customer.name)
   return (
     
     <div className="shadow-xl w-full lg:ml-96 mr-52 my-20 md:ml-96 mr-52 my-20 sm:ml-96 mr-52 my-20">
