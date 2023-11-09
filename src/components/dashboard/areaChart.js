@@ -7,18 +7,17 @@ const Areachart = () => {
   useEffect(() => {
     getAllcustomersSales();
   }, []);
-  
+
   const data = customerSale.map((sale, index) => ({
     name: sale.product,
     value: sale.quantity,
   }));
 
-
   const maxDataValue = Math.max(...data.map(item => item.value));
-  
+
   return (
-    <div className="flex justify-end my-56" style={{ width: '40%', height: 200 }}>
-      <ResponsiveContainer>
+    <div>
+      <ResponsiveContainer width={500} height={170}>
         <AreaChart
           data={data}
           margin={{
@@ -30,7 +29,7 @@ const Areachart = () => {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
-          <YAxis domain={[0, maxDataValue]} /> {/* Adjust the domain as needed */}
+          <YAxis domain={[0, maxDataValue]} />
           <Tooltip />
           <Area type="monotone" dataKey="value" stroke="#8884d8" fill="#8884d8" />
         </AreaChart>

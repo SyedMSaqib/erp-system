@@ -18,7 +18,7 @@ const Barchart = () => {
   }));
 
   return (
-    <div className='my-36'>
+    <div>
       <BarChart
         width={500}
         height={200}
