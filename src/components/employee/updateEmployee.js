@@ -1,13 +1,22 @@
 import React, { useContext, useState, useEffect } from 'react';
 import EmployeeContext from '../../context/employees/employeeContext';
 import { useNavigate } from 'react-router-dom';
+import toast from "react-hot-toast";
+import validator from "validator";
 
 const UpdateEmployee = () => {
   const navigate = useNavigate();
   const employeeContext = useContext(EmployeeContext);
   const { updateEmployee, employeeId, updateFormValues } = employeeContext;
   const [employee, setEmployee] = useState(updateFormValues);
+  const [nameValid, setNameValid] = useState(false);
+  const [emailValid, setEmailValid] = useState(false);
+  const [phoneValid, setPhoneValid] = useState(false);
 
+  
+  const NameValidator = (str) => {
+    return /^[A-Za-z\s]+$/.test(str);
+  }
   useEffect(() => {
     if (updateFormValues) {
       setEmployee(updateFormValues);
@@ -20,11 +29,43 @@ const UpdateEmployee = () => {
 
   const onClick = (event) => {
     event.preventDefault();
-    if (employee !== null) {
-      updateEmployee(employeeId, employee.name, employee.email, employee.phone);
-      navigate('/viewEmployee');
+
+    
+    if (employee.name === "" || employee.email === "" || employee.phone === "") {
+      return toast.error("Please Enter All Fields");
     }
+
+    if (NameValidator(employee.name)) {
+      setNameValid(true);
+    } else {
+      toast.error("Enter Valid Name");
+      setNameValid(false);
+    }
+
+    if (validator.isEmail(employee.email)) {
+      setEmailValid(true);
+    } else {
+      toast.error("Enter Valid Email");
+      setEmailValid(false);
+    }
+
+    if (validator.isNumeric(employee.phone)) {
+      setPhoneValid(true);
+    } else {
+      toast.error("Enter Valid Phone Number");
+      setPhoneValid(false);
+    }
+    
   };
+
+  useEffect(() => {
+    if (nameValid && emailValid && phoneValid) {
+      if (employee !== null) {
+        updateEmployee(employeeId, employee.name, employee.email, employee.phone);
+        navigate('/viewEmployee');
+      }
+    }
+  }, [nameValid, emailValid, phoneValid]);
 
   return (
     <div className="flex justify-center items-center w-screen " >
