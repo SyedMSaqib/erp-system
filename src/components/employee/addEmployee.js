@@ -1,22 +1,60 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import EmployeeContext from "../../context/employees/employeeContext";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import validator from "validator";
 
 const AddEmployees = () => {
   const navigate = useNavigate();
   const employeeContext = useContext(EmployeeContext);
   const { addEmployee } = employeeContext;
   const [employee, setEmployee] = useState({ name: "", email: "", phone: "" });
+  const [nameValid, setNameValid] = useState(false);
+  const [emailValid, setEmailValid] = useState(false);
+  const [phoneValid, setPhoneValid] = useState(false);
 
+  const NameValidator = (str) => {
+    return /^[A-Za-z\s]+$/.test(str);
+  }
   const handleChange = (e) => {
     setEmployee({ ...employee, [e.target.name]: e.target.value });
   };
 
   const onClick = (event) => {
     event.preventDefault();
-    addEmployee(employee.name, employee.email, employee.phone);
-    navigate('/viewEmployee');
+
+    if (employee.name === "" || employee.email === "" || employee.phone === "") {
+      return toast.error("Please Enter All Fields");
+    }
+
+    if (NameValidator(employee.name)) {
+      setNameValid(true);
+    } else {
+      toast.error("Enter Valid Name");
+      setNameValid(false);
+    }
+
+    if (validator.isEmail(employee.email)) {
+      setEmailValid(true);
+    } else {
+      toast.error("Enter Valid Email");
+      setEmailValid(false);
+    }
+
+    if (validator.isNumeric(employee.phone)) {
+      setPhoneValid(true);
+    } else {
+      toast.error("Enter Valid Phone Number");
+      setPhoneValid(false);
+    }
   };
+
+  useEffect(() => {
+    if (nameValid && emailValid && phoneValid) {
+      addEmployee(employee.name, employee.email, employee.phone);
+      navigate("/viewEmployee");
+    }
+  }, [nameValid, emailValid, phoneValid]);
 
   return (
     <div className="flex justify-center items-center w-screen " >
