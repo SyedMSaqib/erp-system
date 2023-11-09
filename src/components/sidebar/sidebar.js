@@ -112,7 +112,7 @@ export default function Sidebar() {
             <div className="flex-1 ">
               <ul className="pt-2 pb-4 space-y-1 text-sm">
                 <Link to={"/dashboard"}>
-                  <div className="rounded-sm shadow-lg pt-2 max-w-xs transition duration-300 ease-in-out hover:scale-110 text-gray-600 font-semibold cursor-pointer h-10 bg-gray-100 border-slate-600 border border-slate-300">
+                  <div className="rounded-sm shadow-lg pt-2 max-w-xs transition duration-300 ease-in-out hover:scale-110 text-gray-600 font-semibold cursor-pointer h-10 bg-gray-100 border border-slate-300">
                     <span to={"/dashboard"} className="pl-5 ">
                       Dashboard
                     </span>
