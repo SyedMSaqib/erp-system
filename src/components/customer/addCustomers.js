@@ -19,14 +19,14 @@ const AddCustomers = () => {
       }
 
   return (
-    <div className="flex justify-center items-center w-screen " >
-    <div className="shadow-xl w-full lg:ml-96 mr-52 my-20 md:ml-96 mr-52 my-20 sm:ml-96 mr-52 my-20  ">
-      <div className="pl-8 py-8 px-8  pr-8">
-        <div>
+    <div className="flex justify-center items-center w-screen h-screen" >
+    <div className="shadow-xl  rounded-lg border border-gray-300 bg-gray-50 p-10 ">
+      <div className="flex justify-center">
+        <div className="bg-gray-50">
           <h1 class="mb-1 font-bold text-3xl flex gap-1 items-baseline font-mono">
             Add Customer<span class="text-sm text-gray-400">SAS ERP</span>
           </h1>
-          <div class="grid max-w-3xl gap-5 py-10 px-8 sm:grid-cols-1 bg-white rounded-md border-t-4 border-gray-400">
+          <div class="grid max-w-3xl gap-5 py-10 px-8 sm:grid-cols-1 bg-gray-50 rounded-md border-t-4 border-gray-400">
             <div class="grid">
               <div class="bg-white flex min-h-[60px] flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:shadow-inner">
                 <input

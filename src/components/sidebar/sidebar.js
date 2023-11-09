@@ -104,7 +104,7 @@ export default function Sidebar() {
   return (
     <div className="w-60 fixed ">
       <div className="flex">
-        <div className=" flex flex-col h-screen p-3 bg-slate-100  text-gray shadow-2xl z-[999] w-60 ">
+        <div className=" flex flex-col h-screen p-3 bg-slate-100  text-gray shadow-2xl z-[999] w-60 border border-slate-300 ">
           <div className="space-y-3">
             <div className="flex items-center">
               <img className="ml-10 w-36 py-10" src={Saslogo} alt="Logo" />
@@ -112,7 +112,7 @@ export default function Sidebar() {
             <div className="flex-1 ">
               <ul className="pt-2 pb-4 space-y-1 text-sm">
                 <Link to={"/dashboard"}>
-                  <div className="rounded-sm shadow-lg pt-2 max-w-xs transition duration-300 ease-in-out hover:scale-110 text-gray-600 font-semibold cursor-pointer h-10 bg-gray-100 border-slate-600">
+                  <div className="rounded-sm shadow-lg pt-2 max-w-xs transition duration-300 ease-in-out hover:scale-110 text-gray-600 font-semibold cursor-pointer h-10 bg-gray-100 border-slate-600 border border-slate-300">
                     <span to={"/dashboard"} className="pl-5 ">
                       Dashboard
                     </span>
@@ -121,7 +121,7 @@ export default function Sidebar() {
 
                 {data.map((tab) => (
                   <li key={tab.key} onClick={() => toggleTab(tab.key)}>
-                    <div className="rounded-sm shadow-lg pt-2 max-w-xs transition duration-300 ease-in-out hover:scale-110 cursor-pointer h-10 bg-gray-100">
+                    <div className="rounded-sm shadow-lg pt-2 max-w-xs transition duration-300 ease-in-out hover:scale-110 cursor-pointer h-10 bg-gray-100 border border-slate-300">
                       <span className="pl-5 text-gray-600 font-semibold ">{tab.name}</span>
                     </div>
                     {tab.subTabs && openTab === tab.key && (
