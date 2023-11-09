@@ -1,85 +1,128 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState, useEffect } from "react";
 import CustomerContext from "../../context/customer/customerContext";
 import { useNavigate } from "react-router-dom";
-
-
+import toast from 'react-hot-toast';
+import validator from 'validator';
 
 const AddCustomers = () => {
-    const Navigate = useNavigate();
-    const customerContext = useContext(CustomerContext);
-    const{addCustomer}=customerContext
-    const [Customer, setCustomer] = useState({name:"",email:"",phone:""})
-    const handleChange=(e)=>{
-        setCustomer({...Customer,[e.target.name]:e.target.value})
-      }
-      const onClick=(event)=>{
-        event.preventDefault();
-        addCustomer(Customer.name,Customer.phone,Customer.email)
-        Navigate('/viewCustomers')
-      }
+  const [NameValid, setNameValid] = useState(false);
+  const [PhNoValid, setPhNoValid] = useState(false);
+  const [EmailValid, setEmailValid] = useState(false);
+  const Navigate = useNavigate();
+  const customerContext = useContext(CustomerContext);
+  const { addCustomer } = customerContext;
+  const [Customer, setCustomer] = useState({ name: "", email: "", phone: "" });
 
+  const NameValidator = (str) => {
+    return /^[A-Za-z\s]+$/.test(str);
+  }
+
+  const onClick = (event) => {
+    event.preventDefault();
+
+    if (Customer.name === "" || Customer.phone === "" || Customer.email === "") {
+      return toast.error("Please Enter All Fields");
+    }
+
+    if (NameValidator(Customer.name)) {
+      setNameValid(true);
+    } else {
+      toast.error("Enter Valid Name");
+      setNameValid(false);
+    }
+
+    if (validator.isNumeric(Customer.phone)) {
+      setPhNoValid(true);
+    } else {
+      toast.error("Enter Valid Phone Number");
+      setPhNoValid(false);
+    }
+
+    if (validator.isEmail(Customer.email)) {
+      setEmailValid(true);
+    } else {
+      toast.error("Enter Valid Email Address");
+      setEmailValid(false);
+    }
+  }
+
+  useEffect(() => {
+    if (NameValid && PhNoValid && EmailValid) {
+      AddCustomerToDb();
+    }
+  }, [NameValid, PhNoValid, EmailValid]);
+
+  const AddCustomerToDb = () => {
+    addCustomer(Customer.name, Customer.phone, Customer.email);
+    toast.success(`${Customer.name} added as a customer`);
+    Navigate('/viewCustomers');
+  }
+
+  const handleChange = (e) => {
+    setCustomer({ ...Customer, [e.target.name]: e.target.value });
+  }
   return (
-    <div className="flex justify-center items-center w-screen h-screen" >
-    <div className="shadow-xl  rounded-lg border border-gray-300 bg-gray-50 p-20 ">
+    <div className="lg:mx-auto sm:ml-64 sm:items-end  shadow-xl h-1/2 mx-auto my-20 border bg-slate-50 border-gray-300 rounded-xl">
+    <div className="pl-8 py-8 px-8  pr-8">
       <div className="">
-        <div className="bg-gray-50">
-          <h1 class="mb-1 font-bold text-3xl flex gap-1 items-baseline font-mono">
-            Add Customer<span class="text-sm text-gray-400">SAS ERP</span>
+        <div className="bg-slate-50 ">
+          <h1 className="mb-1 font-bold pr-24 text-3xl flex gap-1 items-baseline font-mono">
+            Add Customer<span className="text-sm text-gray-400">SAS ERP</span>
           </h1>
-          <div class="grid  gap-5 w-96  sm:grid-cols-1 bg-gray-50 rounded-md border-t-4 border-gray-400">
-            <div class="grid">
-              <div class="bg-white flex min-h-[60px] flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:shadow-inner">
+          <div className="grid max-w-3xl lg:gap-8 sm:gap-3 py-10 px-8 sm:grid-cols-1 bg-slate-50 rounded-md border-t-4 border-gray-400">
+            <div className="grid">
+              <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
                 <input
                   type="text"
                   name="name"
                 
-                  class="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
+                  className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
                   placeholder="Name" onChange={handleChange}
                 />
                 <label
                   html="name"
-                  class="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
+                  className="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
                 >
                   Name
                 </label>
               </div>
             </div>
            
-            <div class="grid">
-              <div class="bg-white flex min-h-[60px] flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:shadow-inner">
+            <div className="grid">
+            <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
                 <input
                   type="text"
                   name="phone"
                   
-                  class="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
+                  className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
                   placeholder="Phone" onChange={handleChange}
                 />
                 <label
                   html="company"
-                  class="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
+                  className="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
                 >
                   Phone No
                 </label>
               </div>
             </div>
-            <div class="grid">
-              <div class="bg-white flex min-h-[60px] flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:shadow-inner">
+            <div className="grid">
+            <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
                 <input
                   
                   name="email"
                   
-                  class="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
+                  className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
                   placeholder="E-mail" onChange={handleChange}
                 />
                 <label
                   html="email"
-                  class="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
+                  className="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
                 >
                   E-mail
                 </label>
               </div>
             </div>
-            <button onClick={onClick} type="submit" class="mt-4 bg-slate-400 text-white  py-2 px-6 rounded-md hover:bg-slate-500 ">
+            <button onClick={onClick} type="submit" className="mt-4 bg-slate-400 text-white  py-2 px-6 rounded-md hover:bg-slate-500 ">
               Submit
             </button>
           </div>
