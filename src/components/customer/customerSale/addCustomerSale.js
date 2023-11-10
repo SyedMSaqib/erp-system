@@ -5,6 +5,7 @@ import toast from "react-hot-toast"
 import validator from "validator"
 import { useEffect } from "react"
 import SelectData from "./icons/selectData"
+import SetProduct from "./Modals/setProduct"
 
 const AddCustomerSale = () => {
   const Navigate = useNavigate()
@@ -81,6 +82,7 @@ const AddCustomerSale = () => {
   }, [CustomerIdValid, ProductValid, QuantityValid])
 
   return (
+    
     <div className="lg:mx-auto sm:ml-64 sm:items-end  shadow-xl h-1/2 mx-auto my-20 border bg-slate-50 border-gray-300 rounded-xl">
       <div className="pl-8 py-8 px-8  pr-8">
         <div>
@@ -126,7 +128,7 @@ const AddCustomerSale = () => {
               </div>
               <div onClick={()=>NavigateToViewCustomers()} className="flex items-center text-sm text-gray-500">
                 <div  className="w-5 pt-4 cursor-pointer">
-                  <SelectData />
+                  {/* <SelectData /> */}<SetProduct/>
                 </div>
                 <div className="ml-2 pt-4 cursor-pointer">
                   <div>Select Customer</div>
@@ -149,7 +151,7 @@ const AddCustomerSale = () => {
                   Product
                 </label>
               </div>
-              <div className="flex items-center text-sm text-gray-500">
+              <div  className="flex items-center text-sm text-gray-500">
                 <div className="w-5 pt-4 cursor-pointer">
                   <SelectData />
                 </div>
