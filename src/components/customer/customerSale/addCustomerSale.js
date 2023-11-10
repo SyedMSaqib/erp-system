@@ -6,19 +6,22 @@ import validator from "validator"
 import { useEffect } from "react"
 import SelectData from "./icons/selectData"
 import SetProduct from "./Modals/setProduct"
+import ProductContext from  "../../../context/product/productContext";
 
 const AddCustomerSale = () => {
   const Navigate = useNavigate()
-  const { addCustomerSale,setcustomerDataOfSale,customerDataOfSale,setisDataSet } = useContext(customerSaleContext)
+  const { addCustomerSale,setcustomerDataOfSale,customerDataOfSale,setisDataSet,isDataSet } = useContext(customerSaleContext)
+  const { productModelData,setproductModelData,setisVisible }=useContext(ProductContext);
 
     useEffect(() => {
       setcustomerDataOfSale("")
+      setisVisible(false)
     }, [])
-    
+
 
   const [customerSale, setcustomerSale] = useState({
     customerId: customerDataOfSale._id,
-    product: "",
+    product: productModelData.name,
     quantity: "",
   })
   const [CustomerIdValid, setCustomerIdValid] = useState(false)
@@ -39,9 +42,13 @@ const AddCustomerSale = () => {
     return /^[A-Za-z0-9\s]+$/.test(str)
   }
 
+  const onClickProduct=()=>
+  {
+    setisVisible(true)
+  }
+
   const onClick = (event) => {
     event.preventDefault()
-    console.log(customerSale)
     if (customerSale.customerId === "" || customerSale.product === "" || customerSale.quantity === "") {
       return toast.error("Please Enter All Fields")
     }
@@ -66,6 +73,7 @@ const AddCustomerSale = () => {
       toast.error("Enter Valid Quantity")
       setQuantityValid(false)
     }
+    setproductModelData({})
   }
   const NavigateToViewCustomers=()=>
   {
@@ -81,9 +89,12 @@ const AddCustomerSale = () => {
     }
   }, [CustomerIdValid, ProductValid, QuantityValid])
 
+  
+
   return (
-    
-    <div className="lg:mx-auto sm:ml-64 sm:items-end  shadow-xl h-1/2 mx-auto my-20 border bg-slate-50 border-gray-300 rounded-xl">
+    <>
+    <SetProduct/>
+    <div  className="lg:mx-auto sm:ml-64 sm:items-end  shadow-xl h-1/2 mx-auto my-20 border bg-slate-50 border-gray-300 rounded-xl">
       <div className="pl-8 py-8 px-8  pr-8">
         <div>
           <h1 class="mb-1 font-bold text-3xl flex gap-1 items-baseline font-mono">
@@ -113,7 +124,7 @@ const AddCustomerSale = () => {
                 <input
                   type="text"
                   name="customerId"
-                  class="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
+                  class="peer block w-full border-0 p-0 text-base text-gray-400 placeholder-gray-400 focus:ring-0"
                   placeholder="Customer Id"
                   onChange={handleChange}
                   value={customerDataOfSale._id}
@@ -128,7 +139,7 @@ const AddCustomerSale = () => {
               </div>
               <div onClick={()=>NavigateToViewCustomers()} className="flex items-center text-sm text-gray-500">
                 <div  className="w-5 pt-4 cursor-pointer">
-                  {/* <SelectData /> */}<SetProduct/>
+                  <SelectData />
                 </div>
                 <div className="ml-2 pt-4 cursor-pointer">
                   <div>Select Customer</div>
@@ -139,10 +150,11 @@ const AddCustomerSale = () => {
               <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
                 <input
                   name="product"
-                  class="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
+                  class="peer block w-full border-0 p-0 text-base text-gray-400 placeholder-gray-400 focus:ring-0"
                   placeholder="Product"
                   onChange={handleChange}
-                  // disabled="true"
+                  value={productModelData.name}
+                  disabled="true"
                 />
                 <label
                   html="Product"
@@ -151,7 +163,7 @@ const AddCustomerSale = () => {
                   Product
                 </label>
               </div>
-              <div  className="flex items-center text-sm text-gray-500">
+              <div onClick={()=>onClickProduct()}   className="flex items-center text-sm text-gray-500">
                 <div className="w-5 pt-4 cursor-pointer">
                   <SelectData />
                 </div>
@@ -171,6 +183,7 @@ const AddCustomerSale = () => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 
