@@ -5,11 +5,13 @@ const productSchema = new Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
+    required: true,
   },
 
   customerId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "customer",
+    required: true,
   },
   product: {
     type: String,
