@@ -43,7 +43,7 @@ const CustomerSaleState = (props) => {
         
         //Add customer Api call
         
-            const response = await fetch(`${host}/customerSale/addCustomerSales`, {
+            await fetch(`${host}/customerSale/addCustomerSales`, {
               method: "POST", 
                
               headers: {
@@ -56,12 +56,41 @@ const CustomerSaleState = (props) => {
         
     }
 
+    const updateCustomerSale = async (id, customerId, product, quantity, customerName) => {
+      // Update customer sale API call
+      await fetch(`${host}/customerSale/updateCustomerSale/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": authToken
+        },
+        body: JSON.stringify({ customerId, product, quantity, customerName }),
+      });
+    }
+  
+    const deleteCustomerSale = async (id) => {
+      const updatedCustomerSale = customerSale.filter((data) => {
+        return data._id !== id
+      })
+      setCustomerSale(updatedCustomerSale)
+  
+      // Delete customer sale API call
+       await fetch(`${host}/customerSale/deleteCustomerSale/${id}`, {
+        method: "DELETE",
+        headers: {
+          "auth-token": authToken
+        },
+      });
+    }
+  
+
       return (
 
         <customeSaleContext.Provider value={{
             customerSale,
             getAllcustomersSales,
             addCustomerSale,
+            deleteCustomerSale
         }}>
           {props.children}
         </customeSaleContext.Provider>
