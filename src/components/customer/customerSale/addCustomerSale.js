@@ -40,18 +40,22 @@ const AddCustomerSale = () => {
     if(name==="quantity")
     {
        setquantity(value)
-       const quantityValue = parseInt(value, 10);
-       const productQuantity = productModelData.quantity;
+       const quantityValue = parseInt(value, 10)
+       const productQuantity =parseInt(productModelData.quantity, 10)
 
     if (quantityValue > productQuantity) {
       const updatedQuantity = quantityValue - productQuantity;
       setNewQuantity(updatedQuantity);
       console.log(newQuantity)
     }
-     else if (quantityValue <= productQuantity) {
+     else if (quantityValue < productQuantity) {
       const updatedQuantity = productQuantity - quantityValue;
       console.log(newQuantity)
       setNewQuantity(updatedQuantity);
+  
+    }  
+     else if (quantityValue == productQuantity) {
+      setNewQuantity("0");
   
     }  
       }
