@@ -75,7 +75,7 @@ const AddCustomerSale = () => {
 
   const onClick = (event) => {
     event.preventDefault()
-    if(quantity)
+    
     if (customerId === "" ||product === "" || quantity === "") {
       return toast.error("Please Enter All Fields")
     }
@@ -93,7 +93,7 @@ const AddCustomerSale = () => {
       setProductValid(false)
     }
 
-    if (validator.isNumeric(quantity)) {
+    if (validator.isNumeric(quantity)&&quantity>0) {
       setQuantityValid(true)
       
     } else {
@@ -102,17 +102,17 @@ const AddCustomerSale = () => {
     }
     if(quantity<=productModelData.quantity)
     {
-      if(quantity==0)
-    {
-      toast.error("0...You kidding me?")
-      setavailablestock(false)
-    }
-    else
       setavailablestock(true)
     }
     if(quantity>productModelData.quantity)
     {
-      toast.error(`The stock limit has been reached, with an excess of ${newQuantity} units`)
+      toast.error(
+        <div className="text-center">
+          <strong>Insufficient Stock</strong>
+          <div>Available Stock: {productModelData.quantity}</div>
+        </div>
+      );
+      
       setavailablestock(false)
     }
     
