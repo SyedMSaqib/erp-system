@@ -102,6 +102,12 @@ const AddCustomerSale = () => {
     }
     if(quantity<=productModelData.quantity)
     {
+      if(quantity==0)
+    {
+      toast.error("0...You kidding me?")
+      setavailablestock(false)
+    }
+    else
       setavailablestock(true)
     }
     if(quantity>productModelData.quantity)
@@ -109,6 +115,7 @@ const AddCustomerSale = () => {
       toast.error(`The stock limit has been reached, with an excess of ${newQuantity} units`)
       setavailablestock(false)
     }
+    
  
     
   }
