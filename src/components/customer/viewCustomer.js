@@ -1,13 +1,10 @@
 import React, { useContext, useEffect } from "react"
 import customerContext from "../../context/customer/customerContext"
-import { Link} from "react-router-dom"
-
-
+import { Link } from "react-router-dom"
+import toast from "react-hot-toast"
 
 const ViewCustomer = () => {
   const { customer, getAllcustomers, deleteCustomer, setCustomerId, setupdateFormValues } = useContext(customerContext)
-  
-
 
   useEffect(() => {
     getAllcustomers()
@@ -17,10 +14,15 @@ const ViewCustomer = () => {
     setCustomerId(customer._id)
     setupdateFormValues({ name: customer.name, email: customer.email, phone: customer.phone })
   }
+  const Onclickdelete=(customerId)=>
+  {
+    deleteCustomer(customerId)
+    toast.success("Customer Deleted")
+  }
 
   return (
     <div>
-      <div className="overflow-hidden flex justify-center rounded-lg border border-gray-200 shadow-md m-5 ml-64">
+      <div className="overflow-hidden flex justify-center rounded-lg border border-gray-200 shadow-md m-5 ml-72">
         <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
           <thead className="bg-gray-50">
             <tr>
@@ -30,10 +32,10 @@ const ViewCustomer = () => {
               <th scope="col" className="px-12 py-4 font-medium text-gray-900">
                 Phone
               </th>
-              <th scope="col" className="px-28 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-20 py-4 font-medium text-gray-900">
                 Id
               </th>
-              <th scope="col" className="px-28 py-4 font-medium text-gray-900"></th>
+              <th scope="col" className=" py-4 font-medium text-gray-900"></th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
@@ -42,8 +44,8 @@ const ViewCustomer = () => {
                 <td className="flex gap-3 px-6 py-4 font-normal text-gray-900">
                   <div className="text-sm flex">
                     <div>
-                    <div className="font-medium text-gray-700">{customerItem.name}</div>
-                    <div className="text-gray-400">{customerItem.email}</div>
+                      <div className="font-medium text-gray-700">{customerItem.name}</div>
+                      <div className="text-gray-400">{customerItem.email}</div>
                     </div>
                   </div>
                 </td>
@@ -53,27 +55,32 @@ const ViewCustomer = () => {
                     {customerItem.phone}
                   </span>
                 </td>
-                <td className="px-20 py-4">{customerItem._id}{<button
-                  onClick={() => {
-                    // Function to copy the customer ID to clipboard
-                    const textField = document.createElement("textarea")
-                    textField.innerText = customerItem._id
-                    document.body.appendChild(textField)
-                    textField.select()
-                    document.execCommand("copy")
-                    textField.remove()
-                  }}
-                  className="pl-3 text-blue-500 hover:text-blue-600 "
-                >
-                  Copy ID
-                </button>}</td>
-                
+                <td className="px-20 py-4">
+                  {customerItem._id}
+                  {
+                    <button
+                      onClick={() => {
+                        // Function to copy the customer ID to clipboard
+                        const textField = document.createElement("textarea")
+                        textField.innerText = customerItem._id
+                        document.body.appendChild(textField)
+                        textField.select()
+                        document.execCommand("copy")
+                        textField.remove()
+                      }}
+                      className="pl-3 text-blue-500 hover:text-blue-600 "
+                    >
+                      Copy ID
+                    </button>
+                  }
+                </td>
+
                 <td className="px-6 py-4">
                   <div className="flex justify-end gap-4">
                     <button
                       x-data="{ tooltip: 'Delete' }"
                       onClick={() => {
-                        deleteCustomer(customerItem._id)
+                        Onclickdelete(customerItem._id)
                       }}
                     >
                       <svg
@@ -81,7 +88,7 @@ const ViewCustomer = () => {
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
-                        stroke="currentColor"
+                        stroke="red "
                         class="h-6 w-6"
                         x-tooltip="tooltip"
                       >
@@ -98,24 +105,25 @@ const ViewCustomer = () => {
                       onClick={() => updateCustomer(customerItem)}
                     >
                       <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
+                        fill="#000000"
+                        width="25px"
+                        height="25px"
                         viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        class="h-6 w-6"
-                        x-tooltip="tooltip"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="icon flat-color"
                       >
                         <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-                        />
+                          d="M19,2a1,1,0,0,0-1,1V5.33A9,9,0,0,0,3,12a1,1,0,0,0,2,0A7,7,0,0,1,16.86,7H14a1,1,0,0,0,0,2h5a1,1,0,0,0,1-1V3A1,1,0,0,0,19,2Z"
+                          fill="rgb(0, 0, 0)"
+                        ></path>
+                        <path
+                          d="M20,11a1,1,0,0,0-1,1A7,7,0,0,1,7.11,17H10a1,1,0,0,0,0-2H5a1,1,0,0,0-1,1v5a1,1,0,0,0,2,0V18.67A9,9,0,0,0,21,12,1,1,0,0,0,20,11Z"
+                          fill="rgb(44, 169, 188)"
+                        ></path>
                       </svg>
                     </Link>
                   </div>
                 </td>
-                
               </tr>
             ))}
           </tbody>

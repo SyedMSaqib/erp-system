@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react"
 import ProductContext from "../../context/product/productContext"
 import { Link } from "react-router-dom"
+import toast from "react-hot-toast"
 
 const ViewProduct = () => {
   const { product, getAllProducts, deleteProduct, setproductId, setupdateFormValues } = useContext(ProductContext)
@@ -19,7 +20,12 @@ const ViewProduct = () => {
       quantity: product.quantity,
     })
   }
-
+  
+  const Onclickdelete=(productId)=>
+  {
+    deleteProduct(productId)
+    toast.success("Product Deleted")
+  }
   return (
     <div className="flex justify-center items-center w-screen ">
       <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5 ml-64 ">
@@ -61,7 +67,7 @@ const ViewProduct = () => {
                     <button
                       x-data="{ tooltip: 'Delete' }"
                       onClick={() => {
-                        deleteProduct(productItem._id)
+                        Onclickdelete(productItem._id)
                       }}
                     >
                       <svg
