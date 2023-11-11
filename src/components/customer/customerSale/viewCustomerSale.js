@@ -8,7 +8,6 @@ const ViewCustomerSale = () => {
     getAllcustomersSales();
   }, []);
  
-
   return (
     <div>
       <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5 ml-72">
@@ -31,6 +30,7 @@ const ViewCustomerSale = () => {
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
             {customerSale.map((saleItem) => (
+              
               <tr className="hover:bg-gray-50" key={saleItem._id}>
                 <td className="flex gap-3 px-6 py-4 font-normal text-gray-900">
                   <div className="text-sm">
