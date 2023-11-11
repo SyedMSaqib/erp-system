@@ -55,6 +55,8 @@ const checkAuth=async()=>
    authToken =  localStorage.getItem('authToken');
    if(authToken!==null)
    {
+   console.log(authToken) 
+
    settokenUpdate(true)
    toast.success("Login Succcess") 
   setvalidation(true)

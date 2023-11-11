@@ -36,7 +36,7 @@ const SetCustomer = () => {
               </thead>
               <tbody className="divide-y divide-gray-100 border-t border-gray-100">
                 {customer.map((customerItem) => (
-                  <tr onClick={() => onClickModal(customerItem)} className="hover:bg-gray-50" key={customerItem._id}>
+                  <tr onClick={() => onClickModal(customerItem)} className="hover:bg-gray-50 cursor-pointer" key={customerItem._id}>
                     <td className="flex gap-3 px-6 py-4 font-normal text-gray-900">
                       <div className="text-sm flex">
                         <div>
