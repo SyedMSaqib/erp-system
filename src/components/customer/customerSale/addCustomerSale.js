@@ -11,17 +11,20 @@ import SetCustomer from "./Modals/setCustomer"
 import customerContext from "../../../context/customer/customerContext"
 
 const AddCustomerSale = () => {
+ 
   const Navigate = useNavigate()
   const { addCustomerSale } = useContext(customerSaleContext)
-  const { productModelData, setproductModelData, setisVisible } = useContext(ProductContext)
+  const { productModelData, setisVisible ,updateProduct} = useContext(ProductContext)
   const { customerModalData, setisVisibleModal } = useContext(customerContext)
-
+  const [availablestock, setavailablestock] = useState(false)
   const [quantity, setquantity] = useState("")
   const [product, setproduct] = useState("")
   const [customerId, setcustomerId] = useState("")
   const [CustomerIdValid, setCustomerIdValid] = useState(false)
   const [ProductValid, setProductValid] = useState(false)
   const [QuantityValid, setQuantityValid] = useState(false)
+  const [newQuantity, setNewQuantity] = useState("");
+  
  
   useEffect(() => {
     setisVisible(false);
@@ -31,13 +34,27 @@ const AddCustomerSale = () => {
   }, [productModelData, customerModalData]);
 
   
-  const handleChange = (e) => {
+  const handleChange = async(e) => {
     const { name, value } = e.target
     
     if(name==="quantity")
     {
-      setquantity(value)
+       setquantity(value)
+       const quantityValue = parseInt(value, 10);
+       const productQuantity = productModelData.quantity;
+
+    if (quantityValue > productQuantity) {
+      const updatedQuantity = quantityValue - productQuantity;
+      setNewQuantity(updatedQuantity);
+      console.log(newQuantity)
     }
+     else if (quantityValue <= productQuantity) {
+      const updatedQuantity = productQuantity - quantityValue;
+      console.log(newQuantity)
+      setNewQuantity(updatedQuantity);
+  
+    }  
+      }
     
    }
   const NameValidator = (str) => {
@@ -54,7 +71,7 @@ const AddCustomerSale = () => {
 
   const onClick = (event) => {
     event.preventDefault()
-  
+    if(quantity)
     if (customerId === "" ||product === "" || quantity === "") {
       return toast.error("Please Enter All Fields")
     }
@@ -74,25 +91,36 @@ const AddCustomerSale = () => {
 
     if (validator.isNumeric(quantity)) {
       setQuantityValid(true)
+      
     } else {
       toast.error("Enter Valid Quantity")
       setQuantityValid(false)
     }
-    
+    if(quantity<=productModelData.quantity)
+    {
+      setavailablestock(true)
+    }
+    if(quantity>productModelData.quantity)
+    {
+      toast.error(`The stock limit has been reached, with an excess of ${newQuantity} units`)
+      setavailablestock(false)
+    }
+ 
     
   }
  
 
   useEffect(() => {
-    if (CustomerIdValid && ProductValid && QuantityValid) {
+    if (CustomerIdValid && ProductValid && QuantityValid && availablestock) {
       addCustomerSale(customerId, product, quantity)
+      updateProduct(productModelData._id,productModelData.name,productModelData.description,productModelData.category,productModelData.price,newQuantity)
       setproduct("")
       setcustomerId("")
       toast.success(`${product} Added`)
       Navigate("/viewCustomerSale")
-    
+     
     }
-  }, [CustomerIdValid, ProductValid, QuantityValid,product,customerId])
+  }, [CustomerIdValid, ProductValid, QuantityValid,product,customerId,availablestock])
 
   return (
     <>

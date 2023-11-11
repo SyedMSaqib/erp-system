@@ -66,8 +66,7 @@ const ProductState = (props) => {
     const updateProduct=async(id,name,description,category,price,quantity)=>{
           
       //Update product Api call
-      
-        console.log(id)
+    
           const response = await fetch(`${host}/product/update/${id}`, {
             method: "PUT", 
              

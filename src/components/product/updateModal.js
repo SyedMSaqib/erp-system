@@ -60,7 +60,6 @@ const UpdateModal = () => {
       {
         AddProductToDb()
       }
-      console.log([ProductName,ProductPrice,ProductQuantity])
     }, [ProductName,ProductPrice,ProductQuantity])
 
   

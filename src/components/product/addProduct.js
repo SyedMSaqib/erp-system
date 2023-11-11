@@ -64,7 +64,6 @@ const AddProduct = () => {
       {
         AddProductToDb()
       }
-      console.log([ProductName,ProductPrice,ProductQuantity])
     }, [ProductName,ProductPrice,ProductQuantity])
     
     const AddProductToDb=()=>{
