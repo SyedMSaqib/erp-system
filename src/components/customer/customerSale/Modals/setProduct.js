@@ -11,16 +11,11 @@ const SetProduct = () => {
       const onClickModal=(product)=>
       {
         setproductModelData(product)
-        console.log('onClickModal called');
+     
         setisVisible(false)
-        // console.log(isVisible)
+        
       }
-    
-   
-      useEffect(() => {
-        console.log('isVisible:', isVisible);
-      }, [isVisible]);
-// console.log(isVisible)
+
       if(!isVisible)
       return null
   return (

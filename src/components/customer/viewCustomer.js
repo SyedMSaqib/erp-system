@@ -1,20 +1,13 @@
 import React, { useContext, useEffect } from "react"
 import customerContext from "../../context/customer/customerContext"
-import { Link, useNavigate } from "react-router-dom"
-import SetData from "./customerSale/icons/setData"
-import { useState } from "react"
-import customerSaleContext from "../../context/customerSale/customerSaleContext"
+import { Link} from "react-router-dom"
+
+
 
 const ViewCustomer = () => {
   const { customer, getAllcustomers, deleteCustomer, setCustomerId, setupdateFormValues } = useContext(customerContext)
-  const { setcustomerDataOfSale,isDataSet,setisDataSet} = useContext(customerSaleContext)
-const Navigate=useNavigate()
-  const NavigateToAddSale=(customer)=>
-  {
-    Navigate("/AddCustomersSale")
-    setisDataSet(false)
-    setcustomerDataOfSale(customer)
-  }
+  
+
 
   useEffect(() => {
     getAllcustomers()
@@ -52,10 +45,6 @@ const Navigate=useNavigate()
                     <div className="font-medium text-gray-700">{customerItem.name}</div>
                     <div className="text-gray-400">{customerItem.email}</div>
                     </div>
-                  {isDataSet?<div onClick={()=>NavigateToAddSale(customerItem)}  className="flex pl-4">
-                      <div className="w-5 cursor-pointer">{<SetData/>} </div>
-                    <div className="text-gray-500 pl-1 cursor-pointer">Select</div>
-                      </div>:null} 
                   </div>
                 </td>
                 <td className=" px-12 py-4">

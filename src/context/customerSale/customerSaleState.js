@@ -9,8 +9,7 @@ const CustomerSaleState = (props) => {
 
       const [customerSale, setCustomerSale] = useState(customerDb)
       const authToken = localStorage.getItem('authToken');
-      const [customerDataOfSale, setcustomerDataOfSale] = useState({})
-      const [isDataSet, setisDataSet] = useState(false)
+  
       
       
       
@@ -62,10 +61,6 @@ const CustomerSaleState = (props) => {
             customerSale,
             getAllcustomersSales,
             addCustomerSale,
-            customerDataOfSale, 
-            setcustomerDataOfSale,
-            isDataSet,
-             setisDataSet
         }}>
           {props.children}
         </customeSaleContext.Provider>
