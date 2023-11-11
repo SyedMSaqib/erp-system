@@ -1,33 +1,27 @@
-import React, { useContext, useEffect } from "react";
-import ProductContext from "../../context/product/productContext";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect } from "react"
+import ProductContext from "../../context/product/productContext"
+import { Link } from "react-router-dom"
 
 const ViewProduct = () => {
-  const {
-    product,
-    getAllProducts,
-    deleteProduct,
-    setproductId,
-    setupdateFormValues,
-  } = useContext(ProductContext);
+  const { product, getAllProducts, deleteProduct, setproductId, setupdateFormValues } = useContext(ProductContext)
 
   useEffect(() => {
-    getAllProducts();
-  }, []);
+    getAllProducts()
+  }, [])
 
   const updateProduct = (product) => {
-    setproductId(product._id);
+    setproductId(product._id)
     setupdateFormValues({
       name: product.name,
       description: product.description,
       category: product.category,
       price: product.price,
       quantity: product.quantity,
-    });
-  };
+    })
+  }
 
   return (
-    <div className="flex justify-center items-center w-screen " >
+    <div className="flex justify-center items-center w-screen ">
       <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5 ml-64 ">
         <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
           <thead className="bg-gray-50">
@@ -55,9 +49,7 @@ const ViewProduct = () => {
               <tr className="hover:bg-gray-50" key={productItem._id}>
                 <td className="flex gap-3 px-6 py-4 font-normal text-gray-900">
                   <div className="text-sm">
-                    <div className="font-medium text-gray-700">
-                      {productItem.name}
-                    </div>
+                    <div className="font-medium text-gray-700">{productItem.name}</div>
                   </div>
                 </td>
                 <td className="px-12 py-4">{productItem.description}</td>
@@ -69,7 +61,7 @@ const ViewProduct = () => {
                     <button
                       x-data="{ tooltip: 'Delete' }"
                       onClick={() => {
-                        deleteProduct(productItem._id);
+                        deleteProduct(productItem._id)
                       }}
                     >
                       <svg
@@ -77,7 +69,7 @@ const ViewProduct = () => {
                         fill="none"
                         viewBox="0 0 24 24"
                         strokeWidth="1.5"
-                        stroke="currentColor"
+                        stroke="red"
                         className="h-6 w-6"
                         x-tooltip="tooltip"
                       >
@@ -88,26 +80,26 @@ const ViewProduct = () => {
                         />
                       </svg>
                     </button>
-                    <Link
-                      x-data="{ tooltip: 'Edit' }"
-                      to={`/update`}
-                      onClick={() => updateProduct(productItem)}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth="1.5"
-                        stroke="currentColor"
-                        className="h-6 w-6"
-                        x-tooltip="tooltip"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-                        />
-                      </svg>
+                    <Link x-data="{ tooltip: 'Edit' }" to={`/update`} onClick={() => updateProduct(productItem)}>
+                      <div className="">
+                        <svg
+                          fill="#000000"
+                          width="25px"
+                          height="25px"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="icon flat-color"
+                        >
+                          <path
+                            d="M19,2a1,1,0,0,0-1,1V5.33A9,9,0,0,0,3,12a1,1,0,0,0,2,0A7,7,0,0,1,16.86,7H14a1,1,0,0,0,0,2h5a1,1,0,0,0,1-1V3A1,1,0,0,0,19,2Z"
+                            fill="rgb(0, 0, 0)"
+                          ></path>
+                          <path
+                            d="M20,11a1,1,0,0,0-1,1A7,7,0,0,1,7.11,17H10a1,1,0,0,0,0-2H5a1,1,0,0,0-1,1v5a1,1,0,0,0,2,0V18.67A9,9,0,0,0,21,12,1,1,0,0,0,20,11Z"
+                            fill="rgb(44, 169, 188)"
+                          ></path>
+                        </svg>
+                      </div>
                     </Link>
                   </div>
                 </td>
@@ -117,7 +109,7 @@ const ViewProduct = () => {
         </table>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ViewProduct;
+export default ViewProduct
