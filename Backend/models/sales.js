@@ -17,12 +17,17 @@ const salesSchema = new Schema({
     type: String,
     required: true,
   },
-
+  customerName: {
+    type: String,
+    required: true,
+  },
+  
   quantity: {
     type: String,
     required: true,
   },
-
+  
+  
   date: {
     type: Date,
     default: Date.now,

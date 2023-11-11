@@ -116,7 +116,7 @@ const AddCustomerSale = () => {
 
   useEffect(() => {
     if (CustomerIdValid && ProductValid && QuantityValid && availablestock) {
-      addCustomerSale(customerId, product, quantity)
+      addCustomerSale(customerId, product, quantity,customerModalData.name)
       updateProduct(productModelData._id,productModelData.name,productModelData.description,productModelData.category,productModelData.price,newQuantity)
       setproduct("")
       setcustomerId("")
