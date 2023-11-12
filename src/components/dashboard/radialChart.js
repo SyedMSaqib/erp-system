@@ -26,20 +26,21 @@ const CustomRadialBarChart = () => {
     left: '65%',
     transform: 'translate(0, -50%)',
     lineHeight: '24px',
+    fontSize: 14
   };
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <ResponsiveContainer width="100%" height={300} style={{ marginBottom: '-25px' }}>
+      <ResponsiveContainer width="100%" height={300}  style={{ marginBottom: '-25px' }}>
         <RadialBarChart cx="40%" cy="50%" innerRadius="10%" outerRadius="80%" barSize={10} data={data}>
           <RadialBar
             minAngle={15}
-            label={{ position: 'bottom', fill: '#666' }}
+            label={{ position: 'bottom', fill: '#666' , fontSize: 12}}
             background
             clockWise
             dataKey="uv"
           />
-          <Legend iconSize={5} layout="vertical" verticalAlign="middle" wrapperStyle={style} />
+          <Legend iconSize={5} layout="vertical" verticalAlign="middle"  wrapperStyle={style} />
         </RadialBarChart>
       </ResponsiveContainer>
       <div className='text-center'>

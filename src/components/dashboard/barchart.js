@@ -31,7 +31,7 @@ const Barchart = () => {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
+        <XAxis dataKey="name" tick={{ fontSize: 14 }}/>
         <YAxis domain={[0, maxValue]} /> 
         <Tooltip />
         <Legend />
