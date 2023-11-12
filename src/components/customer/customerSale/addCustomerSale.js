@@ -11,10 +11,9 @@ import SetCustomer from "./Modals/setCustomer"
 import customerContext from "../../../context/customer/customerContext"
 
 const AddCustomerSale = () => {
- 
   const Navigate = useNavigate()
   const { addCustomerSale } = useContext(customerSaleContext)
-  const { productModelData, setisVisible ,updateProduct} = useContext(ProductContext)
+  const { productModelData, setisVisible, updateProduct } = useContext(ProductContext)
   const { customerModalData, setisVisibleModal } = useContext(customerContext)
   const [availablestock, setavailablestock] = useState(false)
   const [quantity, setquantity] = useState("")
@@ -23,44 +22,36 @@ const AddCustomerSale = () => {
   const [CustomerIdValid, setCustomerIdValid] = useState(false)
   const [ProductValid, setProductValid] = useState(false)
   const [QuantityValid, setQuantityValid] = useState(false)
-  const [newQuantity, setNewQuantity] = useState("");
-  
- 
+  const [newQuantity, setNewQuantity] = useState("")
+
   useEffect(() => {
-    setisVisible(false);
+    setisVisible(false)
     setisVisibleModal(false)
-    setproduct(productModelData.name);
-    setcustomerId(customerModalData._id);
-  }, [productModelData, customerModalData]);
+    setproduct(productModelData.name)
+    setcustomerId(customerModalData._id)
+  }, [productModelData, customerModalData])
 
-  
-  const handleChange = async(e) => {
+  const handleChange = async (e) => {
     const { name, value } = e.target
-    
-    if(name==="quantity")
-    {
-       setquantity(value)
-       const quantityValue = parseInt(value, 10)
-       const productQuantity =parseInt(productModelData.quantity, 10)
 
-    if (quantityValue > productQuantity) {
-      const updatedQuantity = quantityValue - productQuantity;
-      setNewQuantity(updatedQuantity);
-      console.log(newQuantity)
-    }
-     else if (quantityValue < productQuantity) {
-      const updatedQuantity = productQuantity - quantityValue;
-      console.log(newQuantity)
-      setNewQuantity(updatedQuantity);
-  
-    }  
-     else if (quantityValue == productQuantity) {
-      setNewQuantity("0");
-  
-    }  
+    if (name === "quantity") {
+      setquantity(value)
+      const quantityValue = parseInt(value, 10)
+      const productQuantity = parseInt(productModelData.quantity, 10)
+
+      if (quantityValue > productQuantity) {
+        const updatedQuantity = quantityValue - productQuantity
+        setNewQuantity(updatedQuantity)
+        console.log(newQuantity)
+      } else if (quantityValue < productQuantity) {
+        const updatedQuantity = productQuantity - quantityValue
+        console.log(newQuantity)
+        setNewQuantity(updatedQuantity)
+      } else if (quantityValue == productQuantity) {
+        setNewQuantity("0")
       }
-    
-   }
+    }
+  }
   const NameValidator = (str) => {
     return /^[A-Za-z0-9\s]+$/.test(str)
   }
@@ -68,15 +59,14 @@ const AddCustomerSale = () => {
   const onClickProduct = () => {
     setisVisible(true)
   }
-  const onClickCustomer=()=>
-  {
+  const onClickCustomer = () => {
     setisVisibleModal(true)
   }
 
   const onClick = (event) => {
     event.preventDefault()
-    
-    if (customerId === "" ||product === "" || quantity === "") {
+
+    if (customerId === "" || product === "" || quantity === "") {
       return toast.error("Please Enter All Fields")
     }
 
@@ -93,45 +83,63 @@ const AddCustomerSale = () => {
       setProductValid(false)
     }
 
-    if (validator.isNumeric(quantity)&&quantity>0) {
+    const quantityValue = parseInt(quantity, 10)
+    const productQuantity = parseInt(productModelData.quantity, 10)
+
+    if (validator.isNumeric(quantity) && quantityValue > 0) {
       setQuantityValid(true)
-      
+
+      if (quantityValue <= productQuantity) {
+        setavailablestock(true)
+      } else {
+        toast.error(
+          <div className="text-center">
+            <strong>Insufficient Stock</strong>
+            <div>Available Stock: {productModelData.quantity}</div>
+          </div>
+        )
+        setavailablestock(false)
+      }
     } else {
       toast.error("Enter Valid Quantity")
       setQuantityValid(false)
-    }
-    if(quantity<=productModelData.quantity)
-    {
-      setavailablestock(true)
-    }
-    if(quantity>productModelData.quantity)
-    {
-      toast.error(
-        <div className="text-center">
-          <strong>Insufficient Stock</strong>
-          <div>Available Stock: {productModelData.quantity}</div>
-        </div>
-      );
-      
       setavailablestock(false)
     }
-    
- 
-    
-  }
- 
 
-  useEffect(() => {
-    if (CustomerIdValid && ProductValid && QuantityValid && availablestock) {
-      addCustomerSale(customerId, product, quantity,customerModalData.name)
-      updateProduct(productModelData._id,productModelData.name,productModelData.description,productModelData.category,productModelData.price,newQuantity)
+    if (QuantityValid && ProductValid && CustomerIdValid && availablestock) {
+      addCustomerSale(customerId, product, quantity, customerModalData.name)
+      updateProduct(
+        productModelData._id,
+        productModelData.name,
+        productModelData.description,
+        productModelData.category,
+        productModelData.price,
+        newQuantity
+      )
       setproduct("")
       setcustomerId("")
       toast.success(`${product} Added`)
       Navigate("/viewCustomerSale")
-     
     }
-  }, [CustomerIdValid, ProductValid, QuantityValid,product,customerId,availablestock])
+  }
+
+  useEffect(() => {
+    if (CustomerIdValid && ProductValid && QuantityValid && availablestock) {
+      addCustomerSale(customerId, product, quantity, customerModalData.name)
+      updateProduct(
+        productModelData._id,
+        productModelData.name,
+        productModelData.description,
+        productModelData.category,
+        productModelData.price,
+        newQuantity
+      )
+      setproduct("")
+      setcustomerId("")
+      toast.success(`${product} Added`)
+      Navigate("/viewCustomerSale")
+    }
+  }, [CustomerIdValid, ProductValid, QuantityValid, product, customerId, availablestock])
 
   return (
     <>
