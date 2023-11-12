@@ -106,21 +106,7 @@ const AddCustomerSale = () => {
       setavailablestock(false)
     }
 
-    if (QuantityValid && ProductValid && CustomerIdValid && availablestock) {
-      addCustomerSale(customerId, product, quantity, customerModalData.name)
-      updateProduct(
-        productModelData._id,
-        productModelData.name,
-        productModelData.description,
-        productModelData.category,
-        productModelData.price,
-        newQuantity
-      )
-      setproduct("")
-      setcustomerId("")
-      toast.success(`${product} Added`)
-      Navigate("/viewCustomerSale")
-    }
+    
   }
 
   useEffect(() => {
@@ -131,8 +117,8 @@ const AddCustomerSale = () => {
         productModelData.name,
         productModelData.description,
         productModelData.category,
-        productModelData.price,
-        newQuantity
+        newQuantity,
+        productModelData.price
       )
       setproduct("")
       setcustomerId("")
