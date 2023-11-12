@@ -24,7 +24,6 @@ const navigate = useNavigate();
 
 const handleChange = (e) => {
   const { name, value } = e.target;
-  
   if (name === 'email') {
     setEmail(value);
   } else if (name === 'password') {

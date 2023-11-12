@@ -13,11 +13,13 @@ router.post("/signup", [check("name").isLength({min:3}),check("email").isEmail()
     if (!result.isEmpty()) return res.status(500).json(result)
   
     try{
-    let checkUser = await user.findOne({email:req.body.email})
-    if (checkUser) 
-    return res.status(403).send({ error:`${checkUser.email} already exists` })
+      let checkUser = await user.findOne({ email: req.body.email });
+      if (checkUser !== null) {
+        return res.status(403).send({ error: `${checkUser.email} already exists`,status:403});
+      }
+      
+      else{
     const { name, email, password } = req.body
-    
     var hashedPassword = bcrypt.hashSync(password, salt);
 
     const newUser=await user.create({
@@ -30,17 +32,17 @@ router.post("/signup", [check("name").isLength({min:3}),check("email").isEmail()
         id:newUser.id
       }
     }
+  
     var token = jwt.sign(checkUser,key);
-
-
-    res.status(200).json({token})
+  }
+    
+   return res.status(200).json({token:token,status:200})
     }
     catch(err)
     {
         res.status(500).json({err})
        
     }
-
 }
 )
 
@@ -61,11 +63,11 @@ router.post("/login",[check("email").isEmail(), check("password").isLength({ min
   }
   var token = jwt.sign(User,key);
   if(compare)
-  return res.json({
+  return res.status(201).json({
     token: token,
     name: checkUser.name
   });  
-  return res.status(401).send("Invalid password")
+  return res.status(402).send("Invalid password")
   
 
 }

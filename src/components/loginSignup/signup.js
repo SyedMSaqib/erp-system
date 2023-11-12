@@ -2,19 +2,25 @@ import React, { useContext, useState, useEffect } from "react"
 import authContext from "../../context/auth/authContext"
 import validator from "validator"
 import BgImg from '../photos/loginBg.jpg'
-import toast  from 'react-hot-toast';
 import SasLogo from '../sidebar/logos/sasLogo2.png'
 import Footer from '../loginSignup/footer'
+import SignUpSuccess from "./signUpSuccess";
+import toast from "react-hot-toast"
 
 
 const SignUp = () => {
-  const { email, setEmail, password, setPassword, signup, setName, name,  } =
+  const [response, setresponse] = useState("")
+  const { email, setEmail, password, setPassword, signup, setName, name,setSignUpPopUpVisible,responeFromServerSignUp} =
     useContext(authContext)
   const [validation, setvalidation] = useState("")
   const [validateEmail, setvalidateEmail] = useState(false)
   const [validatePassword, setvalidatePassword] = useState(false)
   const [validateName, setvalidateName] = useState(false)
+  const [emailAlreadyExists, setemailAlreadyExists] = useState(false)
 
+  const NameValidator = (str) => {
+    return /^[A-Za-z\s]+$/.test(str);
+  }
   const handleChange = (e) => {
     const { name, value } = e.target
 
@@ -28,35 +34,55 @@ const SignUp = () => {
   }
   const signUp = async () => {
     try {
-      await signup(email, password, name)
-      toast.success("Account Created Successfully.")
-      return (window.location.href = "/signIn")
+       await signup(email, password, name);
+      setresponse(responeFromServerSignUp)
+     
+      
     } catch (error) {
-      console.error("Error during signup:", error)
+      console.error("Error during signup:", error);
     }
   }
+  useEffect(() => {
+    if (responeFromServerSignUp.status===200) {
+      setSignUpPopUpVisible(true);
+      setvalidation("")
+    }
+    else if(responeFromServerSignUp.status===403) {
+      setemailAlreadyExists(true)
+      toast(`The email address "${email}" is already in use. Please choose a different email address.`, {
+        icon: '⚠️',
+      });
+      setvalidateEmail(false)
+    }
+  }, [responeFromServerSignUp])
+  
+  
 
   const checkSignUp = async () => {
     if (validator.isEmail(email)) {
       setvalidateEmail(true)
+
     } else {
       setvalidation("email")
-      setvalidatePassword(false)
-      setvalidateName(false)
+      setvalidateEmail(false)
+
     }
     if (validator.isLength(password, { min: 8 })) {
       setvalidatePassword(true)
+      
+
     } else {
       setvalidation("password")
-      setvalidateEmail(false)
-      setvalidateName(false)
+      setvalidatePassword(false)
+
     }
-    if (validator.isLength(name, { min: 1 })) {
+    if (validator.isLength(name, { min: 1 }) && NameValidator(name)) {
       setvalidateName(true)
+
+
     } else {
       setvalidation("name")
-      setvalidateEmail(false)
-      setvalidatePassword(false)
+      setvalidateName(false)
     }
   
   }
@@ -66,15 +92,18 @@ const SignUp = () => {
     }
   }, [validateEmail, validatePassword, validateName])
 
-  const onClick = async (event) => {
+  const onClick =  (event) => {
     event.preventDefault()
-    await checkSignUp()
+    checkSignUp()
     
   }
 
   return (
+    <>
+    <SignUpSuccess/>
     <div className="flex justify-center items-center w-screen h-screen bg-cover" style={{ backgroundImage: `url(${BgImg})` }} >
-      <section className='mb-12'> 
+      
+      <section className='mb-9'> 
       
         <div className="max-w-md w-full">
           
@@ -84,19 +113,19 @@ const SignUp = () => {
          <img className="w-24" src={SasLogo} alt="Logo" />
           </div>
           
-          <h1 className="flex justify-center font-mono  text-sm  py-6 leading-tight tracking-tight text-gray-900 md:text-xl">
+          <h1 className="flex justify-center font-mono  text-sm  py-3 leading-tight tracking-tight text-gray-900 md:text-xl">
             SIGN UP
           </h1>
-            <div className="mb-4">
+            <div className="">
               {validation === "email" ? (
                 <span className="text-red-700 block mb-2 text-sm font-medium">Enter correct email!</span>
               ) : validation === "password" ? (
                 <span className="text-red-700 block mb-2 text-sm font-medium">Password minimum 8 characters!</span>
               ) : validation === "name" ? (
-                <span className="text-red-700 block mb-2 text-sm font-medium">Name cannot be empty!</span>
-              ) : (
-                ""
-              )}
+                <span className="text-red-700 block mb-2 text-sm font-medium">Enter Valid Name!</span>
+              ) : emailAlreadyExists? (
+                <span className="text-red-700 block mb-2 text-sm font-medium">Email Aready Exists!</span>
+              ):""}
               <label for="name" className="block mb-2 text-sm font-medium text-gray-900">
                 Your Name
               </label>
@@ -172,6 +201,7 @@ const SignUp = () => {
   <Footer />
 </div>
     </div>
+    </>
   )
 }
 

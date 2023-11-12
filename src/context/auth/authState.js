@@ -1,19 +1,16 @@
-import React, { useContext, useState } from 'react';
-import AuthContext from './authContext';
-
+import React, {  useState } from "react"
+import AuthContext from "./authContext"
 
 const AuthState = (props) => {
-  const host = "http://localhost:5000";
- 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
+  const host = "http://localhost:5000"
+
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [name, setName] = useState("")
   const [responeFromServer, setresponeFromServer] = useState("")
   const [responeFromServerSignUp, setresponeFromServerSignUp] = useState("")
   const [UserName, setUserName] = useState("")
-  
- 
-
+  const [SignUpPopUpVisible, setSignUpPopUpVisible] = useState(false)
 
   const login = async (email, password) => {
     try {
@@ -23,56 +20,40 @@ const AuthState = (props) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
-      });
-  
+      })
+
       if (response.ok) {
         setresponeFromServer(response)
-        const data = await response.json();
-        const token = data.token; 
+        const data = await response.json()
+        const token = data.token
         setUserName(data.name)
-        localStorage.setItem('authToken', token);
-        
-        
-        
-        
-  
-       
+        localStorage.setItem("authToken", token)
       } else {
-        // Handle login failure here
-        console.error("Login failed:", response.statusText);
+        
+        console.error("Login failed:", response.statusText)
       }
     } catch (error) {
-      console.error("Login failed:", error);
-      // Handle login failure here
+      console.error("Login failed:", error)
+  
     }
-  };
-  
-  const signup = async (email, password,name) => {
-    try {
-      
-      const response = await fetch(`${host}/auth/signup`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password ,name }),
-      });
-  
-      if (response.ok) {
-        setresponeFromServerSignUp(response)
-        
-      } else {
-      
-        console.error("Signup failed:", response);
-      }
-    } catch (error) {
-      console.error("Signup failed:", error);
+  }
 
-    }
-  };
-  
-
- 
+ const signup = async (email, password, name) => {
+  try {
+    const response = await fetch(`${host}/auth/signup`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password, name }),
+    });
+    const responseBody = await response.json();
+      setresponeFromServerSignUp(responseBody);
+   
+  } catch (error) {
+    console.error("Signup failed:", error);
+  }
+};
 
   return (
     <AuthContext.Provider
@@ -88,13 +69,14 @@ const AuthState = (props) => {
         setName,
         name,
         responeFromServerSignUp,
-        UserName
-       
+        UserName,
+        SignUpPopUpVisible,
+        setSignUpPopUpVisible,
       }}
     >
       {props.children}
     </AuthContext.Provider>
-  );
-};
+  )
+}
 
-export default AuthState;
+export default AuthState
