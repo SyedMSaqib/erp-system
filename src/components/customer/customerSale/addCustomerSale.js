@@ -27,7 +27,9 @@ const AddCustomerSale = () => {
   useEffect(() => {
     setisVisible(false)
     setisVisibleModal(false)
-    setproduct(productModelData.name)
+    if (productModelData.name)
+     setproduct(productModelData.name)
+    if (customerModalData._id) 
     setcustomerId(customerModalData._id)
   }, [productModelData, customerModalData])
 
@@ -105,8 +107,6 @@ const AddCustomerSale = () => {
       setQuantityValid(false)
       setavailablestock(false)
     }
-
-    
   }
 
   useEffect(() => {
