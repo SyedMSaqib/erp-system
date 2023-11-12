@@ -159,7 +159,13 @@ export default function Sidebar() {
     <div className="font-semibold text-sm text-gray-600 ">{nameFromStorage.toUpperCase()}</div>
   </div>
 </div>
-<div onClick={logout} className="cursor-pointer ml-36 mb bottom-0 fixed"><LogoutUser/></div>
+<div onClick={logout} className="cursor-pointer ml-36  bottom-0 fixed flex flex-row gap-2 ">
+  
+  <div className="font-semibold text-sm text-gray-600 ">Logout</div>
+  <div > 
+  <LogoutUser/>
+  </div>
+</div>
 
   </div>
   </div>
