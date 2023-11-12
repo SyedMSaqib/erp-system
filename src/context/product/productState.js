@@ -35,7 +35,7 @@ const ProductState = (props) => {
       }
     
     
-      const addProduct=async(name,description,category,price,quantity)=>{
+      const addProduct=async(name,description,category,quantity,price)=>{
         
         const newProduct={
             name: name,
@@ -58,12 +58,12 @@ const ProductState = (props) => {
                 "auth-token": authToken
                 
               },
-              body: JSON.stringify({name,category,description,price,quantity}),
+              body: JSON.stringify({name,category,description,quantity,price}),
             });
         
     }
 
-    const updateProduct=async(id,name,description,category,price,quantity)=>{
+    const updateProduct=async(id,name,description,category,quantity,price)=>{
           
       //Update product Api call
     
