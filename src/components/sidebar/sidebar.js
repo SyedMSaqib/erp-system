@@ -3,14 +3,24 @@ import { Link } from "react-router-dom"
 import Saslogo from "../sidebar/logos/sasLogo2.png"
 import LoggedInUser from "../sidebar/logos/userSvgLogo"
 import LogoutUser from "../sidebar/logos/logout"
+import Saqib from "../sidebar/logos/saqib.jpg"
 import authContext from "../../context/auth/authContext"
+
+
+
 
 export default function Sidebar() {
   const { UserName } = useContext(authContext)
-  if(localStorage.getItem("name")===null)
+  var userNameLocal=localStorage.getItem("name")
+  if(userNameLocal===null)
   localStorage.setItem('name',UserName)
   const nameFromStorage = localStorage.getItem("name");
   
+  const containsSaqib = (text) => {
+    if(text)
+    return text.toLowerCase().includes('saqib');
+  };
+
  
   const authToken = localStorage.getItem("authToken")
   const [openTab, setOpenTab] = useState(null)
@@ -143,16 +153,14 @@ export default function Sidebar() {
           </div>
           
 
-          <div className="space-x-3  mt-auto">
-            <div className="pl-4">
-  <LoggedInUser />
+          <div className="mt-auto flex flex-col bottom-0 fixed">
+  {containsSaqib(userNameLocal)?<img className="w-10 h-10 rounded-full" src={Saqib} alt="Logo" />:<LoggedInUser/>}
+  <div className="mt-2">
+    <div className="font-semibold text-sm text-gray-600 ">{nameFromStorage.toUpperCase()}</div>
+  </div>
+</div>
+<div onClick={logout} className="cursor-pointer ml-36 mb bottom-0 fixed"><LogoutUser/></div>
 
-            </div>
-  <div className="flex items-center">
-    <div className="font-semibold text-sm text-gray-600 pl-1">{nameFromStorage.toUpperCase()}</div>
-    <div onClick={logout} className="pl-24 pb-4 cursor-pointer"><LogoutUser/></div>
-  </div>
-  </div>
   </div>
   </div>
   </div>
