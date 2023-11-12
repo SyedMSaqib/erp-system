@@ -6,22 +6,16 @@ import LogoutUser from "../sidebar/logos/logout"
 import Saqib from "../sidebar/logos/saqib.jpg"
 import authContext from "../../context/auth/authContext"
 
-
-
-
 export default function Sidebar() {
   const { UserName } = useContext(authContext)
-  var userNameLocal=localStorage.getItem("name")
-  if(userNameLocal===null)
-  localStorage.setItem('name',UserName)
-  const nameFromStorage = localStorage.getItem("name");
-  
-  const containsSaqib = (text) => {
-    if(text)
-    return text.toLowerCase().includes('saqib');
-  };
+  var userNameLocal = localStorage.getItem("name")
+  if (userNameLocal === null) localStorage.setItem("name", UserName)
+  const nameFromStorage = localStorage.getItem("name")
 
- 
+  const containsSaqib = (text) => {
+    if (text) return text.toLowerCase().includes("saqib")
+  }
+
   const authToken = localStorage.getItem("authToken")
   const [openTab, setOpenTab] = useState(null)
 
@@ -135,47 +129,40 @@ export default function Sidebar() {
                       <span className="pl-5 text-gray-600 font-semibold ">{tab.name}</span>
                     </div>
                     {tab.subTabs && openTab === tab.key && (
-  <ul className="pl-6 space-y-2 shadow text-gray-600 bg-gray-100">
-    {tab.subTabs.map((subTab, index) => (
-      <li key={subTab.key} className={`${index !== 0 ? 'border-t border-solid w-44' : ''}`}>
-        <Link to={subTab.path} className="flex items-center p-2 space-x-3 rounded-md">
-          <span className="pl-9 text-xs font-bold">{subTab.name}</span>
-        </Link>
-      </li>
-    ))}
-  </ul>
-)}
-
+                      <ul className="pl-6 space-y-2 shadow text-gray-600 bg-gray-100">
+                        {tab.subTabs.map((subTab, index) => (
+                          <li key={subTab.key} className={`${index !== 0 ? "border-t border-solid w-40" : ""}`}>
+                            <Link to={subTab.path} className="flex items-center p-2 space-x-3 rounded-md">
+                              <span className="pl-9 text-xs font-bold">{subTab.name}</span>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </li>
                 ))}
               </ul>
             </div>
           </div>
-          
 
           <div className="mt-auto flex flex-col bottom-0 fixed">
-  {containsSaqib(userNameLocal)?<img className="w-10 h-10 rounded-full" src={Saqib} alt="Logo" />:<LoggedInUser/>}
-  <div className="mt-2">
-    <div className="font-semibold text-sm text-gray-600 ">{nameFromStorage.toUpperCase()}</div>
-  </div>
-</div>
-<div onClick={logout} className="cursor-pointer ml-36  bottom-0 fixed flex flex-row gap-2 ">
-  
-  <div className="font-semibold text-sm text-gray-600 ">Logout</div>
-  <div > 
-  <LogoutUser/>
-  </div>
-</div>
-
-  </div>
-  </div>
-  </div>
-
-
-          
-       
-       
-     
-   
+            {containsSaqib(userNameLocal) ? (
+              <img className="w-10 h-10 rounded-full" src={Saqib} alt="Logo" />
+            ) : (
+              <LoggedInUser />
+            )}
+            <div className="mt-2">
+              <div className="font-semibold text-sm text-gray-600 ">{nameFromStorage.toUpperCase()}</div>
+            </div>
+          </div>
+          <div onClick={logout} className="cursor-pointer ml-36  bottom-0 fixed flex flex-row gap-2 ">
+            <div className="font-semibold text-sm text-gray-600 ">Logout</div>
+            <div>
+              <LogoutUser />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
