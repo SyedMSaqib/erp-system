@@ -17,11 +17,9 @@ const ViewAttendance = () => {
   
     return new Date(attendance.date).toLocaleDateString() === formattedDate;
   });
-  
 
-  //'9/12/2024'
   return (
-    <div>
+    <div className="flex justify-center items-center w-screen " >
       <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5 ml-64">
         <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
           <thead className="bg-gray-50">

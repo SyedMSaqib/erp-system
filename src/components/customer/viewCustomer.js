@@ -21,8 +21,9 @@ const ViewCustomer = () => {
   }
 
   return (
-    <div>
-      <div className="overflow-hidden flex justify-center rounded-lg border border-gray-200 shadow-md m-5 ml-72">
+    <div className="flex justify-center items-center w-screen " >
+    <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg">Customers</div>
+      <div className="overflow-hidden flex justify-center rounded-lg border border-gray-200 shadow-md m-5 mt-10 ml-72">
         <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
           <thead className="bg-gray-50">
             <tr>
@@ -50,13 +51,15 @@ const ViewCustomer = () => {
                   </div>
                 </td>
                 <td className=" px-12 py-4">
-                  <span className=" inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
-                    <span className=" h-1.5 w-1.5 rounded-full bg-green-600"></span>
+                  <span className=" inline-flex items-center gap-1  bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
+                    {/* <span className=" h-1.5 w-1.5 rounded-full bg-green-600"></span> */}
                     {customerItem.phone}
                   </span>
                 </td>
-                <td className="px-20 py-4">
-                  {customerItem._id}
+                <td className=" px-12 py-4">
+                  <span className=" inline-flex items-center gap-1  bg-sky-50 px-2 py-1 text-xs font-semibold text-sky-600">
+                    {customerItem._id}
+                  </span>
                   {
                     <button
                       onClick={() => {

@@ -29,8 +29,9 @@ const ViewCustomerSale = () => {
 
 
   return (
-    <div>
-      <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md mt-5 ml-72 flex justify-center items-center  ">
+    <div className="flex justify-center items-center w-screen " >
+    <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg">Sales</div>
+      <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5 ml-72 flex justify-center items-center mt-10  ">
         <table className="overflow-x-auto border-collapse bg-white text-left text-sm text-gray-500 ">
           <thead className="bg-gray-50">
             <tr>
@@ -58,7 +59,10 @@ const ViewCustomerSale = () => {
             {customerSale.map((saleItem) => (
               <tr className="hover:bg-gray-50" key={saleItem._id}>
                 <td className="flex gap-3 px-6 py-4 font-normal text-gray-900">{saleItem.customerName}</td>
-                <td className="px-5 py-4">{saleItem.customerId}</td>
+                <td className=" px-5 py-4">
+                  <span className=" inline-flex items-center gap-1  bg-sky-50 px-2 py-1 text-xs font-semibold text-sky-600">
+                    {saleItem._id}
+                  </span></td>
                 <td className="px-5 py-4">{saleItem.product}</td>
                 <td className="px-5 py-4">{saleItem.quantity}</td>
                 <td className="px-5 py-4">{formatMongoDate(saleItem.date)}</td>
