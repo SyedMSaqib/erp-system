@@ -3,7 +3,13 @@ import EmployeeContext from "../../context/employees/employeeContext";
 import { Link } from "react-router-dom";
 
 const ViewEmployee = () => {
-  const {  employees,getAllEmployees, deleteEmployee, setEmployeeId, setUpdateFormValues } = useContext(EmployeeContext);
+  const {
+    employees,
+    getAllEmployees,
+    deleteEmployee,
+    setEmployeeId,
+    setUpdateFormValues
+  } = useContext(EmployeeContext);
 
   useEffect(() => {
     getAllEmployees();
@@ -11,27 +17,32 @@ const ViewEmployee = () => {
 
   const updateEmployee = (employee) => {
     setEmployeeId(employee._id);
-    setUpdateFormValues({ name: employee.name, email: employee.email, phone: employee.phone });
+    setUpdateFormValues({
+      name: employee.name,
+      email: employee.email,
+      phone: employee.phone
+    });
   };
-  console.log(employees.name)
 
   return (
-    <div className="flex justify-center items-center w-screen " >
-    <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg">Employees</div>
-      <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5 mt-10 ml-64">
+    <div className="flex justify-center items-center w-screen">
+      <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg">
+        Employees
+      </div>
+      <div className="overflow-hidden flex justify-center rounded-lg border border-gray-200 shadow-md m-5 mt-10 ml-72">
         <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
           <thead className="bg-gray-50">
             <tr>
               <th scope="col" className="px-6 py-4 font-medium text-gray-900">
                 Name
               </th>
-              <th scope="col" className="px-28 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-12 py-4 font-medium text-gray-900">
                 Phone
               </th>
-              <th scope="col" className="px-28 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-20 py-4 font-medium text-gray-900">
                 Id
               </th>
-              <th scope="col" className="px-28 py-4 font-medium text-gray-900"></th>
+              <th scope="col" className=" py-4 font-medium text-gray-900"></th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
@@ -39,19 +50,21 @@ const ViewEmployee = () => {
               <tr className="hover:bg-gray-50" key={employee._id}>
                 <td className="flex gap-3 px-6 py-4 font-normal text-gray-900">
                   <div className="text-sm">
-                    <div className="font-medium text-gray-700">{employee.name}</div>
+                    <div className="font-medium text-gray-700">
+                      {employee.name}
+                    </div>
                     <div className="text-gray-400">{employee.email}</div>
                   </div>
                 </td>
-                <td className="px-20 py-4">
-                  <span className="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
-                    <span className="h-1.5 w-1.5 rounded-full bg-green-600"></span>
+                <td className=" px-12 py-4">
+                  <span className=" inline-flex items-center gap-1  bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
                     {employee.phone}
                   </span>
                 </td>
-                <td className="px-20 py-4">
+                <td className=" px-12 py-4">
+                  <span className=" inline-flex items-center gap-1  bg-sky-50 px-2 py-1 text-xs font-semibold text-sky-600">
                   {employee._id}
-                </td>
+                  </span></td>
                 <td className="px-6 py-4">
                   <div className="flex justify-end gap-4">
                     <button
@@ -60,13 +73,13 @@ const ViewEmployee = () => {
                         deleteEmployee(employee._id);
                       }}
                     >
-                      <svg
+                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
-                        stroke="currentColor"
-                        className="h-6 w-6"
+                        stroke="red "
+                        class="h-6 w-6"
                         x-tooltip="tooltip"
                       >
                         <path
@@ -82,19 +95,21 @@ const ViewEmployee = () => {
                       onClick={() => updateEmployee(employee)}
                     >
                       <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
+                        fill="#000000"
+                        width="25px"
+                        height="25px"
                         viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        className="h-6 w-6"
-                        x-tooltip="tooltip"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="icon flat-color"
                       >
                         <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-                        />
+                          d="M19,2a1,1,0,0,0-1,1V5.33A9,9,0,0,0,3,12a1,1,0,0,0,2,0A7,7,0,0,1,16.86,7H14a1,1,0,0,0,0,2h5a1,1,0,0,0,1-1V3A1,1,0,0,0,19,2Z"
+                          fill="rgb(0, 0, 0)"
+                        ></path>
+                        <path
+                          d="M20,11a1,1,0,0,0-1,1A7,7,0,0,1,7.11,17H10a1,1,0,0,0,0-2H5a1,1,0,0,0-1,1v5a1,1,0,0,0,2,0V18.67A9,9,0,0,0,21,12,1,1,0,0,0,20,11Z"
+                          fill="rgb(44, 169, 188)"
+                        ></path>
                       </svg>
                     </Link>
                   </div>
