@@ -138,9 +138,11 @@ const AddCustomerSale = () => {
             <h1 className="mb-1 font-bold text-3xl flex gap-1 items-baseline font-mono">
               Add Customer Sale<span className="text-sm text-gray-400">SAS ERP</span>
             </h1>
-            <div className="grid max-w-3xl lg:gap-8 sm:gap-3 py-10 px-8 sm:grid-cols-1 bg-slate-50 rounded-md border-t-4 border-gray-400">
-              <div className="grid">
-                <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2">
+            <div className="grid  lg:gap-8 sm:gap-3 py-10 px-8 sm:grid-cols-1 bg-slate-50 rounded-md border-t-4 border-gray-400">
+            <div className="flex flex-row ">
+              <div  className="w-72">
+
+                <div  className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
                   <input
                     type="text"
                     name="quantity"
@@ -156,9 +158,12 @@ const AddCustomerSale = () => {
                   </label>
                 </div>
               </div>
+              </div>
 
-              <div className="flex items-center">
-                <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2">
+              <div className="flex flex-row ">
+              <div  className="w-72">
+
+                <div  className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
                   <input
                     type="text"
                     name="customerId"
@@ -175,17 +180,18 @@ const AddCustomerSale = () => {
                     Customer Id
                   </label>
                 </div>
+              </div>
                 <div onClick={() => onClickCustomer()} className="flex items-center text-sm text-gray-500">
-                  <div className="w-5 pt-4 cursor-pointer">
+                  <div className="w-5  cursor-pointer">
                     <SelectData />
                   </div>
-                  <div className="ml-2 pt-4 cursor-pointer">
-                    <div>Select Customer</div>
-                  </div>
+    
                 </div>
               </div>
-              <div className="flex items-center">
-                <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2">
+              <div className="flex flex-row ">
+              <div  className="w-72">
+
+                <div  className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
                   <input
                     name="product"
                     className="peer block w-full border-0 p-0 text-base text-gray-400 placeholder-gray-400 focus:ring-0"
@@ -201,14 +207,13 @@ const AddCustomerSale = () => {
                     Product
                   </label>
                 </div>
-                <div onClick={() => onClickProduct()} className="flex items-center text-sm text-gray-500">
-                  <div className="w-5 pt-4 cursor-pointer">
+              </div>
+                <div onClick={() => onClickProduct()} className=" text-sm text-gray-500">
+                  <div className="w-5 pt-2  cursor-pointer">
                     <SelectData />
                   </div>
-                  <div className="ml-2 pt-4 cursor-pointer">
-                    <div>Select Product</div>
-                  </div>
                 </div>
+                
               </div>
               <button
                 onClick={onClick}
