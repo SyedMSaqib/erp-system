@@ -80,10 +80,8 @@ const AddCustomerSale = () => {
     const availableQuantity = isNaN(productModelData.quantity) ? 0 : parseInt(productModelData.quantity, 10);
 
     if (quantityValue <= availableQuantity) {
-      console.log("quantity value" + quantityValue, "available quantity" + availableQuantity);
       setavailablestock(true);
       const saleQuantity=availableQuantity - quantityValue;
-      // console.log()
       if(saleQuantity===0){
       setNewQuantity("0")
     }
