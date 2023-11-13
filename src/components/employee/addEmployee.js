@@ -15,7 +15,8 @@ const AddEmployees = () => {
 
   const NameValidator = (str) => {
     return /^[A-Za-z\s]+$/.test(str);
-  }
+  };
+
   const handleChange = (e) => {
     setEmployee({ ...employee, [e.target.name]: e.target.value });
   };
@@ -57,18 +58,17 @@ const AddEmployees = () => {
   }, [nameValid, emailValid, phoneValid]);
 
   return (
-    <div className="flex justify-center items-center w-screen " >
-    <div className="shadow-xl w-full lg:ml-96 mr-52 my-20 md:ml-96 mr-52 my-20 sm:ml-96 mr-52 my-20">
-      <div className="pl-8 py-8 px-8  pr-8">
-        <div>
-          <h1 className="mb-1 font-bold text-3xl flex gap-1 items-baseline font-mono">
+    <div className="lg:mx-auto sm:ml-64 sm:items-end  shadow-xl h-1/2 mx-auto my-20 border bg-slate-50 border-gray-300 rounded-xl">
+    <div className="pl-8 py-8 px-8  pr-8">
+      <div className="">
+        <div className="bg-slate-50 ">
+          <h1 className="mb-1 font-bold pr-24 text-3xl flex gap-1 items-baseline font-mono">
             Add Employee<span className="text-sm text-gray-400">SAS ERP</span>
           </h1>
-          <div className="grid max-w-3xl gap-5 py-10 px-8 sm:grid-cols-1 bg-white rounded-md border-t-4 border-gray-400">
+          <div className="grid max-w-3xl lg:gap-8 sm:gap-3 py-10 px-8 sm:grid-cols-1 bg-slate-50 rounded-md border-t-4 border-gray-400">
             <div className="grid">
-              <div className="bg-white flex min-h-[60px] flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:shadow-inner">
+              <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
                 <input
-                  
                   name="name"
                   className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
                   placeholder="Name"
@@ -83,9 +83,8 @@ const AddEmployees = () => {
               </div>
             </div>
 
-
             <div className="grid">
-              <div className="bg-white flex min-h-[60px] flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:shadow-inner">
+            <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
                 <input
                   type="text"
                   name="phone"
@@ -102,9 +101,8 @@ const AddEmployees = () => {
               </div>
             </div>
 
-
             <div className="grid">
-              <div className="bg-white flex min-h-[60px] flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:shadow-inner">
+            <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
                 <input
                   type="text"
                   name="email"
@@ -121,8 +119,11 @@ const AddEmployees = () => {
               </div>
             </div>
 
-            
-            <button onClick={onClick} type="submit" className="mt-4 bg-slate-400 text-white py-2 px-6 rounded-md hover:bg-slate-500">
+            <button
+              onClick={onClick}
+              type="submit"
+              className="mt-4 bg-slate-400 text-white py-2 px-6 rounded-md hover:bg-slate-500"
+            >
               Submit
             </button>
           </div>
