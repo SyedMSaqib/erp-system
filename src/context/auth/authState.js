@@ -21,17 +21,12 @@ const AuthState = (props) => {
         },
         body: JSON.stringify({ email, password }),
       })
-
-      if (response.ok) {
-        setresponeFromServer(response)
-        const data = await response.json()
-        const token = data.token
-        setUserName(data.name)
+      const responseBody = await response.json();
+        setresponeFromServer(responseBody)
+        const token = responseBody.token
+        setUserName(responseBody.name)
         localStorage.setItem("authToken", token)
-      } else {
-        
-        console.error("Login failed:", response.statusText)
-      }
+      
     } catch (error) {
       console.error("Login failed:", error)
   
