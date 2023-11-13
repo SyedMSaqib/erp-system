@@ -9,7 +9,7 @@ import toast from "react-hot-toast"
 
 
 const SignUp = () => {
-  const [response, setresponse] = useState("")
+  
   const { email, setEmail, password, setPassword, signup, setName, name,setSignUpPopUpVisible,responeFromServerSignUp} =
     useContext(authContext)
   const [validation, setvalidation] = useState("")
@@ -35,9 +35,6 @@ const SignUp = () => {
   const signUp = async () => {
     try {
        await signup(email, password, name);
-      setresponse(responeFromServerSignUp)
-     
-      
     } catch (error) {
       console.error("Error during signup:", error);
     }
@@ -45,7 +42,7 @@ const SignUp = () => {
   useEffect(() => {
     if (responeFromServerSignUp.status===200) {
       setSignUpPopUpVisible(true);
-      setvalidation("")
+      setemailAlreadyExists(false)
     }
     else if(responeFromServerSignUp.status===403) {
       setemailAlreadyExists(true)
@@ -89,6 +86,8 @@ const SignUp = () => {
   useEffect(() => {
     if (validateEmail && validatePassword && validateName) {
       signUp()
+      setvalidation("")
+
     }
   }, [validateEmail, validatePassword, validateName])
 
