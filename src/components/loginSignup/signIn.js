@@ -36,10 +36,16 @@ const handleChange = (e) => {
 
 useEffect(() => {
   if (credentialMatchFail && credentialMatchFail.status === 401) {
-    toast.error("Authentication Error: Password Mismatch");
+    toast(<span ><span className='font-bold'>Authentication :</span> Password Mismatch</span>, {
+      icon: '❌',
+    });
+
   }
   else if (credentialMatchFail && credentialMatchFail.status === 400) {
-    toast.error("Authentication Error: Email Mismatch");
+    toast.error(<span><span className='font-bold'>Authentication:</span> Email Mismatch</span>, {
+      icon: '❌',
+    });
+    
   }
 }, [credentialMatchFail]);
 
@@ -76,10 +82,7 @@ const checkAuth=async()=>
 const checkLogin=async()=>{
   await login(email,password);
  
- if(!responeFromServer.ok)
- {
-   setcheckEmailPassword(false)
- }
+ 
  authToken =  localStorage.getItem('authToken');
  if(authToken!==null)
  {
@@ -100,10 +103,7 @@ const onClick = async(event) => {
 
 };
 
-useEffect(() => {
-  if(checkEmailPassword===false)
-  toast.error("Login Failed")
-}, [checkEmailPassword])
+
 
 const AuthToken =  localStorage.getItem('authToken');
 if(AuthToken!==null||value===false)
