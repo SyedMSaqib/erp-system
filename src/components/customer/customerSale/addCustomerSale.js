@@ -1,117 +1,124 @@
-import React, { useContext, useState } from "react"
-import customerSaleContext from "../../../context/customerSale/customerSaleContext"
-import { useNavigate } from "react-router-dom"
-import toast from "react-hot-toast"
-import validator from "validator"
-import { useEffect } from "react"
-import SelectData from "./icons/selectData"
-import SetProduct from "./Modals/setProduct"
-import ProductContext from "../../../context/product/productContext"
-import SetCustomer from "./Modals/setCustomer"
-import customerContext from "../../../context/customer/customerContext"
+import React, { useContext, useState, useEffect } from "react";
+import customerSaleContext from "../../../context/customerSale/customerSaleContext";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import validator from "validator";
+import SelectData from "./icons/selectData";
+import SetProduct from "./Modals/setProduct";
+import ProductContext from "../../../context/product/productContext";
+import SetCustomer from "./Modals/setCustomer";
+import customerContext from "../../../context/customer/customerContext";
 
 const AddCustomerSale = () => {
-  const Navigate = useNavigate()
-  const { addCustomerSale } = useContext(customerSaleContext)
-  const { productModelData, setisVisible, updateProduct } = useContext(ProductContext)
-  const { customerModalData, setisVisibleModal } = useContext(customerContext)
-  const [availablestock, setavailablestock] = useState(false)
-  const [quantity, setquantity] = useState("")
-  const [product, setproduct] = useState("")
-  const [customerId, setcustomerId] = useState("")
-  const [CustomerIdValid, setCustomerIdValid] = useState(false)
-  const [ProductValid, setProductValid] = useState(false)
-  const [QuantityValid, setQuantityValid] = useState(false)
-  const [newQuantity, setNewQuantity] = useState("")
+  const Navigate = useNavigate();
+  const { addCustomerSale } = useContext(customerSaleContext);
+  const { setproductModelData,productModelData, setisVisible, updateProduct } = useContext(ProductContext);
+  const { setcustomerModalData,customerModalData, setisVisibleModal } = useContext(customerContext);
+  const [availablestock, setavailablestock] = useState(false);
+  const [quantity, setquantity] = useState("");
+  const [product, setproduct] = useState("");
+  const [customerId, setcustomerId] = useState("");
+  const [CustomerIdValid, setCustomerIdValid] = useState(false);
+  const [ProductValid, setProductValid] = useState(false);
+  const [QuantityValid, setQuantityValid] = useState(false);
+  const [newQuantity, setNewQuantity] = useState(0);
 
   useEffect(() => {
-    setisVisible(false)
-    setisVisibleModal(false)
-    if (productModelData.name)
-     setproduct(productModelData.name)
-    if (customerModalData._id) 
-    setcustomerId(customerModalData._id)
-  }, [productModelData, customerModalData])
+    setisVisible(false);
+    setisVisibleModal(false);
+    if (productModelData.name) setproduct(productModelData.name);
+    if (customerModalData._id) setcustomerId(customerModalData._id);
+  }, [productModelData, customerModalData]);
 
   const handleChange = async (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
 
     if (name === "quantity") {
-      setquantity(value)
-      const quantityValue = parseInt(value, 10)
-      const productQuantity = parseInt(productModelData.quantity, 10)
-
-      if (quantityValue > productQuantity) {
-        const updatedQuantity = quantityValue - productQuantity
-        setNewQuantity(updatedQuantity)
-        console.log(newQuantity)
-      } else if (quantityValue < productQuantity) {
-        const updatedQuantity = productQuantity - quantityValue
-        console.log(newQuantity)
-        setNewQuantity(updatedQuantity)
-      } else if (quantityValue == productQuantity) {
-        setNewQuantity("0")
-      }
+      setquantity(value);
     }
-  }
+  };
+
   const NameValidator = (str) => {
-    return /^[A-Za-z0-9\s]+$/.test(str)
-  }
+    return /^[A-Za-z0-9\s]+$/.test(str);
+  };
 
   const onClickProduct = () => {
-    setisVisible(true)
-  }
+    setisVisible(true);
+  };
+
   const onClickCustomer = () => {
-    setisVisibleModal(true)
-  }
+    setisVisibleModal(true);
+  };
 
   const onClick = (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
     if (customerId === "" || product === "" || quantity === "") {
-      return toast.error("Please Enter All Fields")
+      return toast.error("Please Enter All Fields");
     }
 
-    if (validator.isAlphanumeric(customerId)) setCustomerIdValid(true)
+    if (validator.isAlphanumeric(customerId)) setCustomerIdValid(true);
     else {
-      toast.error("Enter Valid customer Id")
-      setCustomerIdValid(false)
+      toast.error("Enter Valid customer Id");
+      setCustomerIdValid(false);
     }
 
-    if (NameValidator(product)) {
-      setProductValid(true)
+    if (NameValidator(product)) setProductValid(true);
+    else {
+      toast.error("Enter Valid product");
+      setProductValid(false);
+    }
+
+    if (quantity !=="0" && quantity !== "" && validator.isNumeric(quantity)) {
+      setQuantityValid(true);
     } else {
-      toast.error("Enter Valid Product")
-      setProductValid(false)
+      toast.error("Enter Valid quantity");
+      setQuantityValid(false);
     }
 
-    const quantityValue = parseInt(quantity, 10)
-    const productQuantity = parseInt(productModelData.quantity, 10)
+    const quantityValue = parseInt(quantity, 10);
+    const availableQuantity = isNaN(productModelData.quantity) ? 0 : parseInt(productModelData.quantity, 10);
 
-    if (validator.isNumeric(quantity) && quantityValue > 0) {
-      setQuantityValid(true)
-
-      if (quantityValue <= productQuantity) {
-        setavailablestock(true)
-      } else {
-        toast.error(
-          <div className="text-center">
-            <strong>Insufficient Stock</strong>
-            <div>Available Stock: {productModelData.quantity}</div>
-          </div>
-        )
-        setavailablestock(false)
-      }
-    } else {
-      toast.error("Enter Valid Quantity")
-      setQuantityValid(false)
-      setavailablestock(false)
+    if (quantityValue <= availableQuantity) {
+      console.log("quantity value" + quantityValue, "available quantity" + availableQuantity);
+      setavailablestock(true);
+      const saleQuantity=availableQuantity - quantityValue;
+      // console.log()
+      if(saleQuantity===0){
+      setNewQuantity("0")
     }
-  }
+    else
+    {
+      setNewQuantity(saleQuantity);
+    } 
+      
+    }
+
+    if (quantityValue > availableQuantity) {
+      toast.error(
+        <div className="text-center">
+          <strong>Insufficient Stock</strong>
+          <div>Available Stock: {availableQuantity}</div>
+        </div>
+      );
+      setavailablestock(false);
+    }
+  };
 
   useEffect(() => {
     if (CustomerIdValid && ProductValid && QuantityValid && availablestock) {
-      addCustomerSale(customerId, product, quantity, customerModalData.name)
+      addCustomerSale(customerId, product, quantity, customerId);
+      setproduct("");
+      setcustomerId("");
+      toast.success(`${product} Added`);
+      Navigate("/viewCustomerSale");
+      setproductModelData({});
+      setcustomerModalData({});
+    }
+  }, [CustomerIdValid, ProductValid, QuantityValid, availablestock]);
+
+  useEffect(() => {
+    if (newQuantity !== null) {
       updateProduct(
         productModelData._id,
         productModelData.name,
@@ -119,49 +126,45 @@ const AddCustomerSale = () => {
         productModelData.category,
         newQuantity,
         productModelData.price
-      )
-      setproduct("")
-      setcustomerId("")
-      toast.success(`${product} Added`)
-      Navigate("/viewCustomerSale")
+      );
     }
-  }, [CustomerIdValid, ProductValid, QuantityValid, product, customerId, availablestock])
+  }, [newQuantity, productModelData]);
 
   return (
     <>
       <SetProduct />
       <SetCustomer />
-      <div className="lg:mx-auto sm:ml-64 sm:items-end  shadow-xl h-1/2 mx-auto my-20 border bg-slate-50 border-gray-300 rounded-xl">
-        <div className="pl-8 py-8 px-8  pr-8">
+      <div className="lg:mx-auto sm:ml-64 sm:items-end shadow-xl h-1/2 mx-auto my-20 border bg-slate-50 border-gray-300 rounded-xl">
+        <div className="pl-8 py-8 px-8 pr-8">
           <div>
-            <h1 class="mb-1 font-bold text-3xl flex gap-1 items-baseline font-mono">
-              Add Customer Sale<span class="text-sm text-gray-400">SAS ERP</span>
+            <h1 className="mb-1 font-bold text-3xl flex gap-1 items-baseline font-mono">
+              Add Customer Sale<span className="text-sm text-gray-400">SAS ERP</span>
             </h1>
             <div className="grid max-w-3xl lg:gap-8 sm:gap-3 py-10 px-8 sm:grid-cols-1 bg-slate-50 rounded-md border-t-4 border-gray-400">
               <div className="grid">
-                <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
+                <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2">
                   <input
                     type="text"
                     name="quantity"
-                    class="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
+                    className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
                     placeholder="Quantity"
                     onChange={handleChange}
                   />
                   <label
                     html="quantity"
-                    class="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
+                    className="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
                   >
                     Quantity
                   </label>
                 </div>
               </div>
 
-              <div class=" flex items-center">
-                <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
+              <div className="flex items-center">
+                <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2">
                   <input
                     type="text"
                     name="customerId"
-                    class="peer block w-full border-0 p-0 text-base text-gray-400 placeholder-gray-400 focus:ring-0"
+                    className="peer block w-full border-0 p-0 text-base text-gray-400 placeholder-gray-400 focus:ring-0"
                     placeholder="Customer Id"
                     onChange={handleChange}
                     value={customerId}
@@ -169,7 +172,7 @@ const AddCustomerSale = () => {
                   />
                   <label
                     html="company"
-                    class="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
+                    className="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
                   >
                     Customer Id
                   </label>
@@ -183,11 +186,11 @@ const AddCustomerSale = () => {
                   </div>
                 </div>
               </div>
-              <div class="flex items-center">
-                <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
+              <div className="flex items-center">
+                <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2">
                   <input
                     name="product"
-                    class="peer block w-full border-0 p-0 text-base text-gray-400 placeholder-gray-400 focus:ring-0"
+                    className="peer block w-full border-0 p-0 text-base text-gray-400 placeholder-gray-400 focus:ring-0"
                     placeholder="Product"
                     onChange={handleChange}
                     value={product}
@@ -195,7 +198,7 @@ const AddCustomerSale = () => {
                   />
                   <label
                     html="Product"
-                    class="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
+                    className="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
                   >
                     Product
                   </label>
@@ -212,7 +215,7 @@ const AddCustomerSale = () => {
               <button
                 onClick={onClick}
                 type="submit"
-                class="mt-4 bg-slate-400 text-white  py-2 px-6 rounded-md hover:bg-slate-500 "
+                className="mt-4 bg-slate-400 text-white py-2 px-6 rounded-md hover:bg-slate-500"
               >
                 Submit
               </button>
@@ -221,7 +224,7 @@ const AddCustomerSale = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default AddCustomerSale
+export default AddCustomerSale;
