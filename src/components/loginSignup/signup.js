@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react"
 import authContext from "../../context/auth/authContext"
 import validator from "validator"
-import BgImg from '../photos/loginBg.jpg'
+import BgImg from '../sidebar/logos/bgImg.jpg'
 import SasLogo from '../sidebar/logos/sasLogo2.png'
 import Footer from '../loginSignup/footer'
 import SignUpSuccess from "./signUpSuccess";
