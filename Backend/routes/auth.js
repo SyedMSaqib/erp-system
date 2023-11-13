@@ -21,7 +21,7 @@ router.post("/signup", [check("name").isLength({min:3}),check("email").isEmail()
       else{
     const { name, email, password } = req.body
     var hashedPassword = bcrypt.hashSync(password, salt);
-
+  
     const newUser=await user.create({
       name:name,
       email: email,
