@@ -53,7 +53,7 @@ router.post("/login",[check("email").isEmail(), check("password").isLength({ min
 
   let checkUser = await user.findOne({email:req.body.email})
   if(checkUser===null)
-  return res.status(401).send("Invalid Email")
+  return res.status(400).send({error:"Email does not match",status:400})
   const password=checkUser.password  
   const compare=bcrypt.compareSync(req.body.password,password )
   const User={
@@ -63,11 +63,12 @@ router.post("/login",[check("email").isEmail(), check("password").isLength({ min
   }
   var token = jwt.sign(User,key);
   if(compare)
-  return res.status(201).json({
+  return res.status(200).json({
     token: token,
-    name: checkUser.name
+    name: checkUser.name,
+    status:200
   });  
-  return res.status(402).send("Invalid password")
+  return res.status(401).send({error:"Password does not match",status:401})
   
 
 }

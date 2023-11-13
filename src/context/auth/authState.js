@@ -11,6 +11,7 @@ const AuthState = (props) => {
   const [responeFromServerSignUp, setresponeFromServerSignUp] = useState("")
   const [UserName, setUserName] = useState("")
   const [SignUpPopUpVisible, setSignUpPopUpVisible] = useState(false)
+  const [credentialMatchFail, setcredentialMatchFail] = useState(null)
 
   const login = async (email, password) => {
     try {
@@ -21,7 +22,6 @@ const AuthState = (props) => {
         },
         body: JSON.stringify({ email, password }),
       })
-
       if (response.ok) {
         setresponeFromServer(response)
         const data = await response.json()
@@ -29,12 +29,13 @@ const AuthState = (props) => {
         setUserName(data.name)
         localStorage.setItem("authToken", token)
       } else {
-        
-        console.error("Login failed:", response.statusText)
+        const responseBody = await response.json();
+        setcredentialMatchFail(responseBody)
+
       }
     } catch (error) {
       console.error("Login failed:", error)
-      // Handle login failure here
+      
     }
   }
 
@@ -64,7 +65,6 @@ const AuthState = (props) => {
         signup,
         setEmail,
         setPassword,
-        signup,
         responeFromServer,
         setName,
         name,
@@ -72,6 +72,7 @@ const AuthState = (props) => {
         UserName,
         SignUpPopUpVisible,
         setSignUpPopUpVisible,
+        credentialMatchFail
       }}
     >
       {props.children}
