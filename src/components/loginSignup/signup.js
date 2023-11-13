@@ -47,7 +47,7 @@ const SignUp = () => {
     else if(responeFromServerSignUp.status===403) {
       setemailAlreadyExists(true)
       toast(`The email address "${email}" is already in use. Please choose a different email address.`, {
-        icon: '⚠️',
+        icon: '❌',
       });
       setvalidateEmail(false)
     }
