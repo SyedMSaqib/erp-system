@@ -15,10 +15,10 @@ const SignIn = ({settokenUpdate}) => {
   var authToken =null
 const {email,setEmail,password,setPassword,login,responeFromServer,credentialMatchFail}=useContext(authContext)
 const [value, setvalue] = useState(true)
-const [checkEmailPassword, setcheckEmailPassword] = useState(true)
-const [validation, setvalidation] = useState("")
 const [validateEmail, setvalidateEmail] = useState(true)
 const [validatePassword, setvalidatePassword] = useState(true)
+const [border, setborder] = useState("border-gray-300")
+const [borderEmail, setborderEmail] = useState("border-gray-300")
 const navigate = useNavigate();
 
 
@@ -63,17 +63,21 @@ const checkAuth=async()=>
 {
   if (validator.isEmail(email)) {
     setvalidateEmail(true)
+    setborderEmail("border-gray-300")
     if (validator.isLength(password, { min: 8 })) {
+      setborder("border-gray-300")
       setvalidatePassword(true)
      checkLogin()
     }
     else{
       setvalidatePassword(false)
       toast.error("Enter Valid password")
+      setborder("border-red-600")
     }
   } else {
     toast.error("Enter Valid Email")
     setvalidateEmail(false)
+    setborderEmail("border-red-600")
     
 
   }
@@ -90,7 +94,6 @@ const checkLogin=async()=>{
 
  settokenUpdate(true)
  toast.success("Login Succcess") 
-setvalidation(true)
   
 }
 
@@ -132,11 +135,11 @@ else
                         {validateEmail===false?<span className='text-red-700 block mb-2 text-sm font-medium'>Enter valid email!</span>:
                         !validatePassword?<span className='text-red-700 block mb-2 text-sm font-medium'>Password must be 8 character!</span>:""}
                         <label  htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Your email</label>
-                        <input onChange={handleChange} type="email" name="email" id="email" className="bg-gray-100 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="name@company.com" required=""/>
+                        <input onChange={handleChange} type="email" name="email" id="email" className={`bg-gray-100 border ${borderEmail} text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5`} placeholder="name@company.com" required=""/>
                     </div>
                     <div>
                         <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Password</label>
-                        <input onChange={handleChange} type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-100 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required=""/>
+                        <input onChange={handleChange} type="password" name="password" id="password" placeholder="••••••••" className={`bg-gray-100 border ${border} text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5`} required=""/>
                     </div>
                     <div className="flex items-center justify-between">
                         <div className="flex items-start">
