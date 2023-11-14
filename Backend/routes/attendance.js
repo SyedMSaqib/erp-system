@@ -19,9 +19,33 @@ router.post(
     if (!result.isEmpty()) return res.json(result);
 
     try {
+      const { employeeId, name, attendance, date } = req.body;
       if (req.user == null) return res.status(404).send("Invalid token or empty");
       
-      const { employeeId, name, attendance, date } = req.body;
+      const existingRecord = await Attendance.findOne({ employeeId: employeeId, date });
+
+      if (existingRecord) {
+        console.log(existingRecord)
+        const UpdatedAttendance={
+          
+          employeeId,
+          name,
+          attendance,
+          date
+        }
+
+        const attendanceUpdate = await Attendance.findOneAndUpdate(
+          { employeeId, date },
+          { $set: UpdatedAttendance },
+          { new: true }
+        );
+        
+        console.log(UpdatedAttendance)
+    
+       return res.json(attendanceUpdate);
+      }
+
+     
       const newAttendance = await Attendance.create({
         user: req.user.id,
         employeeId,
