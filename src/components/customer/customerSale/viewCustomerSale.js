@@ -21,10 +21,12 @@ const ViewCustomerSale = () => {
     
     return `${year}-${month}-${day} ${hours}:${minutes}`;
   };
-  const Onclickdelete=(customerId)=>
+  const Onclickdelete=(customerId,itemName)=>
   {
     deleteCustomerSale(customerId)
-    toast.success("Sale Deleted")
+    toast.success(<span><span className='font-bold'>Sale Deleted : </span>{itemName}</span>);
+    
+
   }
 
 
@@ -85,7 +87,7 @@ const ViewCustomerSale = () => {
                 <td className="px-5 py-4">{saleItem.quantity}</td>
                 <td className="px-5 py-4">{formatMongoDate(saleItem.date)}</td>
                 <td  className="px-1 pr-5 py-4 "> 
-                <svg onClick={()=>{Onclickdelete(saleItem._id)}}
+                <svg onClick={()=>{Onclickdelete(saleItem._id,saleItem.product)}}
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
