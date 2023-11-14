@@ -19,7 +19,7 @@ const SetCustomer = () => {
   return (
     <div className="min-w-screen h-screen animated fadeIn faster fixed left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none ">
       <div onClick={()=>{setisVisibleModal(false)}} className="backdrop-blur-sm bg-black bg-opacity-20 w-full h-full absolute"></div>
-      <div className="w-full max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg bg-white z-50 max-h-screen overflow-y-auto  mt-5">
+       <div className="w-full max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg bg-white z-50  h-4/5 overflow-y-auto  ">
         <div className="">
           <div class="p-3   mt-2 text-center space-x-4 md:block">
             <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
