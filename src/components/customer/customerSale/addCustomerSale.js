@@ -114,7 +114,7 @@ const AddCustomerSale = () => {
       setcustomerId("");
       setcustomerName("");
       setproductId("")
-      toast.success(`${product} Added`);
+      toast.success(<span><span className='font-bold'>Sale Added : </span>{product}</span>);
       Navigate("/viewCustomerSale");
       setproductModelData({});
       setcustomerModalData({});
