@@ -107,23 +107,23 @@ const ViewCustomer = () => {
                       to={`/updateCustomers`}
                       onClick={() => updateCustomer(customerItem)}
                     >
-                      <svg
-                        fill="#000000"
-                        width="25px"
-                        height="25px"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="icon flat-color"
-                      >
-                        <path
-                          d="M19,2a1,1,0,0,0-1,1V5.33A9,9,0,0,0,3,12a1,1,0,0,0,2,0A7,7,0,0,1,16.86,7H14a1,1,0,0,0,0,2h5a1,1,0,0,0,1-1V3A1,1,0,0,0,19,2Z"
-                          fill="rgb(0, 0, 0)"
-                        ></path>
-                        <path
-                          d="M20,11a1,1,0,0,0-1,1A7,7,0,0,1,7.11,17H10a1,1,0,0,0,0-2H5a1,1,0,0,0-1,1v5a1,1,0,0,0,2,0V18.67A9,9,0,0,0,21,12,1,1,0,0,0,20,11Z"
-                          fill="rgb(44, 169, 188)"
-                        ></path>
-                      </svg>
+                       <svg
+                          fill="#000000"
+                          width="25px"
+                          height="25px"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="icon flat-color"
+                        >
+                          <path
+                            d="M19,2a1,1,0,0,0-1,1V5.33A9,9,0,0,0,3,12a1,1,0,0,0,2,0A7,7,0,0,1,16.86,7H14a1,1,0,0,0,0,2h5a1,1,0,0,0,1-1V3A1,1,0,0,0,19,2Z"
+                            fill="rgb(0, 0, 0)"
+                          ></path>
+                          <path
+                            d="M20,11a1,1,0,0,0-1,1A7,7,0,0,1,7.11,17H10a1,1,0,0,0,0-2H5a1,1,0,0,0-1,1v5a1,1,0,0,0,2,0V18.67A9,9,0,0,0,21,12,1,1,0,0,0,20,11Z"
+                            fill="rgb(112, 128, 144)"
+                          ></path>
+                        </svg>
                     </Link>
                   </div>
                 </td>
