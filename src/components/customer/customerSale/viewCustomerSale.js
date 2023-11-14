@@ -42,6 +42,9 @@ const ViewCustomerSale = () => {
                 Customer ID
               </th>
               <th scope="col" className="px-5 py-4 font-medium text-gray-900">
+                Sale ID
+              </th>
+              <th scope="col" className="px-5 py-4 font-medium text-gray-900">
                 Product
               </th>
               <th scope="col" className="px-5 py-4 font-medium text-gray-900">
@@ -59,6 +62,10 @@ const ViewCustomerSale = () => {
             {customerSale.map((saleItem) => (
               <tr className="hover:bg-gray-50" key={saleItem._id}>
                 <td className="flex gap-3 px-6 py-4 font-normal text-gray-900">{saleItem.customerName}</td>
+                <td className=" px-5 py-4">
+                  <span className=" inline-flex items-center gap-1  bg-cyan-50 px-2 py-1 text-xs font-semibold text-cyan-800">
+                    {saleItem.customerId}
+                  </span></td>
                 <td className=" px-5 py-4">
                   <span className=" inline-flex items-center gap-1  bg-sky-50 px-2 py-1 text-xs font-semibold text-sky-600">
                     {saleItem._id}
