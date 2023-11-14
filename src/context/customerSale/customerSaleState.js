@@ -31,13 +31,14 @@ const CustomerSaleState = (props) => {
         
 
       }
-      const addCustomerSale=async(customerId,product,quantity,customerName)=>{
+      const addCustomerSale=async(customerId,product,quantity,customerName,productId)=>{
         
         const newCustomerSale={
             customerId:customerId,
             product:product,
             quantity:quantity,
-            name:customerName
+            name:customerName,
+            productId:productId
           }
           setCustomerSale(customerSale.concat(newCustomerSale))
         
@@ -51,7 +52,7 @@ const CustomerSaleState = (props) => {
                 "auth-token": authToken
                 
               },
-              body: JSON.stringify({customerId,product,quantity,customerName}),
+              body: JSON.stringify({customerId,product,quantity,customerName,productId}),
             });
         
     }

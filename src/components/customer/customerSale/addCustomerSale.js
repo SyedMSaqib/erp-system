@@ -17,6 +17,7 @@ const AddCustomerSale = () => {
   const [availablestock, setavailablestock] = useState(false);
   const [quantity, setquantity] = useState("");
   const [product, setproduct] = useState("");
+  const [productId, setproductId] = useState("");
   const [customerId, setcustomerId] = useState("");
   const [customerName, setcustomerName] = useState("");
   const [CustomerIdValid, setCustomerIdValid] = useState(false);
@@ -28,6 +29,7 @@ const AddCustomerSale = () => {
     setisVisible(false);
     setisVisibleModal(false);
     if (productModelData.name) setproduct(productModelData.name);
+    if (productModelData._id) setproductId(productModelData._id);
     if (customerModalData._id) setcustomerId(customerModalData._id);
     if (customerModalData.name) setcustomerName(customerModalData.name)
   }, [productModelData, customerModalData]);
@@ -107,10 +109,11 @@ const AddCustomerSale = () => {
 
   useEffect(() => {
     if (CustomerIdValid && ProductValid && QuantityValid && availablestock) {
-      addCustomerSale(customerId, product, quantity,customerName);
+      addCustomerSale(customerId, product, quantity,customerName,productId);
       setproduct("");
       setcustomerId("");
       setcustomerName("");
+      setproductId("")
       toast.success(`${product} Added`);
       Navigate("/viewCustomerSale");
       setproductModelData({});

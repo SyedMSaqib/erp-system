@@ -16,13 +16,14 @@ router.post(
     if (!result.isEmpty()) return res.json(result)
     try {
       if (req.user == null) return res.status(404).send("Invalid token, or empty")
-      const {customerId,product,quantity,customerName} = req.body
+      const {customerId,product,quantity,customerName,productId} = req.body
       const newCustomersale = await customerSale.create({
         user: req.user.id,
         customerId: customerId,
         quantity: quantity,
         product:product,
-        customerName:customerName
+        customerName:customerName,
+        productId:productId
       })
       res.json(newCustomersale)
     } catch (err) {
