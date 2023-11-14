@@ -87,7 +87,7 @@ const AddCustomerSale = () => {
       setavailablestock(true);
       const saleQuantity=availableQuantity - quantityValue;
       if(saleQuantity===0){
-      setNewQuantity("0")
+      setNewQuantity(0)
     }
     else
     {
