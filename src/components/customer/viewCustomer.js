@@ -23,10 +23,13 @@ const ViewCustomer = () => {
   return (
     <div className="flex justify-center items-center w-screen " >
     <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg">Customers</div>
-      <div className="overflow-hidden flex justify-center rounded-lg border border-gray-200 shadow-md m-5 mt-10 ml-72">
+      <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5 mt-10 ml-64 ">
         <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
           <thead className="bg-gray-50">
             <tr>
+              <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+                No
+              </th>
               <th scope="col" className="px-6 py-4 font-medium text-gray-900">
                 Name
               </th>
@@ -40,8 +43,9 @@ const ViewCustomer = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-            {customer.map((customerItem) => (
+            {customer.map((customerItem,index) => (
               <tr className="hover:bg-gray-50" key={customerItem._id}>
+                <td className="px-6 py-4">{index+1}</td>
                 <td className="flex gap-3 px-6 py-4 font-normal text-gray-900">
                   <div className="text-sm flex">
                     <div>

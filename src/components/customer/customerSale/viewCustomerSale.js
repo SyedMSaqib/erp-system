@@ -31,11 +31,14 @@ const ViewCustomerSale = () => {
   return (
     <div className="flex justify-center items-center w-screen " >
     <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg">Sales</div>
-      <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5 ml-72 flex justify-center items-center mt-10  ">
+      <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5 mt-10 ml-64 ">
         <table className="overflow-x-auto border-collapse bg-white text-left text-sm text-gray-500 ">
           <thead className="bg-gray-50">
             <tr>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-5 py-4 font-medium text-gray-900">
+                No
+              </th>
+              <th scope="col" className="px-5 py-4 font-medium text-gray-900">
                 Customer Name
               </th>
               <th scope="col" className="px-5 py-4 font-medium text-gray-900">
@@ -46,6 +49,9 @@ const ViewCustomerSale = () => {
               </th>
               <th scope="col" className="px-5 py-4 font-medium text-gray-900">
                 Product
+              </th>
+              <th scope="col" className="px-5 py-4 font-medium text-gray-900">
+                Product Id
               </th>
               <th scope="col" className="px-5 py-4 font-medium text-gray-900">
                 Quantity
@@ -59,10 +65,11 @@ const ViewCustomerSale = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-            {customerSale.map((saleItem) => (
+            {customerSale.map((saleItem,index) => (
               <tr className="hover:bg-gray-50" key={saleItem._id}>
-                <td className="flex gap-3 px-6 py-4 font-normal text-gray-900">{saleItem.customerName}</td>
-                <td className=" px-5 py-4">
+                <td className="px-5 py-4">{index+1}</td>
+                <td className="flex gap-3 px-5 py-4 font-normal text-gray-900">{saleItem.customerName}</td>
+                <td className=" px-3 py-4">
                   <span className=" inline-flex items-center gap-1  bg-cyan-50 px-2 py-1 text-xs font-semibold text-cyan-800">
                     {saleItem.customerId}
                   </span></td>
@@ -71,9 +78,13 @@ const ViewCustomerSale = () => {
                     {saleItem._id}
                   </span></td>
                 <td className="px-5 py-4">{saleItem.product}</td>
+                 <td className=" px-5 py-4">
+                  <span className=" inline-flex items-center gap-1  bg-cyan-50 px-2 py-1 text-xs font-semibold text-cyan-800">
+                    {saleItem.productId}
+                  </span></td>
                 <td className="px-5 py-4">{saleItem.quantity}</td>
                 <td className="px-5 py-4">{formatMongoDate(saleItem.date)}</td>
-                <td  className="px-16 py-4 "> 
+                <td  className="px-1 pr-5 py-4 "> 
                 <svg onClick={()=>{Onclickdelete(saleItem._id)}}
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"

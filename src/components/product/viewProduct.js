@@ -35,6 +35,9 @@ const ViewProduct = () => {
           <thead className="bg-gray-50">
             <tr>
               <th scope="col" className="lg:px-6 sm:px-2 lg:py-4 sm:py-2 sm:w-5 font-medium text-gray-900">
+                No
+              </th>
+              <th scope="col" className="lg:px-6 sm:px-2 lg:py-4 sm:py-2 sm:w-5 font-medium text-gray-900">
                 Name
               </th>
               <th scope="col" className="lg:px-12 lg:py-4 font-medium text-gray-900">
@@ -53,8 +56,9 @@ const ViewProduct = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-            {product.map((productItem) => (
+            {product.map((productItem,index) => (
               <tr className="hover:bg-gray-50" key={productItem._id}>
+                 <td className="px-6 py-4">{index+1}</td>
                 <td className="flex gap-3 px-6 py-4 font-normal text-gray-900">
                   <div className="text-sm">
                     <div className="font-medium text-gray-700">{productItem.name}</div>
