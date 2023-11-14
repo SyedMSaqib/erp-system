@@ -2,6 +2,8 @@ const express = require("express")
 const router = express.Router()
 const validator = require("../middleware/validator")
 const customerSale = require("../models/sales")
+const Product=require("../models/product")
+
 const { check, validationResult } = require("express-validator")
 
 
@@ -17,6 +19,17 @@ router.post(
     try {
       if (req.user == null) return res.status(404).send("Invalid token, or empty")
       const {customerId,product,quantity,customerName,productId} = req.body
+      
+      const productDetails = await Product.findById(productId);
+      if (productDetails.user.toString() !== req.user.id) return res.status(404).send("Unauthorized user")
+      const requestedQuantity = parseInt(quantity, 10);
+      if (!productDetails || productDetails.quantity < requestedQuantity) {
+        return res.status(400).json({ error: "Insufficient stock or invalid product." });
+      }
+      productDetails.quantity -= quantity;
+      await productDetails.save();
+
+
       const newCustomersale = await customerSale.create({
         user: req.user.id,
         customerId: customerId,
@@ -82,7 +95,7 @@ router.get("/fetchAllCustomerSale", validator, async (req, res) => {
       newSale.product=product
       const customerUpdate = await customerSale.findByIdAndUpdate(id,{$set:newSale},{new:true})
   
-      res.json(customerUpdate)
+      res.status(200).json(customerUpdate)
     } catch (err) {
       res.json(`${err}`)
     }

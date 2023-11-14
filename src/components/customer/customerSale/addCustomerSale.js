@@ -110,6 +110,7 @@ const AddCustomerSale = () => {
   useEffect(() => {
     if (CustomerIdValid && ProductValid && QuantityValid && availablestock) {
       addCustomerSale(customerId, product, quantity,customerName,productId);
+      console.log({customerId, product, quantity,customerName,productId})
       setproduct("");
       setcustomerId("");
       setcustomerName("");
@@ -121,18 +122,7 @@ const AddCustomerSale = () => {
     }
   }, [CustomerIdValid, ProductValid, QuantityValid, availablestock]);
 
-  useEffect(() => {
-    if (newQuantity !== null) {
-      updateProduct(
-        productModelData._id,
-        productModelData.name,
-        productModelData.description,
-        productModelData.category,
-        newQuantity,
-        productModelData.price
-      );
-    }
-  }, [newQuantity, productModelData]);
+
 
   return (
     <>
