@@ -110,7 +110,6 @@ const AddCustomerSale = () => {
   useEffect(() => {
     if (CustomerIdValid && ProductValid && QuantityValid && availablestock) {
       addCustomerSale(customerId, product, quantity,customerName,productId);
-      console.log({customerId, product, quantity,customerName,productId})
       setproduct("");
       setcustomerId("");
       setcustomerName("");
