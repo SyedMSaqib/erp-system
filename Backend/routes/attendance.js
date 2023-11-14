@@ -25,7 +25,6 @@ router.post(
       const existingRecord = await Attendance.findOne({ employeeId: employeeId, date });
 
       if (existingRecord) {
-        console.log(existingRecord)
         const UpdatedAttendance={
           
           employeeId,
@@ -42,7 +41,7 @@ router.post(
         
         console.log(UpdatedAttendance)
     
-       return res.json(attendanceUpdate);
+       return res.json({updated:true});
       }
 
      
