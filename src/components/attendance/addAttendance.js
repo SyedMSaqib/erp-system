@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import EmployeeContext from '../../context/employees/employeeContext';
 import AttendanceContext from "../../context/attendance/attendanceContext";
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const AddAttendance = () => {
   const { employees, getAllEmployees } = useContext(EmployeeContext);
@@ -37,7 +38,8 @@ const AddAttendance = () => {
           true,
           Date
         )
-      
+        
+       
     })
     employees.map((emp)=>{
       const employeeExists = attendanceData.some((record) => record._id === emp._id);
@@ -52,9 +54,11 @@ const AddAttendance = () => {
       }
     })
     Navigate('/addAttendanceDate')
+    toast.success(<span>Attendance Added for :<span className='font-bold'>{Date}</span></span>)
 }
 //
   return (
+    <div className="flex justify-center items-center w-screen " >
     <div>
       <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5 ml-72">
         <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
@@ -99,6 +103,7 @@ const AddAttendance = () => {
           Select
         </button>
       </div>
+    </div>
     </div>
   );
 };
