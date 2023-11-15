@@ -31,7 +31,7 @@ const ViewCustomerSale = () => {
 
 
   return (
-    <div className="flex justify-center items-center w-screen " >
+    <div className="flex justify-center items-center  " >
     <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg">Sales</div>
       <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5 mt-10 ml-64 ">
         <table className="overflow-x-auto border-collapse bg-white text-left text-sm text-gray-500 ">

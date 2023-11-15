@@ -20,10 +20,10 @@ const SignUpSuccess = () => {
     return false
 
   return (
-    <div className="min-w-full h-screen animated fadeIn faster fixed left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none ">
+    <div className=" h-screen animated fadeIn faster fixed left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none ">
       
     <div className="backdrop-blur-sm bg-black bg-opacity-20 w-full h-full absolute"></div>
-     <div className="w-1/3 max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg   bg-white z-50 max-h-screen overflow-y-auto ">
+     <div className=" max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg   bg-white z-50 max-h-screen overflow-y-auto ">
        <div className="">
     
       <div class="text-center p-5 flex-auto justify-center">
