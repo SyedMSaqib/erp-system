@@ -108,7 +108,7 @@ export default function Sidebar() {
   return (
     <div className="w-60 fixed ">
       <div className="flex">
-        <div className=" flex flex-col h-screen p-3 bg-slate-100  text-gray shadow-2xl z-[999] w-60 border border-slate-300 ">
+        <div className=" flex flex-col h-screen p-3 bg-slate-100  text-gray shadow-xl z-[999] w-60 border border-slate-200">
           <div className="space-y-3">
             <div className="flex items-center">
               <img className="ml-10 w-36 py-10" src={Saslogo} alt="Logo" />
