@@ -60,7 +60,7 @@ const AddAttendance = () => {
   return (
     <div className="flex justify-center items-center w-screen " >
     <div>
-      <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5 ml-72">
+      <div className="overflow-auto rounded-lg border border-gray-200 shadow-md m-5 ml-72">
         <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
           <thead className="bg-gray-50">
             <tr>

@@ -76,7 +76,7 @@ function App() {
                       <span >Loading...</span>
                     </div>
                   ) : (
-                    <div className="flex">
+                    <div >
                       {authenticated ? <Sidebar /> : null}
                       <Routes>
                         <Route path="/addProduct" element={<AddProduct />} />

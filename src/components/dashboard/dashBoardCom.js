@@ -8,8 +8,9 @@ import CustomComposedChart from './composedChart';
 
 const Dashboard = () => {
   return (
-    <div>
-    <div className='flex justify-between ml-60 mt-10'>
+    <div className=' sm:grid sm:grid-rows-1   '>
+      <div className='sm:grid sm:grid-rows-1 sm:overflow-auto sm:ml-64 lg:ml-0'>
+    <div className='sm:flex sm:justify-between sm:ml-60 '>
       <div className='w-1/2 mt-20'>
         <Barchart />
       </div>
@@ -31,6 +32,7 @@ const Dashboard = () => {
     {/* <div className='w-1/2 mt-8 ml-12'>
     <CustomComposedChart/>
     </div> */}
+  </div>
   </div>
   );
 }
