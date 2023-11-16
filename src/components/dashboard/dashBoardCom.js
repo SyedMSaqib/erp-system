@@ -12,8 +12,8 @@ import MixedChart from './MixedChart';
 
 const Dashboard = () => {
   return (
-    <div className='mt-5'>
-    <div className='ml-64 grid grid-cols-3 border border-slate-200 shadow-2xl w-[68rem]   '>
+    <div className='pt-5'>
+    <div className='ml-64 bg-slate-100 grid grid-cols-3 border border-slate-200 shadow-2xl rounded-xl w-[68rem]   '>
     <div className='mt-16'>
     <SplineChart/>
     </div>
