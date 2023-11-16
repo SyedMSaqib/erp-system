@@ -63,6 +63,17 @@ router.get("/fetchAllCustomerSale", validator, async (req, res) => {
       if (!CustomerSalesFromDb) return res.status(404).json("No such customer exists")
   
       if (CustomerSalesFromDb.user.toString() !== req.user.id) return res.status(404).send("Unauthorized user")
+
+      const customerProductId = await customerSale.findById(id)
+     
+
+      const productDetails = await Product.findById(customerProductId.productId);
+      const returnQuantity=parseInt(CustomerSalesFromDb.quantity,10)
+      
+      productDetails.quantity = +productDetails.quantity + returnQuantity;
+      await productDetails.save()
+      if (productDetails.user.toString() !== req.user.id) return res.status(404).send("Unauthorized user")
+      
       const customerSaleDelete = await customerSale.findByIdAndDelete(id)
   
       res.json(customerSaleDelete)
