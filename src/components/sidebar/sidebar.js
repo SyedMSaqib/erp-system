@@ -116,7 +116,7 @@ export default function Sidebar() {
             <div className="flex-1 ">
               <ul className="pt-2 pb-4 space-y-1 text-sm">
                 <Link to={"/dashboard"}>
-                  <div className="rounded-sm shadow-lg pt-2 max-w-xs transition duration-300 ease-in-out hover:scale-110 text-gray-600 font-semibold cursor-pointer h-10 bg-gray-100 border border-slate-300">
+                  <div className="rounded-lg shadow-lg pt-2 max-w-xs transition duration-300 ease-in-out hover:scale-100 text-gray-600 font-semibold cursor-pointer h-10 bg-gray-100 border border-slate-300">
                     <span to={"/dashboard"} className="pl-5 ">
                       Dashboard
                     </span>
@@ -125,7 +125,7 @@ export default function Sidebar() {
 
                 {data.map((tab) => (
                   <li key={tab.key} onClick={() => toggleTab(tab.key)}>
-                    <div className="rounded-sm shadow-lg pt-2 max-w-xs transition duration-300 ease-in-out hover:scale-110 cursor-pointer h-10 bg-gray-100 border border-slate-300">
+                    <div className="rounded-lg shadow-lg pt-2 max-w-xs transition  ease-in-out hover:scale-100 cursor-pointer h-10 bg-gray-100 border border-slate-300">
                       <span className="pl-5 text-gray-600 font-semibold ">{tab.name}</span>
                     </div>
                     {tab.subTabs && openTab === tab.key && (
@@ -133,7 +133,7 @@ export default function Sidebar() {
                         {tab.subTabs.map((subTab, index) => (
                           <li key={subTab.key} className={`${index !== 0 ? "border-t border-solid w-40" : ""}`}>
                             <Link to={subTab.path} className="flex items-center p-2 space-x-3 rounded-md">
-                              <span className="pl-9 text-xs font-bold">{subTab.name}</span>
+                              <span className="  font-sans">{subTab.name}</span>
                             </Link>
                           </li>
                         ))}
