@@ -76,7 +76,7 @@ function App() {
                       <span >Loading...</span>
                     </div>
                   ) : (
-                    <div >
+                    <div className="h-screen">
                       {authenticated ? <Sidebar /> : null}
                       <Routes>
                         <Route path="/addProduct" element={<AddProduct />} />
