@@ -57,7 +57,7 @@ const ViewProduct = () => {
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
             {product.map((productItem,index) => (
-              <tr className="hover:bg-gray-50" key={productItem._id}>
+              <tr className={`transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-gray-100 `}  key={productItem._id}>
                  <td className="px-6 py-4">{index+1}</td>
                 <td className="flex gap-3 px-6 py-4 font-normal text-gray-900">
                   <div className="text-sm">

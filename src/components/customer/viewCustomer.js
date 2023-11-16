@@ -44,7 +44,7 @@ const ViewCustomer = () => {
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
             {customer.map((customerItem,index) => (
-              <tr className="hover:bg-gray-50" key={customerItem._id}>
+               <tr className={`transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-gray-100 `} key={customerItem._id}>
                 <td className="px-6 py-4">{index+1}</td>
                 <td className="flex gap-3 px-6 py-4 font-normal text-gray-900">
                   <div className="text-sm flex">

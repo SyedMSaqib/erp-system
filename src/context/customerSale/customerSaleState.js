@@ -9,7 +9,8 @@ const CustomerSaleState = (props) => {
 
       const [customerSale, setCustomerSale] = useState(customerDb)
       const authToken = localStorage.getItem('authToken');
-  
+      const [confirmDeleteSaleId, setconfirmDeleteSaleId] = useState()
+      const [isVisibleConfirmDelete, setisVisibleConfirmDelete] = useState(false)
       
       
       
@@ -91,7 +92,11 @@ const CustomerSaleState = (props) => {
             customerSale,
             getAllcustomersSales,
             addCustomerSale,
-            deleteCustomerSale
+            deleteCustomerSale,
+            confirmDeleteSaleId, 
+            setconfirmDeleteSaleId,
+            isVisibleConfirmDelete, 
+            setisVisibleConfirmDelete
         }}>
           {props.children}
         </customeSaleContext.Provider>

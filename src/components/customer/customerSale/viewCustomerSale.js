@@ -1,10 +1,12 @@
 import React, { useContext, useEffect } from "react"
 import customerSaleContext from "../../../context/customerSale/customerSaleContext"
-import toast from "react-hot-toast"
+import ConfirmDeleteSale from "./Modals/confirmDeleteSale"
+
+
 
 const ViewCustomerSale = () => {
-  const { customerSale, getAllcustomersSales,deleteCustomerSale } = useContext(customerSaleContext)
-
+  const { customerSale, getAllcustomersSales,setconfirmDeleteSaleId, setisVisibleConfirmDelete } = useContext(customerSaleContext)
+  
   useEffect(() => {
     getAllcustomersSales()
   }, [])
@@ -21,16 +23,16 @@ const ViewCustomerSale = () => {
     
     return `${year}-${month}-${day} ${hours}:${minutes}`;
   };
-  const Onclickdelete=(customerId,itemName)=>
+  const Onclickdelete=(ItemId)=>
   {
-    deleteCustomerSale(customerId)
-    toast.success(<span><span className='font-bold'>Sale Deleted : </span>{itemName}</span>);
-    
-
+    setconfirmDeleteSaleId(ItemId)
+    setisVisibleConfirmDelete(true)
   }
 
 
   return (
+    <>
+  <ConfirmDeleteSale/>
     <div className="flex justify-center items-center  " >
     <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg">Sales</div>
       <div className="overflow-auto rounded-lg border border-gray-200 shadow-md m-5 mt-10 ml-64 ">
@@ -68,7 +70,7 @@ const ViewCustomerSale = () => {
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
             {customerSale.map((saleItem,index) => (
-              <tr className="hover:bg-gray-50" key={saleItem._id}>
+              <tr className={`transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-gray-100 `}  key={saleItem._id}>
                 <td className="px-5 py-4">{index+1}</td>
                 <td className="flex gap-3 px-5 py-4 font-normal text-gray-900">{saleItem.customerName}</td>
                 <td className=" px-3 py-4">
@@ -87,7 +89,7 @@ const ViewCustomerSale = () => {
                 <td className="px-5 py-4">{saleItem.quantity}</td>
                 <td className="px-5 py-4">{formatMongoDate(saleItem.date)}</td>
                 <td  className="px-1 pr-5 py-4 "> 
-                <svg onClick={()=>{Onclickdelete(saleItem._id,saleItem.product)}}
+                <svg onClick={()=>{Onclickdelete(saleItem._id)}}
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
@@ -108,6 +110,7 @@ const ViewCustomerSale = () => {
         </table>
       </div>
     </div>
+    </>
   )
 }
 

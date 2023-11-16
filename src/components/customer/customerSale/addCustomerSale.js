@@ -127,7 +127,8 @@ const AddCustomerSale = () => {
     <>
       <SetProduct />
       <SetCustomer />
-      <div className="lg:mx-auto sm:ml-64 sm:items-end shadow-xl h-1/2 mx-auto my-20 border bg-slate-50 border-gray-300 rounded-xl">
+      <div className='lg:flex lg:justify-center lg:content-center sm:ml-64'>
+    <div className="shadow-xl md:w-[30rem] sm:w-[20rem] mb-5  mx-auto  border bg-slate-50 border-gray-300 rounded-xl">
         <div className="pl-8 py-8 px-8 pr-8">
           <div>
             <h1 className="mb-1 font-bold text-3xl flex gap-1 items-baseline font-mono">
@@ -219,6 +220,7 @@ const AddCustomerSale = () => {
               </button>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </>

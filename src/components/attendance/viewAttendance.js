@@ -38,9 +38,9 @@ const ViewAttendance = () => {
           </thead>
           
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-            {filteredAttendance.map((attendance) => (
+            {filteredAttendance.map((attendance,index) => (
                 
-              <tr className="hover:bg-gray-50" key={attendance._id}>
+              <tr className={`transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-gray-100 `}  key={attendance._id}>
                 <td className="flex gap-3 px-6 py-4 font-normal text-gray-900">
                   <div className="text-sm">
                     <div className="font-medium text-gray-700">{attendance.name}</div>
