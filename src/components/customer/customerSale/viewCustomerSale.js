@@ -55,7 +55,7 @@ const ViewCustomerSale = () => {
                 Product
               </th>
               <th scope="col" className="px-5 py-4 font-medium text-gray-900">
-                Product Id
+                Product ID
               </th>
               <th scope="col" className="px-5 py-4 font-medium text-gray-900">
                 Quantity
@@ -86,7 +86,7 @@ const ViewCustomerSale = () => {
                   <span className=" inline-flex items-center gap-1  bg-cyan-50 px-2 py-1 text-xs font-semibold text-cyan-800">
                     {saleItem.productId}
                   </span></td>
-                <td className="px-5 py-4">{saleItem.quantity}</td>
+                <td className="px-5 py-4 font-semibold">{saleItem.quantity}</td>
                 <td className="px-5 py-4">{formatMongoDate(saleItem.date)}</td>
                 <td  className="px-1 pr-5 py-4 "> 
                 <svg onClick={()=>{Onclickdelete(saleItem._id)}}

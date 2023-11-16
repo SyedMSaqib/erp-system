@@ -25,6 +25,9 @@ const ViewAttendance = () => {
           <thead className="bg-gray-50">
             <tr>
               <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+                No
+              </th>
+              <th scope="col" className="px-20 py-4 font-medium text-gray-900">
                 Employee Name
               </th>
               <th scope="col" className="px-20 py-4 font-medium text-gray-900">
@@ -41,7 +44,10 @@ const ViewAttendance = () => {
             {filteredAttendance.map((attendance,index) => (
                 
               <tr className={`transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-gray-100 `}  key={attendance._id}>
-                <td className="flex gap-3 px-6 py-4 font-normal text-gray-900">
+                <td className="px-6 py-4">
+                  {index+1}
+                </td>
+                <td className="flex gap-3 px-20 py-4 font-normal text-gray-900">
                   <div className="text-sm">
                     <div className="font-medium text-gray-700">{attendance.name}</div>
                   </div>
