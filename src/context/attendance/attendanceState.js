@@ -1,8 +1,9 @@
 import React, {  useState } from 'react';
 import AttendanceContext from './attendanceContext';
+import config from '../../config';
 
 const AttendanceState = (props) => {
-  const host = 'http://localhost:5000';
+  const host=config.apiurl
   const initialAttendanceData = [];
   const authToken = localStorage.getItem('authToken');
 

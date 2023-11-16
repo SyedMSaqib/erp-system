@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import ProductContext from './productContext'
-
+import config from '../../config';
 
 const ProductState = (props) => {
-    const host="http://localhost:5000"
+    const host=config.apiurl
     const productDb=
         []
 

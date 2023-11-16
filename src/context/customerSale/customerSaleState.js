@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import customeSaleContext from './customerSaleContext'
+import config from '../../config';
 
 
 const CustomerSaleState = (props) => {
-    const host="http://localhost:5000"
+  const host=config.apiurl
     const customerDb=
         []
 

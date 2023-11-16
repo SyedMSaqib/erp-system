@@ -1,8 +1,9 @@
 import React, {  useState } from "react"
 import AuthContext from "./authContext"
+import config from '../../config';
 
 const AuthState = (props) => {
-  const host = "http://localhost:5000"
+  const host=config.apiurl
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")

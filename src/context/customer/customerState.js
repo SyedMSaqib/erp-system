@@ -1,8 +1,9 @@
 import React, {  useState } from "react"
 import CustomerContext from "./customerContext"
+import config from '../../config';
 
 const CustomerState = (props) => {
-  const host = "http://localhost:5000"
+  const host=config.apiurl
   const customerDb = []
 
   const [customer, setCustomer] = useState(customerDb)

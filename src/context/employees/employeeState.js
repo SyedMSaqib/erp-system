@@ -1,8 +1,9 @@
 import React, {  useState } from 'react';
 import EmployeeContext from './employeeContext';
+import config from '../../config';
 
 const EmployeeState = (props) => {
-  const host = 'http://localhost:5000';
+  const host=config.apiurl
   const employeeDb = [];
 
   const [employees, setEmployees] = useState(employeeDb);
