@@ -30,7 +30,7 @@ const MixedChart = () => {
               width: [1, 1, 4]
             },
             title: {
-              text: 'XYZ - Stock Analysis (2009 - 2016)',
+              text: '',
               align: 'left',
               offsetX: 110
             },
@@ -52,7 +52,7 @@ const MixedChart = () => {
                   }
                 },
                 title: {
-                  text: "Income (thousand crores)",
+                  text: "",
                   style: {
                     color: '#008FFB',
                   }
@@ -77,7 +77,7 @@ const MixedChart = () => {
                   }
                 },
                 title: {
-                  text: "Operating Cashflow (thousand crores)",
+                  text: "",
                   style: {
                     color: '#00E396',
                   }
@@ -99,7 +99,7 @@ const MixedChart = () => {
                   },
                 },
                 title: {
-                  text: "Revenue (thousand crores)",
+                  text: "",
                   style: {
                     color: '#FEB019',
                   }

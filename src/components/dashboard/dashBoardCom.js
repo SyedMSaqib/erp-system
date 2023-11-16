@@ -1,13 +1,10 @@
 import React from 'react';
-import Barchart from './barchart';
-import Arreachart from './areaChart';
-import CustomPieChart from './pieChart';
-import CustomRadialBarChart from './radialChart';
-import CustomComposedChart from './composedChart';
 import SplineChart from './splineChart';
 import ColoumnChart from './coloumnChart';
 import Scatter from './scatter';
 import MixedChart from './MixedChart';
+import RangeArea from './RangeArea';
+import LineChart from './lineChart';
 
 
 const Dashboard = () => {
@@ -27,10 +24,10 @@ const Dashboard = () => {
       <MixedChart/>
     </div>
     <div className='mt-16'>
-    <SplineChart/>
+    <RangeArea/>
     </div>
     <div className='mt-16'>
-    <SplineChart/>
+    <LineChart/>
     </div>
     </div>
    
