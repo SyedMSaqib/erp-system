@@ -39,31 +39,31 @@ const ViewCustomerSale = () => {
         <table className="overflow-x-auto border-collapse bg-white text-left text-sm text-gray-500 ">
           <thead className="bg-gray-50">
             <tr>
-              <th scope="col" className="px-5 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-4 py-4 font-medium text-gray-900">
                 No
               </th>
-              <th scope="col" className="px-5 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-4 py-4 font-medium text-gray-900">
                 Customer Name
               </th>
-              <th scope="col" className="px-5 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-4 py-4 font-medium text-gray-900">
                 Customer ID
               </th>
-              <th scope="col" className="px-5 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-4 py-4 font-medium text-gray-900">
                 Sale ID
               </th>
-              <th scope="col" className="px-5 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-4 py-4 font-medium text-gray-900">
                 Product
               </th>
-              <th scope="col" className="px-5 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-4 py-4 font-medium text-gray-900">
                 Product ID
               </th>
-              <th scope="col" className="px-5 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-4 py-4 font-medium text-gray-900">
                 Quantity
               </th>
-              <th scope="col" className="px-5 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-4 py-4 font-medium text-gray-900">
                 Date
               </th>
-              <th scope="col" className="px-5 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-4 py-4 font-medium text-gray-900">
                 
               </th>
             </tr>
@@ -71,23 +71,23 @@ const ViewCustomerSale = () => {
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
             {customerSale.map((saleItem,index) => (
               <tr className={`transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-gray-100 `}  key={saleItem._id}>
-                <td className="px-5 py-4">{index+1}</td>
+                <td className="px-4 py-4">{index+1}</td>
                 <td className="flex gap-3 px-5 py-4 font-normal text-gray-900">{saleItem.customerName}</td>
-                <td className=" px-3 py-4">
+                <td className=" px-4 py-4">
                   <span className=" inline-flex items-center gap-1  bg-cyan-50 px-2 py-1 text-xs font-semibold text-cyan-800">
                     {saleItem.customerId}
                   </span></td>
-                <td className=" px-5 py-4">
+                <td className=" px-4 py-4">
                   <span className=" inline-flex items-center gap-1  bg-sky-50 px-2 py-1 text-xs font-semibold text-sky-600">
                     {saleItem._id}
                   </span></td>
-                <td className="px-5 py-4">{saleItem.product}</td>
+                <td className="px-4 py-4">{saleItem.product}</td>
                  <td className=" px-5 py-4">
                   <span className=" inline-flex items-center gap-1  bg-cyan-50 px-2 py-1 text-xs font-semibold text-cyan-800">
                     {saleItem.productId}
                   </span></td>
-                <td className="px-5 py-4 font-semibold">{saleItem.quantity}</td>
-                <td className="px-5 py-4">{formatMongoDate(saleItem.date)}</td>
+                <td className="px-4 py-4 font-semibold">{saleItem.quantity}</td>
+                <td className="px-4 py-4">{formatMongoDate(saleItem.date)}</td>
                 <td  className="px-1 pr-5 py-4 "> 
                 <svg onClick={()=>{Onclickdelete(saleItem._id)}}
                         xmlns="http://www.w3.org/2000/svg"

@@ -145,20 +145,24 @@ export default function Sidebar() {
             </div>
           </div>
 
-          <div className="mt-auto flex flex-col bottom-0 fixed">
-            {containsSaqib(userNameLocal) ? (
-              <img className="w-10 h-10 rounded-full" src={Saqib} alt="Logo" />
-            ) : (
-              <LoggedInUser />
-            )}
-            <div className="mt-2">
-              <div className="font-semibold text-sm text-gray-600 ">{nameFromStorage.toUpperCase()}</div>
-            </div>
-          </div>
-          <div onClick={logout} className="cursor-pointer ml-36  bottom-0 fixed flex flex-row gap-2 ">
-            <div className="font-semibold text-sm text-gray-600 ">Logout</div>
+          <div className="mt-auto flex space-x-20">
             <div>
-              <LogoutUser />
+              {containsSaqib(userNameLocal) ? (
+                <img className="w-10 h-10 rounded-full" src={Saqib} alt="Logo" />
+              ) : (
+                <LoggedInUser />
+              )}
+              <div className="">
+                <div className="font-semibold text-sm text-gray-600 ">{nameFromStorage.toUpperCase()}</div>
+              </div>
+            </div>
+            <div>
+              <div onClick={logout} className="cursor-pointer flex pt-10 space-x-2">
+                <div className="font-semibold text-sm text-gray-600 ">LOGOUT</div>
+                <div>
+                  <LogoutUser />
+                </div>
+              </div>
             </div>
           </div>
         </div>
