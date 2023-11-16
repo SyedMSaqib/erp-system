@@ -129,11 +129,12 @@ export default function Sidebar() {
                       <span className="pl-5 text-gray-600 font-semibold ">{tab.name}</span>
                     </div>
                     {tab.subTabs && openTab === tab.key && (
-                      <ul className="pl-6 space-y-2 shadow text-gray-600 bg-gray-100">
+                      <ul className="pl-6 space-y-2 shadow text-gray-600 bg-gray-100 ">
                         {tab.subTabs.map((subTab, index) => (
                           <li key={subTab.key} className={`${index !== 0 ? "border-t border-solid w-40" : ""}`}>
                             <Link to={subTab.path} className="flex items-center p-2 space-x-3 rounded-md">
-                              <span className="  font-sans">{subTab.name}</span>
+                              <span className=" font-semibold hover:text-black ">{subTab.name}</span>
+                              
                             </Link>
                           </li>
                         ))}
