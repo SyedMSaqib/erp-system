@@ -1,33 +1,73 @@
-import React, { useState } from 'react'
-import ReactApexChart from 'react-apexcharts'
+import React, { useContext, useEffect, useState } from 'react';
+import ReactApexChart from 'react-apexcharts';
+import ProductContext from '../../context/product/productContext';
 
-const Scatter = () => {
-    const [chart, setchart] = useState({
-        series: [44, 55, 13, 43, 22],
+const PieChart = () => {
+  const { product, getAllProducts } = useContext(ProductContext);
+
+  useEffect(() => {
+    getAllProducts();
+  }, []);
+
+  const calculatePercentage = (value, total) => {
+    return ((value / total) * 100).toFixed(2);
+  };
+
+  const getRandomColor = () => {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  };
+
+  const getProductChartData = () => {
+    const totalQuantity = product.reduce((acc, product) => acc + parseInt(product.quantity), 0);
+
+    const seriesData = product.map((product) => parseInt(product.quantity));
+    const labels = product.map((product) => `${product.name} - ${calculatePercentage(product.quantity, totalQuantity)}%`);
+    const colors = product.map(() => getRandomColor()); // Assign a random color to each slice
+
+    return {
+      series: seriesData,
+      options: {
+        chart: {
+          width: 380,
+          type: 'pie',
+        },
+        labels: labels,
+        legend: {
+          show: false,
+        },
+        responsive: [
+          {
+            breakpoint: 480,
             options: {
               chart: {
-                width: 380,
-                type: 'pie',
+                width: 200,
               },
-              labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
-              responsive: [{
-                breakpoint: 480,
-                options: {
-                  chart: {
-                    width: 200
-                  },
-                  legend: {
-                    position: 'bottom'
-                  }
-                }
-              }]
-            }
-    })
-  return (
-    <div>
-      <ReactApexChart options={chart.options} series={chart.series} type="pie"  height={200} width={350}/>
-    </div>
-  )
-}
+              legend: {
+                position: 'bottom',
+              },
+            },
+          },
+        ],
+        colors: colors, 
+      },
+    };
+  };
 
-export default Scatter
+  const [chart, setChart] = useState(getProductChartData());
+
+  return (
+    <div style={{ position: 'relative' }}>
+      <ReactApexChart options={chart.options} series={chart.series} type="pie" height={200} width={350} />
+      <div style={{ position: 'absolute', top: '220px', left: '100px', zIndex: '999' }}>
+        <p className='font-semibold text-xs'>Available Stock Percentage</p>
+      </div>
+    </div>
+  );
+};
+
+export default PieChart;
