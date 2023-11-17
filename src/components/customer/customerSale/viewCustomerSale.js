@@ -1,16 +1,18 @@
 import React, { useContext, useEffect } from "react"
 import customerSaleContext from "../../../context/customerSale/customerSaleContext"
 import ConfirmDeleteSale from "./Modals/confirmDeleteSale"
-import SplineChart from "../../dashboard/splineChart"
+import CustomerSales from "./graphs/customerSales"
+
 
 
 
 const ViewCustomerSale = () => {
-  const { customerSale, getAllcustomersSales,setconfirmDeleteSaleId, setisVisibleConfirmDelete } = useContext(customerSaleContext)
+  const { customerSale, getAllcustomersSales,setconfirmDeleteSaleId, setisVisibleConfirmDelete ,customerSaleGraph, setcustomerSaleGraph} = useContext(customerSaleContext)
   
   useEffect(() => {
     getAllcustomersSales()
   }, [])
+ 
 
   const formatMongoDate = (mongoDate) => {
     const dateObject = new Date(mongoDate);
@@ -29,11 +31,14 @@ const ViewCustomerSale = () => {
     setconfirmDeleteSaleId(ItemId)
     setisVisibleConfirmDelete(true)
   }
+  const showGrahp=(customerId)=>{
+    setcustomerSaleGraph({isvisible:true,customerId:customerId})
+  }
 
 
   return (
     <>
-   
+   <CustomerSales/>
   <ConfirmDeleteSale/>
     <div className="flex justify-center items-center  " >
       
@@ -73,7 +78,7 @@ const ViewCustomerSale = () => {
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
             {customerSale.map((saleItem,index) => (
-              <tr className={`transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-gray-100 `}  key={saleItem._id}>
+              <tr onClick={()=>{showGrahp(saleItem.customerId)}} className={`transition-colors hover:cursor-pointer ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-gray-100 `}  key={saleItem._id}>
                 <td className="px-4 py-4">{index+1}</td>
                 <td className="flex gap-3 px-5 py-4 font-normal text-gray-900">{saleItem.customerName}</td>
                 <td className=" px-4 py-4">

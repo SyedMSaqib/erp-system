@@ -35,7 +35,7 @@ const ConfirmDeleteSale = () => {
           </div>
          
           <div class="p-3  mt-2 text-center space-x-4 md:block">
-          <button onClick={()=>{onclickDelete()}} class="mb-2 md:mb-0 bg-red-500 border border-red-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-red-600">Delete</button>
+          <button onClick={()=>{onclickDelete()}} class="mb-2 md:mb-0 bg-gray-400 border border-gray-400 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-red-600 rounded-full hover:shadow-lg hover:bg-red-600 hover:text-white hover:border-red-600">Delete</button>
               <button onClick={()=>{onclickCancle()}} class="mb-2 md:mb-0 bg-white px-5 py-2 text-sm shadow-sm font-medium tracking-wider border text-gray-600 rounded-full hover:shadow-lg hover:bg-gray-100">
                   Cancel
               </button>
