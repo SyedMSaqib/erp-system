@@ -8,6 +8,12 @@ const SplineChart = () => {
   useEffect(() => {
     getAllcustomersSales();
   }, []);
+  useEffect(() => {
+   
+    if (customerSale.length > 0) {
+      setChart(formatChartData());
+    }
+  }, [customerSale]);
 
   const formatChartData = () => {
     const seriesData = customerSale.map((sale) => ({

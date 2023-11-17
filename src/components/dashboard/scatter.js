@@ -8,6 +8,11 @@ const PieChart = () => {
   useEffect(() => {
     getAllProducts();
   }, []);
+  useEffect(() => {
+    if (product.length > 0) {
+      setChart(getProductChartData());
+    }
+  }, [product]);
 
   const calculatePercentage = (value, total) => {
     return ((value / total) * 100).toFixed(2);
