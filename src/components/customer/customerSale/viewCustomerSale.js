@@ -98,7 +98,7 @@ const ViewCustomerSale = () => {
                 <td className="px-4 py-4 font-semibold">{saleItem.quantity}</td>
                 <td className="px-3 py-4">{formatMongoDate(saleItem.date)}</td>
                 <td  className="px-1 pr-5 py-4 "> 
-                <svg onClick={(event)=>{Onclickdelete(saleItem._id)}}
+                <svg onClick={()=>{Onclickdelete(saleItem._id)}}
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
