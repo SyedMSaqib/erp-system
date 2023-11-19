@@ -30,7 +30,14 @@ const CustomerSales = () => {
         }))
       }],
       options: {
-       
+        xaxis: {
+          type: 'datetime', // Set x-axis type to datetime
+          labels: {
+            formatter: function(val) {
+              return new Date(val).toLocaleDateString(); // Format the label as per your requirement
+            }
+          }
+        },
       }
     };
     if(!customerSaleGraph.isvisible)
