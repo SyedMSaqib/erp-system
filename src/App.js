@@ -28,13 +28,14 @@ import AuthState from "./context/auth/authState"
 import loadingGif from "./components/photos/loader.gif"
 import  { Toaster } from 'react-hot-toast';
 import Dashboard from "./components/dashboard/dashBoardCom"
+import SaleTrailState from "./context/saleTrail/saleTrailState"
+import ViewSaleTrails from "./components/saleTrails/viewSaleTrails"
 
 
 
 function App() {
   
   var authToken = null
-
   const [authenticated, setauthenticated] = useState(false)
   const [tokenUpdate, settokenUpdate] = useState(false)
   const [loading, setloading] = useState(false)
@@ -58,9 +59,9 @@ function App() {
 
   return (
     <div className="bg-slate-50  dark:bg-gray-900">
-
-    <AuthState>
       <Toaster/>
+      <SaleTrailState>
+    <AuthState>
       <CustomerState>
         <ProductState>
           <CustomerSaleState>
@@ -100,6 +101,7 @@ function App() {
                         <Route path="/sidebar" element={<SignIn />} />
                         <Route path="/signUp" element={<SignUp />} />
                         <Route path="/dashboard" element={<Dashboard/>} />
+                        <Route path="/saleTrail" element={<ViewSaleTrails/>} />
                         
                       </Routes>
                     </div>
@@ -112,7 +114,7 @@ function App() {
         </ProductState>
       </CustomerState>
     </AuthState>
-    
+    </SaleTrailState>
     </div>
   )
 }

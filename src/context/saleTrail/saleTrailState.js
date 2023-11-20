@@ -1,0 +1,50 @@
+import SaleTrailContext from "./saleTrailContext"
+import config from "../../config"
+import { useState } from "react"
+
+const SaleTrailState = (props) => {
+  const host = config.apiurl
+  const authToken = localStorage.getItem("authToken")
+  const [saleTrails, setsaleTrails] = useState()
+
+  const getAllSaleTrails = async () => {
+    const response = await fetch(`${host}/saleTrail/fetchAllSaleTrails`, {
+      method: "GET",
+
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": authToken,
+      },
+    })
+    const data = await response.json()
+    setsaleTrails(data)
+  }
+
+  const updateSaleTrail = async (id) => {
+    // Update customer sale API call
+    await fetch(`${host}/saleTrail/addSaleTrail/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": authToken
+      },
+     
+    });
+  }
+
+
+
+  return (
+    <SaleTrailContext.Provider
+      value={{
+        saleTrails,
+        getAllSaleTrails,
+        updateSaleTrail
+        
+      }}
+    >
+      {props.children}
+    </SaleTrailContext.Provider>
+  )
+}
+export default SaleTrailState
