@@ -36,3 +36,6 @@
     transform: rotate(360deg);
   }
 }
+.filter-invert {
+  filter: invert(1); /* 1 inverts the colors, 0 leaves them unchanged */
+}

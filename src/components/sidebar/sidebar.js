@@ -121,13 +121,14 @@ export default function Sidebar() {
   }
 
   return (
-    <div className="w-60 fixed dark:bg-gray-900 ">
+    <div className="w-60 fixed dark:bg-gray-950 ">
       <div className="flex">
-        <div className=" flex flex-col h-screen p-3 bg-slate-100 dark:bg-gray-900 dark:border-gray-800  text-gray shadow-xl z-[999] w-60 border border-slate-200">
+        <div className=" flex flex-col h-screen p-3 bg-slate-100 dark:bg-gray-950 dark:border-gray-800  text-gray shadow-xl z-[999] w-60 border border-slate-200">
           <div className="space-y-3">
             <div className="flex items-center">
-              <img className="ml-10 w-36 py-10" src={Saslogo} alt="Logo" />
-            </div>
+              {darkMode?
+      <img className="ml-10 w-36 py-10 filter-invert" src={Saslogo} alt="Logo" />:<img className="ml-10 w-36 py-10 " src={Saslogo} alt="Logo" />}
+    </div>
             
             <button className="w-8 hover:cursor-pointer" onClick={()=>toggleMode()}>
              {!darkMode?<Sun/>:
@@ -151,7 +152,7 @@ export default function Sidebar() {
                     {tab.subTabs && openTab === tab.key && (
                       <ul className="pl-6 space-y-2 shadow text-gray-600 bg-gray-100 dark:bg-gray-900 dark:border-gray-800 dark:text-gray-400 border">
                         {tab.subTabs.map((subTab, index) => (
-                          <li key={subTab.key} className={`${index !== 0 ? " border-t border-solid w-40" : ""}`}>
+                          <li key={subTab.key} className={`${index !== 0 ? " border-t border-solid border-t-gray-500 w-40" : ""}`}>
                             <Link to={subTab.path} className=" flex items-center p-2 space-x-3 rounded-md">
                               <span className=" font-semibold hover:text-black dark:hover:text-white ">{subTab.name}</span>
                               
@@ -174,12 +175,12 @@ export default function Sidebar() {
                 <LoggedInUser />
               )}
               <div className="">
-                <div className="font-semibold text-sm text-gray-600 ">{nameFromStorage.toUpperCase()}</div>
+                <div className="font-semibold text-sm dark:text-gray-400 text-gray-600 ">{nameFromStorage.toUpperCase()}</div>
               </div>
             </div>
             <div>
               <div onClick={logout} className="cursor-pointer flex pt-10 space-x-2">
-                <div className="font-semibold text-sm text-gray-600 ">LOGOUT</div>
+                <div className="font-semibold text-sm dark:text-gray-400 text-gray-600 ">LOGOUT</div>
                 <div>
                   <LogoutUser />
                 </div>

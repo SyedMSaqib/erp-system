@@ -14,38 +14,40 @@ const ViewCustomer = () => {
     setCustomerId(customer._id)
     setupdateFormValues({ name: customer.name, email: customer.email, phone: customer.phone })
   }
-  const Onclickdelete=(customerId)=>
-  {
+  const Onclickdelete = (customerId) => {
     deleteCustomer(customerId)
     toast.success("Customer Deleted")
   }
 
   return (
-    <div className="flex justify-center items-center dark:bg-gray-800 " >
-    <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg dark:text-gray-400">Customers</div>
+    <div className="flex justify-center items-center dark:bg-gray-900 ">
+      <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg dark:text-gray-300">Customers</div>
       <div className="overflow-auto shadow-lg rounded-xl border border-gray-200 dark:border-gray-600  m-5 mt-10 ml-64 ">
-        <table className="w-full border-collapse bg-white text-left text-sm text-gray-500 dark:bg-gray-900">
-          <thead className="bg-gray-50">
+        <table className="w-full border-collapse bg-white text-left text-sm text-gray-500 dark:bg-gray-950">
+          <thead className="bg-gray-50 dark:bg-gray-950 dark:text-gray-400">
             <tr>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-6 py-4 font-medium text-gray-900 dark:text-gray-400">
                 No
               </th>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-6 py-4 font-medium text-gray-900 dark:text-gray-400">
                 Name
               </th>
-              <th scope="col" className="px-12 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-12 py-4 font-medium text-gray-900 dark:text-gray-400">
                 Phone
               </th>
-              <th scope="col" className="px-20 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-20 py-4 font-medium text-gray-900 dark:text-gray-400">
                 Id
               </th>
-              <th scope="col" className=" py-4 font-medium text-gray-900"></th>
+              <th scope="col" className=" py-4 font-medium text-gray-900 dark:text-gray-400"></th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-            {customer.map((customerItem,index) => (
-               <tr className={`transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-gray-100 `} key={customerItem._id}>
-                <td className="px-6 py-4">{index+1}</td>
+          <tbody className="divide-y divide-gray-100 dark:divide-gray-600 border-t border-gray-100 dark:border-gray-900">
+            {customer.map((customerItem, index) => (
+              <tr
+                className={`transition-colors ${index % 2 === 0 ? "bg-white dark:bg-gray-950" : "dark:bg-gray-950 bg-gray-50 "} hover:bg-gray-100 dark:hover:bg-gray-800 `}
+                key={customerItem._id}
+              >
+                <td className="px-6 py-4">{index + 1}</td>
                 <td className="flex gap-3 px-6 py-4 font-normal text-gray-900">
                   <div className="text-sm flex">
                     <div>
@@ -55,13 +57,12 @@ const ViewCustomer = () => {
                   </div>
                 </td>
                 <td className=" px-12 py-4">
-                  <span className=" inline-flex items-center gap-1  bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
-                    {/* <span className=" h-1.5 w-1.5 rounded-full bg-green-600"></span> */}
+                  <span className=" inline-flex items-center gap-1 dark:bg-green-50/5 bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
                     {customerItem.phone}
                   </span>
                 </td>
                 <td className=" px-12 py-4">
-                  <span className=" inline-flex items-center gap-1  bg-sky-50 px-2 py-1 text-xs font-semibold text-sky-600">
+                  <span className=" inline-flex items-center gap-1 dark: bg-sky-50 dark:bg-sky-50/5 px-2 py-1 text-xs font-semibold text-sky-600">
                     {customerItem._id}
                   </span>
                   {
@@ -111,23 +112,23 @@ const ViewCustomer = () => {
                       to={`/updateCustomers`}
                       onClick={() => updateCustomer(customerItem)}
                     >
-                       <svg
-                          fill="#000000"
-                          width="25px"
-                          height="25px"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="icon flat-color"
-                        >
-                          <path
-                            d="M19,2a1,1,0,0,0-1,1V5.33A9,9,0,0,0,3,12a1,1,0,0,0,2,0A7,7,0,0,1,16.86,7H14a1,1,0,0,0,0,2h5a1,1,0,0,0,1-1V3A1,1,0,0,0,19,2Z"
-                            fill="rgb(0, 0, 0)"
-                          ></path>
-                          <path
-                            d="M20,11a1,1,0,0,0-1,1A7,7,0,0,1,7.11,17H10a1,1,0,0,0,0-2H5a1,1,0,0,0-1,1v5a1,1,0,0,0,2,0V18.67A9,9,0,0,0,21,12,1,1,0,0,0,20,11Z"
-                            fill="rgb(112, 128, 144)"
-                          ></path>
-                        </svg>
+                      <svg
+                        fill="#000000"
+                        width="25px"
+                        height="25px"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="icon flat-color"
+                      >
+                        <path
+                          d="M19,2a1,1,0,0,0-1,1V5.33A9,9,0,0,0,3,12a1,1,0,0,0,2,0A7,7,0,0,1,16.86,7H14a1,1,0,0,0,0,2h5a1,1,0,0,0,1-1V3A1,1,0,0,0,19,2Z"
+                          fill="rgb(0, 0, 0)"
+                        ></path>
+                        <path
+                          d="M20,11a1,1,0,0,0-1,1A7,7,0,0,1,7.11,17H10a1,1,0,0,0,0-2H5a1,1,0,0,0-1,1v5a1,1,0,0,0,2,0V18.67A9,9,0,0,0,21,12,1,1,0,0,0,20,11Z"
+                          fill="rgb(112, 128, 144)"
+                        ></path>
+                      </svg>
                     </Link>
                   </div>
                 </td>

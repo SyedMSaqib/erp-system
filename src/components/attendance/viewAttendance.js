@@ -19,31 +19,31 @@ const ViewAttendance = () => {
   });
 
   return (
-    <div className="flex justify-center items-center  " >
-      <div className="overflow-auto rounded-lg border border-gray-200 shadow-md m-5 ml-64">
+    <div className="flex justify-center items-center dark:bg-gray-900  " >
+      <div className="overflow-auto rounded-lg border border-gray-200 dark:border-gray-600 shadow-md m-5 ml-64">
         <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
-          <thead className="bg-gray-50">
+          <thead className="bg-gray-50 dark:bg-gray-950 ">
             <tr>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-6 py-4 font-medium text-gray-900 dark:text-gray-300">
                 No
               </th>
-              <th scope="col" className="px-20 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-20 py-4 font-medium text-gray-900 dark:text-gray-300">
                 Employee Name
               </th>
-              <th scope="col" className="px-20 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-20 py-4 font-medium text-gray-900 dark:text-gray-300">
                 Attendance
               </th>
-              <th scope="col" className="px-20 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-20 py-4 font-medium text-gray-900 dark:text-gray-300">
                 Date
               </th>
-              <th scope="col" className="px-20 py-4 font-medium text-gray-900"></th>
+              <th scope="col" className="px-20 py-4 font-medium text-gray-900 dark:text-gray-300"></th>
             </tr>
           </thead>
           
-          <tbody className="divide-y divide-gray-100 border-t border-gray-100">
+          <tbody className="divide-y divide-gray-100 dark:divide-gray-600 border-t border-gray-100 dark:border-gray-600">
             {filteredAttendance.map((attendance,index) => (
                 
-              <tr className={`transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-gray-100 `}  key={attendance._id}>
+              <tr className={`transition-colors ${index % 2 === 0 ? 'bg-white dark:bg-gray-950' : 'bg-gray-50 dark:bg-gray-950'} hover:bg-gray-100 hover:dark:bg-gray-800 `}  key={attendance._id}>
                 <td className="px-6 py-4">
                   {index+1}
                 </td>
@@ -53,8 +53,8 @@ const ViewAttendance = () => {
                   </div>
                 </td>
                 <td className="px-20 py-4">
-                  <span className={`inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold ${attendance.attendance ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-600'}`}>
-                    <span className={` ${attendance.attendance ? 'bg-green-600' : 'bg-red-600'}`}></span>
+                  <span className={`inline-flex items-center gap-1 w-16  px-2 py-1 text-xs font-semibold ${attendance.attendance ? 'bg-green-50 dark:bg-green-50/5 text-green-600' : 'bg-red-50 dark:bg-red-50/5 text-red-600'}`}>
+                    <span className={` ${attendance.attendance ? 'bg-green-600 dark:bg-green-600/5' : 'bg-red-600'}`}></span>
                     {attendance.attendance ? 'Present' : 'Absent'}
                   </span>
                 </td>

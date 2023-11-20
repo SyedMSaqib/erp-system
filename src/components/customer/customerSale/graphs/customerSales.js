@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import customerSaleContext from '../../../../context/customerSale/customerSaleContext';
-import { isVisible } from '@testing-library/user-event/dist/utils';
+
 
 const CustomerSales = () => {
   const { customerSale, getAllcustomersSales, customerSaleGraph, setcustomerSaleGraph } = useContext(customerSaleContext);
@@ -20,14 +20,14 @@ const CustomerSales = () => {
       {
         name: 'Customer Sales',
         data: filteredCustomerSales.map((sale, index) => ({
-          x: index + 1, // Incremental sale number based on the index
+          x: index + 1, 
           y: sale.quantity,
         })),
       },
     ],
     options: {
       xaxis: {
-        type: 'category', // Set x-axis type to category for sale numbers
+        type: 'Sale Number',
       },
     },
   };

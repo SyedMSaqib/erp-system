@@ -25,32 +25,32 @@ const ViewEmployee = () => {
   };
 
   return (
-    <div className="flex justify-center items-center  " >
-    <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg">Employees</div>
-      <div className="overflow-auto rounded-xl border border-gray-200 shadow-md m-5 mt-10 ml-64 ">
-        <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
-          <thead className="bg-gray-50">
+    <div className="flex justify-center items-center dark:bg-gray-900 " >
+    <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg dark:text-gray-300">Employees</div>
+      <div className="overflow-auto rounded-xl border border-gray-200 shadow-md m-5 mt-10 ml-64 dark:border-gray-600">
+        <table className="w-full border-collapse dark:bg-gray-950 dark:border-gray-600 bg-white text-left text-sm text-gray-500 ">
+          <thead className="bg-gray-50 border dark:bg-gray-950 dark:border-gray-600">
             <tr>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-6 py-4 font-medium text-gray-900 dark:text-gray-400">
                 No
               </th>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-6 py-4 font-medium text-gray-900 dark:text-gray-400">
                 Name
               </th>
-              <th scope="col" className="px-12 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-12 py-4 font-medium text-gray-900 dark:text-gray-400">
                 Phone
               </th>
-              <th scope="col" className="px-20 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-20 py-4 font-medium text-gray-900 dark:text-gray-400">
                 Id
               </th>
-              <th scope="col" className=" py-4 font-medium text-gray-900"></th>
+              <th scope="col" className=" py-4 font-medium text-gray-900 dark:text-gray-400"></th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100 border-t border-gray-100">
+          <tbody className="divide-y divide-gray-100 dark:divide-gray-600 border-t border-gray-100 dark:text-gray-400">
             {employees.map((employee,index) => (
-              <tr className="hover:bg-gray-50" key={employee._id}>
+              <tr className="hover:bg-gray-50 dark:hover:bg-gray-800" key={employee._id}>
                 <td className="px-5 py-4">{index+1}</td>
-                <td className="flex gap-3 px-6 py-4 font-normal text-gray-900">
+                <td className="flex gap-3 px-6 py-4 font-normal text-gray-900 dark:text-gray-400">
                   <div className="text-sm">
                     <div className="font-medium text-gray-700">
                       {employee.name}
@@ -59,12 +59,12 @@ const ViewEmployee = () => {
                   </div>
                 </td>
                 <td className=" px-12 py-4">
-                  <span className=" inline-flex items-center gap-1  bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
+                  <span className=" inline-flex items-center gap-1  bg-green-50 dark:bg-green-50/5 px-2 py-1 text-xs font-semibold text-green-600">
                     {employee.phone}
                   </span>
                 </td>
                 <td className=" px-12 py-4">
-                  <span className=" inline-flex items-center gap-1  bg-sky-50 px-2 py-1 text-xs font-semibold text-sky-600">
+                  <span className=" inline-flex items-center gap-1  bg-sky-50 dark:bg-sky-50/5 px-2 py-1 text-xs font-semibold text-sky-600">
                   {employee._id}
                   </span></td>
                 <td className="px-6 py-4">
