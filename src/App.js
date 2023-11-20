@@ -58,6 +58,7 @@ function App() {
 
   return (
     <div className="bg-slate-50  dark:bg-gray-900">
+
     <AuthState>
       <Toaster/>
       <CustomerState>
@@ -111,6 +112,7 @@ function App() {
         </ProductState>
       </CustomerState>
     </AuthState>
+    
     </div>
   )
 }
