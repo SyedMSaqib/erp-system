@@ -13,24 +13,26 @@ const salesTrailSchema = new Schema({
     ref: "customer",
     required: true,
   },
+  customerName: {
+    type: String,
+    ref: "customer",
+    required: true,
+  },
   saleId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "sales",
     required: true,
-},
-  paid:{
-    type:Boolean,
-    default:false,
-    required:true
-    
+  },
+  paid: {
+    type: Boolean,
+    default: false,
+    required: true,
   },
 
-  
   date: {
     type: Date,
     default: Date.now,
   },
- 
 })
 
 module.exports = mongoose.model("salesTrail", salesTrailSchema)
