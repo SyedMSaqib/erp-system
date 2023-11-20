@@ -5,8 +5,9 @@ import LoggedInUser from "../sidebar/logos/userSvgLogo"
 import LogoutUser from "../sidebar/logos/logout"
 import Saqib from "../sidebar/logos/saqib.jpg"
 import authContext from "../../context/auth/authContext"
-import Sun from "./logos/sun"
-import Moon from "./logos/Moon"
+import Sun1 from "./logos/sun1.json"
+import Moon1 from "./logos/moon2.json"
+import Lottie from "lottie-react"
 
 export default function Sidebar() {
   
@@ -134,18 +135,24 @@ export default function Sidebar() {
   }
 
   return (
-    <div className="w-60 fixed dark:bg-gray-950 ">
+    <div className="w-60 fixed dark:bg-gray-950 overflow-auto ">
       <div className="flex">
+        
         <div className=" flex flex-col h-screen p-3 bg-slate-100 dark:bg-gray-950 dark:border-gray-800  text-gray shadow-xl z-[999] w-60 border border-slate-200">
           <div className="space-y-3">
             <div className="flex items-center">
               {darkMode?
       <img className="ml-10 w-36 py-10 filter-invert" src={Saslogo} alt="Logo" />:<img className="ml-10 w-36 py-10 " src={Saslogo} alt="Logo" />}
+      <div className="absolute mb-28">
+
+      <div className=" hover:cursor-pointer ml-40  transition-color duration-300 " onClick={() => toggleMode()}>
+  {!darkMode ? <Lottie animationData={Sun1}  loop={false} style={{ width: '100px', height: '100px' }} />:  <div className="ml-5 mb-3"><Lottie animationData={Moon1}  loop={false} style={{ width: '50px', height: '50px' }} /></div>}
+  
+</div>
+      </div>
     </div>
             
-    <button className="w-8 hover:cursor-pointer ml-44 transition-color duration-300" onClick={() => toggleMode()}>
-  {!darkMode ? <Sun /> : <Moon />}
-</button>
+   
 
             <div className="flex-1 ">
               <ul className="pt-2 pb-4 space-y-1 text-sm">
@@ -159,11 +166,11 @@ export default function Sidebar() {
 
                 {data.map((tab) => (
                   <li key={tab.key} onClick={() => toggleTab(tab.key)}>
-                    <div className="dark:bg-gray-900  dark:text-gray-400 rounded-lg shadow-lg pt-2 max-w-xs transition  ease-in-out hover:scale-100 cursor-pointer h-10 bg-gray-100 border border-slate-300 dark:border-gray-800 ">
+                    <div className="dark:bg-gray-900  dark:text-gray-400 rounded-lg shadow-lg pt-2 max-w-xs transition  ease-in-out hover:scale-100 cursor-pointer h-10 bg-gray-100 border border-slate-300 dark:border-gray-800">
                       <span className="pl-5 text-gray-600 font-semibold dark:text-gray-400">{tab.name}</span>
                     </div>
                     {tab.subTabs && openTab === tab.key && (
-                      <ul className="pl-6 space-y-2 shadow text-gray-600 bg-gray-100 dark:bg-gray-900 dark:border-gray-800 dark:text-gray-400 border">
+                      <ul className="pl-6 space-y-2 shadow text-gray-600 bg-gray-100 dark:bg-gray-900 dark:border-gray-800 dark:text-gray-400 border rounded-md mt-1">
                         {tab.subTabs.map((subTab, index) => (
                           <li key={subTab.key} className={`${index !== 0 ? " border-t border-solid border-t-gray-500 w-40" : ""}`}>
                             <Link to={subTab.path} className=" flex items-center p-2 space-x-3 rounded-md">

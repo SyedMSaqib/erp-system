@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, {  useEffect, useState } from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import "./App.css"
 import Sidebar from "./components/sidebar/sidebar"
