@@ -49,22 +49,22 @@ const ViewCustomer = () => {
                 className={`transition-colors ${index % 2 === 0 ? "bg-white dark:bg-gray-950" : "dark:bg-gray-950 bg-gray-50 "} hover:bg-gray-100 dark:hover:bg-gray-800 `}
                 key={customerItem._id}
               >
-                <td className="px-6 py-4">{index + 1}</td>
+                <td className="px-6 py-4 dark:text-gray-200">{index + 1}</td>
                 <td className="flex gap-3 px-6 py-4 font-normal text-gray-900">
                   <div className="text-sm flex">
                     <div>
                       <div className="font-medium text-gray-700">{customerItem.name}</div>
-                      <div className="text-gray-400">{customerItem.email}</div>
+                      <div className="text-gray-400 ">{customerItem.email}</div>
                     </div>
                   </div>
                 </td>
                 <td className=" px-12 py-4">
-                  <span className=" inline-flex items-center gap-1 dark:bg-green-50/5 bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
+                  <span className=" inline-flex items-center gap-1 dark:bg-green-50/5 bg-green-50 px-2 py-1 text-xs font-semibold dark:text-green-300 text-green-600 ">
                     {customerItem.phone}
                   </span>
                 </td>
                 <td className=" px-12 py-4">
-                  <span className=" inline-flex items-center gap-1 dark: bg-sky-50 dark:bg-sky-50/5 px-2 py-1 text-xs font-semibold text-sky-600">
+                  <span className=" inline-flex items-center gap-1  bg-sky-50 dark:bg-sky-50/5 px-2 py-1 text-xs font-semibold dark:text-sky-300 text-sky-600 ">
                     {customerItem._id}
                   </span>
                   {
