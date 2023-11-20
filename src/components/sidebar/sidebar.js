@@ -9,6 +9,17 @@ import Sun from "./logos/sun"
 import Moon from "./logos/Moon"
 
 export default function Sidebar() {
+  
+  useEffect(() => {
+    const storedThemeMode = localStorage.getItem("DarkTheme");
+    if (storedThemeMode) {
+      setdarkMode(true);
+      document.documentElement.classList.add('dark')
+    }
+    console.log(storedThemeMode);
+  }, []);
+  
+  
   const { UserName } = useContext(authContext)
   var userNameLocal = localStorage.getItem("name")
   if (userNameLocal === null) localStorage.setItem("name", UserName)
@@ -26,11 +37,13 @@ export default function Sidebar() {
   {
     if(darkMode===false)
   {  setdarkMode(true)
+    localStorage.setItem("DarkTheme", true)
     document.documentElement.classList.add('dark')
   }
   else{
   setdarkMode(false)
   document.documentElement.classList.remove('dark')
+  localStorage.removeItem("DarkTheme")
   }
   }
 
