@@ -26,7 +26,7 @@ const ViewSaleTrails = () => {
   }
 
 
-  const Updatepaid = async (id,index) => {
+  const Updatepaid = async (id) => {
     try {
       await updateSaleTrail(id)
       toast.success("Sale Paid")
@@ -62,7 +62,7 @@ const ViewSaleTrails = () => {
                 <th scope="col" className="px-3 py-4 font-medium text-gray-900 dark:text-gray-400">
                   Status
                 </th>
-                <th scope="col" className="px-3 py-4 font-medium text-gray-900 dark:text-gray-400">
+                <th scope="col" className="px-8 py-4 font-medium text-gray-900 dark:text-gray-400">
                   Action
                 </th>
                 <th scope="col" className="px-3 py-4 font-medium text-gray-900 dark:text-gray-400">
@@ -107,7 +107,7 @@ const ViewSaleTrails = () => {
                     {!saleTrails.paid ? (
                       <button
                         onClick={() => {
-                          Updatepaid(saleTrails._id,index)
+                          Updatepaid(saleTrails._id)
                         }}
                         className="border border-black w-20 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-200 bg-gray-300 text-gray-900"
                       >
