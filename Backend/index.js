@@ -9,6 +9,7 @@ const customer = require('./routes/customer')
 const customerSale = require('./routes/customerSales')
 const employee = require('./routes/employee')
 const attendance = require('./routes/attendance')
+const salesTrails = require('./routes/saleTrials')
 
 
 
@@ -22,6 +23,7 @@ app.use('/customer',customer)
 app.use('/customerSale',customerSale)
 app.use('/employees',employee)
 app.use('/attendance',attendance)
+app.use('/saleTrail',salesTrails)
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`)
