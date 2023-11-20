@@ -35,7 +35,7 @@ export default function Sidebar() {
   const [darkMode, setdarkMode] = useState(false)
   const toggleMode=()=>
   {
-    if(darkMode===false)
+    if(!darkMode)
   {  setdarkMode(true)
     localStorage.setItem("DarkTheme", true)
     document.documentElement.classList.add('dark')
@@ -143,10 +143,10 @@ export default function Sidebar() {
       <img className="ml-10 w-36 py-10 filter-invert" src={Saslogo} alt="Logo" />:<img className="ml-10 w-36 py-10 " src={Saslogo} alt="Logo" />}
     </div>
             
-            <button className="w-8 hover:cursor-pointer" onClick={()=>toggleMode()}>
-             {!darkMode?<Sun/>:
-            <Moon/>}
-            </button>
+    <button className="w-8 hover:cursor-pointer ml-44 transition-color duration-300" onClick={() => toggleMode()}>
+  {!darkMode ? <Sun /> : <Moon />}
+</button>
+
             <div className="flex-1 ">
               <ul className="pt-2 pb-4 space-y-1 text-sm">
                 <Link to={"/dashboard"}>

@@ -69,7 +69,7 @@ const LineChart = () => {
     <div style={{ position: 'relative' }}>
       <ReactApexChart options={chartOptions} series={chartSeries} type="bar" height={200} width={350} />
       <div style={{ position: 'absolute', top: '200px', left: '160px', zIndex: '999' }}>
-        <p className='font-semibold text-xs'>Attendance</p>
+        <p className='font-semibold text-xs dark:text-gray-400'>Attendance</p>
       </div>
     </div>
   );

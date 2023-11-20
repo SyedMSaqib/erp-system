@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react"
 import customerSaleContext from "../../../context/customerSale/customerSaleContext"
 import ConfirmDeleteSale from "./Modals/confirmDeleteSale"
 import CustomerSales from "./graphs/customerSales"
+import Footer from "../../loginSignup/footer"
 
 const ViewCustomerSale = () => {
   const {
@@ -37,10 +38,10 @@ const ViewCustomerSale = () => {
   }
 
   return (
-    <>
+    <div className="dark:bg-gray-900">
       <CustomerSales />
       <ConfirmDeleteSale />
-      <div className="flex justify-center items-center dark:bg-gray-900 ">
+      <div className="flex justify-center items-center  ">
         <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg dark:text-gray-300">Sales</div>
         <div className="overflow-auto rounded-lg border dark:border-gray-600 border-gray-200 shadow-md m-5 mt-10 ml-64 ">
           <table className=" border-collapse bg-white text-left text-sm text-gray-500 ">
@@ -139,7 +140,11 @@ const ViewCustomerSale = () => {
           </table>
         </div>
       </div>
-    </>
+      <div className='ml-52'>
+  <Footer/>
+</div>
+</div>
+    
   )
 }
 

@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react"
 import customerContext from "../../context/customer/customerContext"
 import { Link } from "react-router-dom"
 import toast from "react-hot-toast"
+import Footer from "../loginSignup/footer"
 
 const ViewCustomer = () => {
   const { customer, getAllcustomers, deleteCustomer, setCustomerId, setupdateFormValues } = useContext(customerContext)
@@ -20,7 +21,8 @@ const ViewCustomer = () => {
   }
 
   return (
-    <div className="flex justify-center items-center dark:bg-gray-900 ">
+    <div className="dark:bg-gray-900">
+    <div className="flex justify-center items-center  ">
       <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg dark:text-gray-300">Customers</div>
       <div className="overflow-auto shadow-lg rounded-xl border border-gray-200 dark:border-gray-600  m-5 mt-10 ml-64 ">
         <table className="w-full border-collapse bg-white text-left text-sm text-gray-500 dark:bg-gray-950">
@@ -138,6 +140,10 @@ const ViewCustomer = () => {
         </table>
       </div>
     </div>
+    <div className='ml-52'>
+  <Footer/>
+</div>
+</div>
   )
 }
 

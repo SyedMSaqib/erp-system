@@ -5,10 +5,12 @@ import Scatter from './scatter';
 import MixedChart from './MixedChart';
 import RangeArea from './RangeArea';
 import LineChart from './lineChart';
+import Footer from '../loginSignup/footer';
 
 
 const Dashboard = () => {
   return (
+    <div className="">
     <div className='pt-5 '>
     <div className='ml-64 bg-slate-100 dark:bg-gray-950 dark:border-gray-600 grid grid-cols-3 border border-slate-200 shadow-2xl rounded-xl w-[68rem]   '>
     <div className='mt-16'>
@@ -30,7 +32,10 @@ const Dashboard = () => {
     <LineChart/>
     </div>
     </div>
-   
+    <div className='ml-52'>
+  <Footer/>
+</div>
+</div>
       {/* <div className='sm:grid sm:grid-rows-1 sm:overflow-auto sm:ml-64 lg:ml-0'>
     <div className='sm:flex sm:justify-between sm:ml-60 '>
       <div className='w-1/2 mt-20'>

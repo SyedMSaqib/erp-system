@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react"
 import ProductContext from "../../context/product/productContext"
 import { Link } from "react-router-dom"
 import toast from "react-hot-toast"
+import Footer from "../loginSignup/footer"
 
 const ViewProduct = () => {
   const { product, getAllProducts, deleteProduct, setproductId, setupdateFormValues } = useContext(ProductContext)
@@ -27,7 +28,8 @@ const ViewProduct = () => {
     toast.success("Product Deleted")
   }
   return (
-    <div className="flex justify-center items-center overflow-auto dark:bg-gray-900" >
+    <div className="grid grid-cols-1  dark:bg-gray-900">
+    <div className="flex justify-center items-center overflow-auto" >
     <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg dark:text-gray-300">Products</div>
       <div className="overflow-auto  border border-gray-200  m-5 mt-10 ml-64 shadow-lg rounded-xl   dark:border-gray-600 ">
         
@@ -119,8 +121,14 @@ const ViewProduct = () => {
             ))}
           </tbody>
         </table>
+      
       </div>
+    
     </div>
+    <div className='ml-52'>
+  <Footer/>
+</div>
+</div>
     
   )
 }

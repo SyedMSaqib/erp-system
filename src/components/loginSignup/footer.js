@@ -73,11 +73,10 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="w-full bg-transparent  text-center text-gray-500">
-        © 2023 Copyright-All rights reserved
+      <div className="w-full bg-transparent  text-center text-gray-500 text-sm">
+      © 2023. All Rights Reserved.
         <a
-          className="text-neutral-800 dark:text-neutral-400 pl-3"
-          href="https://tw-elements.com/"
+          className="text-neutral-800 dark:text-neutral-400 pl-1 text-xs"
         >
           SAS ERP
         </a>

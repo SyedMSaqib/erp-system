@@ -69,7 +69,7 @@ const PieChart = () => {
     <div style={{ position: 'relative' }}>
       <ReactApexChart options={chart.options} series={chart.series} type="pie" height={200} width={350} />
       <div style={{ position: 'absolute', top: '220px', left: '100px', zIndex: '999' }}>
-        <p className='font-semibold text-xs'>Available Stock Percentage</p>
+        <p className='font-semibold text-xs dark:text-gray-400'>Available Stock Percentage</p>
       </div>
     </div>
   );
