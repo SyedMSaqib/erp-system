@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTypewriter,Cursor } from 'react-simple-typewriter'
 
 const Footer = () => {
+  const [text] = useTypewriter({
+    words: ['SAS Erp', 'SAQIB', 'ABDULLAH', 'SHAMEER'],
+    loop: 0
+  })
   return (
     <footer className="flex flex-col items-center bg-transparent text-center text-black dark:bg-transparent dark:text-black">
       <div className="container pt-9">
@@ -78,7 +83,8 @@ const Footer = () => {
         <a
           className="text-neutral-800 dark:text-neutral-400 pl-1 text-xs"
         >
-          SAS ERP
+          <span>{text}</span>
+          <Cursor cursorStyle={"<"}/>
         </a>
       </div>
     </footer>
