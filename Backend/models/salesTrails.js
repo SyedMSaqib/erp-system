@@ -20,7 +20,9 @@ const salesTrailSchema = new Schema({
 },
   paid:{
     type:Boolean,
-    defualt:false
+    default:false,
+    required:true
+    
   },
 
   
