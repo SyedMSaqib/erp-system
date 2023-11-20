@@ -61,12 +61,12 @@ const ViewEmployee = () => {
                   </div>
                 </td>
                 <td className=" px-12 py-4">
-                  <span className=" inline-flex items-center gap-1  bg-green-50 dark:bg-green-50/5 px-2 py-1 text-xs font-semibold text-green-600">
+                  <span className=" inline-flex items-center gap-1  bg-green-50 dark:bg-green-50/5 px-2 py-1 text-xs font-semibold dark:text-green-300 text-green-600">
                     {employee.phone}
                   </span>
                 </td>
                 <td className=" px-12 py-4">
-                  <span className=" inline-flex items-center gap-1  bg-sky-50 dark:bg-sky-50/5 px-2 py-1 text-xs font-semibold text-sky-600">
+                  <span className=" inline-flex items-center gap-1  bg-sky-50 dark:bg-sky-50/5 px-2 py-1 text-xs font-semibold dark:text-sky-200 text-sky-600">
                   {employee._id}
                   </span></td>
                 <td className="px-6 py-4">

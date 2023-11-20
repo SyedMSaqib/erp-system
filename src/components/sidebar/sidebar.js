@@ -65,61 +65,66 @@ export default function Sidebar() {
         {
           name: "Add Product",
           path: "/addProduct",
-          key: 5,
+          key: 3,
         },
       ],
     },
     {
       name: "Customers",
       path: "/customers",
-      key: 3,
+      key: 4,
       subTabs: [
         {
           name: "View Customers",
           path: "/viewCustomers",
-          key: 4,
+          key:5,
         },
         {
           name: "View Sales",
           path: "/viewCustomerSale",
-          key: 11,
+          key: 6,
+        },
+        {
+          name: "View Sales Trails",
+          path: "/ViewSalesTrail",
+          key: 6,
         },
         {
           name: "Add Customer",
           path: "/addCustomers",
-          key: 6,
+          key: 8,
         },
         {
           name: "Add Sale",
           path: "/AddCustomersSale",
-          key: 10,
+          key: 9,
         },
       ],
     },
     {
       name: "Employees",
       path: "/employees",
-      key: 7,
+      key: 10,
       subTabs: [
         {
           name: "Add Employees",
           path: "/addEmployee",
-          key: 9,
+          key:11,
         },
         {
           name: "Add Attendance",
           path: "/addAttendanceDate",
-          key: 13,
+          key: 12,
         },
         {
           name: "View Employees",
           path: "/viewEmployee",
-          key: 8,
+          key: 13,
         },
         {
           name: "View Attendance",
           path: "/attendanceDate",
-          key: 12,
+          key: 14,
         },
       ],
     },

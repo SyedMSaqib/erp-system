@@ -225,7 +225,7 @@ function App() {
                               element={<Dashboard />}
                             />
                             <Route
-                              path="/saleTrail"
+                              path="/ViewSalesTrail"
                               element={<ViewSaleTrails />}
                             />
                           </Routes>

@@ -10,7 +10,6 @@ const ViewCustomerSale = () => {
     getAllcustomersSales,
     setconfirmDeleteSaleId,
     setisVisibleConfirmDelete,
-    customerSaleGraph,
     setcustomerSaleGraph,
   } = useContext(customerSaleContext)
 
