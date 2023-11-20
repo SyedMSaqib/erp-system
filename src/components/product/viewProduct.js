@@ -27,41 +27,41 @@ const ViewProduct = () => {
     toast.success("Product Deleted")
   }
   return (
-    <div className="flex justify-center items-center overflow-auto   " >
-    <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg">Products</div>
-      <div className="overflow-auto  border border-gray-200  m-5 mt-10 ml-64 shadow-lg rounded-xl ">
+    <div className="flex justify-center items-center overflow-auto dark:bg-gray-800  " >
+    <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg dark:text-gray-300">Products</div>
+      <div className="overflow-auto  border border-gray-200  m-5 mt-10 ml-64 shadow-lg rounded-xl   dark:border-gray-600 ">
         
-        <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
-          <thead className="bg-gray-50">
+        <table className="w-full border-collapse  dark:bg-gray-900  bg-white text-left text-sm text-gray-500">
+          <thead className="bg-gray-50  dark:bg-gray-900  ">
             <tr>
-              <th scope="col" className="lg:px-6 sm:px-2 lg:py-4 sm:py-2 sm:w-5 font-medium text-gray-900">
+              <th scope="col" className="dark:text-gray-300 lg:px-6 sm:px-2 lg:py-4 sm:py-2 sm:w-5 font-medium text-gray-900">
                 No
               </th>
-              <th scope="col" className="lg:px-6 sm:px-2 lg:py-4 sm:py-2 sm:w-5 font-medium text-gray-900">
+              <th scope="col" className="dark:text-gray-300 lg:px-6 sm:px-2 lg:py-4 sm:py-2 sm:w-5 font-medium text-gray-900">
                 Name
               </th>
-              <th scope="col" className="lg:px-12 lg:py-4 font-medium text-gray-900">
+              <th scope="col" className="dark:text-gray-300 lg:px-12 lg:py-4 font-medium text-gray-900">
                 Description
               </th>
-              <th scope="col" className="lg:px-12 lg:py-4 font-medium text-gray-900">
+              <th scope="col" className="dark:text-gray-300 lg:px-12 lg:py-4 font-medium text-gray-900">
                 Category
               </th>
-              <th scope="col" className="lg:px-12 lg:py-4 font-medium text-gray-900">
+              <th scope="col" className="dark:text-gray-300 lg:px-12 lg:py-4 font-medium text-gray-900">
                 Price
               </th>
-              <th scope="col" className="lg:px-12 lg:py-4 font-medium text-gray-900">
+              <th scope="col" className="dark:text-gray-300 lg:px-12 lg:py-4 font-medium text-gray-900">
                 Quantity
               </th>
-              <th scope="col" className="lg:px-6 lg:py-4 font-medium text-gray-900"></th>
+              <th scope="col" className="dark:text-gray-300 lg:px-6 lg:py-4 font-medium text-gray-900"></th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100 border-t border-gray-100">
+          <tbody className="divide-y dark:border-gray-600 divide-gray-100 dark:divide-gray-600 border-t border-gray-100">
             {product.map((productItem,index) => (
-              <tr className={`transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-gray-100 `}  key={productItem._id}>
+              <tr className={`transition-colors ${index % 2 === 0 ? 'bg-white dark:bg-slate-800' : 'bg-gray-50 dark:bg-gray-800'} hover:bg-gray-100 dark:hover:bg-gray-900 `}  key={productItem._id}>
                  <td className="px-6 py-4">{index+1}</td>
-                <td className="flex gap-3 px-6 py-4 font-normal text-gray-900">
+                <td className="flex gap-3 px-6 py-4 font-normal text-gray-900 dark:text-white">
                   <div className="text-sm">
-                    <div className="font-medium text-gray-700">{productItem.name}</div>
+                    <div className="font-medium text-gray-700 dark:text-gray-400">{productItem.name}</div>
                   </div>
                 </td>
                 <td className="px-12 py-4">{productItem.description}</td>

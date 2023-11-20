@@ -21,10 +21,10 @@ const ViewCustomer = () => {
   }
 
   return (
-    <div className="flex justify-center items-center  " >
-    <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg">Customers</div>
-      <div className="overflow-auto shadow-lg rounded-xl border border-gray-200  m-5 mt-10 ml-64 ">
-        <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+    <div className="flex justify-center items-center dark:bg-gray-800 " >
+    <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg dark:text-gray-400">Customers</div>
+      <div className="overflow-auto shadow-lg rounded-xl border border-gray-200 dark:border-gray-600  m-5 mt-10 ml-64 ">
+        <table className="w-full border-collapse bg-white text-left text-sm text-gray-500 dark:bg-gray-900">
           <thead className="bg-gray-50">
             <tr>
               <th scope="col" className="px-6 py-4 font-medium text-gray-900">

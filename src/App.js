@@ -57,7 +57,7 @@ function App() {
   }, [tokenUpdate])
 
   return (
-    <div className="bg-slate-50">
+    <div className="bg-slate-50  dark:bg-gray-800 ">
     <AuthState>
       <Toaster/>
       <CustomerState>
