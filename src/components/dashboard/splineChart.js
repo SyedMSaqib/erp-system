@@ -10,7 +10,7 @@ const SplineChart = () => {
   }, []);
   useEffect(() => {
    
-    if (customerSale.length > 0) {
+    if (customerSale) {
       setChart(formatChartData());
     }
   }, [customerSale]);

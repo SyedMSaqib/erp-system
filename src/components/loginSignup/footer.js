@@ -4,7 +4,7 @@ import { useTypewriter,Cursor } from 'react-simple-typewriter'
 
 const Footer = () => {
   const [text] = useTypewriter({
-    words: ['SAS Erp', 'S', 'A', 'S','Erp'],
+    words: ['SAS Erp', 'SAQIB', 'ABDULLAH', 'SHAMEER','Erp'],
     loop: 0
   })
   return (
@@ -83,8 +83,8 @@ const Footer = () => {
         <a
           className="text-neutral-800 dark:text-neutral-400 pl-1 text-xs"
         >
-          <span>{text}</span>
-          <Cursor cursorStyle={"<"}/>
+          <span className='text-red-500 dark:text-green-300'>{text}</span>
+          <Cursor cursorColor='red' cursorStyle={"<"}/>
         </a>
       </div>
     </footer>
