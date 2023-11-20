@@ -44,6 +44,7 @@ router.post(
       await salesTrail.create({
         user:req.user.id,
         customerId: customerId,
+        customerName:customerName,
         saleId:newCustomersale.id
       })
       
