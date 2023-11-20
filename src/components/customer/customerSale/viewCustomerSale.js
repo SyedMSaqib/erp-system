@@ -96,19 +96,19 @@ const ViewCustomerSale = () => {
                       onClick={() => {
                         showGrahp(saleItem.customerId)
                       }}
-                      className=" inline-flex items-center gap-1  bg-cyan-50 dark:bg-cyan-50/5 px-2 py-1 text-xs font-semibold text-cyan-800 hover:cursor-pointer"
+                      className=" inline-flex items-center gap-1  bg-cyan-50 dark:bg-cyan-50/5 px-2 py-1 text-xs font-semibold dark:text-cyan-300 text-cyan-800 hover:cursor-pointer"
                     >
                       {saleItem.customerId}
                     </span>
                   </td>
                   <td className=" px-3 py-4">
-                    <span className=" inline-flex items-center gap-1  bg-sky-50 dark:bg-sky-50/5 px-2 py-1 text-xs font-semibold text-sky-600">
+                    <span className=" inline-flex items-center gap-1  bg-sky-50 dark:bg-sky-50/5 px-2 py-1 text-xs font-semibold dark:text-sky-300 text-sky-600">
                       {saleItem._id}
                     </span>
                   </td>
                   <td className="px-3 py-4">{saleItem.product}</td>
                   <td className=" px-5 py-4">
-                    <span className=" inline-flex items-center gap-1  bg-cyan-50 dark:bg-cyan-50/5 px-2 py-1 text-xs font-semibold text-cyan-800">
+                    <span className=" inline-flex items-center gap-1  bg-cyan-50 dark:bg-cyan-50/5 px-2 py-1 text-xs font-semibold dark:text-green-300 text-cyan-800">
                       {saleItem.productId}
                     </span>
                   </td>
