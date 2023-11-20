@@ -3,6 +3,7 @@ const router = express.Router()
 const validator = require("../middleware/validator")
 const customerSale = require("../models/sales")
 const Product=require("../models/product")
+const salesTrail=require("../models/salesTrails")
 
 const { check, validationResult } = require("express-validator")
 
@@ -29,6 +30,7 @@ router.post(
       productDetails.quantity -= quantity;
       await productDetails.save();
 
+      
 
       const newCustomersale = await customerSale.create({
         user: req.user.id,
@@ -38,6 +40,13 @@ router.post(
         customerName:customerName,
         productId:productId
       })
+
+      await salesTrail.create({
+        user:req.user.id,
+        customerId: customerId,
+        saleId:newCustomersale.id
+      })
+      
       res.json(newCustomersale)
     } catch (err) {
       res.status(500).json(err)
@@ -75,7 +84,12 @@ router.get("/fetchAllCustomerSale", validator, async (req, res) => {
       if (productDetails.user.toString() !== req.user.id) return res.status(404).send("Unauthorized user")
       
       const customerSaleDelete = await customerSale.findByIdAndDelete(id)
-  
+      const salesTrailRecord = await salesTrail.findOne({ saleId: id });
+      if (salesTrailRecord) {
+          // Perform actions related to salesTrail record, e.g., deletion
+          await salesTrail.findByIdAndDelete(salesTrailRecord._id);
+      }
+      console.log(id)
       res.json(customerSaleDelete)
     } catch (err) {
       res.json(`${err}`)
