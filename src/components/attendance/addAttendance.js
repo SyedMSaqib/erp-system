@@ -58,30 +58,30 @@ const AddAttendance = () => {
 }
 //
   return (
-    <div className="flex justify-center items-center w-screen sm:ml-48 lg:ml-0 " >
+    <div className="flex justify-center items-center w-screen sm:ml-48 lg:ml-0 dark:bg-gray-900 " >
     <div>
-      <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5 ml-72">
+      <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5 ml-72 dark:border-gray-600">
         <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
-          <thead className="bg-gray-50">
+          <thead className="bg-gray-50 dark:bg-gray-950 ">
             <tr>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-6 py-4 font-medium text-gray-900 dark:text-gray-300">
                 No
               </th>
-              <th scope="col" className="px-20 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-20 py-4 font-medium text-gray-900 dark:text-gray-300">
                 Employee Name
               </th>
-              <th scope="col" className="px-20 py-4 font-medium text-gray-900">
+              <th scope="col" className="px-20 py-4 font-medium text-gray-900 dark:text-gray-300">
                 Attendance
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100 border-t border-gray-100">
+          <tbody className="divide-y divide-gray-100 border-t border-gray-100 dark:divide-gray-600 dark:border-gray-600">
             {employees.map((employee, index) => (
-              <tr className="hover:bg-gray-50" key={index}>
-                <td className="flex gap-3 px-6 py-4 font-normal text-gray-900">
+              <tr className="hover:bg-gray-50 dark:bg-gray-950" key={index}>
+                <td className="flex gap-3 px-6 py-4 font-normal text-gray-900 dark:text-gray-400">
                   {index + 1}
                 </td>
-                <td className="px-20 py-4">{employee.name}</td>
+                <td className="px-20 py-4 dark:text-gray-400">{employee.name}</td>
                 <td>
                   <input
                     type="checkbox"
