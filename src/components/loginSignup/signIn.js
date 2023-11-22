@@ -130,7 +130,7 @@ else
           <h1 className="flex justify-center font-mono  text-sm  leading-tight tracking-tight text-gray-900 md:text-xl">
             SIGN IN
           </h1>
-          <form className="space-y-4 md:space-y-6" action="#">
+          <form className="space-y-4 md:space-y-6 w-60">
                     <div>
                         {validateEmail===false?<span className='text-red-700 block mb-2 text-sm font-medium'>Enter valid email!</span>:
                         !validatePassword?<span className='text-red-700 block mb-2 text-sm font-medium'>Password must be 8 character!</span>:""}
@@ -150,7 +150,7 @@ else
                               <label htmlFor="remember" className="text-gray-500">Remember me</label>
                             </div>
                         </div>
-                        <Link  className="text-sm font-medium text-primary-600 hover:underline pl-3">Forgot password?</Link>
+                        
                     </div>
                     <Link   onClick={onClick} type='submit' className="w-full text-black bg-slate-400 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-40">Sign in</Link>
                     <div   className="text-sm font-light text-gray-500">

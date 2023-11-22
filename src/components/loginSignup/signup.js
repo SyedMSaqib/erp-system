@@ -138,7 +138,7 @@ const SignUp = () => {
                 required=""
               />
             </div>
-            <form className="space-y-4" action="#">
+            <form className="space-y-4 w-60" >
               <div className="mb-4">
                 <label for="email" className="block mb-2 text-sm font-medium text-gray-900">
                   Your email
@@ -182,9 +182,7 @@ const SignUp = () => {
                     <label className="text-gray-500">Remember me</label>
                   </div>
                 </div>
-                <a href="#" className="text-sm font-medium text-primary-600 hover:underline pl-3">
-                  Forgot password?
-                </a>
+                
               </div>
               <button
                 onClick={onClick}

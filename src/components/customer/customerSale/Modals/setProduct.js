@@ -46,7 +46,7 @@ const SetProduct = () => {
               <tr onClick={()=>onClickModal(productItem)} className="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer" key={productItem._id}>
                 <td className="flex gap-3 px-6 py-4 font-normal text-gray-900">
                   <div className="text-sm">
-                    <div   className="font-medium text-gray-700">
+                    <div   className="font-medium text-gray-700 dark:text-gray-400">
                       {productItem.name}
                     </div>
                   </div>
