@@ -30,6 +30,10 @@ import { Toaster } from "react-hot-toast";
 import Dashboard from "./components/dashboard/dashBoardCom";
 import SaleTrailState from "./context/saleTrail/saleTrailState";
 import ViewSaleTrails from "./components/saleTrails/viewSaleTrails";
+import VendorState from "./context/vendor/vendorState";
+import AddVendor from "./components/vendor/addVendor";
+import UpdateVendor from "./components/vendor/updateVendor";
+import ViewVendors from "./components/vendor/viewVendors";
 
 function PrivateRoute({ element, authenticated }) {
   return authenticated ? element : <Navigate to="/signIn" />;
@@ -59,6 +63,7 @@ function App() {
 
   return (
     <div className="bg-slate-50  dark:bg-gray-900">
+      <VendorState>
       <SaleTrailState>
         <AuthState>
           <Toaster />
@@ -203,7 +208,34 @@ function App() {
                               path="/addAttendanceDate"
                               element={
                                 <PrivateRoute
-                                  element={<AddAttendanceDate />}
+                                  element={<AddAttendanceDate/>}
+                                  authenticated={authenticated}
+                                />
+                              }
+                            />
+                            <Route
+                              path="/addVendor"
+                              element={
+                                <PrivateRoute
+                                  element={<AddVendor/>}
+                                  authenticated={authenticated}
+                                />
+                              }
+                            />
+                            <Route
+                              path="/updateVendor"
+                              element={
+                                <PrivateRoute
+                                  element={<UpdateVendor/>}
+                                  authenticated={authenticated}
+                                />
+                              }
+                            />
+                            <Route
+                              path="/viewVendors"
+                              element={
+                                <PrivateRoute
+                                  element={<ViewVendors/>}
                                   authenticated={authenticated}
                                 />
                               }
@@ -226,7 +258,13 @@ function App() {
                             />
                             <Route
                               path="/ViewSalesTrail"
-                              element={<ViewSaleTrails />}
+                              element={
+                                <PrivateRoute
+                                  element={<ViewSaleTrails />}
+                                  authenticated={authenticated}
+                                />
+                              }
+                            
                             />
                           </Routes>
                         </div>
@@ -239,6 +277,7 @@ function App() {
           </CustomerState>
         </AuthState>
       </SaleTrailState>
+      </VendorState>
     </div>
   );
 }
