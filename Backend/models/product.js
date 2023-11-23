@@ -27,6 +27,14 @@ const productSchema = new Schema({
     type: String,
     required: true,
   },
+  vendor: {
+    type: String,
+    required: true,
+  },
+  vendorPrice: {
+    type: Number,
+    required: true,
+  },
   
   date: {
     type: Date,

@@ -12,6 +12,8 @@ router.post(
     check("category").isLength({ min: 3 }),
     check("quantity").isLength({ min: 1 }),
     check("price").isLength({ min: 1 }),
+    check("vendor").isLength({ min: 1 }),
+    check("vendorPrice").isLength({ min: 1 }),
   ],
   validator,
   async (req, res) => {
@@ -19,7 +21,7 @@ router.post(
     if (!result.isEmpty()) return res.json(result)
     try {
       if (req.user == null) return res.status(404).send("Invalid token, or empty")
-      const { name, description, category, price, quantity } = req.body
+      const { name, description, category, price, quantity,vendorPrice,vendor } = req.body
       const newProduct = await product.create({
         user: req.user.id,
         name: name,
@@ -27,6 +29,8 @@ router.post(
         category: category,
         price: price,
         quantity:quantity,
+        vendor: vendor,
+        vendorPrice: vendorPrice
       })
       res.json(newProduct)
     } catch (err) {
