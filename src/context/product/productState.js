@@ -35,7 +35,7 @@ const ProductState = (props) => {
       }
     
     
-      const addProduct=async(name,description,category,quantity,price)=>{
+      const addProduct=async(name,description,category,quantity,price,vendor,vendorPrice,vendorId)=>{
         
         const newProduct={
             name: name,
@@ -43,8 +43,9 @@ const ProductState = (props) => {
             category: category,
             price:price,
             quantity:quantity,
-            date: "2023-06-05T21:06:49.039Z",
-            __v: 0
+            vendor:vendor,
+            vendorPrice:vendorPrice,
+            vendorId:vendorId
           }
           setproduct(product.concat(newProduct))
         
@@ -58,12 +59,12 @@ const ProductState = (props) => {
                 "auth-token": authToken
                 
               },
-              body: JSON.stringify({name,category,description,quantity,price}),
+              body: JSON.stringify({name,category,description,quantity,price,vendor,vendorPrice,vendorId}),
             });
         
     }
 
-    const updateProduct=async(id,name,description,category,quantity,price)=>{
+    const updateProduct=async(id,name,description,category,quantity,price,vendor,vendorPrice,vendorId)=>{
           
       //Update product Api call
     
@@ -75,7 +76,7 @@ const ProductState = (props) => {
               "auth-token": authToken
               
             },
-            body: JSON.stringify({name,category,description,price,quantity}),
+            body: JSON.stringify({name,category,description,price,quantity,vendor,vendorPrice,vendorId}),
           });
       
   }

@@ -6,6 +6,10 @@ const productSchema = new Schema({
     type:mongoose.Schema.Types.ObjectId,
     ref: "user"
   },
+  vendorId:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref: "vendor"
+  },
   
     name: {
     type: String,

@@ -17,57 +17,90 @@ const AddProduct = () => {
     category: "",
     description: "",
     quantity: "",
-    price: ""
+    price: "",
+    vendor:"",
+    vendorPrice:"",
+    vendorId:"6514972ad3e5324f82e68e28",
   });
   const [isValidName, setIsValidName] = useState(false);
   const [isValidPrice, setIsValidPrice] = useState(false);
   const [isValidQuantity, setIsValidQuantity] = useState(false);
+  const [name, setname] = useState()
+  const [category, setcategory] = useState()
+  const [vendor, setvendor] = useState()
+  const [vendorPrice, setvendorPrice] = useState()
+  const [price, setprice] = useState()
+  const [quantity, setquantity] = useState()
+  const [description, setdescription] = useState()
+  const [vendorId, setvendorId] = useState()
+
+
 
   const handleChange = (e) => {
-    setProduct({ ...product, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    if(name==="name")
+    setname(value)
+  if(name==="category")
+  setcategory(value)
+if(name==="vendor")
+setvendor(value)
+if(name==="price")
+setprice(value)
+if(name==="vendorPrice")
+setvendorPrice(value)
+if(name==="quantity")
+setquantity(value)
+if(name==="description")
+setdescription(value)
+
   };
 
   const onClick = (event) => {
     event.preventDefault();
 
-    if (product.category === "" || product.description === "") {
-      return toast.error("Please Enter All Fields");
-    }
+    // if (product.category === "" || product.description === "") {
+    //   return toast.error("Please Enter All Fields");
+    // }
 
-    if (NameValidator(product.name)) {
-      setIsValidName(true);
-    } else {
-      toast.error("Enter Valid Name");
-      setIsValidName(false);
+    // if (NameValidator(product.name)) {
+    //   setIsValidName(true);
+    // } else {
+    //   toast.error("Enter Valid Name");
+    //   setIsValidName(false);
       
-    }
+    // }
 
-    if (validator.isNumeric(product.quantity)) {
-      setIsValidQuantity(true);
-    } else {
-      toast.error("Enter Valid Quantity");
-      setIsValidQuantity(false);
-    }
+    // if (validator.isNumeric(product.quantity)) {
+    //   setIsValidQuantity(true);
+    // } else {
+    //   toast.error("Enter Valid Quantity");
+    //   setIsValidQuantity(false);
+    // }
 
-    if (validator.isNumeric(product.price)) {
-      setIsValidPrice(true);
-    } else {
-      toast.error("Enter Valid Price");
-      setIsValidPrice(false);
-    }
+    // if (validator.isNumeric(product.price)&&product.price>0) {
+    //   setIsValidPrice(true);
+    // } else {
+    //   toast.error("Enter Valid Price");
+    //   setIsValidPrice(false);
+    // }
+    setvendorId("6514972ad3e5324f82e68e28")
+    addProduct(
+      name,
+      description,
+      category,
+      quantity,
+      price,
+      vendor,
+      vendorPrice,
+      "6514972ad3e5324f82e68e28"
+    );
+    toast.success(`${product.name} added to Inventory`);
+    navigate('/viewProduct');
   };
 
   useEffect(() => {
     if (isValidName && isValidQuantity && isValidPrice) {
-      addProduct(
-        product.name,
-        product.description,
-        product.category,
-        product.quantity,
-        product.price
-      );
-      toast.success(`${product.name} added to Inventory`);
-      navigate('/viewProduct');
+      
     }
   }, [isValidName, isValidQuantity, isValidPrice, navigate, product, addProduct]);
 
@@ -119,6 +152,40 @@ const AddProduct = () => {
               </div>
 
               
+              <div className="grid">
+                <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2">
+                  <input
+                    type="text"
+                    name="vendor"
+                    className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
+                    placeholder="Vendor"
+                    onChange={handleChange}
+                  />
+                  <label
+                    htmlFor="price"
+                    className="block transform text-xs font-bold uppercase text-gray-400 transition-opacity duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
+                  >
+                    Vendor
+                  </label>
+                </div>
+              </div>
+              <div className="grid">
+                <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2">
+                  <input
+                    type="text"
+                    name="vendorPrice"
+                    className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
+                    placeholder="Vendor Price"
+                    onChange={handleChange}
+                  />
+                  <label
+                    htmlFor="price"
+                    className="block transform text-xs font-bold uppercase text-gray-400 transition-opacity duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
+                  >
+                    VendorPrice
+                  </label>
+                </div>
+              </div>
               <div className="grid">
                 <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2">
                   <input

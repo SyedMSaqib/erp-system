@@ -21,7 +21,7 @@ router.post(
     if (!result.isEmpty()) return res.json(result)
     try {
       if (req.user == null) return res.status(404).send("Invalid token, or empty")
-      const { name, description, category, price, quantity,vendorPrice,vendor } = req.body
+      const { name, description, category, price, quantity,vendorPrice,vendor,vendorId } = req.body
       const newProduct = await product.create({
         user: req.user.id,
         name: name,
@@ -30,7 +30,8 @@ router.post(
         price: price,
         quantity:quantity,
         vendor: vendor,
-        vendorPrice: vendorPrice
+        vendorPrice: vendorPrice,
+        vendorId:vendorId
       })
       res.json(newProduct)
     } catch (err) {
