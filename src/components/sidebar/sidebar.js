@@ -63,9 +63,19 @@ export default function Sidebar() {
           key: 2,
         },
         {
+          name: "View Vendors",
+          path: "/viewVendors",
+          key: 15,
+        },
+        {
           name: "Add Product",
           path: "/addProduct",
           key: 3,
+        },
+        {
+          name: "Add Vendor",
+          path: "/addVendor",
+          key: 16,
         },
       ],
     },
