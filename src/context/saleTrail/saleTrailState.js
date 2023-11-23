@@ -21,7 +21,7 @@ const SaleTrailState = (props) => {
   }
 
   const updateSaleTrail = async (id) => {
-    // Update customer sale API call
+   
     await fetch(`${host}/saleTrail/addSaleTrail/${id}`, {
       method: "PUT",
       headers: {
