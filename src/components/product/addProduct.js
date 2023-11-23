@@ -45,7 +45,6 @@ const AddProduct = () => {
     const { name, value } = e.target
     if (name === "name") setname(value)
     if (name === "category") setcategory(value)
-
     if (name === "price") setprice(value)
     if (name === "vendorPrice") setvendorPrice(value)
     if (name === "quantity") setquantity(value)
