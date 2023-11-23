@@ -16,16 +16,7 @@ const AddProduct = () => {
   const productContext = useContext(ProductContext)
   const { addProduct } = productContext
   const { vendorModelData, setVendorModelData, setIsVisible } = useContext(VendorContext)
-  const [product, setProduct] = useState({
-    name: "",
-    category: "",
-    description: "",
-    quantity: "",
-    price: "",
-    vendor: "",
-    vendorPrice: "",
-    vendorId: "6514972ad3e5324f82e68e28",
-  })
+
   const [isValidName, setIsValidName] = useState(false)
   const [isValidPrice, setIsValidPrice] = useState(false)
   const [isValidQuantity, setIsValidQuantity] = useState(false)
@@ -41,11 +32,11 @@ const AddProduct = () => {
   useEffect(() => {
     setIsVisible(false)
 
-    if (vendorModelData) {
+    if (vendorModelData.name) {
       setVendor(vendorModelData.name)
     }
 
-    if (vendorModelData) {
+    if (vendorModelData._id) {
       setvendorId(vendorModelData._id)
     }
   }, [vendorModelData])
@@ -63,17 +54,9 @@ const AddProduct = () => {
 
   const onClick = (event) => {
     event.preventDefault()
-
+    console.log(vendor)
     if (
-      name === "" ||
-      category === "" ||
-      vendor === "" ||
-      vendorPrice === "" ||
-      price === "" ||
-      quantity === "" ||
-      description === "" ||
-      vendorId===""
-    ) {
+      name === "" || category === "" ||vendorId === "" || vendorPrice === "" || price === "" ||quantity==="" ||  description === "") {
       return toast.error("Please Enter All Fields")
     }
 
@@ -108,13 +91,13 @@ const AddProduct = () => {
   }
 
   useEffect(() => {
-    if (isValidName && isValidQuantity && isValidPrice) {
+    if (isValidName && isValidQuantity && isValidPrice && vendor) {
       addProduct(name, description, category, quantity, price, vendor, vendorPrice, vendorId)
-      toast.success(`${product.name} added to Inventory`)
+      toast.success(`${name} added to Inventory`)
       navigate("/viewProduct")
       setVendorModelData({})
     }
-  }, [isValidName, isValidQuantity, isValidPrice, navigate, product, addProduct])
+  }, [isValidName, isValidQuantity, isValidPrice, addProduct])
 
   const onClickVendor = () => {
     setIsVisible(true)
