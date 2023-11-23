@@ -7,7 +7,11 @@ const vendorSchema = new Schema({
     ref: "user"
   },
   
-    vendorName: {
+    name: {
+    type: String,
+    required: true,
+  },
+    email: {
     type: String,
     required: true,
   },
