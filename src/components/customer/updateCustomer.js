@@ -64,7 +64,8 @@ const UpdateCustomer = () => {
   };
 
   return (
-    <div className="lg:mx-auto sm:ml-64 sm:items-end shadow-xl h-1/2 mx-auto my-20 border bg-slate-50 border-gray-300 rounded-xl">
+    <div className='lg:flex lg:justify-center lg:content-center sm:ml-64'>
+    <div className="shadow-xl md:w-[30rem] sm:w-[20rem] mb-5 lg:mt-2  mx-auto  border bg-slate-50 border-gray-300 rounded-xl">
       <div className="pl-8 py-8 px-8 pr-8">
         <div className="">
           <div className="bg-slate-50">
@@ -72,6 +73,7 @@ const UpdateCustomer = () => {
               Update Customer<span className="text-sm text-gray-400">SAS ERP</span>
             </h1>
             <div className="grid max-w-3xl lg:gap-8 sm:gap-3 py-10 px-8 sm:grid-cols-1 bg-slate-50 rounded-md border-t-4 border-gray-400">
+              {/* Name Input */}
               <div className="grid">
                 <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2">
                   <input
@@ -139,6 +141,7 @@ const UpdateCustomer = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };
