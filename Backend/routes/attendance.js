@@ -39,7 +39,7 @@ router.post(
           { new: true }
         );
         
-        console.log(UpdatedAttendance)
+       
     
        return res.json({updated:true});
       }

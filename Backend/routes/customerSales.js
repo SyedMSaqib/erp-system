@@ -30,7 +30,7 @@ router.post(
       productDetails.quantity -= quantity;
       await productDetails.save();
 
-      
+    
 
       const newCustomersale = await customerSale.create({
         user: req.user.id,
@@ -39,13 +39,16 @@ router.post(
         product:product,
         customerName:customerName,
         productId:productId
+        
       })
+      const saleAmount=quantity*productDetails.price
 
       await salesTrail.create({
         user:req.user.id,
         customerId: customerId,
         customerName:customerName,
-        saleId:newCustomersale.id
+        saleId:newCustomersale.id,
+        saleAmount:saleAmount
       })
       
       res.json(newCustomersale)
@@ -91,7 +94,7 @@ router.get("/fetchAllCustomerSale", validator, async (req, res) => {
           // Perform actions related to salesTrail record, e.g., deletion
           await salesTrail.findByIdAndDelete(salesTrailRecord._id);
       }
-      console.log(id)
+     
       res.json(customerSaleDelete)
     } catch (err) {
       res.json(`${err}`)

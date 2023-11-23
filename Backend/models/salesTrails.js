@@ -28,6 +28,10 @@ const salesTrailSchema = new Schema({
     default: false,
     required: true,
   },
+  saleAmount: {
+    type: Number,
+    required: true,
+  },
 
   date: {
     type: Date,

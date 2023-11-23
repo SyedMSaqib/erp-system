@@ -105,7 +105,7 @@ const AddProduct = () => {
   return (
     <>
       <SetVendor />
-      <div className='lg:flex lg:justify-center lg:content-center sm:ml-64'>
+      <div className='lg:flex lg:justify-center lg:content-center sm:ml-64 dark:bg-gray-900 bg-slate-50'>
     <div className="shadow-xl md:w-[27rem] lg:mt-10 sm:w-[20rem] mb-5  mx-auto  border dark:text-gray-300 dark:bg-gray-950 bg-slate-50 border-gray-300 dark:border-gray-600 rounded-xl">
         <div className="pl-8 py-8 px-8 pr-8">
           <div>
