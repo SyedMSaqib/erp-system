@@ -79,11 +79,12 @@ router.get("/fetchAllCustomerSale", validator, async (req, res) => {
 
       const productDetails = await Product.findById(customerProductId.productId);
       const returnQuantity=parseInt(CustomerSalesFromDb.quantity,10)
-      
+      if(productDetails){
       productDetails.quantity = +productDetails.quantity + returnQuantity;
       await productDetails.save()
+    
       if (productDetails.user.toString() !== req.user.id) return res.status(404).send("Unauthorized user")
-      
+      }
       const customerSaleDelete = await customerSale.findByIdAndDelete(id)
       const salesTrailRecord = await salesTrail.findOne({ saleId: id });
       if (salesTrailRecord) {
