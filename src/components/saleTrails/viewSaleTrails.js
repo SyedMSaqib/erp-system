@@ -60,6 +60,9 @@ const ViewSaleTrails = () => {
                   Sale ID
                 </th>
                 <th scope="col" className="px-3 py-4 font-medium text-gray-900 dark:text-gray-400">
+                  Payment
+                </th>
+                <th scope="col" className="px-3 py-4 font-medium text-gray-900 dark:text-gray-400">
                   Status
                 </th>
                 <th scope="col" className="px-8 py-4 font-medium text-gray-900 dark:text-gray-400">
@@ -71,7 +74,7 @@ const ViewSaleTrails = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 dark:divide-gray-600 border-t border-gray-100 dark:border-gray-600">
-              {saleTrails?.saleTrails?.map((saleTrails, index) => (
+              {saleTrails&&saleTrails.saleTrails.map((saleTrails, index) => (
                 <tr
                   className={`transition-colors  ${
                     index % 2 === 0 ? "bg-white dark:bg-gray-950" : "bg-gray-50 dark:bg-gray-950"
@@ -79,7 +82,7 @@ const ViewSaleTrails = () => {
                   key={saleTrails._id}
                 >
                   <td className="px-3 py-4 dark:text-gray-400">{index + 1}</td>
-                  <td className="flex dark:text-gray-400 gap-3 px-5 py-4 font-normal text-gray-900 hover:cursor-pointer">
+                  <td className="flex dark:text-gray-400 gap-3 px-5 py-6 font-normal text-gray-900 hover:cursor-pointer">
                     {saleTrails.customerName}
                   </td>
                   <td className=" px-3 py-4">
@@ -92,6 +95,7 @@ const ViewSaleTrails = () => {
                       {saleTrails.saleId}
                     </span>
                   </td>
+                  <td className="px-3 py-4 dark:text-gray-400 font-semibold">{saleTrails.saleAmount} Rs</td>
                   <td className="px-3 py-4">
                     {saleTrails.paid ? (
                       <span className=" inline-flex items-center gap-1  bg-green-200 dark:bg-green-800/5 px-2 py-1 text-xs font-semibold dark:text-green-400 text-green-700 hover:cursor-pointer justify-center w-20">
