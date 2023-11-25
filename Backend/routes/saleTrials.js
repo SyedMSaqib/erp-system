@@ -14,7 +14,8 @@ router.put(
       try {
         if (req.user == null) return res.status(404).send("Invalid token, or empty")
         const updatedSaleTrails={
-            paid:true
+            paid:true,
+            date: new Date()
         } 
         await salesTrail.findByIdAndUpdate(id,{$set:updatedSaleTrails},{new:true})
         res.status(200).send({status:200,msg:"Updated"})
