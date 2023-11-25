@@ -91,7 +91,7 @@ router.get("/fetchAllCustomerSale", validator, async (req, res) => {
       const customerSaleDelete = await customerSale.findByIdAndDelete(id)
       const salesTrailRecord = await salesTrail.findOne({ saleId: id });
       if (salesTrailRecord) {
-          // Perform actions related to salesTrail record, e.g., deletion
+  
           await salesTrail.findByIdAndDelete(salesTrailRecord._id);
       }
      
