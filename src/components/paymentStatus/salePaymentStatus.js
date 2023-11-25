@@ -16,7 +16,7 @@ const SalePaymentStatus = () => {
   useEffect(() => {
     setTimeout(() => {
       setloading(false);
-    }, 2000);
+    }, 1000);
   }, []);
 
   useEffect(() => {

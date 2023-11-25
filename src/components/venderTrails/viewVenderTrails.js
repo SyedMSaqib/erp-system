@@ -14,7 +14,7 @@ const ViewVenderTrails = () => {
   useEffect(() => {
     setTimeout(() => {
       setloading(false)
-    }, 2000)
+    }, 1000)
   }, [])
 
   useEffect(() => {
@@ -170,7 +170,7 @@ const ViewVenderTrails = () => {
                               </div>
                               <div className="flex flex-col">
                                 <span className="font-semibold">Unit price:</span>
-                                <p className="text-gray-700 dark:text-gray-300">{venderTrail.singleUnitPrice}</p>
+                                <p className="text-gray-700 dark:text-gray-300">{venderTrail.singleUnitPrice} Rs</p>
                               </div>
                             </div>
                           </div>
