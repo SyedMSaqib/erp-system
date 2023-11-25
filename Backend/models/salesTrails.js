@@ -42,6 +42,10 @@ const salesTrailSchema = new Schema({
     type: Number,
     required: true,
   },
+  singleUnitPrice: {
+    type: Number,
+    required: true,
+  },
 
   date: {
     type: Date,
