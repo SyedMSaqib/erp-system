@@ -21,6 +21,18 @@ const ViewSaleTrails = () => {
   useEffect(() => {
     getAllSaleTrails()
   }, [])
+  
+  // useEffect(() => {
+  //   if(!saleTrails)
+  //   {
+  //     setloading(true)
+  //   }
+  //   else{
+  //     setloading(false)
+  //   }
+  // }, [saleTrails])
+
+ 
 
   const formatMongoDate = (mongoDate) => {
     const dateObject = new Date(mongoDate)

@@ -5,7 +5,7 @@ import { useState } from "react"
 const SaleTrailState = (props) => {
   const host = config.apiurl
   const authToken = localStorage.getItem("authToken")
-  const [saleTrails, setsaleTrails] = useState()
+  const [saleTrails, setsaleTrails] = useState(null)
 
   const getAllSaleTrails = async () => {
     const response = await fetch(`${host}/saleTrail/fetchAllSaleTrails`, {
