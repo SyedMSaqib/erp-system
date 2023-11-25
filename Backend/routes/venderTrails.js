@@ -13,6 +13,7 @@ router.put(
       if (req.user == null) return res.status(404).send("Invalid token, or empty");
       const updatedVenderTrails = {
         paid: true,
+        date: new Date()
       };
       await venderTrails.findByIdAndUpdate(id, { $set: updatedVenderTrails }, { new: true });
       res.status(200).send({ status: 200, msg: "Updated" });
