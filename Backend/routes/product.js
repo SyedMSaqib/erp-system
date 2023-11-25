@@ -2,6 +2,7 @@ const express = require("express")
 const router = express.Router()
 const validator = require("../middleware/validator")
 const product = require("../models/product")
+const venderTrails = require("../models/venderTrails")
 const { check, validationResult } = require("express-validator")
 
 router.post(
@@ -33,6 +34,17 @@ router.post(
         vendorPrice: vendorPrice,
         vendorId:vendorId
       })
+
+      const purchaseAmount=quantity*vendorPrice
+
+      await venderTrails.create({
+        user:req.user.id,
+        venderId: vendorId,
+        venderName:vendor,
+        productId:newProduct._id,
+        purchaseAmount:purchaseAmount
+      })
+
       res.json(newProduct)
     } catch (err) {
       res.status(500).json(err)
@@ -60,6 +72,12 @@ router.delete("/delete/:id", validator, async (req, res) => {
 
     if (productFromDb.user.toString() !== req.user.id) return res.status(404).send("Unauthorized user")
     const productDelete = await product.findByIdAndDelete(id)
+
+    const VenderTrailRecord = await venderTrails.findOne({ productId: id });
+      if (VenderTrailRecord) {
+  
+          await venderTrails.findByIdAndDelete(VenderTrailRecord._id);
+      }
 
     res.json(productDelete)
   } catch (err) {
