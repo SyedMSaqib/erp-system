@@ -42,7 +42,9 @@ router.post(
         venderId: vendorId,
         venderName:vendor,
         productId:newProduct._id,
-        purchaseAmount:purchaseAmount
+        purchaseAmount:purchaseAmount,
+        productName:name,
+        productQuantity:quantity
       })
 
       res.json(newProduct)

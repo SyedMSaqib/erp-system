@@ -23,6 +23,16 @@ const VenderTrailSchema = new Schema({
     ref: "product",
     required: true,
   },
+  productName: {
+    type: String,
+    ref: "product",
+    required: true,
+  },
+  productQuantity: {
+    type: Number,
+    ref: "product",
+    required: true,
+  },
   paid: {
     type: Boolean,
     default: false,

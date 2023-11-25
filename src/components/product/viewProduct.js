@@ -49,6 +49,9 @@ const ViewProduct = () => {
                 Category
               </th>
               <th scope="col" className="dark:text-gray-400 lg:px-12 lg:py-4 font-medium text-gray-900">
+                Vendor
+              </th>
+              <th scope="col" className="dark:text-gray-400 lg:px-12 lg:py-4 font-medium text-gray-900">
                 Price
               </th>
               <th scope="col" className="dark:text-gray-400 lg:px-12 lg:py-4 font-medium text-gray-900">
@@ -68,6 +71,7 @@ const ViewProduct = () => {
                 </td>
                 <td className="px-12 py-4">{productItem.description}</td>
                 <td className="px-12 py-4">{productItem.category}</td>
+                <td className="px-12 py-4">{productItem.vendor}</td>
                 <td className="px-12 py-4">{productItem.price} Rs</td>
                 <td className="px-12 py-4">{productItem.quantity}</td>
                 <td className="px-6 py-4">

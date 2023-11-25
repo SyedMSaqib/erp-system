@@ -73,7 +73,6 @@ const ViewVenderTrails = () => {
                 <th scope="col" className="px-3 py-4 font-medium text-gray-900 dark:text-gray-400">
                   No
                 </th>
-                {/* Add other table headers as needed */}
                 <th scope="col" className="px-3 py-4 font-medium text-gray-900 dark:text-gray-400">
                   Vender Name
                 </th>
@@ -81,7 +80,13 @@ const ViewVenderTrails = () => {
                   Vender ID
                 </th>
                 <th scope="col" className="px-3 py-4 font-medium text-gray-900 dark:text-gray-400">
-                  Sale ID
+                  Product ID
+                </th>
+                <th scope="col" className="px-3 py-4 font-medium text-gray-900 dark:text-gray-400">
+                  Product
+                </th>
+                <th scope="col" className="px-3 py-4 font-medium text-gray-900 dark:text-gray-400">
+                  Quantity
                 </th>
                 <th scope="col" className="px-3 py-4 font-medium text-gray-900 dark:text-gray-400">
                   Payment
@@ -119,14 +124,16 @@ const ViewVenderTrails = () => {
                       {venderTrail.productId}
                     </span>
                   </td>
-                  <td className="px-3 py-4 dark:text-gray-400 font-semibold">{venderTrail.purchaseAmount} Rs</td>
+                  <td className="px-3 py-4 dark:text-gray-400">{venderTrail.productName}</td>
+                  <td className="px-3 py-4 dark:text-gray-400">{venderTrail.productQuantity}</td>
+                  <td className="px-3 py-4 dark:text-gray-400 font-semibold w-24">{venderTrail.purchaseAmount} Rs</td>
                   <td className="px-3 py-4">
                     {venderTrail.paid ? (
                       <span className=" inline-flex items-center gap-1  bg-green-200 dark:bg-green-800/5 px-2 py-1 text-xs font-semibold dark:text-green-400 text-green-700 hover:cursor-pointer justify-center w-20">
                         Paid
                       </span>
                     ) : (
-                      <span className=" inline-flex items-center gap-1  bg-yellow-300 dark:bg-yellow-300/5 px-2 py-1 text-xs font-semibold dark:text-yellow-300 text-yellow-700 hover:cursor-pointer">
+                      <span className=" inline-flex items-center gap-1  bg-yellow-300 dark:bg-yellow-300/5 px-2 py-1 text-xs font-semibold dark:text-yellow-300 text-yellow-700 hover:cursor-pointer w-20">
                         In Progress
                       </span>
                     )}
