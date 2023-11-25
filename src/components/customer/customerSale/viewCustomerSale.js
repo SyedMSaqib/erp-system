@@ -61,7 +61,7 @@ const ViewCustomerSale = () => {
                 <th scope="col" className="px-3 py-4 font-medium text-gray-900 dark:text-gray-400">
                   Product
                 </th>
-                <th scope="col" className="px-3 py-4 font-medium text-gray-900 dark:text-gray-400">
+                <th scope="col" className="px-6 py-4 font-medium text-gray-900 dark:text-gray-400">
                   Product ID
                 </th>
                 <th scope="col" className="px-3 py-4 font-medium text-gray-900 dark:text-gray-400">
