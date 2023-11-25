@@ -18,6 +18,16 @@ const salesTrailSchema = new Schema({
     ref: "customer",
     required: true,
   },
+  productName: {
+    type: String,
+    ref: "product",
+    required: true,
+  },
+  productQuantity: {
+    type: Number,
+    ref: "product",
+    required: true,
+  },
   saleId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "sales",

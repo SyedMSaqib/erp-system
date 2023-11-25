@@ -86,6 +86,12 @@ const ViewSaleTrails = () => {
                   Sale ID
                 </th>
                 <th scope="col" className="px-3 py-4 font-medium text-gray-900 dark:text-gray-400">
+                  Product
+                </th>
+                <th scope="col" className="px-3 py-4 font-medium text-gray-900 dark:text-gray-400">
+                  Quantity
+                </th>
+                <th scope="col" className="px-3 py-4 font-medium text-gray-900 dark:text-gray-400">
                   Payment
                 </th>
                 <th scope="col" className="px-3 py-4 font-medium text-gray-900 dark:text-gray-400">
@@ -121,14 +127,16 @@ const ViewSaleTrails = () => {
                       {saleTrails.saleId}
                     </span>
                   </td>
-                  <td className="px-3 py-4 dark:text-gray-400 font-semibold">{saleTrails.saleAmount} Rs</td>
+                  <td className="px-3 py-4 dark:text-gray-400">{saleTrails.productName}</td>
+                  <td className="px-3 py-4 dark:text-gray-400">{saleTrails.productQuantity}</td>
+                  <td className="px-3 py-4 dark:text-gray-400 font-semibold w-24">{saleTrails.saleAmount} Rs</td>
                   <td className="px-3 py-4">
                     {saleTrails.paid ? (
                       <span className=" inline-flex items-center gap-1  bg-green-200 dark:bg-green-800/5 px-2 py-1 text-xs font-semibold dark:text-green-400 text-green-700 hover:cursor-pointer justify-center w-20">
                         Paid
                       </span>
                     ) : (
-                      <span className=" inline-flex items-center gap-1  bg-yellow-300 dark:bg-yellow-300/5 px-2 py-1 text-xs font-semibold dark:text-yellow-300 text-yellow-700 hover:cursor-pointer">
+                      <span className=" inline-flex items-center gap-1  bg-yellow-300 dark:bg-yellow-300/5 px-2 py-1 text-xs font-semibold dark:text-yellow-300 text-yellow-700 hover:cursor-pointer w-20">
                         In Progress
                       </span>
                     )}

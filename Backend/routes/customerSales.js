@@ -48,7 +48,9 @@ router.post(
         customerId: customerId,
         customerName:customerName,
         saleId:newCustomersale.id,
-        saleAmount:saleAmount
+        saleAmount:saleAmount,
+        productName:product,
+        productQuantity:quantity
       })
       
       res.json(newCustomersale)
