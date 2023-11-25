@@ -44,7 +44,8 @@ router.post(
         productId:newProduct._id,
         purchaseAmount:purchaseAmount,
         productName:name,
-        productQuantity:quantity
+        productQuantity:quantity,
+        singleUnitPrice:vendorPrice
       })
 
       res.json(newProduct)
