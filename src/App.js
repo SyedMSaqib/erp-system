@@ -36,6 +36,8 @@ import UpdateVendor from "./components/vendor/updateVendor";
 import ViewVendors from "./components/vendor/viewVendors";
 import VenderTrailState from "./context/venderTrail/venderTrailState";
 import ViewVenderTrails from "./components/venderTrails/viewVenderTrails";
+import VenderPaymentStatus from "./components/paymentStatus/venderPaymentStatus";
+import SalePaymentStatus from "./components/paymentStatus/salePaymentStatus";
 
 function PrivateRoute({ element, authenticated }) {
   return authenticated ? element : <Navigate to="/signIn" />;
@@ -271,6 +273,26 @@ function App() {
                               element={
                                 <PrivateRoute
                                   element={<ViewVenderTrails />}
+                                  authenticated={authenticated}
+                                />
+                              }
+                            
+                            />
+                            <Route
+                              path="/venderPaymentStatus"
+                              element={
+                                <PrivateRoute
+                                  element={<VenderPaymentStatus/>}
+                                  authenticated={authenticated}
+                                />
+                              }
+                            
+                            />
+                            <Route
+                              path="/salePaymentStatus"
+                              element={
+                                <PrivateRoute
+                                  element={<SalePaymentStatus/>}
                                   authenticated={authenticated}
                                 />
                               }
