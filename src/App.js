@@ -34,6 +34,8 @@ import VendorState from "./context/vendor/vendorState";
 import AddVendor from "./components/vendor/addVendor";
 import UpdateVendor from "./components/vendor/updateVendor";
 import ViewVendors from "./components/vendor/viewVendors";
+import VenderTrailState from "./context/venderTrail/venderTrailState";
+import ViewVenderTrails from "./components/venderTrails/viewVenderTrails";
 
 function PrivateRoute({ element, authenticated }) {
   return authenticated ? element : <Navigate to="/signIn" />;
@@ -60,9 +62,10 @@ function App() {
       setauthenticated(false);
     }
   }, [tokenUpdate]);
-
+  
   return (
     <div className="bg-slate-50  dark:bg-gray-900">
+      <VenderTrailState>
       <VendorState>
       <SaleTrailState>
         <AuthState>
@@ -266,6 +269,16 @@ function App() {
                               }
                             
                             />
+                            <Route
+                              path="/ViewVenderTrail"
+                              element={
+                                <PrivateRoute
+                                  element={<ViewVenderTrails />}
+                                  authenticated={authenticated}
+                                />
+                              }
+                            
+                            />
                           </Routes>
                         </div>
                       )}
@@ -278,6 +291,7 @@ function App() {
         </AuthState>
       </SaleTrailState>
       </VendorState>
+      </VenderTrailState>
     </div>
   );
 }

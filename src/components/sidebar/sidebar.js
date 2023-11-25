@@ -18,7 +18,6 @@ export default function Sidebar() {
       setdarkMode(true);
       document.documentElement.classList.add('dark')
     }
-    console.log(storedThemeMode);
   }, []);
   
   
@@ -66,6 +65,11 @@ export default function Sidebar() {
           name: "View Vendors",
           path: "/viewVendors",
           key: 15,
+        },
+        {
+          name: "View Vendors Trails",
+          path: "/ViewVenderTrail",
+          key: 17,
         },
         {
           name: "Add Product",
