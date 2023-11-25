@@ -50,7 +50,7 @@ const ViewVenderTrails = () => {
         justifyContent: "center",
         alignItems: "center",
         height: "100vh", 
-        marginLeft:"90px"
+        marginLeft:"190px"
       }}
     >
       <Lottie

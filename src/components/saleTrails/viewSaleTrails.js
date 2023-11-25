@@ -12,6 +12,7 @@ const ViewSaleTrails = () => {
   const { saleTrails, getAllSaleTrails, updateSaleTrail } = saleTrailContext
   const [loading, setloading] = useState(true)
 
+
   useEffect(() => {
     setTimeout(() => {
       setloading(false);
@@ -65,7 +66,7 @@ const ViewSaleTrails = () => {
         justifyContent: "center",
         alignItems: "center",
         height: "100vh", 
-        marginLeft:"90px"
+        marginLeft:"190px"
       }}
     >
       <Lottie
