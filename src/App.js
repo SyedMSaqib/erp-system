@@ -252,8 +252,6 @@ function App() {
                                 <SignIn settokenUpdate={settokenUpdate} />
                               }
                             />
-                            <Route path="/sidebar" element={<SignIn />} />
-                            <Route path="/signUp" element={<SignUp />} />
                             <Route
                               path="/dashboard"
                               element={<Dashboard />}
@@ -278,6 +276,8 @@ function App() {
                               }
                             
                             />
+                          <Route path="/sidebar" element={<SignIn />} />
+                          <Route path="/signUp" element={<SignUp />} />
                           </Routes>
                         </div>
                       )}
