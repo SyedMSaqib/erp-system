@@ -1,13 +1,21 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import VenderTrailContext from "../../context/venderTrail/venderTrailContext";
 import Footer from "../loginSignup/footer";
 import toast from "react-hot-toast";
 import Lottie from "lottie-react";
 import Success from "../saleTrails/animatedIcons/success.json";
+import Loading from "../saleTrails/animatedIcons/loading.json";
 
 const ViewVenderTrails = () => {
   const venderTrailContext = useContext(VenderTrailContext);
   const { venderTrails, getAllVenderTrails, updateVenderTrail } = venderTrailContext;
+  const [loading, setloading] = useState(true)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setloading(false);
+    }, 1000);
+  }, []);
 
   useEffect(() => {
     getAllVenderTrails();
@@ -34,7 +42,24 @@ const ViewVenderTrails = () => {
       console.error("Error updating vender trail:", error);
     }
   };
-
+ if(loading)
+  return(
+<div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh", 
+        marginLeft:"90px"
+      }}
+    >
+      <Lottie
+        animationData={Loading}
+        loop={true}
+        style={{ width: "150px", height: "150px" }}
+      />
+    </div>
+  )
   return (
     <div className="dark:bg-gray-900">
       <div className="flex justify-center items-center  ">

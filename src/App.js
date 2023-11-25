@@ -45,10 +45,9 @@ function App() {
   var authToken = null;
   const [authenticated, setauthenticated] = useState(false);
   const [tokenUpdate, settokenUpdate] = useState(false);
-  const [loading, setloading] = useState(false);
+  const [loading, setloading] = useState(true);
 
   useEffect(() => {
-    setloading(true);
     setTimeout(() => {
       setloading(false);
     }, 3000);

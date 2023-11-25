@@ -4,10 +4,19 @@ import Footer from "../loginSignup/footer"
 import toast from "react-hot-toast"
 import Lottie from "lottie-react"
 import Success from "./animatedIcons/success.json"
+import Loading from "./animatedIcons/loading.json"
+import { useState } from "react"
 
 const ViewSaleTrails = () => {
   const saleTrailContext = useContext(SaleTrailContext)
   const { saleTrails, getAllSaleTrails, updateSaleTrail } = saleTrailContext
+  const [loading, setloading] = useState(true)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setloading(false);
+    }, 1000);
+  }, []);
 
   useEffect(() => {
     getAllSaleTrails()
@@ -35,8 +44,25 @@ const ViewSaleTrails = () => {
       console.error("Error updating sale trail:", error)
     }
   }
-
-
+ 
+  if(loading)
+  return(
+<div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh", 
+        marginLeft:"90px"
+      }}
+    >
+      <Lottie
+        animationData={Loading}
+        loop={true}
+        style={{ width: "150px", height: "150px" }}
+      />
+    </div>
+  )
   return (
     <div className="dark:bg-gray-900">
       <div className="flex justify-center items-center  ">
