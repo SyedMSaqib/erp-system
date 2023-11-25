@@ -68,7 +68,7 @@ const ViewProduct = () => {
                 </td>
                 <td className="px-12 py-4">{productItem.description}</td>
                 <td className="px-12 py-4">{productItem.category}</td>
-                <td className="px-12 py-4">{productItem.price}</td>
+                <td className="px-12 py-4">{productItem.price} Rs</td>
                 <td className="px-12 py-4">{productItem.quantity}</td>
                 <td className="px-6 py-4">
                   <div className="flex justify-end gap-4">
