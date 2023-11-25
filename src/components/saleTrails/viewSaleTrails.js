@@ -15,7 +15,7 @@ const ViewSaleTrails = () => {
   useEffect(() => {
     setTimeout(() => {
       setloading(false);
-    }, 1000);
+    }, 2000);
   }, []);
 
   useEffect(() => {

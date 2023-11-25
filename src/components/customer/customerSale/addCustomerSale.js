@@ -8,6 +8,9 @@ import SetProduct from "./Modals/setProduct";
 import ProductContext from "../../../context/product/productContext";
 import SetCustomer from "./Modals/setCustomer";
 import customerContext from "../../../context/customer/customerContext";
+import SalePlaced from "../../saleTrails/animatedIcons/salePlaced.json"
+import Lottie from "lottie-react";
+
 
 const AddCustomerSale = () => {
   const Navigate = useNavigate();
@@ -23,7 +26,15 @@ const AddCustomerSale = () => {
   const [CustomerIdValid, setCustomerIdValid] = useState(false);
   const [ProductValid, setProductValid] = useState(false);
   const [QuantityValid, setQuantityValid] = useState(false);
-  const [newQuantity, setNewQuantity] = useState(0);
+  const [loading, setloading] = useState(false)
+
+ const loadingTruck=() => {
+    setloading(true)
+    setTimeout(() => {
+      setloading(false);
+      Navigate("/viewCustomerSale");
+    }, 5000);
+ }
 
   useEffect(() => {
     setisVisible(false);
@@ -84,15 +95,7 @@ const AddCustomerSale = () => {
     const availableQuantity = isNaN(productModelData.quantity) ? 0 : parseInt(productModelData.quantity, 10);
 
     if (quantityValue <= availableQuantity) {
-      setavailablestock(true);
-      const saleQuantity=availableQuantity - quantityValue;
-      if(saleQuantity===0){
-      setNewQuantity(0)
-    }
-    else
-    {
-      setNewQuantity(saleQuantity);
-    } 
+      setavailablestock(true)
       
     }
 
@@ -115,13 +118,30 @@ const AddCustomerSale = () => {
       setcustomerName("");
       setproductId("")
       toast.success(<span><span className='font-bold'>Sale Added : </span>{product}</span>);
-      Navigate("/viewCustomerSale");
       setproductModelData({});
       setcustomerModalData({});
+      loadingTruck()
     }
   }, [CustomerIdValid, ProductValid, QuantityValid, availablestock]);
 
-
+  if(loading)
+  return(
+<div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh", 
+        marginLeft:"90px"
+      }}
+    >
+      <Lottie
+        animationData={SalePlaced}
+        loop={true}
+        style={{ width: "150px", height: "150px" }}
+      />
+    </div>
+  )
 
   return (
     <>
