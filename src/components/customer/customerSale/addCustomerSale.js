@@ -15,7 +15,7 @@ import Lottie from "lottie-react";
 const AddCustomerSale = () => {
   const Navigate = useNavigate();
   const { addCustomerSale } = useContext(customerSaleContext);
-  const { setproductModelData,productModelData, setisVisible, updateProduct } = useContext(ProductContext);
+  const { setproductModelData,productModelData, setisVisible } = useContext(ProductContext);
   const { setcustomerModalData,customerModalData, setisVisibleModal } = useContext(customerContext);
   const [availablestock, setavailablestock] = useState(false);
   const [quantity, setquantity] = useState("");
