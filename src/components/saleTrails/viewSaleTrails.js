@@ -11,6 +11,7 @@ const ViewSaleTrails = () => {
   const saleTrailContext = useContext(SaleTrailContext)
   const { saleTrails, getAllSaleTrails, updateSaleTrail } = saleTrailContext
   const [loading, setloading] = useState(true)
+  const [open, setopen] = useState("")
 
 
   useEffect(() => {
@@ -33,7 +34,9 @@ const ViewSaleTrails = () => {
   //   }
   // }, [saleTrails])
 
- 
+  const toggleDetails = (index) => {
+    setopen(open === index ? null : index)
+  }
 
   const formatMongoDate = (mongoDate) => {
     const dateObject = new Date(mongoDate)
@@ -90,17 +93,9 @@ const ViewSaleTrails = () => {
                   No
                 </th>
                 <th scope="col" className="px-3 py-4 font-medium text-gray-900 dark:text-gray-400">
-                  Customer Name
-                </th>
-                <th scope="col" className="px-3 py-4 font-medium text-gray-900 dark:text-gray-400">
-                  Customer ID
-                </th>
-                <th scope="col" className="px-3 py-4 font-medium text-gray-900 dark:text-gray-400">
                   Sale ID
                 </th>
-                <th scope="col" className="px-3 py-4 font-medium text-gray-900 dark:text-gray-400">
-                  Product
-                </th>
+               
                 <th scope="col" className="px-3 py-4 font-medium text-gray-900 dark:text-gray-400">
                   Quantity
                 </th>
@@ -120,6 +115,7 @@ const ViewSaleTrails = () => {
             </thead>
             <tbody className="divide-y divide-gray-100 dark:divide-gray-600 border-t border-gray-100 dark:border-gray-600">
               {saleTrails&&saleTrails.saleTrails.map((saleTrails, index) => (
+                <React.Fragment key={saleTrails._id}>
                 <tr
                   className={`transition-colors  ${
                     index % 2 === 0 ? "bg-white dark:bg-gray-950" : "bg-gray-50 dark:bg-gray-950"
@@ -127,20 +123,12 @@ const ViewSaleTrails = () => {
                   key={saleTrails._id}
                 >
                   <td className="px-3 py-4 dark:text-gray-400">{index + 1}</td>
-                  <td className="flex dark:text-gray-400 gap-3 px-5 py-6 font-normal text-gray-900 hover:cursor-pointer">
-                    {saleTrails.customerName}
-                  </td>
-                  <td className=" px-3 py-4">
-                    <span className=" inline-flex items-center gap-1  bg-cyan-50 dark:bg-cyan-50/5 px-2 py-1 text-xs font-semibold dark:text-cyan-300 text-cyan-800 hover:cursor-pointer">
-                      {saleTrails.customerId}
-                    </span>
-                  </td>
-                  <td className=" px-3 py-4">
-                    <span className=" inline-flex items-center gap-1  bg-sky-50 dark:bg-sky-50/5 px-2 py-1 text-xs font-semibold dark:text-sky-300 text-sky-600">
+                 
+                  <td onClick={()=>toggleDetails(index)} className=" px-3 py-4">
+                    <span className=" inline-flex items-center gap-1  bg-sky-50 dark:bg-sky-50/5 px-2 py-1 text-xs font-semibold dark:text-sky-300 text-sky-600 hover:cursor-pointer">
                       {saleTrails.saleId}
                     </span>
                   </td>
-                  <td className="px-3 py-4 dark:text-gray-400">{saleTrails.productName}</td>
                   <td className="px-3 py-4 dark:text-gray-400">{saleTrails.productQuantity}</td>
                   <td className="px-3 py-4 dark:text-gray-400 font-semibold w-24">{saleTrails.saleAmount} Rs</td>
                   <td className="px-3 py-4">
@@ -174,6 +162,41 @@ const ViewSaleTrails = () => {
                   </td>
                   <td className="px-3 py-4">{formatMongoDate(saleTrails.date)}</td>
                 </tr>
+                {open === index ? (
+                      <tr className="bg-gray-400 dark:bg-gray-950">
+                        <td colSpan="9" className="bg-gray-100 dark:bg-gray-950 p-10">
+                          <div className="flex flex-col items-center justify-center">
+                            <h2 className="text-2xl font-semibold mb-4 dark:text-gray-300">Sale Trail Details</h2>
+
+                            <div className="grid grid-cols-2 gap-4">
+                              <div className="flex flex-col">
+                                <span className="font-semibold">Customer Id:</span>
+                                <p className="text-gray-700 dark:text-gray-300">{saleTrails.customerId}</p>
+                              </div>
+
+                              <div className="flex flex-col">
+                                <span className="font-semibold">Trail Id:</span>
+                                <p className="text-gray-700 dark:text-gray-300">{saleTrails._id}</p>
+                              </div>
+
+                              <div className="flex flex-col">
+                                <span className="font-semibold">Product Name:</span>
+                                <p className="text-gray-700 dark:text-gray-300">{saleTrails.productName}</p>
+                              </div>
+                              <div className="flex flex-col">
+                                <span className="font-semibold">Customer Name:</span>
+                                <p className="text-gray-700 dark:text-gray-300">{saleTrails.customerName}</p>
+                              </div>
+                              <div className="flex flex-col">
+                                <span className="font-semibold">Unit price:</span>
+                                <p className="text-gray-700 dark:text-gray-300">{saleTrails.singleUnitPrice}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    ) : null}
+                </React.Fragment>
               ))}
             </tbody>
           </table>
