@@ -67,8 +67,8 @@ export default function Sidebar() {
           key: 15,
         },
         {
-          name: "View Vendors Trails",
-          path: "/ViewVenderTrail",
+          name: "Vender Payment Status",
+          path: "/venderPaymentStatus",
           key: 17,
         },
         {
@@ -99,8 +99,8 @@ export default function Sidebar() {
           key: 6,
         },
         {
-          name: "View Sales Trails",
-          path: "/ViewSalesTrail",
+          name: "Sale Payment Status",
+          path: "/salePaymentStatus",
           key: 6,
         },
         {
@@ -140,6 +140,24 @@ export default function Sidebar() {
           path: "/attendanceDate",
           key: 14,
         },
+      ],
+    },
+    {
+      name: "Finance",
+      path: "/finance",
+      key: 15,
+      subTabs: [
+        {
+          name: "View Sales Trails",
+          path: "/ViewSalesTrail",
+          key: 19,
+        },
+        {
+          name: "View Vendors Trails",
+          path: "/ViewVenderTrail",
+          key: 18,
+        },
+        
       ],
     },
   ]
