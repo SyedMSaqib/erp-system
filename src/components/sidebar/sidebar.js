@@ -140,6 +140,11 @@ export default function Sidebar() {
           path: "/attendanceDate",
           key: 14,
         },
+        {
+          name: "Payroll",
+          path: "/payroll",
+          key: 14,
+        },
       ],
     },
     {

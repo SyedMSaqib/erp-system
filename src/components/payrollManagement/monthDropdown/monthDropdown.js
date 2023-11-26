@@ -30,14 +30,15 @@ const MonthDropdown = () => {
   const { firstDay, lastDay } = getFirstAndLastDay(selectedMonth);
   console.log({ firstDay, lastDay })
   return (
-    <div className="mt-4">
-      <label htmlFor="month" className="block text-sm font-medium text-gray-700">
-        Select a month:
+    <div className="flex">
+    <div className="mt-4 flex pr-4">
+      <label htmlFor="month" className="block text-sm font-medium text-gray-700 w-24">
+        Select a month :
       </label>
       <select
         id="month"
         name="month"
-        className="mt-1 p-2 border border-gray-300 rounded-md"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         onChange={handleChange}
         value={selectedMonth}
       >
@@ -47,14 +48,15 @@ const MonthDropdown = () => {
           </option>
         ))}
       </select>
+      </div>
 
-      <div className="mt-4">
+      <div className="mt-6 flex">
         <p className="text-sm font-medium text-gray-700">Selected Month:</p>
-        <p className="text-lg font-semibold">{selectedMonth}</p>
-        <p className="text-sm font-medium text-gray-700">First Day:</p>
-        <p className="text-lg font-semibold">{firstDay}</p>
-        <p className="text-sm font-medium text-gray-700">Last Day:</p>
-        <p className="text-lg font-semibold">{lastDay}</p>
+        <p className="text-sm font-medium pl-1">{selectedMonth}</p>
+        <p className="text-sm font-medium pl-10">Start:</p>
+        <p className="text-sm font-medium pl-1">{firstDay}</p>
+        <p className="text-sm font-medium pl-10">End:</p>
+        <p className="text-sm font-medium pl-1">{lastDay}</p>
       </div>
     </div>
   );

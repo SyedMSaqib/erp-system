@@ -38,6 +38,8 @@ import VenderTrailState from "./context/venderTrail/venderTrailState";
 import ViewVenderTrails from "./components/venderTrails/viewVenderTrails";
 import VenderPaymentStatus from "./components/paymentStatus/venderPaymentStatus";
 import SalePaymentStatus from "./components/paymentStatus/salePaymentStatus";
+import SalaryState from "./context/salary/salaryState";
+import Payroll from "./components/payrollManagement/payroll/payroll";
 
 function PrivateRoute({ element, authenticated }) {
   return authenticated ? element : <Navigate to="/signIn" />;
@@ -66,6 +68,7 @@ function App() {
   
   return (
     <div className="bg-slate-50  dark:bg-gray-900">
+      <SalaryState>
       <VenderTrailState>
       <VendorState>
       <SaleTrailState>
@@ -298,6 +301,16 @@ function App() {
                               }
                             
                             />
+                            <Route
+                              path="/payroll"
+                              element={
+                                <PrivateRoute
+                                  element={<Payroll/>}
+                                  authenticated={authenticated}
+                                />
+                              }
+                            
+                            />
                           <Route path="/sidebar" element={<SignIn />} />
                           <Route path="/signUp" element={<SignUp />} />
                           </Routes>
@@ -313,6 +326,7 @@ function App() {
       </SaleTrailState>
       </VendorState>
       </VenderTrailState>
+      </SalaryState>
     </div>
   );
 }
