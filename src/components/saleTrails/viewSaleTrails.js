@@ -163,8 +163,8 @@ const ViewSaleTrails = () => {
                   <td className="px-3 py-4">{formatMongoDate(saleTrails.date)}</td>
                 </tr>
                 {open === index ? (
-                      <tr className="bg-gray-400 dark:bg-gray-950">
-                        <td colSpan="9" className="bg-gray-100 dark:bg-gray-950 p-10">
+                      <tr className="bg-gray-400 dark:bg-gray-950 border ">
+                        <td colSpan="9" className="bg-gray-50 dark:bg-gray-950 p-10 border border-gray-200">
                           <div className="flex flex-col items-center justify-center">
                             <h2 className="text-2xl font-semibold mb-4 dark:text-gray-300">Sale Trail Details</h2>
 
