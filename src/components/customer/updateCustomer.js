@@ -73,7 +73,6 @@ const UpdateCustomer = () => {
               Update Customer<span className="text-sm text-gray-400">SAS ERP</span>
             </h1>
             <div className="grid max-w-3xl lg:gap-8 sm:gap-3 py-10 px-8 sm:grid-cols-1 bg-slate-50 rounded-md border-t-4 border-gray-400">
-              {/* Name Input */}
               <div className="grid">
                 <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2">
                   <input

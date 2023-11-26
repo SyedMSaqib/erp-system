@@ -7,19 +7,20 @@ const { check, validationResult } = require("express-validator")
 // Add Employee
 router.post(
   "/addEmployee",
-  [check("name").isLength({ min: 3 }), check("phone").isLength({ min: 3 }), check("email").isLength({ min: 3 })],
+  [check("name").isLength({ min: 3 }), check("phone").isLength({ min: 3 }), check("email").isLength({ min: 3 }),check("basePay").isLength({ min: 3 })],
   validator,
   async (req, res) => {
     const result = validationResult(req)
     if (!result.isEmpty()) return res.json(result)
     try {
       if (req.user == null) return res.status(404).send("Invalid token, or empty")
-      const { name, email, phone } = req.body
+      const { name, email, phone, basePay } = req.body
       const newEmployee = await employee.create({
         user: req.user.id,
         name: name,
         email: email,
         phone: phone,
+        basePay:basePay
       })
       res.json(newEmployee)
     } catch (err) {
@@ -68,11 +69,12 @@ router.put("/updateEmployee/:id", validator, async (req, res) => {
     if (!EmployeeFromDb) return res.status(404).json("No such employee exists")
 
     if (EmployeeFromDb.user.toString() !== req.user.id) return res.status(404).send("Unauthorized user")
-    const { name, email, phone } = req.body
+    const { name, email, phone, basePay } = req.body
     const newEmployee = {}
     if (name) newEmployee.name = name
     if (email) newEmployee.email = email
     if (phone) newEmployee.phone = phone
+    if (basePay) newEmployee.basePay = basePay
     const employeeUpdate = await employee.findByIdAndUpdate(id, { $set: newEmployee }, { new: true })
 
     res.json(employeeUpdate)

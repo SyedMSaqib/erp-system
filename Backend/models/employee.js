@@ -20,6 +20,10 @@ const employeeSchema = new Schema({
     type: String,
     required: true,
   },
+  basePay: {
+    type: Number,
+    required: true,
+  },
   
   date: {
     type: Date,

@@ -28,12 +28,13 @@ const EmployeeState = (props) => {
     }
   };
 
-  const addEmployee = async (name, email,phone) => {
+  const addEmployee = async (name, email,phone,basePay) => {
     try {
       const newEmployee = {
         name: name,
         phone: phone,
         email: email,
+        basePay:basePay
       };
       setEmployees([...employees, newEmployee]);
 
@@ -44,7 +45,7 @@ const EmployeeState = (props) => {
           
          "auth-token": authToken
         },
-        body: JSON.stringify({ name, email, phone }),
+        body: JSON.stringify({ name, email, phone,basePay }),
       });
 
       // Handle response if needed
@@ -53,7 +54,7 @@ const EmployeeState = (props) => {
     }
   };
 
-  const updateEmployee = async (id, name, email, phone) => {
+  const updateEmployee = async (id, name, email, phone, basePay) => {
     try {
       // Update employee Api call
       const response = await fetch(`${host}/employees/updateEmployee/${id}`, {
@@ -63,7 +64,7 @@ const EmployeeState = (props) => {
           
          "auth-token": authToken
         },
-        body: JSON.stringify({ name, email, phone }),
+        body: JSON.stringify({ name, email, phone, basePay }),
       });
 
       // Handle response if needed

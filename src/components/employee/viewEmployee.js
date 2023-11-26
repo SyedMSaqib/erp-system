@@ -21,7 +21,8 @@ const ViewEmployee = () => {
     setUpdateFormValues({
       name: employee.name,
       email: employee.email,
-      phone: employee.phone
+      phone: employee.phone,
+      basePay:employee.basePay
     });
   };
 
@@ -38,6 +39,9 @@ const ViewEmployee = () => {
               </th>
               <th scope="col" className="px-6 py-4 font-medium text-gray-900 dark:text-gray-400">
                 Name
+              </th>
+              <th scope="col" className="px-12 py-4 font-medium text-gray-900 dark:text-gray-400">
+                Pay / day
               </th>
               <th scope="col" className="px-12 py-4 font-medium text-gray-900 dark:text-gray-400">
                 Phone
@@ -60,6 +64,7 @@ const ViewEmployee = () => {
                     <div className="text-gray-400">{employee.email}</div>
                   </div>
                 </td>
+                <td className="px-12 py-4 font-semibold">{employee.basePay} Rs</td>
                 <td className=" px-12 py-4">
                   <span className=" inline-flex items-center gap-1  bg-green-50 dark:bg-green-50/5 px-2 py-1 text-xs font-semibold dark:text-green-300 text-green-600">
                     {employee.phone}

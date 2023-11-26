@@ -8,10 +8,11 @@ const AddEmployees = () => {
   const navigate = useNavigate();
   const employeeContext = useContext(EmployeeContext);
   const { addEmployee } = employeeContext;
-  const [employee, setEmployee] = useState({ name: "", email: "", phone: "" });
+  const [employee, setEmployee] = useState({ name: "", email: "", phone: "",basePay:"" });
   const [nameValid, setNameValid] = useState(false);
   const [emailValid, setEmailValid] = useState(false);
   const [phoneValid, setPhoneValid] = useState(false);
+  const [payValid, setpayValid] = useState(false)
 
   const NameValidator = (str) => {
     return /^[A-Za-z\s]+$/.test(str);
@@ -20,11 +21,12 @@ const AddEmployees = () => {
   const handleChange = (e) => {
     setEmployee({ ...employee, [e.target.name]: e.target.value });
   };
+  console.log(employee)
 
   const onClick = (event) => {
     event.preventDefault();
 
-    if (employee.name === "" || employee.email === "" || employee.phone === "") {
+    if (employee.name === "" || employee.email === "" || employee.phone === "" || employee.basePay === "") {
       return toast.error("Please Enter All Fields");
     }
 
@@ -48,14 +50,20 @@ const AddEmployees = () => {
       toast.error("Enter Valid Phone Number");
       setPhoneValid(false);
     }
+    if (validator.isNumeric(employee.basePay)) {
+      setpayValid(true);
+    } else {
+      toast.error("Enter Valid Pay");
+      setpayValid(false);
+    }
   };
 
   useEffect(() => {
-    if (nameValid && emailValid && phoneValid) {
-      addEmployee(employee.name, employee.email, employee.phone);
+    if (nameValid && emailValid && phoneValid && payValid) {
+      addEmployee(employee.name, employee.email, employee.phone,employee.basePay);
       navigate("/viewEmployee");
     }
-  }, [nameValid, emailValid, phoneValid]);
+  }, [nameValid, emailValid, phoneValid, payValid]);
 
   return (
     <div className='lg:flex lg:justify-center lg:content-center sm:ml-64'>
@@ -80,6 +88,22 @@ const AddEmployees = () => {
                   className="block transform text-xs font-bold uppercase text-gray-400 transition-opacity duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
                 >
                   Name
+                </label>
+              </div>
+            </div>
+            <div className="grid">
+              <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
+                <input
+                  name="basePay"
+                  className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
+                  placeholder="Base Pay/ Day"
+                  onChange={handleChange}
+                />
+                <label
+                  htmlFor="basePay"
+                  className="block transform text-xs font-bold uppercase text-gray-400 transition-opacity duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
+                >
+                  BasePay/Day
                 </label>
               </div>
             </div>

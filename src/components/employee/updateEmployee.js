@@ -12,6 +12,7 @@ const UpdateEmployee = () => {
   const [nameValid, setNameValid] = useState(false);
   const [emailValid, setEmailValid] = useState(false);
   const [phoneValid, setPhoneValid] = useState(false);
+  const [payValid, setpayValid] = useState(false)
 
   const NameValidator = (str) => {
     return /^[A-Za-z\s]+$/.test(str);
@@ -30,7 +31,7 @@ const UpdateEmployee = () => {
   const onClick = (event) => {
     event.preventDefault();
 
-    if (employee.name === '' || employee.email === '' || employee.phone === '') {
+    if (employee.name === '' || employee.email === '' || employee.phone === ''|| employee.basePay==='') {
       return toast.error('Please Enter All Fields');
     }
 
@@ -54,22 +55,29 @@ const UpdateEmployee = () => {
       toast.error('Enter Valid Phone Number');
       setPhoneValid(false);
     }
+    if (validator.isNumeric(employee.basePay)) {
+      setpayValid(true);
+    } else {
+      toast.error("Enter Valid Pay");
+      setpayValid(false);
+    }
   };
 
   useEffect(() => {
-    if (nameValid && emailValid && phoneValid) {
+    if (nameValid && emailValid && phoneValid && payValid) {
       if (employee !== null) {
-        updateEmployee(employeeId, employee.name, employee.email, employee.phone);
+        updateEmployee(employeeId, employee.name, employee.email, employee.phone, employee.basePay);
         navigate('/viewEmployee');
       }
     }
-  }, [nameValid, emailValid, phoneValid]);
+  }, [nameValid, emailValid, phoneValid, payValid]);
 
   return (
-    <div className="lg:mx-auto sm:ml-64 sm:items-end  shadow-xl h-1/2 mx-auto my-20 border bg-slate-50 border-gray-300 rounded-xl">
-      <div className="pl-8 py-8 px-8  pr-8">
+    <div className='lg:flex lg:justify-center lg:content-center sm:ml-64'>
+    <div className="shadow-xl md:w-[30rem] sm:w-[20rem] mb-5 lg:mt-2  mx-auto  border bg-slate-50 border-gray-300 rounded-xl">
+      <div className="pl-8 py-8 px-8 pr-8">
         <div className="">
-          <div className="bg-slate-50 ">
+          <div className="bg-slate-50">
             <h1 className="mb-1 font-bold pr-24 text-3xl flex gap-1 items-baseline font-mono">
               Update Employee<span className="text-sm text-gray-400">SAS ERP</span>
             </h1>
@@ -91,6 +99,23 @@ const UpdateEmployee = () => {
                   </label>
                 </div>
               </div>
+              <div className="grid">
+              <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
+                <input
+                  name="basePay"
+                  className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
+                  placeholder="Base Pay/ Day"
+                  onChange={handleChange}
+                  value={employee.basePay || ''}
+                />
+                <label
+                  htmlFor="basePay"
+                  className="block transform text-xs font-bold uppercase text-gray-400 transition-opacity duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
+                >
+                  BasePay/Day
+                </label>
+              </div>
+            </div>
 
               <div className="grid">
             <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
@@ -141,6 +166,7 @@ const UpdateEmployee = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };
