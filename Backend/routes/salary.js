@@ -3,7 +3,8 @@ const router = express.Router();
 const validator = require("../middleware/validator");
 const Salary = require("../models/salary");
 const { check, validationResult } = require("express-validator");
-const employee= require("../models/employee")
+const employee= require("../models/employee");
+const salary = require("../models/salary");
 // Add Salary
 router.post(
   "/addSalary",
@@ -21,6 +22,10 @@ router.post(
       if (req.user == null) return res.status(404).send("Invalid token or empty");
       const {Month,days } = req.body;
       const employees=await employee.find({user:req.user.id})
+      const checkAlreadyMonth=await salary.findOne({Month:Month})
+      
+      if(checkAlreadyMonth)
+      return res.status(400).send("Already Paid this month")
       
       for (const emp of employees) {
         const { name, basePay,_id } = emp;
@@ -36,9 +41,9 @@ router.post(
           monthlyPay: monthlyPay,
         });
       }
-      res.json({ message: "Salaries created successfully" });
+      return res.status(202).json({ message: "Salaries created successfully" });
     } catch (err) {
-      res.status(500).json(err);
+      return res.status(500).json(err);
     }
   }
 );
