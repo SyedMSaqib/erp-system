@@ -28,7 +28,7 @@ const ViewEmployee = () => {
 
   return (
     <div>
-    <div className="flex justify-center items-center dark:bg-gray-900 " >
+    <div className="flex justify-center items-center dark:bg-gray-900  " >
     <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg dark:text-gray-300">Employees</div>
       <div className="overflow-auto rounded-xl border border-gray-200 shadow-md m-5 mt-10 ml-64 dark:border-gray-600">
         <table className="w-full border-collapse dark:bg-gray-950  bg-white text-left text-sm text-gray-500 ">
@@ -129,7 +129,7 @@ const ViewEmployee = () => {
         </table>
       </div>
     </div>
-        <div className='ml-52'>
+        <div className='ml-52 bg-gray-900'>
         <Footer/>
       </div>
       </div>
