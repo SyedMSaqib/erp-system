@@ -25,7 +25,13 @@ const ViewProduct = () => {
   const Onclickdelete=(productId)=>
   {
     deleteProduct(productId)
-    toast.success("Product Deleted")
+    toast.success("Product Deleted",document.documentElement.classList.contains('dark')? {
+      style: {
+        borderRadius: '10px',
+        background: '#333',
+        color: '#fff',
+      },
+    }:"");
   }
   return (
     <div className="grid grid-cols-1  dark:bg-gray-900">

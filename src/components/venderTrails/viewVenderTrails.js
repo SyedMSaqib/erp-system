@@ -36,7 +36,13 @@ const ViewVenderTrails = () => {
   const updatePaid = async (id) => {
     try {
       await updateVenderTrail(id)
-      toast.success("Vender Paid")
+      toast.success("Vender Paid",document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
       getAllVenderTrails()
     } catch (error) {
       console.error("Error updating vender trail:", error)

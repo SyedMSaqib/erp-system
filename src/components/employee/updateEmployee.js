@@ -32,34 +32,64 @@ const UpdateEmployee = () => {
     event.preventDefault();
 
     if (employee.name === '' || employee.email === '' || employee.phone === ''|| employee.basePay==='') {
-      return toast.error('Please Enter All Fields');
+      return toast.error('Please Enter All Fields',document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
     }
 
     if (NameValidator(employee.name)) {
       setNameValid(true);
     } else {
-      toast.error('Enter Valid Name');
+      toast.error('Enter Valid Name',document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
       setNameValid(false);
     }
 
     if (validator.isEmail(employee.email)) {
       setEmailValid(true);
     } else {
-      toast.error('Enter Valid Email');
+      toast.error('Enter Valid Email',document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
       setEmailValid(false);
     }
 
     if (validator.isNumeric(employee.phone)) {
       setPhoneValid(true);
     } else {
-      toast.error('Enter Valid Phone Number');
+      toast.error('Enter Valid Phone Number',document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
       setPhoneValid(false);
     }
      const basePayAsString = employee.basePay.toString(); //because validator is checking only strings, ah not "ABC" like, meaning string "123" and "ABC" also lol, this is a string.....you got it i know
   if (validator.isNumeric(basePayAsString)) {
       setpayValid(true);
     } else {
-      toast.error("Enter Valid Pay");
+      toast.error("Enter Valid Pay",document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
       setpayValid(false);
     }
   };

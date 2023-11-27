@@ -17,7 +17,13 @@ const ViewCustomer = () => {
   }
   const Onclickdelete = (customerId) => {
     deleteCustomer(customerId)
-    toast.success("Customer Deleted")
+    toast.success("Customer Deleted",document.documentElement.classList.contains('dark')? {
+      style: {
+        borderRadius: '10px',
+        background: '#333',
+        color: '#fff',
+      },
+    }:"");
   }
 
   return (

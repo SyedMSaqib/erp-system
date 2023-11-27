@@ -42,7 +42,13 @@ const SalePaymentStatus = () => {
   const Updatepaid = async (id) => {
     try {
       await updateSaleTrail(id)
-      toast.success("Sale Paid")
+      toast.success("Sale Paid",document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
       getAllSaleTrails()
     } catch (error) {
       console.error("Error updating sale trail:", error)

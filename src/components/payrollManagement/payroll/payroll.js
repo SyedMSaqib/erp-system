@@ -22,13 +22,25 @@ const Payroll = () => {
         }:"");
       } else if (statusCode === 202) {
         setDays("");
-        toast.success("Salaries Paid Successfully!");
+        toast.success("Salaries Paid Successfully!",document.documentElement.classList.contains('dark')? {
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        }:"");
       }
     } catch (error) {
 
       console.error("Error paying salaries:", error);
      
-      toast.error("Error paying salaries. Please try again.");
+      toast.error("Error paying salaries. Please try again.",document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
     }
   };
    

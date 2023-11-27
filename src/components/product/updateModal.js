@@ -30,27 +30,51 @@ const UpdateModal = () => {
     event.preventDefault();
 
     if (product.category === '' || product.description === '') {
-      return toast.error('Please Enter All Fields');
+      return toast.error('Please Enter All Fields',document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
     }
 
     if (NameValidator(product.name)) {
       setIsValidName(true);
     } else {
-      toast.error('Enter Valid Name');
+      toast.error('Enter Valid Name',document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
       setIsValidName(false);
     }
 
     if (validator.isNumeric(product.quantity)) {
       setIsValidQuantity(true);
     } else {
-      toast.error('Enter Valid Quantity');
+      toast.error('Enter Valid Quantity',document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
       setIsValidQuantity(false);
     }
 
     if (validator.isNumeric(product.price)) {
       setIsValidPrice(true);
     } else {
-      toast.error('Enter Valid Price');
+      toast.error('Enter Valid Price',document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
       setIsValidPrice(false);
     }
   };
@@ -70,7 +94,13 @@ const UpdateModal = () => {
       product.quantity,
       product.price
     );
-    toast.success(`${product.name} Updated Successfully`);
+    toast.success(`${product.name} Updated Successfully`,document.documentElement.classList.contains('dark')? {
+      style: {
+        borderRadius: '10px',
+        background: '#333',
+        color: '#fff',
+      },
+    }:"");
     navigate('/viewProduct');
   };
 

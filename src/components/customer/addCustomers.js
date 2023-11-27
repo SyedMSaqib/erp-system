@@ -21,27 +21,51 @@ const AddCustomers = () => {
     event.preventDefault();
 
     if (Customer.name === "" || Customer.phone === "" || Customer.email === "") {
-      return toast.error("Please Enter All Fields");
+      return toast.error("Please Enter All Fields",document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
     }
 
     if (NameValidator(Customer.name)) {
       setNameValid(true);
     } else {
-      toast.error("Enter Valid Name");
+      toast.error("Enter Valid Name",document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
       setNameValid(false);
     }
 
     if (validator.isNumeric(Customer.phone)) {
       setPhNoValid(true);
     } else {
-      toast.error("Enter Valid Phone Number");
+      toast.error("Enter Valid Phone Number",document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
       setPhNoValid(false);
     }
 
     if (validator.isEmail(Customer.email)) {
       setEmailValid(true);
     } else {
-      toast.error("Enter Valid Email Address");
+      toast.error("Enter Valid Email Address",document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
       setEmailValid(false);
     }
   }
@@ -54,7 +78,13 @@ const AddCustomers = () => {
 
   const AddCustomerToDb = () => {
     addCustomer(Customer.name, Customer.phone, Customer.email);
-    toast.success(`${Customer.name} added as a customer`);
+    toast.success(`${Customer.name} added as a customer`,document.documentElement.classList.contains('dark')? {
+      style: {
+        borderRadius: '10px',
+        background: '#333',
+        color: '#fff',
+      },
+    }:"");
     Navigate('/viewCustomers');
   }
 

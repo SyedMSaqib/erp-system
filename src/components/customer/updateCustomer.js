@@ -27,27 +27,51 @@ const UpdateCustomer = () => {
     event.preventDefault();
 
     if (customer.name === '' || customer.phone === '' || customer.email === '') {
-      return toast.error('Please Enter All Fields');
+      return toast.error('Please Enter All Fields',document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
     }
 
     if (nameValidator(customer.name)) {
       setNameValid(true);
     } else {
-      toast.error('Enter Valid Name');
+      toast.error('Enter Valid Name',document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
       setNameValid(false);
     }
 
     if (validator.isNumeric(customer.phone)) {
       setPhNoValid(true);
     } else {
-      toast.error('Enter Valid Phone Number');
+      toast.error('Enter Valid Phone Number',document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
       setPhNoValid(false);
     }
 
     if (validator.isEmail(customer.email)) {
       setEmailValid(true);
     } else {
-      toast.error('Enter Valid Email Address');
+      toast.error('Enter Valid Email Address',document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
       setEmailValid(false);
     }
   };

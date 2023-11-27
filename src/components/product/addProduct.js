@@ -56,33 +56,63 @@ const AddProduct = () => {
     console.log(vendor)
     if (
       name === "" || category === "" ||vendorId === "" || vendorPrice === "" || price === "" ||quantity==="" ||  description === "") {
-      return toast.error("Please Enter All Fields")
+      return toast.error("Please Enter All Fields",document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
     }
 
     if (NameValidator(name)) {
       setIsValidName(true)
     } else {
-      toast.error("Enter Valid Name")
+      toast.error("Enter Valid Name",document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
       setIsValidName(false)
     }
 
     if (validator.isNumeric(quantity)&& quantity>0) {
       setIsValidQuantity(true)
     } else {
-      toast.error("Enter Valid Quantity")
+      toast.error("Enter Valid Quantity",document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
       setIsValidQuantity(false)
     }
 
     if (validator.isNumeric(price) && price > 0) {
       setIsValidPrice(true)
     } else {
-      toast.error("Enter Valid Price")
+      toast.error("Enter Valid Price",document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
       setIsValidPrice(false)
     }
     if (validator.isNumeric(vendorPrice) && vendorPrice > 0) {
       setIsValidPrice(true)
     } else {
-      toast.error("Enter Valid vendor price Price")
+      toast.error("Enter Valid vendor price Price",document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
       setIsValidPrice(false)
     }
 
@@ -92,7 +122,13 @@ const AddProduct = () => {
   useEffect(() => {
     if (isValidName && isValidQuantity && isValidPrice && vendor) {
       addProduct(name, description, category, quantity, price, vendor, vendorPrice, vendorId)
-      toast.success(`${name} added to Inventory`)
+      toast.success(`${name} added to Inventory`,document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
       navigate("/viewProduct")
       setVendorModelData({})
     }

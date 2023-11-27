@@ -54,7 +54,13 @@ const AddAttendance = () => {
       }
     })
     Navigate('/addAttendanceDate')
-    toast.success(<span>Attendance Added for :<span className='font-bold'>{Date}</span></span>)
+    toast.success(<span>Attendance Added for :<span className='font-bold'>{Date}</span></span>,document.documentElement.classList.contains('dark')? {
+      style: {
+        borderRadius: '10px',
+        background: '#333',
+        color: '#fff',
+      },
+    }:"");
 }
 //
   return (
