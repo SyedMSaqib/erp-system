@@ -55,7 +55,7 @@ const UpdateEmployee = () => {
       toast.error('Enter Valid Phone Number');
       setPhoneValid(false);
     }
-     const basePayAsString = employee.basePay.toString(); //because validator is checking only strings, ah not "ABC" like, meaning string "123", this is a string.....you got it i know
+     const basePayAsString = employee.basePay.toString(); //because validator is checking only strings, ah not "ABC" like, meaning string "123" and "ABC" also lol, this is a string.....you got it i know
   if (validator.isNumeric(basePayAsString)) {
       setpayValid(true);
     } else {
