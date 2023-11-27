@@ -7,6 +7,7 @@ import toast from "react-hot-toast"
 const Payroll = () => {
   const { employees, getAllEmployees } = useContext(EmployeeContext)
   const { addSalary, Days, setDays ,Month } = useContext(SalaryContext)
+  var totalMSal=0
   
   const PaySalaries = async () => {
     try {
@@ -78,7 +79,9 @@ const Payroll = () => {
               </tr>
             </thead>
             <tbody>
-              {Days && employees.map((employee) => (
+              {Days && employees.map((employee) => {
+                {totalMSal+=employee.basePay*Days}
+                return(
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                   <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     {employee.name}
@@ -86,8 +89,18 @@ const Payroll = () => {
                   <td class="px-6 py-4 text-xs">{employee._id}</td>
                   <td class="px-6 py-4 ">Rs {employee.basePay}</td>
                   <td class="px-6 py-4 font-semibold">Rs {employee.basePay*Days}</td>
+                  
                 </tr>
-              ))}
+              )})}
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                  <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    
+                  </th>
+                  <td class="px-6 py-4 text-xs"></td>
+                  <td class="px-6 py-4 font-bold ">Total</td>
+                  <td class="px-6 py-4 font-bold ">Rs {totalMSal}</td>
+                  
+                </tr>
             </tbody>
           </table>
         </div>
