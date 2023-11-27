@@ -92,7 +92,7 @@ const Payroll = () => {
                   
                 </tr>
               )})}
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+             {Days&& <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                   <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     
                   </th>
@@ -100,7 +100,7 @@ const Payroll = () => {
                   <td class="px-6 py-4 font-bold ">Total</td>
                   <td class="px-6 py-4 font-bold ">Rs {totalMSal}</td>
                   
-                </tr>
+                </tr>}
             </tbody>
           </table>
         </div>
