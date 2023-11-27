@@ -7,7 +7,7 @@ const SalaryState = (props) => {
   const authToken = localStorage.getItem("authToken");
   const [Days, setDays] = useState("")
   const [Month, setMonth] = useState("")
-  const [statusCode, setstatusCode] = useState("")
+  
 //   const [salaries, setSalaries] = useState(null);
 
 //   const getAllSalaries = async () => {
@@ -53,7 +53,7 @@ const addSalary = async (Month, days) => {
         addSalary,
         Days, setDays,
         Month, setMonth,
-        statusCode, setstatusCode
+        
       }}
     >
       {props.children}

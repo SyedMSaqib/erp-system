@@ -6,14 +6,20 @@ import toast from "react-hot-toast"
 
 const Payroll = () => {
   const { employees, getAllEmployees } = useContext(EmployeeContext)
-  const { addSalary, Days, setDays ,Month,statusCode } = useContext(SalaryContext)
+  const { addSalary, Days, setDays ,Month } = useContext(SalaryContext)
   
   const PaySalaries = async () => {
     try {
       const statusCode = await addSalary(Month, Days);
   
       if (statusCode === 400) {
-        toast.error(`Salaries Already Paid for ${Month}`);
+        toast.error(`Salaries Already Paid for ${Month}`,document.documentElement.classList.contains('dark')? {
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        }:"");
       } else if (statusCode === 202) {
         setDays("");
         toast.success("Salaries Paid Successfully!");
