@@ -158,11 +158,11 @@ const AddCustomerSale = () => {
             <div className="flex flex-row ">
               <div  className="w-72">
 
-                <div  className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
-                  <input
+              <div  className="bg-white dark:bg-gray-900 flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 dark:border-gray-700">
+                      <input
+                        className="peer dark:bg-gray-900 block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0 dark:text-gray-300"
                     type="text"
                     name="quantity"
-                    className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
                     placeholder="Quantity"
                     onChange={handleChange}
                   />
@@ -179,11 +179,11 @@ const AddCustomerSale = () => {
               <div className="flex flex-row ">
               <div  className="w-72">
 
-                <div  className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
-                  <input
+              <div  className="bg-white dark:bg-gray-900 flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 dark:border-gray-700">
+                      <input
+                        className="peer dark:bg-gray-900 block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0 dark:text-gray-300"
                     type="text"
                     name="customerId"
-                    className="peer block w-full border-0 p-0 text-base text-gray-400 placeholder-gray-400 focus:ring-0"
                     placeholder="Customer Id"
                     onChange={handleChange}
                     value={customerId}
@@ -207,10 +207,10 @@ const AddCustomerSale = () => {
               <div className="flex flex-row ">
               <div  className="w-72">
 
-                <div  className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
-                  <input
+              <div  className="bg-white dark:bg-gray-900 flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 dark:border-gray-700">
+                      <input
+                        className="peer dark:bg-gray-900 block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0 dark:text-gray-300"
                     name="product"
-                    className="peer block w-full border-0 p-0 text-base text-gray-400 placeholder-gray-400 focus:ring-0"
                     placeholder="Product"
                     onChange={handleChange}
                     value={product}

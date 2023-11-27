@@ -76,10 +76,10 @@ const AddEmployees = () => {
           </h1>
           <div className="grid max-w-3xl lg:gap-8 sm:gap-3 py-10 px-8 sm:grid-cols-1 dark:bg-gray-950 bg-slate-50 rounded-md border-t-4 border-gray-400">
             <div className="grid">
-              <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
-                <input
+            <div  className="bg-white dark:bg-gray-900 flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 dark:border-gray-700">
+                      <input
+                        className="peer dark:bg-gray-900 block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0 dark:text-gray-300"
                   name="name"
-                  className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
                   placeholder="Name"
                   onChange={handleChange}
                 />
@@ -92,10 +92,10 @@ const AddEmployees = () => {
               </div>
             </div>
             <div className="grid">
-              <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
-                <input
+            <div  className="bg-white dark:bg-gray-900 flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 dark:border-gray-700">
+                      <input
+                        className="peer dark:bg-gray-900 block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0 dark:text-gray-300"
                   name="basePay"
-                  className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
                   placeholder="Base Pay/ Day"
                   onChange={handleChange}
                 />
@@ -109,11 +109,11 @@ const AddEmployees = () => {
             </div>
 
             <div className="grid">
-            <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
-                <input
+            <div  className="bg-white dark:bg-gray-900 flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 dark:border-gray-700">
+                      <input
+                        className="peer dark:bg-gray-900 block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0 dark:text-gray-300"
                   type="text"
                   name="phone"
-                  className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
                   placeholder="Phone"
                   onChange={handleChange}
                 />
@@ -127,11 +127,11 @@ const AddEmployees = () => {
             </div>
 
             <div className="grid">
-            <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
-                <input
+            <div  className="bg-white dark:bg-gray-900 flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 dark:border-gray-700">
+                      <input
+                        className="peer dark:bg-gray-900 block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0 dark:text-gray-300"
                   type="text"
                   name="email"
-                  className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
                   placeholder="Email"
                   onChange={handleChange}
                 />

@@ -57,7 +57,7 @@ const ViewVendors = () => {
                   <td className="flex gap-3 px-6 py-4 font-normal text-gray-900">
                     <div className="text-sm flex">
                       <div>
-                        <div className="font-medium text-gray-700">{vendor.name}</div>
+                        <div className="font-medium text-gray-700 dark:text-gray-400">{vendor.name}</div>
                     
                       </div>
                     </div>

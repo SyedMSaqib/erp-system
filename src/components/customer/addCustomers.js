@@ -71,13 +71,14 @@ const AddCustomers = () => {
             Add Customer<span className="text-sm text-gray-400 dark:text-gray-300">SAS ERP</span>
           </h1>
           <div className="grid max-w-3xl lg:gap-8 sm:gap-3 py-10 px-8 sm:grid-cols-1 bg-slate-50 rounded-md border-t-4 border-gray-600 dark:bg-gray-950">
+            
             <div className="grid">
-              <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
+              <div className="bg-white dark:bg-gray-900 flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 dark:border-gray-700  ">
                 <input
                   type="text"
                   name="name"
                 
-                  className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
+                  className="peer block w-full border-0 dark:bg-gray-900  p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0 dark:text-gray-300"
                   placeholder="Name" onChange={handleChange}
                 />
                 <label
@@ -90,12 +91,12 @@ const AddCustomers = () => {
             </div>
            
             <div className="grid">
-            <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
+            <div className="bg-white dark:bg-gray-900 flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 dark:border-gray-700  ">
                 <input
                   type="text"
                   name="phone"
                   
-                  className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
+                  className="peer block w-full border-0 dark:bg-gray-900  p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0 dark:text-gray-300"
                   placeholder="Phone" onChange={handleChange}
                 />
                 <label
@@ -107,17 +108,17 @@ const AddCustomers = () => {
               </div>
             </div>
             <div className="grid">
-            <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 ">
+            <div className="bg-white dark:bg-gray-900 flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 dark:border-gray-700  ">
                 <input
                   
                   name="email"
                   
-                  className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
+                  className="peer block w-full border-0 dark:bg-gray-900  p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0 dark:text-gray-300"
                   placeholder="E-mail" onChange={handleChange}
                 />
                 <label
                   html="email"
-                  className="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
+                  className="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0 "
                 >
                   E-mail
                 </label>

@@ -53,7 +53,7 @@ const ViewCustomer = () => {
                 <td className="flex gap-3 px-6 py-4 font-normal text-gray-900">
                   <div className="text-sm flex">
                     <div>
-                      <div className="font-medium text-gray-700">{customerItem.name}</div>
+                      <div className="font-medium text-gray-700 dark:text-gray-300 ">{customerItem.name}</div>
                       <div className="text-gray-400 ">{customerItem.email}</div>
                     </div>
                   </div>

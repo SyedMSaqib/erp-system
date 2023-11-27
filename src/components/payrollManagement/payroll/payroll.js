@@ -5,7 +5,7 @@ const Payroll = () => {
   return (
     <div className="dark:bg-gray-900 bg-slate-50 ">
     <div className="flex justify-center items-center   ">
-     <div className="rounded-lg flex justify-start border border-gray-300 shadow-xl w-[60rem] h-[6rem] mt-9 ml-56">
+     <div className="rounded-lg flex justify-start border border-gray-300 shadow-md w-[60rem] h-[6rem] mt-9 ml-56">
         <div className="pl-40 pt-4">
             
 <MonthDropdown/>     

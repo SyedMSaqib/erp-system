@@ -58,7 +58,7 @@ const ViewEmployee = () => {
                 <td className="px-5 py-4">{index+1}</td>
                 <td className="flex gap-3 px-6 py-4 font-normal text-gray-900 dark:text-gray-400">
                   <div className="text-sm">
-                    <div className="font-medium text-gray-700">
+                    <div className="font-medium text-gray-700 dark:text-gray-300">
                       {employee.name}
                     </div>
                     <div className="text-gray-400">{employee.email}</div>
