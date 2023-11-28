@@ -129,7 +129,7 @@ const ViewEmployee = () => {
         </table>
       </div>
     </div>
-        <div className='ml-52 bg-gray-900'>
+        <div className='ml-52 dark:bg-gray-900'>
         <Footer/>
       </div>
       </div>

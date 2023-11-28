@@ -181,7 +181,7 @@ export default function Sidebar() {
     <div className="w-60 fixed dark:bg-gray-950  ">
       <div className="flex">
         
-        <div className=" flex flex-col h-screen p-3 bg-slate-100 dark:bg-gray-950 dark:border-gray-800  text-gray shadow-xl z-[999] w-60 border border-slate-200 ">
+        <div className=" flex flex-col h-screen p-3 bg-slate-100 dark:bg-gray-950 dark:border-gray-800  text-gray shadow-xl z-[999] w-60 border border-slate-200 overflow-y-scroll no-scrollbar">
           <div className="space-y-3">
             <div className="flex items-center">
               {darkMode?
