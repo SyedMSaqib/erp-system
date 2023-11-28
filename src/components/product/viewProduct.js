@@ -6,7 +6,13 @@ import Footer from "../loginSignup/footer"
 
 const ViewProduct = () => {
   const { product, getAllProducts, deleteProduct, setproductId, setupdateFormValues } = useContext(ProductContext)
+  useEffect(() => {
 
+    document.title = 'Inventory-SAS ERP';
+    return () => {
+      document.title = 'SAS ERP';
+    };
+  }, []);
   useEffect(() => {
     getAllProducts()
   }, [])

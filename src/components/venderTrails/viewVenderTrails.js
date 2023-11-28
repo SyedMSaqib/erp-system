@@ -151,7 +151,7 @@ const ViewVenderTrails = () => {
                     </tr>
                     {open === index ? (
                       <tr className="bg-gray-400 dark:bg-gray-950">
-                        <td colSpan="9" className="bg-gray-50 dark:bg-gray-950 p-10  border border-gray-200">
+                        <td colSpan="9" className="bg-gray-50 dark:bg-gray-950 p-10  dark:border-gray-700 border border-gray-200">
                           <div className="flex flex-col items-center justify-center">
                             <h2 className="text-2xl font-semibold mb-4 dark:text-gray-300">Vender Trail Details</h2>
 

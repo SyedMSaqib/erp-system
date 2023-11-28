@@ -20,20 +20,38 @@ const AddVendor = () => {
     event.preventDefault();
 
     if (Vendor.Name === "" || Vendor.email === "") {
-      return toast.error("Please Enter All Fields");
+      return toast.error("Please Enter All Fields",document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
     }
 
     if (NameValidator(Vendor.Name)) {
       setNameValid(true);
     } else {
-      toast.error("Enter Valid Name");
+      toast.error("Enter Valid Name",document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
       setNameValid(false);
     }
 
     if (validator.isEmail(Vendor.email)) {
       setEmailValid(true);
     } else {
-      toast.error("Enter Valid Email Address");
+      toast.error("Enter Valid Email Address",document.documentElement.classList.contains('dark')? {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      }:"");
       setEmailValid(false);
     }
   }
@@ -46,7 +64,13 @@ const AddVendor = () => {
 
   const AddVendorToDb = () => {
     addVendor(Vendor.Name, Vendor.email);
-    toast.success(`${Vendor.Name} added as a vendor`);
+    toast.success(`${Vendor.Name} added as a vendor`,document.documentElement.classList.contains('dark')? {
+      style: {
+        borderRadius: '10px',
+        background: '#333',
+        color: '#fff',
+      },
+    }:"");
     Navigate('/viewVendors');
   }
 

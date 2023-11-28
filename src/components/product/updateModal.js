@@ -104,22 +104,29 @@ const UpdateModal = () => {
     navigate('/viewProduct');
   };
 
+  useEffect(() => {
+
+    document.title = 'Inventory-SAS ERP';
+    return () => {
+      document.title = 'SAS ERP';
+    };
+  }, []);
   return (
-    <div className='lg:flex lg:justify-center lg:content-center sm:ml-64'>
-    <div className="shadow-xl md:w-[30rem] sm:w-[20rem] mb-5 lg:mt-2  mx-auto  border bg-slate-50 border-gray-300 rounded-xl">
-      <div className="pl-8 py-8 px-8 pr-8">
+    <div className='lg:flex lg:justify-center lg:content-center sm:ml-64 dark:bg-gray-900 '>
+    <div className="shadow-xl md:w-[30rem] sm:w-[20rem] mb-5 lg:mt-2  mx-auto  border bg-slate-50 border-gray-300 rounded-xl  dark:text-gray-300 dark:bg-gray-950 dark:border-gray-700">
+      <div className="pl-8 py-8 px-8 pr-8 ">
         <div className="">
-          <div className="bg-slate-50">
+          <div className="bg-slate-50  dark:text-gray-300 dark:bg-gray-950">
             <h1 className="mb-1 font-bold pr-24 text-3xl flex gap-1 items-baseline font-mono">
               Update Product<span className="text-sm text-gray-400">SAS ERP</span>
             </h1>
-            <div className="grid max-w-3xl lg:gap-8 sm:gap-3 py-10 px-8 sm:grid-cols-1 bg-slate-50 rounded-md border-t-4 border-gray-400">
-              {/* Name Input */}
+            <div className="grid max-w-3xl lg:gap-8 sm:gap-3 py-10 px-8 sm:grid-cols-1  dark:text-gray-300 dark:bg-gray-950 bg-slate-50 rounded-md border-t-4 border-gray-400">
+             
               <div className="grid">
-                <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2">
-                  <input
+              <div  className="bg-white dark:bg-gray-900 flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 dark:border-gray-700">
+                      <input
+                        className="peer dark:bg-gray-900 block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0 dark:text-gray-300"
                     name="name"
-                    className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
                     placeholder="Name"
                     onChange={handleChange}
                     value={product.name}
@@ -135,11 +142,11 @@ const UpdateModal = () => {
 
               {/* Category Input */}
               <div className="grid">
-                <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2">
-                  <input
+              <div  className="bg-white dark:bg-gray-900 flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 dark:border-gray-700">
+                      <input
+                        className="peer dark:bg-gray-900 block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0 dark:text-gray-300"
                     type="text"
                     name="category"
-                    className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
                     placeholder="Category"
                     onChange={handleChange}
                     value={product.category}
@@ -155,11 +162,11 @@ const UpdateModal = () => {
 
               {/* Price Input */}
               <div className="grid">
-                <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2">
-                  <input
+              <div  className="bg-white dark:bg-gray-900 flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 dark:border-gray-700">
+                      <input
+                        className="peer dark:bg-gray-900 block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0 dark:text-gray-300"
                     type="text"
                     name="price"
-                    className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
                     placeholder="Price"
                     onChange={handleChange}
                     value={product.price}
@@ -175,11 +182,11 @@ const UpdateModal = () => {
 
               {/* Quantity Input */}
               <div className="grid">
-                <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2">
-                  <input
+              <div  className="bg-white dark:bg-gray-900 flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 dark:border-gray-700">
+                      <input
+                        className="peer dark:bg-gray-900 block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0 dark:text-gray-300"
                     type="text"
                     name="quantity"
-                    className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
                     placeholder="Quantity"
                     onChange={handleChange}
                     value={product.quantity}
@@ -195,11 +202,11 @@ const UpdateModal = () => {
 
               {/* Description Input */}
               <div className="grid">
-                <div className="bg-white flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2">
-                  <input
+              <div  className="bg-white dark:bg-gray-900 flex flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 dark:border-gray-700">
+                      <input
+                        className="peer dark:bg-gray-900 block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0 dark:text-gray-300"
                     type="text"
                     name="description"
-                    className="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
                     placeholder="Description"
                     onChange={handleChange}
                     value={product.description}
@@ -213,7 +220,6 @@ const UpdateModal = () => {
                 </div>
               </div>
 
-              {/* Submit Button */}
               <button
                 onClick={onClick}
                 type="submit"

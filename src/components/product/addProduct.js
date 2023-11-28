@@ -11,6 +11,15 @@ const AddProduct = () => {
   const NameValidator = (str) => {
     return /^[A-Za-z\s]+$/.test(str)
   }
+  useEffect(() => {
+  
+    document.title = 'Inventory-SAS ERP';
+
+
+    return () => {
+      document.title = 'SAS ERP';
+    };
+  }, []);
 
   const navigate = useNavigate()
   const productContext = useContext(ProductContext)
