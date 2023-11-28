@@ -97,8 +97,8 @@ const Payroll = () => {
   return (
     <div className="dark:bg-gray-900 bg-slate-50 ">
       <div className="flex justify-center items-center   ">
-        <div className=" flex justify-start border border-gray-300  dark:border-gray-700 shadow-md w-[60rem] h-[6rem] mt-24 ml-56 bg-gray-100 dark:bg-gray-950 fixed ">
-          <div className="pl-10 pt-4">
+        <div className=" z-40 shadow-md w-screen h-[6rem] mt-24  bg-slate-100 bg-opacity-5 backdrop-blur-md   dark:bg-gray-950 dark:bg-opacity-5 dark:backdrop-blur-md fixed ">
+           <div className="flex justify-center items-center pt-2 pl-56">
             <MonthDropdown />
           </div>
         </div>
@@ -172,7 +172,7 @@ const Payroll = () => {
                     <td class="px-6 py-4 font-semibold">Rs {record.monthlyPay}</td>
                     <td class="px-6 py-4 font-semibold">{Month}</td>
                     <td class="px-6 py-4 font-semibold">
-                      {<Lottie animationData={Paid} loop={false} style={{ width: "80px", height: "40px" }} />}
+                      Paid
                     </td>
                   </tr>
                 ))}
