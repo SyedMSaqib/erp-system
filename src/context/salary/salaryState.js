@@ -7,6 +7,8 @@ const SalaryState = (props) => {
   const authToken = localStorage.getItem("authToken");
   const [Days, setDays] = useState("")
   const [Month, setMonth] = useState("")
+  const [action, setaction] = useState("Pay Salary")
+  const [salaryRecord, setsalaryRecord] = useState({})
   
 //   const [salaries, setSalaries] = useState(null);
 
@@ -27,6 +29,24 @@ const SalaryState = (props) => {
 //     }
 //   };
 
+const getRecord = async (Month) => {
+  try {
+    const res = await fetch(`${host}/salary/monthRecord`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': authToken,
+      },
+      body: JSON.stringify({ Month }),
+    });
+    const data=await res.json()
+    setsalaryRecord(data)
+  
+  } catch (error) {
+    console.error("Error updating salary:", error);
+    throw error;
+  }
+};
 const addSalary = async (Month, days) => {
   try {
     const res = await fetch(`${host}/salary/addSalary`, {
@@ -53,7 +73,8 @@ const addSalary = async (Month, days) => {
         addSalary,
         Days, setDays,
         Month, setMonth,
-        
+        action, setaction,
+        getRecord,salaryRecord
       }}
     >
       {props.children}
