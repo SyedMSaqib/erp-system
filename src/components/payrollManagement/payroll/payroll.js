@@ -7,57 +7,27 @@ import toast from "react-hot-toast"
 
 const Payroll = () => {
   const { employees, getAllEmployees } = useContext(EmployeeContext)
-  const { addSalary, Days, setDays, Month, action, getRecord, salaryRecord } = useContext(SalaryContext)
+  const { addSalary, Days, setDays, Month, getRecord, salaryRecord } = useContext(SalaryContext)
   console.log(Month)
   var totalMSal = 0
   const [salaryRecords, setsalaryRecords] = useState("")
   useEffect(() => {
-    if (action === "View Records" && Month !== "") {
+    if ( Month !== "") {
       getRecord(Month)
     }
-  }, [Month, action])
+  }, [Month])
 
   useEffect(() => {
     if (salaryRecord) setsalaryRecords(salaryRecord.salariesRecord)
   }, [salaryRecord])
 
-  useEffect(() => {
-    if (salaryRecord) {
-      if (salaryRecord.status === 400) {
-        toast.error(
-          `No records found for ${Month}`,
-          document.documentElement.classList.contains("dark")
-            ? {
-                style: {
-                  borderRadius: "10px",
-                  background: "#333",
-                  color: "#fff",
-                },
-              }
-            : ""
-        )
-      }
-    }
-  }, [salaryRecord])
+
 
   const PaySalaries = async () => {
     try {
       const statusCode = await addSalary(Month, Days)
 
-      if (statusCode === 400) {
-        toast.error(
-          `Salaries Already Paid for ${Month}`,
-          document.documentElement.classList.contains("dark")
-            ? {
-                style: {
-                  borderRadius: "10px",
-                  background: "#333",
-                  color: "#fff",
-                },
-              }
-            : ""
-        )
-      } else if (statusCode === 202) {
+       if (statusCode === 202) {
         setDays("")
         toast.success(
           "Salaries Paid Successfully!",
@@ -114,27 +84,27 @@ const Payroll = () => {
                 <th scope="col" class="px-6 py-3">
                   Employee Id
                 </th>
-                {action === "Pay Salary" && (
+                {salaryRecord && salaryRecord.status === 400  && (
                   <th scope="col" class="px-6 py-3">
                     Pay/day
                   </th>
                 )}
-                {action === "Pay Salary" && (
+                {salaryRecord && salaryRecord.status === 400  && (
                   <th scope="col" class="px-6  py-3">
                     Monthly Pay
                   </th>
                 )}
-                {action === "View Records" && (
+                {salaryRecord && salaryRecord.status === 200 && (
                   <th scope="col" class="px-6  py-3">
                     Paid
                   </th>
                 )}
-                {action === "View Records" && (
+                {salaryRecord && salaryRecord.status === 200  && (
                   <th scope="col" class="px-6  py-3">
                     Month
                   </th>
                 )}
-                {action === "View Records" && (
+                {salaryRecord && salaryRecord.status === 200 && (
                   <th scope="col" class="px-6  py-3">
                     Status
                   </th>
@@ -142,7 +112,7 @@ const Payroll = () => {
               </tr>
             </thead>
             <tbody>
-              {action === "Pay Salary" &&
+              {salaryRecord && salaryRecord.status === 400 &&
                 Days &&
                 employees.map((employee) => {
                   {
@@ -159,7 +129,7 @@ const Payroll = () => {
                     </tr>
                   )
                 })}
-                 {action === "Pay Salary" &&
+                 {salaryRecord && salaryRecord.status === 400 &&
                 Days && 
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                       <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -171,8 +141,8 @@ const Payroll = () => {
                     </tr>}
                 
 
-              {action === "View Records" &&
-                salaryRecords &&
+              
+              { salaryRecords &&
                 salaryRecords.map((record) => (
                   <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -192,7 +162,7 @@ const Payroll = () => {
           </table>
         </div>
       </div>
-      {action === "Pay Salary" && Days && (
+      {salaryRecord && salaryRecord.status === 400 && Days && (
         <div className="flex justify-center content-center">
           <button
             onClick={() => PaySalaries()}
