@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react"
 import SalaryContext from "../../../context/salary/salaryContext"
 
 const MonthDropdown = () => {
-  const {  setDays,Month, setMonth,action, setaction } = useContext(SalaryContext)
+  const {  setDays,Month, setMonth} = useContext(SalaryContext)
     const [firstDay, setFirstDay] = useState("");
   const [lastDay, setLastDay] = useState("");
 
@@ -20,16 +20,6 @@ const MonthDropdown = () => {
     "November",
     "December",
   ]
-  const Action=[
-    "View Records",
-    "Pay Salary"
-  ]
-
-  
-
-  const handleAction=(e)=>{
-    setaction(e.target.value)
-  }
 
   const handleChange = (e) => {
     getFirstAndLastDay(e.target.value);
@@ -67,24 +57,6 @@ const MonthDropdown = () => {
           {months.map((month) => (
             <option key={month} value={month }>
               {month}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="mt-4 flex pr-4">
-        <label htmlFor="month" className="block text-sm font-medium text-gray-700 w-24 dark:text-gray-400 pt-2">
-          Action :
-        </label>
-        <select
-          id="Action"
-          name="action"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full h-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          onChange={handleAction}
-          value={action}
-        >
-          {Action.map((Action) => (
-            <option key={Action} value={Action }>
-              {Action}
             </option>
           ))}
         </select>
