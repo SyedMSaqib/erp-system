@@ -3,12 +3,12 @@ import MonthDropdown from "../monthDropdown/monthDropdown"
 import EmployeeContext from "../../../context/employees/employeeContext"
 import SalaryContext from "../../../context/salary/salaryContext"
 import toast from "react-hot-toast"
-import Lottie from "lottie-react"
-import Paid from "../animations/paid.json"
+
 
 const Payroll = () => {
   const { employees, getAllEmployees } = useContext(EmployeeContext)
   const { addSalary, Days, setDays, Month, action, getRecord, salaryRecord } = useContext(SalaryContext)
+  console.log(Month)
   var totalMSal = 0
   const [salaryRecords, setsalaryRecords] = useState("")
   useEffect(() => {
@@ -159,6 +159,17 @@ const Payroll = () => {
                     </tr>
                   )
                 })}
+                 {action === "Pay Salary" &&
+                Days && 
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        
+                      </th>
+                      <td class="px-6 py-4 text-xs"></td>
+                      <td class="px-6 py-4 ">Total</td>
+                      <td class="px-6 py-4 font-semibold">Rs {totalMSal}</td>
+                    </tr>}
+                
 
               {action === "View Records" &&
                 salaryRecords &&
@@ -172,7 +183,8 @@ const Payroll = () => {
                     <td class="px-6 py-4 font-semibold">Rs {record.monthlyPay}</td>
                     <td class="px-6 py-4 font-semibold">{Month}</td>
                     <td class="px-6 py-4 font-semibold">
-                      Paid
+                      <span className="pl-4 pr-4 bg-green-200 dark:bg-green-400  text-green-800 dark:text-">
+                      Paid</span>
                     </td>
                   </tr>
                 ))}
