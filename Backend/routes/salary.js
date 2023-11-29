@@ -5,7 +5,11 @@ const Salary = require("../models/salary")
 const { check, validationResult } = require("express-validator")
 const employee = require("../models/employee")
 const salary = require("../models/salary")
-// Add Salary
+const Attendance = require("../models/attendance")
+
+
+
+
 router.post(
   "/addSalary",
   [check("Month").isLength({ min: 1 }), check("days").isNumeric()],
@@ -57,6 +61,36 @@ router.post("/monthRecord", [check("Month").isLength({ min: 1 })], validator, as
     }
     else
     res.json({message:"No record available for this month",status:400})
+  } catch (err) {
+    res.json(err)
+  }
+})
+router.post("/absenceSalaryDeduct", validator, async (req, res) => {
+  if (req.user == null) return res.status(404).send("Invalid token or empty")
+  try {
+    const attendanceFromDb = await Attendance.find({ user: req.user.id });
+    const EmployeesFromDb = await employee.find({ user: req.user.id })
+    const desiredMonthSalaries = attendanceFromDb.filter(attendanceFromDb => {
+      const salaryDate = new Date(attendanceFromDb.date);
+      return salaryDate.getMonth() === 10;
+    });
+    const empIdSearch = [];
+
+for (const emp of EmployeesFromDb) {
+  const result = desiredMonthSalaries.filter(attendance => attendance.employeeId.toString() === emp._id.toString());
+  var days=0
+ for(const presdays of result)
+ {
+  if(presdays.attendance)
+  {
+    days++
+  }
+ }
+empIdSearch.push({employeeName:emp.name,employeeId:emp._id,daysWorked:days,MonthlyPay:emp.basePay*days})
+}
+console.log(empIdSearch)
+return res.json(empIdSearch);
+    
   } catch (err) {
     res.json(err)
   }
