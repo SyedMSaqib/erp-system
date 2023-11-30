@@ -4,7 +4,6 @@ const validator = require("../middleware/validator")
 const Salary = require("../models/salary")
 const { check, validationResult } = require("express-validator")
 const employee = require("../models/employee")
-const salary = require("../models/salary")
 const Attendance = require("../models/attendance")
 
 
@@ -22,7 +21,7 @@ router.post(
       if (req.user == null) return res.status(404).send("Invalid token or empty")
       const { Month, days } = req.body
       const employees = await employee.find({ user: req.user.id })
-      const checkAlreadyMonth = await salary.findOne({ Month: Month })
+      const checkAlreadyMonth = await Salary.findOne({ Month: Month })
 
       if (checkAlreadyMonth) return res.status(400).send("Already Paid this month")
 
@@ -65,20 +64,37 @@ router.post("/monthRecord", [check("Month").isLength({ min: 1 })], validator, as
     res.json(err)
   }
 })
-router.post("/absenceSalaryDeduct", validator, async (req, res) => {
+router.post("/absenceSalaryDeduct",[check("addRecord").isBoolean()], validator, async (req, res) => {
   if (req.user == null) return res.status(404).send("Invalid token or empty")
+  const {addRecord,Month}=req.body
+  const monthNameToNumber = {
+    January: 0,
+    February: 1,
+    March: 2,
+    April: 3,
+    May: 4,
+    June: 5,
+    July: 6,
+    August: 7,
+    September: 8,
+    October: 9,
+    November: 10,
+    December: 11
+  }
+  const monthInNumber=monthNameToNumber[Month]
   try {
     const attendanceFromDb = await Attendance.find({ user: req.user.id });
     const EmployeesFromDb = await employee.find({ user: req.user.id })
     const desiredMonthSalaries = attendanceFromDb.filter(attendanceFromDb => {
       const salaryDate = new Date(attendanceFromDb.date);
-      return salaryDate.getMonth() === 10;
+      return salaryDate.getMonth() === monthInNumber;
     });
-    const empIdSearch = [];
+    const deductedPEmployee = [];
 
 for (const emp of EmployeesFromDb) {
   const result = desiredMonthSalaries.filter(attendance => attendance.employeeId.toString() === emp._id.toString());
   var days=0
+  var monthlySalary=0
  for(const presdays of result)
  {
   if(presdays.attendance)
@@ -86,10 +102,25 @@ for (const emp of EmployeesFromDb) {
     days++
   }
  }
-empIdSearch.push({employeeName:emp.name,employeeId:emp._id,daysWorked:days,MonthlyPay:emp.basePay*days})
+ monthlySalary=emp.basePay*days
+deductedPEmployee.push({employeeName:emp.name,employeeId:emp._id,Month:Month,daysWorked:days,MonthlyPay:monthlySalary})
+
+
+if(addRecord===true)
+{
+  await Salary.create({
+    user: req.user.id,
+    employeeName:emp.name,
+    employeeId: emp._id,
+    Month:Month,
+    basePay: emp.basePay,
+    monthlyPay: monthlySalary
+  })
+  
+
 }
-console.log(empIdSearch)
-return res.json(empIdSearch);
+}
+return res.json(deductedPEmployee);
     
   } catch (err) {
     res.json(err)
