@@ -64,9 +64,8 @@ router.post("/monthRecord", [check("Month").isLength({ min: 1 })], validator, as
     res.json(err)
   }
 })
-router.post("/absenceSalaryDeduct",[check("addRecord").isBoolean()], validator, async (req, res) => {
+router.post("/absenceSalaryDeduct",[check("addRecord").isBoolean(),check("Month").isString()], validator, async (req, res) => {
   if (req.user == null) return res.status(404).send("Invalid token or empty")
-  const {addRecord,Month}=req.body
   const monthNameToNumber = {
     January: 0,
     February: 1,
@@ -81,8 +80,10 @@ router.post("/absenceSalaryDeduct",[check("addRecord").isBoolean()], validator, 
     November: 10,
     December: 11
   }
-  const monthInNumber=monthNameToNumber[Month]
   try {
+    const {addRecord,Month}=req.body
+    const monthInNumber=monthNameToNumber[Month]
+
     const attendanceFromDb = await Attendance.find({ user: req.user.id });
     const EmployeesFromDb = await employee.find({ user: req.user.id })
     const desiredMonthSalaries = attendanceFromDb.filter(attendanceFromDb => {
