@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react"
 import SalaryContext from "../../../context/salary/salaryContext"
 
 const MonthDropdown = () => {
-  const {  setDays,Month, setMonth} = useContext(SalaryContext)
+  const {  setDays,Month, setMonth,isChecked, setIsChecked} = useContext(SalaryContext)
     const [firstDay, setFirstDay] = useState("");
   const [lastDay, setLastDay] = useState("");
 
@@ -39,6 +39,11 @@ const MonthDropdown = () => {
       setFirstDay( firstDay.toISOString().slice(0, 10))
       setLastDay(lastDay.toISOString().slice(0, 10))
     }
+
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked)
+  }
   
   
   return (
@@ -61,8 +66,34 @@ const MonthDropdown = () => {
           ))}
         </select>
         
+
+
       </div>
-      
+      <div className="mt-5">
+      <label className=' relative inline-flex cursor-pointer select-none items-center'>
+        <input
+          type='checkbox'
+          checked={isChecked}
+          onChange={handleCheckboxChange}
+          className='sr-only'
+        />
+        <span className='label flex items-center text-sm font-medium text-black dark:text-gray-300'>
+          Filter by days Present
+        </span>
+        <span
+          className={`slider mx-4 flex h-6 w-[40px] items-center rounded-full p-1 duration-200 ${
+            isChecked ? 'bg-green-400' : 'bg-[#CCCCCE]'
+          }`}
+        >
+          <span
+            className={`dot h-4 w-4 rounded-full bg-white duration-200 ${
+              isChecked ? 'translate-x-[18px]' : ''
+            }`}
+          ></span>
+        </span>
+       
+      </label>
+    </div>
       
       <div className="mt-6 flex">
         <p className="text-sm font-medium text-gray-700 dark:text-gray-400 ml-5 w-[7rem]  ">Selected Month:</p>

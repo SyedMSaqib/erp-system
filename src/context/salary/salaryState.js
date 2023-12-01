@@ -8,6 +8,8 @@ const SalaryState = (props) => {
   const [Days, setDays] = useState("")
   const [Month, setMonth] = useState("")
   const [salaryRecord, setsalaryRecord] = useState({})
+  const [isChecked, setIsChecked] = useState(false)
+
   
 //   const [salaries, setSalaries] = useState(null);
 
@@ -72,7 +74,8 @@ const addSalary = async (Month, days) => {
         addSalary,
         Days, setDays,
         Month, setMonth,
-        getRecord,salaryRecord
+        getRecord,salaryRecord,
+        isChecked, setIsChecked
       }}
     >
       {props.children}

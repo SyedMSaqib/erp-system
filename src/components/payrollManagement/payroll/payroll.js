@@ -7,7 +7,7 @@ import toast from "react-hot-toast"
 
 const Payroll = () => {
   const { employees, getAllEmployees } = useContext(EmployeeContext)
-  const { addSalary, Days, setDays, Month, getRecord, salaryRecord } = useContext(SalaryContext)
+  const { addSalary, Days, setDays, Month, getRecord, salaryRecord,isChecked } = useContext(SalaryContext)
   console.log(Month)
   var totalMSal = 0
   const [salaryRecords, setsalaryRecords] = useState("")
