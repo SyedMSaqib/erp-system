@@ -108,6 +108,7 @@ router.get(
           employeeId: emp._id,
           Month: Month,
           daysWorked: days,
+          basePay:emp.basePay,
           MonthlyPay: monthlySalary,
         })
 
@@ -188,16 +189,6 @@ router.post(
     }
   }
 )
-router.get("/fetchAllSalaries", validator, async (req, res) => {
-  try {
-    const { Month, days } = req.body
-
-    const salariesFromDb = await Salary.find({ user: req.user.id })
-    res.json(salariesFromDb)
-  } catch (err) {
-    res.json(err)
-  }
-})
 
 // Delete Salary
 router.delete("/deleteSalary/:id", validator, async (req, res) => {
