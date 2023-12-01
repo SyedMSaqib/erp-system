@@ -59,9 +59,9 @@ router.post("/monthRecord", [check("Month").isLength({ min: 1 })], validator, as
     res.json(err)
   }
 })
-router.post(
-  "/absenceSalaryDeduct",
-  [check("addRecord").isBoolean(), check("Month").isString()],
+router.get(
+  "/absenceSalaryDetails",
+  [ check("Month").isString()],
   validator,
   async (req, res) => {
     if (req.user == null) return res.status(404).send("Invalid token or empty")
@@ -80,7 +80,7 @@ router.post(
       December: 11,
     }
     try {
-      const { addRecord, Month } = req.body
+      const { Month } = req.body
       const monthInNumber = monthNameToNumber[Month]
 
       const attendanceFromDb = await Attendance.find({ user: req.user.id })
@@ -111,7 +111,67 @@ router.post(
           MonthlyPay: monthlySalary,
         })
 
-        if (addRecord === true) {
+       
+      }
+      return res.json(deductedPEmployee)
+    } catch (err) {
+      res.json(err)
+    }
+  }
+)
+router.post(
+  "/absenceSalaryDeduct",
+  [ check("Month").isString()],
+  validator,
+  async (req, res) => {
+    if (req.user == null) return res.status(404).send("Invalid token or empty")
+    const monthNameToNumber = {
+      January: 0,
+      February: 1,
+      March: 2,
+      April: 3,
+      May: 4,
+      June: 5,
+      July: 6,
+      August: 7,
+      September: 8,
+      October: 9,
+      November: 10,
+      December: 11,
+    }
+    try {
+      const { Month } = req.body
+      const monthInNumber = monthNameToNumber[Month]
+
+      const attendanceFromDb = await Attendance.find({ user: req.user.id })
+      const EmployeesFromDb = await employee.find({ user: req.user.id })
+      const desiredMonthSalaries = attendanceFromDb.filter((attendanceFromDb) => {
+        const salaryDate = new Date(attendanceFromDb.date)
+        return salaryDate.getMonth() === monthInNumber
+      })
+      const deductedPEmployee = []
+
+      for (const emp of EmployeesFromDb) {
+        const result = desiredMonthSalaries.filter(
+          (attendance) => attendance.employeeId.toString() === emp._id.toString()
+        )
+        var days = 0
+        var monthlySalary = 0
+        for (const presdays of result) {
+          if (presdays.attendance) {
+            days++
+          }
+        }
+        monthlySalary = emp.basePay * days
+        deductedPEmployee.push({
+          employeeName: emp.name,
+          employeeId: emp._id,
+          Month: Month,
+          daysWorked: days,
+          MonthlyPay: monthlySalary,
+        })
+
+       
           await Salary.create({
             user: req.user.id,
             employeeName: emp.name,
@@ -120,7 +180,7 @@ router.post(
             basePay: emp.basePay,
             monthlyPay: monthlySalary,
           })
-        }
+        
       }
       return res.json(deductedPEmployee)
     } catch (err) {
