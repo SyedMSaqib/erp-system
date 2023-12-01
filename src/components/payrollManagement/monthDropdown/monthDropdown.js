@@ -60,8 +60,10 @@ const MonthDropdown = () => {
             </option>
           ))}
         </select>
+        
       </div>
-
+      
+      
       <div className="mt-6 flex">
         <p className="text-sm font-medium text-gray-700 dark:text-gray-400 ml-5 w-[7rem]  ">Selected Month:</p>
         <p className="text-sm   dark:text-gray-300">{Month}</p>
@@ -70,6 +72,7 @@ const MonthDropdown = () => {
         <p className="text-sm font-medium pl-10 dark:text-gray-400">End:</p>
         <p className="text-sm   dark:text-gray-300 w-[5rem] pl-1 ">{lastDay}</p>
       </div>
+      
     </div>
   )
 }

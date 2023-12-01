@@ -39,3 +39,7 @@
 .filter-invert {
   filter: invert(1); /* 1 inverts the colors, 0 leaves them unchanged */
 }
+input:checked ~ .dot {
+  transform: translateX(100%);
+  background-color: #48bb78;
+}
