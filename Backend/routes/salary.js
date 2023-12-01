@@ -182,7 +182,7 @@ router.post(
           })
         
       }
-      return res.json(deductedPEmployee)
+      return res.status(202).json(deductedPEmployee)
     } catch (err) {
       res.json(err)
     }

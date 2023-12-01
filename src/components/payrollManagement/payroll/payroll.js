@@ -25,8 +25,6 @@ const Payroll = () => {
     if (Month !== "") {
       getDeductedSalaries(Month)
       getRecord(Month)
-      console.log(deductSalary)
-      
     }
   }, [Month])
 
@@ -35,9 +33,13 @@ const Payroll = () => {
   }, [salaryRecord])
 
 
-  const PayDeductedSalaries=()=>{
-    addDaysDeductSalary(Month)
-    setDays("")
+  const PayDeductedSalaries=async ()=>{
+    try{
+    const statusCode= await addDaysDeductSalary(Month)
+    if (statusCode === 202) {
+      getRecord(Month)
+      setDays("")
+  
         toast.success(
           "Salaries Paid Successfully!",
           document.documentElement.classList.contains("dark")
@@ -51,12 +53,18 @@ const Payroll = () => {
             : ""
         )
   }
+ } catch (error) {
+    console.error("Error paying salaries:", error)}
+}
+
+  
  
   const PaySalaries = async () => {
     try {
       const statusCode = await addSalary(Month, Days)
 
       if (statusCode === 202) {
+        getRecord(Month)
         setDays("")
         toast.success(
           "Salaries Paid Successfully!",
@@ -88,6 +96,7 @@ const Payroll = () => {
       )
     }
   }
+
 
   useEffect(() => {
     getAllEmployees()

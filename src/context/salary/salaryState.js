@@ -48,7 +48,7 @@ const SalaryState = (props) => {
   }
   const addDaysDeductSalary = async (Month) => {
     try {
-      await fetch(`${host}/salary/absenceSalaryDeduct`, {
+     const res= await fetch(`${host}/salary/absenceSalaryDeduct`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -56,6 +56,7 @@ const SalaryState = (props) => {
         },
         body: JSON.stringify({ Month }),
       })
+      return res.status
     } catch (error) {
       console.error("Error updating salary:", error)
       throw error
