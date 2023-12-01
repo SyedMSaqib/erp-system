@@ -83,7 +83,7 @@ const AddAttendance = () => {
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100 dark:divide-gray-600 dark:border-gray-600">
             {employees.map((employee, index) => (
-              <tr className={`${index%2===0?"bg-gray-50":""} hover:bg-gray-100 dark:bg-gray-950 `} key={index}>
+              <tr className={`${index%2!==0?"bg-gray-50":""} hover:bg-gray-100 dark:bg-gray-950 `} key={index}>
                 <td className="flex gap-3 px-6 py-4 font-normal text-gray-900 dark:text-gray-400">
                   {index + 1}
                 </td>
