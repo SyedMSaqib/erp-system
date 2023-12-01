@@ -79,7 +79,7 @@ const MonthDropdown = () => {
           className='sr-only'
         />
         <span className='label flex items-center text-sm font-medium text-black dark:text-gray-300'>
-          Filter by days Present
+          Attendance filter
         </span>
         <span
           className={`slider mx-4 flex h-6 w-[40px] items-center rounded-full p-1 duration-200 ${

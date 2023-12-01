@@ -64,7 +64,7 @@ const AddAttendance = () => {
 }
 //
   return (
-    <div className="flex justify-center items-center w-screen sm:ml-48 lg:ml-0 dark:bg-gray-900 " >
+    <div className="flex justify-center items-center w-screen sm:ml-48 lg:ml-0 bg-slate-50 dark:bg-gray-900 " >
     <div>
       <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5 ml-72 dark:border-gray-600">
         <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
@@ -83,7 +83,7 @@ const AddAttendance = () => {
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100 dark:divide-gray-600 dark:border-gray-600">
             {employees.map((employee, index) => (
-              <tr className="hover:bg-gray-50 dark:bg-gray-950" key={index}>
+              <tr className={`${index%2===0?"bg-gray-50":""} hover:bg-gray-100 dark:bg-gray-950 `} key={index}>
                 <td className="flex gap-3 px-6 py-4 font-normal text-gray-900 dark:text-gray-400">
                   {index + 1}
                 </td>
@@ -93,7 +93,7 @@ const AddAttendance = () => {
                     type="checkbox"
                     checked={attendanceData.some((record) => record._id === employee._id)}
                     onChange={() => handleCheckboxChange(employee)}
-                    className="w-4 h-4 ml-24 text-slate-400 bg-gray-100 border-gray-300 rounded focus:ring-slate-400 dark:focus:ring-slate-400 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    className="w-4 h-4 ml-24 text-slate-400 bg-gray-900  border-gray-300 rounded focus:ring-slate-400 dark:focus:ring-slate-400 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
                   />
                 </td>
               </tr>
@@ -101,13 +101,15 @@ const AddAttendance = () => {
           </tbody>
         </table>
       </div>
-      <div className="ml-40">
-        <button
-          className="ml-96 p-2 pl-5 pr-5 bg-transparent border-2 border-slate-400 text-indigo-500 text-lg rounded-lg transition-colors duration-700 transform hover:bg-slate-400 hover:text-gray-100 focus:border-4 focus:border-indigo-300"
-          onClick={ handleSaveAttendance}  
-        >
-          Select
-        </button>
+      <div className="flex justify-center ml-10">
+      <button
+            onClick={() =>handleSaveAttendance()}
+            type="button"
+            class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-green-400 hover:text-green-900 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-green-400 mt-6 ml-60"
+          >
+            Add Attendance
+          </button>
+       
       </div>
     </div>
     </div>
