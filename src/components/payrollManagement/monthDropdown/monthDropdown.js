@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react"
 import SalaryContext from "../../../context/salary/salaryContext"
 
 const MonthDropdown = () => {
-  const {  setDays,Month, setMonth,isChecked, setIsChecked} = useContext(SalaryContext)
+  const { Days, setDays,Month, setMonth,isChecked, setIsChecked} = useContext(SalaryContext)
     const [firstDay, setFirstDay] = useState("");
   const [lastDay, setLastDay] = useState("");
 
@@ -24,6 +24,7 @@ const MonthDropdown = () => {
   const handleChange = (e) => {
     getFirstAndLastDay(e.target.value);
     setMonth(e.target.value);
+    console.log(Days)
   };
 
   const getFirstAndLastDay = (selectedMonth) => {
@@ -60,7 +61,7 @@ const MonthDropdown = () => {
           value={Month}
         >
           {months.map((month) => (
-            <option key={month} value={month }>
+            <option key={month} value={month}>
               {month}
             </option>
           ))}
@@ -82,12 +83,12 @@ const MonthDropdown = () => {
         </span>
         <span
           className={`slider mx-4 flex h-6 w-[40px] items-center rounded-full p-1 duration-200 ${
-            isChecked ? 'bg-green-400' : 'bg-[#CCCCCE]'
+            isChecked ? 'bg-green-400' : 'bg-red-200'
           }`}
         >
           <span
-            className={`dot h-4 w-4 rounded-full bg-white duration-200 ${
-              isChecked ? 'translate-x-[18px]' : ''
+            className={`dot h-4 w-4 rounded-full   duration-200 ${
+              isChecked ? 'bg-green-700 translate-x-[18px] ' : 'bg-red-500'
             }`}
           ></span>
         </span>

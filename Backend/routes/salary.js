@@ -59,7 +59,7 @@ router.post("/monthRecord", [check("Month").isLength({ min: 1 })], validator, as
     res.json(err)
   }
 })
-router.get(
+router.post(
   "/absenceSalaryDetails",
   [ check("Month").isString()],
   validator,
@@ -108,11 +108,10 @@ router.get(
           employeeId: emp._id,
           Month: Month,
           daysWorked: days,
-          basePay:emp.basePay,
+          basePay: emp.basePay,
           MonthlyPay: monthlySalary,
         })
-
-       
+        
       }
       return res.json(deductedPEmployee)
     } catch (err) {
