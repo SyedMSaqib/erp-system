@@ -54,7 +54,9 @@ const ViewCustomer = () => {
     <div className="dark:bg-gray-900">
       <div className="flex justify-center items-center  ">
         <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg dark:text-gray-300">Customers</div>
-        <div className="flex absolute top-6  mb-[4rem] ml-[57rem]">
+       
+        <div className="overflow-auto shadow-lg rounded-xl border border-gray-200 dark:border-gray-600  m-5 mt-20 ml-64 ">
+        <div className="flex absolute top-6  mb-[4rem] ml-[42rem]">
           <div className="relative">
             <input
               className="appearance-none dark:bg-gray-500 dark:text-gray-300 border-2 pl-10 border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-800  transition-colors rounded-md w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:ring-green-600 focus:border-green-500 focus:shadow-outline"
@@ -95,7 +97,6 @@ const ViewCustomer = () => {
             </div>
           </div>
         </div>
-        <div className="overflow-auto shadow-lg rounded-xl border border-gray-200 dark:border-gray-600  m-5 mt-20 ml-64 ">
           <table className="w-full border-collapse bg-white text-left text-sm text-gray-500 dark:bg-gray-950">
             <thead className="bg-gray-50 dark:bg-gray-950 dark:text-gray-400">
               <tr>
