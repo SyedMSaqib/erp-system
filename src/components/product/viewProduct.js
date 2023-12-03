@@ -67,7 +67,9 @@ const ViewProduct = () => {
     <div className="grid grid-cols-1  dark:bg-gray-900">
       <div className="flex justify-center items-center overflow-auto">
         <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg dark:text-gray-300">Products</div>
-        <div className="flex absolute top-6  mb-[4rem] ml-[73rem]">
+        
+        <div className="overflow-auto  border border-gray-200  m-5 mt-20 ml-64 shadow-lg rounded-xl   dark:border-gray-600 ">
+        <div className="flex absolute top-6  mb-[4rem] ml-[52rem]">
           <div className="relative">
             <input
               className="appearance-none dark:bg-gray-500 dark:text-gray-300 border-2 pl-10 border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-800  transition-colors rounded-md w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:ring-green-600 focus:border-green-500 focus:shadow-outline"
@@ -109,7 +111,6 @@ const ViewProduct = () => {
           </div>
         </div>
 
-        <div className="overflow-auto  border border-gray-200  m-5 mt-20 ml-64 shadow-lg rounded-xl   dark:border-gray-600 ">
           <table className="w-full border-collapse  dark:bg-gray-950  bg-white text-left text-sm text-gray-500">
             <thead className="bg-gray-50  dark:bg-gray-950    ">
               <tr>
@@ -125,19 +126,19 @@ const ViewProduct = () => {
                 >
                   Name
                 </th>
-                <th scope="col" className="dark:text-gray-400 lg:px-12 lg:py-4 font-medium text-gray-900">
+                <th scope="col" className="dark:text-gray-400 lg:px-6 lg:py-4 font-medium text-gray-900">
                   Description
                 </th>
-                <th scope="col" className="dark:text-gray-400 lg:px-12 lg:py-4 font-medium text-gray-900">
+                <th scope="col" className="dark:text-gray-400 lg:px-6 lg:py-4 font-medium text-gray-900">
                   Category
                 </th>
-                <th scope="col" className="dark:text-gray-400 lg:px-12 lg:py-4 font-medium text-gray-900">
+                <th scope="col" className="dark:text-gray-400 lg:px-6 lg:py-4 font-medium text-gray-900">
                   Vendor
                 </th>
-                <th scope="col" className="dark:text-gray-400 lg:px-12 lg:py-4 font-medium text-gray-900">
+                <th scope="col" className="dark:text-gray-400 lg:px-6 lg:py-4 font-medium text-gray-900">
                   Price
                 </th>
-                <th scope="col" className="dark:text-gray-400 lg:px-12 lg:py-4 font-medium text-gray-900">
+                <th scope="col" className="dark:text-gray-400 lg:px-6 lg:py-4 font-medium text-gray-900">
                   Quantity
                 </th>
                 <th scope="col" className="dark:text-gray-400 lg:px-6 lg:py-4 font-medium text-gray-900"></th>
@@ -157,11 +158,11 @@ const ViewProduct = () => {
                       <div className="font-medium text-gray-700 dark:text-gray-400">{productItem.name}</div>
                     </div>
                   </td>
-                  <td className="px-12 py-4">{productItem.description}</td>
-                  <td className="px-12 py-4">{productItem.category}</td>
-                  <td className="px-12 py-4">{productItem.vendor}</td>
-                  <td className="px-12 py-4">{productItem.price} Rs</td>
-                  <td className="px-12 py-4">{productItem.quantity}</td>
+                  <td className="px-6 py-4">{productItem.description}</td>
+                  <td className="px-6 py-4">{productItem.category}</td>
+                  <td className="px-6 py-4">{productItem.vendor}</td>
+                  <td className="px-6 py-4">{productItem.price} Rs</td>
+                  <td className="px-6 py-4">{productItem.quantity}</td>
                   <td className="px-6 py-4">
                     <div className="flex justify-end gap-4">
                       <button
