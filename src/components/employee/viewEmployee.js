@@ -5,7 +5,6 @@ import Footer from "../loginSignup/footer"
 import NoResultFound from "../customer/customerSale/icons/animations/noResultFound.json"
 import Lottie from "lottie-react"
 
-
 const ViewEmployee = () => {
   const [showNoResult, setshowNoResult] = useState(false)
   const [searchValue, setSearchValue] = useState("")
@@ -18,7 +17,6 @@ const ViewEmployee = () => {
     setEmployees,
     employeeSearch,
   } = useContext(EmployeeContext)
-
 
   useEffect(() => {
     getAllEmployees()
@@ -42,7 +40,7 @@ const ViewEmployee = () => {
         employee.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         employee.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
         employee.phone.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        employee.basePay.toString().includes(searchTerm.toLowerCase())||
+        employee.basePay.toString().includes(searchTerm.toLowerCase()) ||
         employee._id.includes(searchTerm.toLowerCase())
     )
 
