@@ -26,7 +26,14 @@ const ViewCustomerSale = () => {
 
   const formatMongoDate = (mongoDate) => {
     const dateObject = new Date(mongoDate)
-    return format(dateObject, "yyyy-MM-dd HH:mm")
+
+    const year = dateObject.getFullYear()
+    const month = (dateObject.getMonth() + 1).toString().padStart(2, "0")
+    const day = dateObject.getDate().toString().padStart(2, "0")
+    const hours = dateObject.getHours().toString().padStart(2, "0")
+    const minutes = dateObject.getMinutes().toString().padStart(2, "0")
+
+    return `${year}-${month}-${day} ${hours}:${minutes}`
   }
   const Onclickdelete = (ItemId) => {
     setconfirmDeleteSaleId(ItemId)
@@ -72,7 +79,7 @@ const ViewCustomerSale = () => {
         <div className="flex absolute top-6  mb-[4rem] ml-[62rem]">
           <div className="relative">
             <input
-              className="appearance-none dark:bg-gray-500 dark:text-gray-300 border-2 pl-10 border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-800  transition-colors rounded-md w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:ring-green-600 focus:border-green-500 focus:shadow-outline"
+              className="appearance-none dark:bg-gray-800 dark:text-gray-300 border-2 pl-10 border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-800  transition-colors rounded-md w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:ring-green-600 focus:border-green-500 focus:shadow-outline"
               id="username"
               type="text"
               placeholder="Search..."
