@@ -6,10 +6,13 @@ import Lottie from "lottie-react"
 import Success from "./animatedIcons/success.json"
 import Loading from "./animatedIcons/loading.json"
 import { useState } from "react"
+import NoResultFound from "../customer/customerSale/icons/animations/noResultFound.json"
+
 
 const ViewSaleTrails = () => {
+
   const saleTrailContext = useContext(SaleTrailContext)
-  const { saleTrails, getAllSaleTrails, updateSaleTrail } = saleTrailContext
+  const { saleTrails, getAllSaleTrails, updateSaleTrail,saleTrailsSearch, setsaleTrailsSearch,setsaleTrails } = saleTrailContext
   const [loading, setloading] = useState(true)
   const [open, setopen] = useState("")
 
@@ -66,6 +69,36 @@ const ViewSaleTrails = () => {
       console.error("Error updating sale trail:", error)
     }
   }
+  const salesFSTS=saleTrailsSearch.saleTrails
+  const [searchValue, setSearchValue] = useState("")
+  const [showNoResult, setshowNoResult] = useState(false)
+  console.log(salesFSTS)
+  const handleInputChange = (e) => {
+    const searchElement = e.target.value
+    setSearchValue(searchElement)
+   
+    const results = salesFSTS&&salesFSTS.filter(
+      (saleSearch) =>
+        
+        saleSearch.saleId.toLowerCase().includes(searchElement.toLowerCase()) ||
+        saleSearch.saleAmount.toString().includes(searchElement.toLowerCase()) ||
+        saleSearch.productQuantity.toString().includes(searchElement.toLowerCase()) ||
+        (saleSearch.paid ? "paid" : "in progress").includes(searchElement.toLowerCase()) ||
+        saleSearch.customerId.toLowerCase().includes(searchElement.toLowerCase()) ||
+        saleSearch.productName.toLowerCase().includes(searchElement.toLowerCase()) ||
+        saleSearch.customerName.toLowerCase().includes(searchElement.toLowerCase()) ||
+        saleSearch.saleAmount.toString().includes(searchElement.toLowerCase()) ||
+        formatMongoDate(saleSearch.date).toString().includes(searchElement.toLowerCase())
+    )
+    if (Object.keys(results).length === 0) setshowNoResult(true)
+    else setshowNoResult(false)
+    setsaleTrails({saleTrails:results})
+  }
+  const SearchValue = () => {
+    setSearchValue("")
+    setsaleTrails(saleTrailsSearch)
+    setshowNoResult(false)
+  }
  
   if(loading)
   return(
@@ -84,6 +117,8 @@ const ViewSaleTrails = () => {
         style={{ width: "150px", height: "150px" }}
       />
     </div>
+  
+
   )
   return (
     <div className="dark:bg-gray-900">
@@ -91,8 +126,49 @@ const ViewSaleTrails = () => {
         <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg dark:text-gray-300">
           Sales Trails
         </div>
-        <div className="overflow-auto rounded-lg border dark:border-gray-600 border-gray-200 shadow-md m-5 mt-10 ml-64 ">
-          <table className=" border-collapse bg-white text-left text-sm text-gray-500 ">
+        <div className="flex absolute top-6  mb-[4rem] ml-[50.5rem]">
+          <div className="relative">
+            <input
+              className="appearance-none dark:bg-gray-800 dark:text-gray-300 border-2 pl-10 border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-800  transition-colors rounded-md w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:ring-green-600 focus:border-green-500 focus:shadow-outline"
+              id="username"
+              type="text"
+              placeholder="Search..."
+              value={searchValue}
+              onChange={handleInputChange}
+            />
+            <div className="absolute right-0 inset-y-0 flex items-center">
+              <svg
+                onClick={() => SearchValue()}
+                xmlns="http://www.w3.org/2000/svg"
+                className="-ml-1 mr-3 h-5 w-5 text-gray-400 dark:text-gray-200  hover:text-gray-500 dark:hover:text-gray-50"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </div>
+
+            <div className="absolute left-0 inset-y-0 flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 ml-3  text-gray-400 dark:text-gray-200  hover:text-gray-500 dark:hover:text-gray-50"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div className="overflow-auto rounded-lg border dark:border-gray-600 border-gray-200 shadow-md m-5 mt-20 ml-64 ">
+        {!showNoResult ?   <table className=" border-collapse bg-white text-left text-sm text-gray-500 ">
             <thead className="bg-gray-50 dark:bg-gray-950">
               <tr>
                 <th scope="col" className="px-3 py-4 font-medium text-gray-900 dark:text-gray-400">
@@ -205,9 +281,20 @@ const ViewSaleTrails = () => {
                 </React.Fragment>
               ))}
             </tbody>
-          </table>
+          </table>:""}
         </div>
       </div>
+      {showNoResult ? (
+        <div className="flex justify-center">
+          <Lottie
+            animationData={NoResultFound}
+            loop={true}
+            style={{ width: "245px", height: "245px", marginLeft: "224px" }}
+          />
+        </div>
+      ) : (
+        ""
+      )}
       <div className="ml-52">
         <Footer />
       </div>

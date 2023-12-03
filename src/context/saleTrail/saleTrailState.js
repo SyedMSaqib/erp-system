@@ -6,6 +6,7 @@ const SaleTrailState = (props) => {
   const host = config.apiurl
   const authToken = localStorage.getItem("authToken")
   const [saleTrails, setsaleTrails] = useState(null)
+  const [saleTrailsSearch, setsaleTrailsSearch] = useState([])
 
   const getAllSaleTrails = async () => {
     const response = await fetch(`${host}/saleTrail/fetchAllSaleTrails`, {
@@ -18,29 +19,28 @@ const SaleTrailState = (props) => {
     })
     const data = await response.json()
     setsaleTrails(data)
+    setsaleTrailsSearch(data)
   }
 
   const updateSaleTrail = async (id) => {
-   
     await fetch(`${host}/saleTrail/addSaleTrail/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": authToken
+        "auth-token": authToken,
       },
-     
-    });
+    })
   }
-
-
 
   return (
     <SaleTrailContext.Provider
       value={{
         saleTrails,
         getAllSaleTrails,
-        updateSaleTrail
-        
+        updateSaleTrail,
+        saleTrailsSearch,
+        setsaleTrailsSearch,
+        setsaleTrails
       }}
     >
       {props.children}
