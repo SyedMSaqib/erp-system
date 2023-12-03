@@ -55,7 +55,8 @@ const ViewProduct = () => {
         product.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
         product.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
         product.price.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.quantity.toLowerCase().includes(searchTerm.toLowerCase())
+        product.quantity.toLowerCase().includes(searchTerm.toLowerCase())||
+        product.vendor.toLowerCase().includes(searchTerm.toLowerCase())
     )
     setproduct(results)
   }

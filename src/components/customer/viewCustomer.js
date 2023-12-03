@@ -38,10 +38,10 @@ const ViewCustomer = () => {
     setSearchValue(searchElemet)
     const results = customerSearch.filter(
       (customer) =>
-        customer.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-        customer.email.toLowerCase().includes(searchValue.toLowerCase()) ||
-        customer._id.toLowerCase().includes(searchValue.toLowerCase())||
-        customer.phone.toLowerCase().includes(searchValue.toLowerCase())
+        customer.name.toLowerCase().includes(searchElemet.toLowerCase()) ||
+        customer.email.toLowerCase().includes(searchElemet.toLowerCase()) ||
+        customer._id.toLowerCase().includes(searchElemet.toLowerCase())||
+        customer.phone.toLowerCase().includes(searchElemet.toLowerCase())
     )
     setCustomer(results)
   }
