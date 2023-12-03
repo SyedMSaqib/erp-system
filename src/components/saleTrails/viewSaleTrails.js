@@ -72,7 +72,7 @@ const ViewSaleTrails = () => {
   const salesFSTS=saleTrailsSearch.saleTrails
   const [searchValue, setSearchValue] = useState("")
   const [showNoResult, setshowNoResult] = useState(false)
-  console.log(salesFSTS)
+
   const handleInputChange = (e) => {
     const searchElement = e.target.value
     setSearchValue(searchElement)
