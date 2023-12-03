@@ -3,10 +3,13 @@ import customerContext from "../../context/customer/customerContext"
 import { Link } from "react-router-dom"
 import toast from "react-hot-toast"
 import Footer from "../loginSignup/footer"
+import NoResultFound from "../customer/customerSale/icons/animations/noResultFound.json"
+import Lottie from "lottie-react"
 
 const ViewCustomer = () => {
   const { customer, getAllcustomers, deleteCustomer, setCustomerId, setupdateFormValues, customerSearch, setCustomer } =
     useContext(customerContext)
+    const [showNoResult, setshowNoResult] = useState(false)
 
   const [searchValue, setSearchValue] = useState("")
 
@@ -43,11 +46,17 @@ const ViewCustomer = () => {
         customer._id.toLowerCase().includes(searchElemet.toLowerCase())||
         customer.phone.toLowerCase().includes(searchElemet.toLowerCase())
     )
+    if(Object.keys(results).length===0)
+    setshowNoResult(true)
+  else
+  setshowNoResult(false)
     setCustomer(results)
+    
   }
   const SearchValue = () => {
     setSearchValue("")
     setCustomer(customerSearch)
+    setshowNoResult(false)
   }
 
   return (
@@ -55,8 +64,7 @@ const ViewCustomer = () => {
       <div className="flex justify-center items-center  ">
         <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg dark:text-gray-300">Customers</div>
        
-        <div className="overflow-auto shadow-lg rounded-xl border border-gray-200 dark:border-gray-600  m-5 mt-20 ml-64 ">
-        <div className="flex absolute top-6  mb-[4rem] ml-[42rem]">
+        <div className="flex absolute top-6  mb-[4rem] ml-[55rem]">
           <div className="relative">
             <input
               className="appearance-none dark:bg-gray-500 dark:text-gray-300 border-2 pl-10 border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-800  transition-colors rounded-md w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:ring-green-600 focus:border-green-500 focus:shadow-outline"
@@ -97,7 +105,8 @@ const ViewCustomer = () => {
             </div>
           </div>
         </div>
-          <table className="w-full border-collapse bg-white text-left text-sm text-gray-500 dark:bg-gray-950">
+        <div className="overflow-auto shadow-lg rounded-xl border border-gray-200 dark:border-gray-600  m-5 mt-20 ml-64 ">
+        {!showNoResult?<table className="w-full border-collapse bg-white text-left text-sm text-gray-500 dark:bg-gray-950">
             <thead className="bg-gray-50 dark:bg-gray-950 dark:text-gray-400">
               <tr>
                 <th scope="col" className="px-6 py-4 font-medium text-gray-900 dark:text-gray-400">
@@ -211,9 +220,16 @@ const ViewCustomer = () => {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table>:""}
         </div>
       </div>
+      {showNoResult? <div className="flex justify-center">
+             <Lottie
+            animationData={NoResultFound}
+            loop={true}
+            style={{ width: "245px", height: "245px", marginLeft:"224px" }}
+                    />
+          </div>:""}
       <div className="ml-52">
         <Footer />
       </div>
