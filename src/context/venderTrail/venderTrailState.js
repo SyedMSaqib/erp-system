@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import VenderTrailContext from "./venderTrailContext"; 
-import config from "../../config";
+import React, { useState } from "react"
+import VenderTrailContext from "./venderTrailContext"
+import config from "../../config"
 
 const VenderTrailState = (props) => {
-  const host = config.apiurl;
-  const authToken = localStorage.getItem("authToken");
-  const [venderTrails, setVenderTrails] = useState();
+  const host = config.apiurl
+  const authToken = localStorage.getItem("authToken")
+  const [venderTrails, setVenderTrails] = useState()
+  const [venderTrailsSearch, setvenderTrailsSearch] = useState("")
 
   const getAllVenderTrails = async () => {
     try {
@@ -15,14 +16,15 @@ const VenderTrailState = (props) => {
           "Content-Type": "application/json",
           "auth-token": authToken,
         },
-      });
+      })
 
-      const data = await response.json();
-      setVenderTrails(data);
+      const data = await response.json()
+      setVenderTrails(data)
+      setvenderTrailsSearch(data)
     } catch (error) {
-      console.error("Error fetching vender trails:", error);
+      console.error("Error fetching vender trails:", error)
     }
-  };
+  }
 
   const updateVenderTrail = async (id) => {
     try {
@@ -32,11 +34,11 @@ const VenderTrailState = (props) => {
           "Content-Type": "application/json",
           "auth-token": authToken,
         },
-      });
+      })
     } catch (error) {
-      console.error("Error updating vender trail:", error);
+      console.error("Error updating vender trail:", error)
     }
-  };
+  }
 
   return (
     <VenderTrailContext.Provider
@@ -44,11 +46,14 @@ const VenderTrailState = (props) => {
         venderTrails,
         getAllVenderTrails,
         updateVenderTrail,
+        setVenderTrails,
+        venderTrailsSearch,
+        setvenderTrailsSearch,
       }}
     >
       {props.children}
     </VenderTrailContext.Provider>
-  );
-};
+  )
+}
 
-export default VenderTrailState;
+export default VenderTrailState
