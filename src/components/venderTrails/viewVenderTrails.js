@@ -8,7 +8,8 @@ import Loading from "../saleTrails/animatedIcons/loading.json"
 
 const ViewVenderTrails = () => {
   const venderTrailContext = useContext(VenderTrailContext)
-  const { venderTrails, getAllVenderTrails, updateVenderTrail } = venderTrailContext
+  const { venderTrails, getAllVenderTrails, updateVenderTrail, venderTrailsSearch, setVenderTrails } =
+    venderTrailContext
   const [loading, setloading] = useState(true)
   const [open, setopen] = useState("")
   useEffect(() => {
@@ -36,13 +37,18 @@ const ViewVenderTrails = () => {
   const updatePaid = async (id) => {
     try {
       await updateVenderTrail(id)
-      toast.success("Vender Paid",document.documentElement.classList.contains('dark')? {
-        style: {
-          borderRadius: '10px',
-          background: '#333',
-          color: '#fff',
-        },
-      }:"");
+      toast.success(
+        "Vender Paid",
+        document.documentElement.classList.contains("dark")
+          ? {
+              style: {
+                borderRadius: "10px",
+                background: "#333",
+                color: "#fff",
+              },
+            }
+          : ""
+      )
       getAllVenderTrails()
     } catch (error) {
       console.error("Error updating vender trail:", error)
@@ -51,6 +57,38 @@ const ViewVenderTrails = () => {
   const toggleDetails = (index) => {
     setopen(open === index ? null : index)
   }
+ 
+  const [searchValue, setSearchValue] = useState("")
+  const [showNoResult, setshowNoResult] = useState(false)
+
+  const handleInputChange = (e) => {
+    const searchElement = e.target.value
+    setSearchValue(searchElement)
+   
+    const results = venderTrailsSearch&&venderTrailsSearch.venderTrails.filter(
+      (venderTrailsSearch) =>
+        
+      venderTrailsSearch._id.toLowerCase().includes(searchElement.toLowerCase()) ||
+      venderTrailsSearch.venderId.toLowerCase().includes(searchElement.toLowerCase()) ||
+      venderTrailsSearch.productId.toLowerCase().includes(searchElement.toLowerCase()) ||
+      venderTrailsSearch.productQuantity.toString().includes(searchElement.toLowerCase()) ||
+        (venderTrailsSearch.paid ? "paid" : "in progress").includes(searchElement.toLowerCase()) ||
+        venderTrailsSearch.purchaseAmount.toString().includes(searchElement.toLowerCase()) ||
+        venderTrailsSearch.productName.toLowerCase().includes(searchElement.toLowerCase()) ||
+        venderTrailsSearch.singleUnitPrice.toString().includes(searchElement.toLowerCase()) ||
+        venderTrailsSearch.venderName.toLowerCase().includes(searchElement.toLowerCase()) ||
+        formatMongoDate(venderTrailsSearch.date).toString().includes(searchElement.toLowerCase())
+    )
+    if (Object.keys(results).length === 0) setshowNoResult(true)
+    else setshowNoResult(false)
+    setVenderTrails({venderTrails:results})
+  }
+  const SearchValue = () => {
+    setSearchValue("")
+    setVenderTrails(venderTrailsSearch)
+    setshowNoResult(false)
+  }
+
   if (loading)
     return (
       <div
@@ -71,7 +109,48 @@ const ViewVenderTrails = () => {
         <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg dark:text-gray-300">
           Vender Trails
         </div>
-        <div className="overflow-auto rounded-lg border dark:border-gray-600 border-gray-200 shadow-md m-5 mt-10 ml-64 ">
+        <div className="flex absolute top-6  mb-[4rem] ml-[50.5rem]">
+          <div className="relative">
+            <input
+              className="appearance-none dark:bg-gray-800 dark:text-gray-300 border-2 pl-10 border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-800  transition-colors rounded-md w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:ring-green-600 focus:border-green-500 focus:shadow-outline"
+              id="username"
+              type="text"
+              placeholder="Search..."
+              value={searchValue}
+              onChange={handleInputChange}
+            />
+            <div className="absolute right-0 inset-y-0 flex items-center">
+              <svg
+                onClick={() => SearchValue()}
+                xmlns="http://www.w3.org/2000/svg"
+                className="-ml-1 mr-3 h-5 w-5 text-gray-400 dark:text-gray-200  hover:text-gray-500 dark:hover:text-gray-50"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </div>
+
+            <div className="absolute left-0 inset-y-0 flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 ml-3  text-gray-400 dark:text-gray-200  hover:text-gray-500 dark:hover:text-gray-50"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div className="overflow-auto rounded-lg border dark:border-gray-600 border-gray-200 shadow-md m-5 mt-20 ml-64 ">
           <table className=" border-collapse bg-white text-left text-sm text-gray-500 ">
             <thead className="bg-gray-50 dark:bg-gray-950">
               <tr>
@@ -151,7 +230,10 @@ const ViewVenderTrails = () => {
                     </tr>
                     {open === index ? (
                       <tr className="bg-gray-400 dark:bg-gray-950">
-                        <td colSpan="9" className="bg-gray-50 dark:bg-gray-950 p-10  dark:border-gray-700 border border-gray-200">
+                        <td
+                          colSpan="9"
+                          className="bg-gray-50 dark:bg-gray-950 p-10  dark:border-gray-700 border border-gray-200"
+                        >
                           <div className="flex flex-col items-center justify-center">
                             <h2 className="text-2xl font-semibold mb-4 dark:text-gray-300">Vender Trail Details</h2>
 
