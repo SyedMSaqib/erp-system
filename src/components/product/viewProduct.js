@@ -46,16 +46,16 @@ const ViewProduct = () => {
   const [searchValue, setSearchValue] = useState("")
 
   const handleInputChange = (e) => {
-    const searchTerm = e.target.value.toLowerCase()
+    const searchTerm = e.target.value
     setSearchValue(searchTerm)
 
     const results = searchProduct.filter(
       (product) =>
-        product.name.toLowerCase().includes(searchTerm) ||
-        product.description.toLowerCase().includes(searchTerm) ||
-        product.category.toLowerCase().includes(searchTerm) ||
-        product.price.toLowerCase().includes(searchTerm) ||
-        product.quantity.toLowerCase().includes(searchTerm)
+        product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.price.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.quantity.toLowerCase().includes(searchTerm.toLowerCase())
     )
     setproduct(results)
   }

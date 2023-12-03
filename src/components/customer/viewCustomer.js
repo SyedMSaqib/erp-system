@@ -1,12 +1,14 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import customerContext from "../../context/customer/customerContext"
 import { Link } from "react-router-dom"
 import toast from "react-hot-toast"
 import Footer from "../loginSignup/footer"
 
 const ViewCustomer = () => {
-  const { customer, getAllcustomers, deleteCustomer, setCustomerId, setupdateFormValues } = useContext(customerContext)
-
+  const { customer, getAllcustomers, deleteCustomer, setCustomerId, setupdateFormValues,  customerSearch, setcustomerSearch,setCustomer } = useContext(customerContext)
+  
+  const [searchValue, setSearchValue] = useState("")
+ 
   useEffect(() => {
     getAllcustomers()
   }, [])
@@ -25,12 +27,66 @@ const ViewCustomer = () => {
       },
     }:"");
   }
+  const handleInputChange = (e) => {
+    const searchElemet= e.target.value
+    setSearchValue(searchElemet)
+    const results=customerSearch.filter(customer=>(
+      customer.name.toLowerCase().includes(searchValue.toLowerCase())||customer.email.toLowerCase().includes(searchValue.toLowerCase())||customer._id.toLowerCase().includes(searchValue.toLowerCase())
+    ))
+    setCustomer(results)
+
+  }
+  const SearchValue=()=>{
+    setSearchValue("")
+    setCustomer(customerSearch)
+  }
 
   return (
     <div className="dark:bg-gray-900">
     <div className="flex justify-center items-center  ">
       <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg dark:text-gray-300">Customers</div>
-      <div className="overflow-auto shadow-lg rounded-xl border border-gray-200 dark:border-gray-600  m-5 mt-10 ml-64 ">
+      <div className="flex absolute top-6  mb-[4rem] ml-[61rem]">
+          <div className="relative">
+            <input
+              className="appearance-none dark:bg-gray-500 dark:text-gray-300 border-2 pl-10 border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-800  transition-colors rounded-md w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:ring-green-600 focus:border-green-500 focus:shadow-outline"
+              id="username"
+              type="text"
+              placeholder="Search..."
+              value={searchValue}
+              onChange={handleInputChange}
+            />
+            <div className="absolute right-0 inset-y-0 flex items-center">
+              <svg
+                onClick={() => SearchValue()}
+                xmlns="http://www.w3.org/2000/svg"
+                className="-ml-1 mr-3 h-5 w-5 text-gray-400 dark:text-gray-200  hover:text-gray-500 dark:hover:text-gray-50"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </div>
+
+            <div className="absolute left-0 inset-y-0 flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 ml-3  text-gray-400 dark:text-gray-200  hover:text-gray-500 dark:hover:text-gray-50"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      <div className="overflow-auto shadow-lg rounded-xl border border-gray-200 dark:border-gray-600  m-5 mt-20 ml-64 ">
         <table className="w-full border-collapse bg-white text-left text-sm text-gray-500 dark:bg-gray-950">
           <thead className="bg-gray-50 dark:bg-gray-950 dark:text-gray-400">
             <tr>

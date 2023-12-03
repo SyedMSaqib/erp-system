@@ -12,6 +12,7 @@ const CustomerState = (props) => {
   const [isVisibleModal, setisVisibleModal] = useState(false)
   const [customerModalData, setcustomerModalData] = useState({})
   const authToken = localStorage.getItem("authToken")
+  const [customerSearch, setcustomerSearch] = useState("")
 
   const getAllcustomers = async () => {
     //get notes Api call
@@ -26,6 +27,7 @@ const CustomerState = (props) => {
     })
     const data = await response.json()
     setCustomer(data)
+    setcustomerSearch(data)
   }
 
   const addCustomer = async (name, phone, email) => {
@@ -94,6 +96,7 @@ const CustomerState = (props) => {
         setcustomerModalData,
         isVisibleModal,
         setisVisibleModal,
+        customerSearch, setcustomerSearch,setCustomer
       }}
     >
       {props.children}
