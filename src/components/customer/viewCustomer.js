@@ -40,7 +40,8 @@ const ViewCustomer = () => {
       (customer) =>
         customer.name.toLowerCase().includes(searchValue.toLowerCase()) ||
         customer.email.toLowerCase().includes(searchValue.toLowerCase()) ||
-        customer._id.toLowerCase().includes(searchValue.toLowerCase())
+        customer._id.toLowerCase().includes(searchValue.toLowerCase())||
+        customer.phone.toLowerCase().includes(searchValue.toLowerCase())
     )
     setCustomer(results)
   }
@@ -53,7 +54,7 @@ const ViewCustomer = () => {
     <div className="dark:bg-gray-900">
       <div className="flex justify-center items-center  ">
         <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg dark:text-gray-300">Customers</div>
-        <div className="flex absolute top-6  mb-[4rem] ml-[61rem]">
+        <div className="flex absolute top-6  mb-[4rem] ml-[57rem]">
           <div className="relative">
             <input
               className="appearance-none dark:bg-gray-500 dark:text-gray-300 border-2 pl-10 border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-800  transition-colors rounded-md w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:ring-green-600 focus:border-green-500 focus:shadow-outline"
