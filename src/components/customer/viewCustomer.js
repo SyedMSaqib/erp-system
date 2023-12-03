@@ -5,7 +5,7 @@ import toast from "react-hot-toast"
 import Footer from "../loginSignup/footer"
 
 const ViewCustomer = () => {
-  const { customer, getAllcustomers, deleteCustomer, setCustomerId, setupdateFormValues,  customerSearch, setcustomerSearch,setCustomer } = useContext(customerContext)
+  const { customer, getAllcustomers, deleteCustomer, setCustomerId, setupdateFormValues,  customerSearch,setCustomer } = useContext(customerContext)
   
   const [searchValue, setSearchValue] = useState("")
  
