@@ -13,6 +13,7 @@ const ProductState = (props) => {
       const authToken = localStorage.getItem('authToken');
       const [isVisible, setisVisible] = useState(false)
       const [productModelData, setproductModelData] = useState({})
+      const [searchProduct, setsearchProduct] = useState([])
       
       
       const getAllProducts=async()=>{
@@ -30,6 +31,7 @@ const ProductState = (props) => {
           });
           const data=await response.json(); 
           setproduct(data)
+          setsearchProduct(data)
         
 
       }
@@ -103,7 +105,7 @@ const ProductState = (props) => {
     
       return (
 
-    <ProductContext.Provider value={{product,deleteProduct,addProduct,updateProduct,getAllProducts,setproductId,productId,updateFormValues,setupdateFormValues,productModelData, setproductModelData,isVisible, setisVisible}}>
+    <ProductContext.Provider value={{product,deleteProduct,addProduct,updateProduct,getAllProducts,setproductId,productId,updateFormValues,setupdateFormValues,productModelData, setproductModelData,isVisible, setisVisible,searchProduct, setsearchProduct,setproduct}}>
 
         {props.children}
     </ProductContext.Provider>
