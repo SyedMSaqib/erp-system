@@ -5,6 +5,8 @@ import toast from "react-hot-toast"
 import Lottie from "lottie-react"
 import Success from "../saleTrails/animatedIcons/success.json"
 import Loading from "../saleTrails/animatedIcons/loading.json"
+import NoResultFound from "../customer/customerSale/icons/animations/noResultFound.json"
+
 
 const ViewVenderTrails = () => {
   const venderTrailContext = useContext(VenderTrailContext)
@@ -151,7 +153,7 @@ const ViewVenderTrails = () => {
           </div>
         </div>
         <div className="overflow-auto rounded-lg border dark:border-gray-600 border-gray-200 shadow-md m-5 mt-20 ml-64 ">
-          <table className=" border-collapse bg-white text-left text-sm text-gray-500 ">
+         {!showNoResult? <table className=" border-collapse bg-white text-left text-sm text-gray-500 ">
             <thead className="bg-gray-50 dark:bg-gray-950">
               <tr>
                 <th scope="col" className="px-6 py-4 font-medium text-gray-900 dark:text-gray-400">
@@ -268,9 +270,20 @@ const ViewVenderTrails = () => {
                   </React.Fragment>
                 ))}
             </tbody>
-          </table>
+          </table>:""}
         </div>
       </div>
+      {showNoResult ? (
+        <div className="flex justify-center">
+          <Lottie
+            animationData={NoResultFound}
+            loop={true}
+            style={{ width: "245px", height: "245px", marginLeft: "224px" }}
+          />
+        </div>
+      ) : (
+        ""
+      )}
       <div className="ml-52">
         <Footer />
       </div>
