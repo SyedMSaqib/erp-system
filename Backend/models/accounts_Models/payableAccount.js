@@ -7,19 +7,12 @@ const payabelAccount = new Schema({
     ref: "user",
   },
 
-  nature: {
-    type: String,
-    required: true,
-  },
-
-  Description: {
-    type: String,
-    required: true,
-  },
-  amount: {
+  balance: {
     type: Number,
     required: true,
+    default: 0,
   },
+
   date: {
     type: Date,
     default: Date.now,
