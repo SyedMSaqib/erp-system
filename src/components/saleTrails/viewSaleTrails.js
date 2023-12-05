@@ -121,7 +121,7 @@ const ViewSaleTrails = () => {
 
   )
   return (
-    <div className="dark:bg-gray-900">
+    <div className="dark:bg-gray-900 bg-slate-50">
       <div className="flex justify-center items-center  ">
         <div className="absolute top-0 text-center ml-52 mt-2 font-semibold text-lg dark:text-gray-300">
           Sales Trails
