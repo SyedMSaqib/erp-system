@@ -17,7 +17,7 @@ const ProductState = (props) => {
       
       
       const getAllProducts=async()=>{
-        //get notes Api call
+        
         
         const response = await fetch(`${host}/product/fetchAll`, {
             method: "GET", 
@@ -37,7 +37,7 @@ const ProductState = (props) => {
       }
     
     
-      const addProduct=async(name,description,category,quantity,price,vendor,vendorPrice,vendorId)=>{
+      const addProduct=async(name,description,category,quantity,price,vendor,vendorPrice,vendorId,paid)=>{
         
         const newProduct={
             name: name,
@@ -47,7 +47,8 @@ const ProductState = (props) => {
             quantity:quantity,
             vendor:vendor,
             vendorPrice:vendorPrice,
-            vendorId:vendorId
+            vendorId:vendorId,
+            paid:paid
           }
           setproduct(product.concat(newProduct))
         
@@ -61,7 +62,7 @@ const ProductState = (props) => {
                 "auth-token": authToken
                 
               },
-              body: JSON.stringify({name,category,description,quantity,price,vendor,vendorPrice,vendorId}),
+              body: JSON.stringify({name,category,description,quantity,price,vendor,vendorPrice,vendorId,paid}),
             });
         
     }

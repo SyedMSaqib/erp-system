@@ -37,6 +37,7 @@ const AddProduct = () => {
   const [quantity, setquantity] = useState("")
   const [description, setdescription] = useState("")
   const [vendorId, setvendorId] = useState("")
+  const [paymentStatus, setpaymentStatus] = useState(false)
 
   useEffect(() => {
     setIsVisible(false)
@@ -60,9 +61,9 @@ const AddProduct = () => {
     if (name === "description") setdescription(value)
   }
 
-  const onClick = (event) => {
-    event.preventDefault()
-    console.log(vendor)
+  const onClick = (Paystatus) => {
+    setpaymentStatus(Paystatus)
+
     if (
       name === "" || category === "" ||vendorId === "" || vendorPrice === "" || price === "" ||quantity==="" ||  description === "") {
       return toast.error("Please Enter All Fields",document.documentElement.classList.contains('dark')? {
@@ -130,7 +131,10 @@ const AddProduct = () => {
 
   useEffect(() => {
     if (isValidName && isValidQuantity && isValidPrice && vendor) {
-      addProduct(name, description, category, quantity, price, vendor, vendorPrice, vendorId)
+      if(paymentStatus)
+      addProduct(name, description, category, quantity, price, vendor, vendorPrice, vendorId,paymentStatus)
+    else
+    addProduct(name, description, category, quantity, price, vendor, vendorPrice, vendorId,paymentStatus)
       toast.success(`${name} added to Inventory`,document.documentElement.classList.contains('dark')? {
         style: {
           borderRadius: '10px',
@@ -310,14 +314,22 @@ const AddProduct = () => {
                   </div>
                   </div>
 
-                  {/* Submit Button */}
-                  <button
-                    onClick={onClick}
-                    type="submit"
-                    className="mt-4 bg-slate-400 text-white py-2 px-6 rounded-md hover:bg-slate-500"
-                  >
-                    Submit
-                  </button>
+                  <div className="flex justify-center space-x-10">  
+  <button
+  onClick={()=>onClick(true)}
+    type="button"
+    className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-green-400 hover:text-green-900 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-green-500 w-[8rem]"
+  >
+    On Cash
+  </button>
+  <button
+  onClick={()=>onClick(false)}
+    type="button"
+    className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-green-400 hover:text-green-900 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-green-500 w-[8rem]"
+  >
+    On Credit
+  </button>
+</div>
                
               </div>
             </div>
