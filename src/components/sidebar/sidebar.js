@@ -9,18 +9,15 @@ import Sun1 from "./logos/sun1.json"
 import Moon1 from "./logos/moon2.json"
 import Lottie from "lottie-react"
 
-
 export default function Sidebar() {
-  
   useEffect(() => {
-    const storedThemeMode = localStorage.getItem("DarkTheme");
+    const storedThemeMode = localStorage.getItem("DarkTheme")
     if (storedThemeMode) {
-      setdarkMode(true);
-      document.documentElement.classList.add('dark')
+      setdarkMode(true)
+      document.documentElement.classList.add("dark")
     }
-  }, []);
-  
-  
+  }, [])
+
   const { UserName } = useContext(authContext)
   var userNameLocal = localStorage.getItem("name")
   if (userNameLocal === null) localStorage.setItem("name", UserName)
@@ -32,20 +29,19 @@ export default function Sidebar() {
 
   const authToken = localStorage.getItem("authToken")
   const [openTab, setOpenTab] = useState(null)
+  const [openInSubTab, setopenInSubTab] = useState(null)
 
   const [darkMode, setdarkMode] = useState(false)
-  const toggleMode=()=>
-  {
-    if(!darkMode)
-  {  setdarkMode(true)
-    localStorage.setItem("DarkTheme", true)
-    document.documentElement.classList.add('dark')
-  }
-  else{
-  setdarkMode(false)
-  document.documentElement.classList.remove('dark')
-  localStorage.removeItem("DarkTheme")
-  }
+  const toggleMode = () => {
+    if (!darkMode) {
+      setdarkMode(true)
+      localStorage.setItem("DarkTheme", true)
+      document.documentElement.classList.add("dark")
+    } else {
+      setdarkMode(false)
+      document.documentElement.classList.remove("dark")
+      localStorage.removeItem("DarkTheme")
+    }
   }
 
   if (authToken === null) return null
@@ -91,7 +87,7 @@ export default function Sidebar() {
         {
           name: "View Customers",
           path: "/viewCustomers",
-          key:5,
+          key: 5,
         },
         {
           name: "View Sales",
@@ -123,7 +119,7 @@ export default function Sidebar() {
         {
           name: "Add Employees",
           path: "/addEmployee",
-          key:11,
+          key: 11,
         },
         {
           name: "Add Attendance",
@@ -162,13 +158,52 @@ export default function Sidebar() {
           path: "/ViewVenderTrail",
           key: 18,
         },
-        
+        {
+          name: "Accounts",
+          path: "/",
+          key: 20,
+          subTabs: [
+            {
+              name: "Cash A/c",
+              path: "",
+              key: 22,
+            },
+            {
+              name: "Purchase A/c",
+              path: "",
+              key: 23,
+            },
+            {
+              name: "Sales A/c",
+              path: "",
+              key: 24,
+            },
+            {
+              name: "Expense A/c",
+              path: "",
+              key: 25,
+            },
+            {
+              name: "Recievable A/c",
+              path: "",
+              key: 25,
+            },
+            {
+              name: "Payable A/c",
+              path: "",
+              key: 25,
+            },
+          ],
+        },
       ],
     },
   ]
 
   const toggleTab = (tabKey) => {
     setOpenTab(openTab === tabKey ? null : tabKey)
+  }
+  const toggleInSubtab = (tabKey) => {
+    setopenInSubTab(openInSubTab === tabKey ? null : tabKey)
   }
 
   const logout = () => {
@@ -180,22 +215,29 @@ export default function Sidebar() {
   return (
     <div className="w-60 fixed dark:bg-gray-950 z-50 ">
       <div className="flex">
-        
         <div className=" flex flex-col h-screen p-3 bg-slate-100 dark:bg-gray-950 dark:border-gray-800  text-gray shadow-xl z-[999] w-60 border border-slate-200 overflow-y-scroll no-scrollbar">
           <div className="space-y-3">
             <div className="flex items-center">
-              {darkMode?
-      <img className="ml-10 w-36 py-10 filter-invert" src={Saslogo} alt="Logo" />:<img className="ml-10 w-36 py-10 " src={Saslogo} alt="Logo" />}
-      <div className="absolute mb-28">
-
-      <div className=" hover:cursor-pointer ml-40  transition-color duration-300 " onClick={() => toggleMode()}>
-  {!darkMode ? <Lottie animationData={Sun1}  loop={false} style={{ width: '100px', height: '100px' }} />:  <div className="ml-5 mb-3"><Lottie animationData={Moon1}  loop={false} style={{ width: '50px', height: '50px' }} /></div>}
-  
-</div>
-      </div>
-    </div>
-            
-   
+              {darkMode ? (
+                <img className="ml-10 w-36 py-10 filter-invert" src={Saslogo} alt="Logo" />
+              ) : (
+                <img className="ml-10 w-36 py-10 " src={Saslogo} alt="Logo" />
+              )}
+              <div className="absolute mb-28">
+                <div
+                  className=" hover:cursor-pointer ml-40  transition-color duration-300 "
+                  onClick={() => toggleMode()}
+                >
+                  {!darkMode ? (
+                    <Lottie animationData={Sun1} loop={false} style={{ width: "100px", height: "100px" }} />
+                  ) : (
+                    <div className="ml-5 mb-3">
+                      <Lottie animationData={Moon1} loop={false} style={{ width: "50px", height: "50px" }} />
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
 
             <div className="flex-1 ">
               <ul className="pt-2 pb-4 space-y-1 text-sm">
@@ -214,16 +256,42 @@ export default function Sidebar() {
                     </div>
                     {tab.subTabs && openTab === tab.key && (
                       <ul className="pl-6 space-y-2 shadow text-gray-600 bg-gray-100 dark:bg-gray-900 dark:border-gray-800 dark:text-gray-400 border rounded-md mt-1">
-                        {tab.subTabs.map((subTab, index) => (
-                          <li key={subTab.key} className={`${index !== 0 ? " border-t border-solid border-t-gray-500 w-40" : ""}`}>
+                        {tab.subTabs.map((subTab, index) =>{
+                          
+                         return (
+                          <li 
+                            key={subTab.key}
+                            className={`${index !== 0 ? " border-t border-solid border-t-gray-500 w-40" : ""}`}
+                          >
                             <Link to={subTab.path} className=" flex items-center p-2 space-x-3 rounded-md">
-                              <span className=" font-semibold hover:text-black dark:hover:text-white ">{subTab.name}</span>
-                              
+                              <span className=" font-semibold hover:text-black dark:hover:text-white ">
+                                {subTab.name}
+                              </span>
                             </Link>
+                            {subTab.subTabs &&  (
+                      <ul className="pl-6 space-y-2   text-gray-600 bg-gray-100 dark:bg-gray-900  dark:text-gray-400  mt-1">
+                        {subTab.subTabs.map((subTab) => (
+                          <li
+                            key={subTab.key}
+                            className="w-40"
+                          >
+                            <li className=" border-t border-solid border-t-gray-400 w-[8rem]" ></li>
+                            <li  className=" flex items-center p-2 space-x-3 rounded-md">
+                              <span className=" font-semibold hover:text-black dark:hover:text-white ">
+                                {subTab.name}
+                              </span>
+                            </li>
                           </li>
                         ))}
                       </ul>
                     )}
+                          </li>
+                          
+                        )})}
+                        
+                      </ul>
+                    )}
+                    
                   </li>
                 ))}
               </ul>
@@ -238,7 +306,9 @@ export default function Sidebar() {
                 <LoggedInUser />
               )}
               <div className="">
-                <div className="font-semibold text-sm dark:text-gray-400 text-gray-600 ">{nameFromStorage.toUpperCase()}</div>
+                <div className="font-semibold text-sm dark:text-gray-400 text-gray-600 ">
+                  {nameFromStorage.toUpperCase()}
+                </div>
               </div>
             </div>
             <div>
