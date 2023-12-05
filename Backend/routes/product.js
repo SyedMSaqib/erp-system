@@ -15,6 +15,7 @@ router.post(
     check("price").isLength({ min: 1 }),
     check("vendor").isLength({ min: 1 }),
     check("vendorPrice").isLength({ min: 1 }),
+    
   ],
   validator,
   async (req, res) => {
@@ -22,31 +23,45 @@ router.post(
     if (!result.isEmpty()) return res.json(result)
     try {
       if (req.user == null) return res.status(404).send("Invalid token, or empty")
-      const { name, description, category, price, quantity,vendorPrice,vendor,vendorId } = req.body
+      const { name, description, category, price, quantity, vendorPrice, vendor, vendorId, paid } = req.body
       const newProduct = await product.create({
         user: req.user.id,
         name: name,
         description: description,
         category: category,
         price: price,
-        quantity:quantity,
+        quantity: quantity,
         vendor: vendor,
         vendorPrice: vendorPrice,
-        vendorId:vendorId
+        vendorId: vendorId,
       })
 
-      const purchaseAmount=quantity*vendorPrice
-
-      await venderTrails.create({
-        user:req.user.id,
-        venderId: vendorId,
-        venderName:vendor,
-        productId:newProduct._id,
-        purchaseAmount:purchaseAmount,
-        productName:name,
-        productQuantity:quantity,
-        singleUnitPrice:vendorPrice
-      })
+      const purchaseAmount = quantity * vendorPrice
+      if (paid){
+        await venderTrails.create({
+          user: req.user.id,
+          venderId: vendorId,
+          venderName: vendor,
+          productId: newProduct._id,
+          purchaseAmount: purchaseAmount,
+          productName: name,
+          productQuantity: quantity,
+          singleUnitPrice: vendorPrice,
+          paid:true
+        })}
+      else {
+        await venderTrails.create({
+          user: req.user.id,
+          venderId: vendorId,
+          venderName: vendor,
+          productId: newProduct._id,
+          purchaseAmount: purchaseAmount,
+          productName: name,
+          productQuantity: quantity,
+          singleUnitPrice: vendorPrice,
+          paid:false
+        })
+      }
 
       res.json(newProduct)
     } catch (err) {
@@ -76,11 +91,10 @@ router.delete("/delete/:id", validator, async (req, res) => {
     if (productFromDb.user.toString() !== req.user.id) return res.status(404).send("Unauthorized user")
     const productDelete = await product.findByIdAndDelete(id)
 
-    const VenderTrailRecord = await venderTrails.findOne({ productId: id });
-      if (VenderTrailRecord) {
-  
-          await venderTrails.findByIdAndDelete(VenderTrailRecord._id);
-      }
+    const VenderTrailRecord = await venderTrails.findOne({ productId: id })
+    if (VenderTrailRecord) {
+      await venderTrails.findByIdAndDelete(VenderTrailRecord._id)
+    }
 
     res.json(productDelete)
   } catch (err) {
@@ -88,10 +102,7 @@ router.delete("/delete/:id", validator, async (req, res) => {
   }
 })
 
-
-router.put("/update/:id",
-validator,
-async (req, res) => {
+router.put("/update/:id", validator, async (req, res) => {
   const result = validationResult(req)
   if (!result.isEmpty()) return res.json(result)
   const id = req.params.id
@@ -102,25 +113,19 @@ async (req, res) => {
     if (!productFromDb) return res.status(404).json("No such product exists")
 
     if (productFromDb.user.toString() !== req.user.id) return res.status(404).send("Unauthorized user")
-    const {name,description,category,price,quantity}=req.body
-    const newProduct={}
-    if(name)
-    newProduct.name=name
-    if(description)
-    newProduct.description=description
-    if(category)
-    newProduct.category=category
-    if(price)
-    newProduct.price=price
-    if(quantity)
-    newProduct.quantity=quantity
-    const productUpdate = await product.findByIdAndUpdate(id,{$set:newProduct},{new:true})
+    const { name, description, category, price, quantity } = req.body
+    const newProduct = {}
+    if (name) newProduct.name = name
+    if (description) newProduct.description = description
+    if (category) newProduct.category = category
+    if (price) newProduct.price = price
+    if (quantity) newProduct.quantity = quantity
+    const productUpdate = await product.findByIdAndUpdate(id, { $set: newProduct }, { new: true })
 
     res.json(productUpdate)
   } catch (err) {
     res.json(`${err}`)
   }
 })
-
 
 module.exports = router
