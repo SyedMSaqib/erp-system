@@ -19,7 +19,7 @@ router.post(
     if (!result.isEmpty()) return res.json(result)
     try {
       if (req.user == null) return res.status(404).send("Invalid token, or empty")
-      const {customerId,product,quantity,customerName,productId} = req.body
+      const {customerId,product,quantity,customerName,productId,paid} = req.body
       
       const productDetails = await Product.findById(productId);
       if (productDetails.user.toString() !== req.user.id) return res.status(404).send("Unauthorized user")
@@ -43,6 +43,8 @@ router.post(
       })
       const saleAmount=quantity*productDetails.price
 
+      if(paid)
+      {
       await salesTrail.create({
         user:req.user.id,
         customerId: customerId,
@@ -51,8 +53,22 @@ router.post(
         saleAmount:saleAmount,
         productName:product,
         productQuantity:quantity,
-        singleUnitPrice:productDetails.price
-      })
+        singleUnitPrice:productDetails.price,
+        paid:true
+      })}
+      else
+      {
+      await salesTrail.create({
+        user:req.user.id,
+        customerId: customerId,
+        customerName:customerName,
+        saleId:newCustomersale.id,
+        saleAmount:saleAmount,
+        productName:product,
+        productQuantity:quantity,
+        singleUnitPrice:productDetails.price,
+        paid:false
+      })}
       
       res.json(newCustomersale)
     } catch (err) {
