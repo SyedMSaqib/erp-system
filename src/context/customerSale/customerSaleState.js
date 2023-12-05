@@ -28,13 +28,14 @@ const CustomerSaleState = (props) => {
     setCustomerSale(data)
     setsaleSearch(data)
   }
-  const addCustomerSale = async (customerId, product, quantity, customerName, productId) => {
+  const addCustomerSale = async (customerId, product, quantity, customerName, productId,paid) => {
     const newCustomerSale = {
       customerId: customerId,
       product: product,
       quantity: quantity,
       name: customerName,
       productId: productId,
+      paid:paid
     }
     setCustomerSale(customerSale.concat(newCustomerSale))
 
@@ -47,7 +48,7 @@ const CustomerSaleState = (props) => {
         "Content-Type": "application/json",
         "auth-token": authToken,
       },
-      body: JSON.stringify({ customerId, product, quantity, customerName, productId }),
+      body: JSON.stringify({ customerId, product, quantity, customerName, productId,paid }),
     })
   }
 

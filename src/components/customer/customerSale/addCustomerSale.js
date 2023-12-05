@@ -13,6 +13,7 @@ import Lottie from "lottie-react";
 
 
 const AddCustomerSale = () => {
+  
   const Navigate = useNavigate();
   const { addCustomerSale } = useContext(customerSaleContext);
   const { setproductModelData,productModelData, setisVisible } = useContext(ProductContext);
@@ -27,6 +28,7 @@ const AddCustomerSale = () => {
   const [ProductValid, setProductValid] = useState(false);
   const [QuantityValid, setQuantityValid] = useState(false);
   const [loading, setloading] = useState(false)
+  const [paidStatus, setpaidStatus] = useState(false)
 
  const loadingTruck=() => {
     setloading(true)
@@ -65,8 +67,9 @@ const AddCustomerSale = () => {
     setisVisibleModal(true);
   };
 
-  const onClick = (event) => {
-    event.preventDefault();
+  const onClick = (paidStatus) => {
+    setpaidStatus(paidStatus)
+    console.log(paidStatus)
 
     if (customerId === "" || product === "" || quantity === "") {
       return toast.error("Please Enter All Fields");
@@ -112,7 +115,11 @@ const AddCustomerSale = () => {
 
   useEffect(() => {
     if (CustomerIdValid && ProductValid && QuantityValid && availablestock) {
-      addCustomerSale(customerId, product, quantity,customerName,productId);
+      if(paidStatus)
+      addCustomerSale(customerId, product, quantity,customerName,productId,paidStatus);
+    else
+    addCustomerSale(customerId, product, quantity,customerName,productId,paidStatus);
+
       setproduct("");
       setcustomerId("");
       setcustomerName("");
@@ -231,15 +238,26 @@ const AddCustomerSale = () => {
                 </div>
                 
               </div>
-              <button
-                onClick={onClick}
-                type="submit"
-                className="mt-4 bg-slate-400 text-white py-2 px-6 rounded-md hover:bg-slate-500"
-              >
-                Submit
-              </button>
+              
             </div>
           </div>
+           
+          <div className="flex justify-center space-x-10">  
+  <button
+  onClick={()=>onClick(true)}
+    type="button"
+    className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-green-400 hover:text-green-900 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-green-500 w-[8rem]"
+  >
+    On Cash
+  </button>
+  <button
+  onClick={()=>onClick(false)}
+    type="button"
+    className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-green-400 hover:text-green-900 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-green-500 w-[8rem]"
+  >
+    On Credit
+  </button>
+</div>
         </div>
         </div>
       </div>
