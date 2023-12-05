@@ -219,8 +219,8 @@ const ViewSaleTrails = () => {
                         Paid
                       </span>
                     ) : (
-                      <span className=" inline-flex items-center gap-1  bg-yellow-300 dark:bg-yellow-300/5 px-2 py-1 text-xs font-semibold dark:text-yellow-300 text-yellow-700 hover:cursor-pointer w-20">
-                        In Progress
+                      <span className=" inline-flex items-center gap-1  bg-yellow-300 dark:bg-yellow-300/5 px-2 py-1 text-xs font-semibold dark:text-yellow-300 text-yellow-700 hover:cursor-pointer w-20 pl-5">
+                        Un Paid
                       </span>
                     )}
                   </td>
