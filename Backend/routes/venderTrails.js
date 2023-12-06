@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const validator = require("../middleware/validator");
 const venderTrails = require("../models/venderTrails");
+const payable = require("../models/payable");
+const ledger = require("../models/ledger");
 
 router.put(
   "/addVenderTrail/:id",
@@ -15,7 +17,20 @@ router.put(
         paid: true,
         date: new Date()
       };
-      await venderTrails.findByIdAndUpdate(id, { $set: updatedVenderTrails }, { new: true });
+     const venderDetials= await venderTrails.findByIdAndUpdate(id, { $set: updatedVenderTrails }, { new: true });
+     await payable.create({
+      user: req.user.id,
+      journalEntry: "dr",
+      Description: venderDetials.venderName,
+      amount: venderDetials.purchaseAmount,
+    })
+    await ledger.create({
+      user: req.user.id,
+      journalEntry: "cr",
+      Description: "Payable",
+      amount:-venderDetials.purchaseAmount,
+    })
+     
       res.status(200).send({ status: 200, msg: "Updated" });
     } catch (err) {
       res.status(500).json(err);
