@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const { Schema } = mongoose
 
-const recievaleAccountDetails = new Schema({
+const receivable = new Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
@@ -25,4 +25,4 @@ const recievaleAccountDetails = new Schema({
     default: Date.now,
   },
 })
-module.exports = mongoose.model("recievaleAccountDetails", recievaleAccountDetails)
+module.exports = mongoose.model("receivable", receivable)
