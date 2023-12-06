@@ -2,6 +2,8 @@ const express = require("express")
 const router = express.Router()
 const validator = require("../middleware/validator")
 const salesTrail=require("../models/salesTrails")
+const receivable = require("../models/receivable")
+const ledger = require("../models/ledger")
 
 
 
@@ -17,7 +19,19 @@ router.put(
             paid:true,
             date: new Date()
         } 
-        await salesTrail.findByIdAndUpdate(id,{$set:updatedSaleTrails},{new:true})
+       const saleRecord= await salesTrail.findByIdAndUpdate(id,{$set:updatedSaleTrails},{new:true})
+       await receivable.create({
+        user: req.user.id,
+        journalEntry: "cr",
+        Description: saleRecord.customerName,
+        amount: -saleRecord.saleAmount,
+      })
+      await ledger.create({
+        user: req.user.id,
+        journalEntry: "dr",
+        Description: "Receivable",
+        amount:saleRecord.saleAmount,
+      })
         res.status(200).send({status:200,msg:"Updated"})
       } catch (err) {
         res.status(500).json(err)
