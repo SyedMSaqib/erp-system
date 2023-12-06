@@ -29,6 +29,7 @@ const AddProduct = () => {
   const [isValidName, setIsValidName] = useState(false)
   const [isValidPrice, setIsValidPrice] = useState(false)
   const [isValidQuantity, setIsValidQuantity] = useState(false)
+  const [isValidVender, setIsValidVender] = useState(false)
   const [name, setname] = useState("")
   const [category, setcategory] = useState("")
   const [vendor, setVendor] = useState("")
@@ -114,7 +115,7 @@ const AddProduct = () => {
       setIsValidPrice(false)
     }
     if (validator.isNumeric(vendorPrice) && vendorPrice > 0) {
-      setIsValidPrice(true)
+      setIsValidVender(true)
     } else {
       toast.error("Enter Valid vendor price Price",document.documentElement.classList.contains('dark')? {
         style: {
@@ -123,14 +124,14 @@ const AddProduct = () => {
           color: '#fff',
         },
       }:"");
-      setIsValidPrice(false)
+      setIsValidVender(false)
     }
 
  
   }
 
   useEffect(() => {
-    if (isValidName && isValidQuantity && isValidPrice && vendor) {
+    if (isValidName && isValidQuantity && isValidPrice && vendor && isValidVender) {
       if(paymentStatus)
       addProduct(name, description, category, quantity, price, vendor, vendorPrice, vendorId,paymentStatus)
     else
@@ -145,7 +146,7 @@ const AddProduct = () => {
       navigate("/viewProduct")
       setVendorModelData({})
     }
-  }, [isValidName, isValidQuantity, isValidPrice, addProduct])
+  }, [isValidName, isValidQuantity, isValidPrice, addProduct,isValidVender])
 
   const onClickVendor = () => {
     setIsVisible(true)
