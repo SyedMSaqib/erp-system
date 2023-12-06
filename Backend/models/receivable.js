@@ -7,7 +7,7 @@ const recievaleAccountDetails = new Schema({
     ref: "user",
   },
 
-  nature: {
+  journalEntery: {
     type: String,
     required: true,
   },

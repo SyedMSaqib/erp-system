@@ -1,13 +1,13 @@
 const mongoose = require("mongoose")
 const { Schema } = mongoose
 
-const purchaseAccountDetails = new Schema({
+const ledger = new Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
 
-  nature: {
+  journalEntery: {
     type: String,
     required: true,
   },
@@ -25,4 +25,4 @@ const purchaseAccountDetails = new Schema({
     default: Date.now,
   },
 })
-module.exports = mongoose.model("purchaseAccountDetails", purchaseAccountDetails)
+module.exports = mongoose.model("ledger", ledger)

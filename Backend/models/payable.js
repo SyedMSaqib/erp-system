@@ -1,13 +1,13 @@
 const mongoose = require("mongoose")
 const { Schema } = mongoose
 
-const cashAccountDetails = new Schema({
+const payable = new Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
 
-  nature: {
+  journalEntery: {
     type: String,
     required: true,
   },
@@ -25,4 +25,4 @@ const cashAccountDetails = new Schema({
     default: Date.now,
   },
 })
-module.exports = mongoose.model("cashAccountDetails", cashAccountDetails)
+module.exports = mongoose.model("payable", payable)
