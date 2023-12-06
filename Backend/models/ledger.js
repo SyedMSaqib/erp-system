@@ -7,7 +7,7 @@ const ledger = new Schema({
     ref: "user",
   },
 
-  journalEntery: {
+  journalEntry: {
     type: String,
     required: true,
   },

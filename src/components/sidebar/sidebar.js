@@ -159,42 +159,57 @@ export default function Sidebar() {
           key: 18,
         },
         {
-          name: "Accounts",
-          path: "/",
-          key: 20,
-          subTabs: [
-            {
-              name: "Cash A/c",
-              path: "",
-              key: 22,
-            },
-            {
-              name: "Purchase A/c",
-              path: "",
-              key: 23,
-            },
-            {
-              name: "Sales A/c",
-              path: "",
-              key: 24,
-            },
-            {
-              name: "Expense A/c",
-              path: "",
-              key: 25,
-            },
-            {
-              name: "Recievable A/c",
-              path: "",
-              key: 25,
-            },
-            {
-              name: "Payable A/c",
-              path: "",
-              key: 25,
-            },
-          ],
+          name: "General Ledger",
+          path: "/ViewVenderTrail",
+          key: 18,
         },
+        {
+          name: "Payables",
+          path: "/ViewVenderTrail",
+          key: 18,
+        },
+        {
+          name: "Receivables",
+          path: "/ViewVenderTrail",
+          key: 18,
+        },
+        // {
+        //   name: "Accounts",
+        //   path: "/",
+        //   key: 20,
+        //   subTabs: [
+        //     {
+        //       name: "Cash A/c",
+        //       path: "",
+        //       key: 22,
+        //     },
+        //     {
+        //       name: "Purchase A/c",
+        //       path: "",
+        //       key: 23,
+        //     },
+        //     {
+        //       name: "Sales A/c",
+        //       path: "",
+        //       key: 24,
+        //     },
+        //     {
+        //       name: "Expense A/c",
+        //       path: "",
+        //       key: 25,
+        //     },
+        //     {
+        //       name: "Recievable A/c",
+        //       path: "",
+        //       key: 25,
+        //     },
+        //     {
+        //       name: "Payable A/c",
+        //       path: "",
+        //       key: 25,
+        //     },
+        //   ],
+        // },
       ],
     },
   ]
