@@ -2,6 +2,8 @@ const express = require("express")
 const router = express.Router()
 const validator = require("../middleware/validator")
 const product = require("../models/product")
+const ledger = require("../models/ledger")
+const payable = require("../models/payable")
 const venderTrails = require("../models/venderTrails")
 const { check, validationResult } = require("express-validator")
 
@@ -15,7 +17,6 @@ router.post(
     check("price").isLength({ min: 1 }),
     check("vendor").isLength({ min: 1 }),
     check("vendorPrice").isLength({ min: 1 }),
-    
   ],
   validator,
   async (req, res) => {
@@ -37,7 +38,7 @@ router.post(
       })
 
       const purchaseAmount = quantity * vendorPrice
-      if (paid){
+      if (paid) {
         await venderTrails.create({
           user: req.user.id,
           venderId: vendorId,
@@ -47,9 +48,15 @@ router.post(
           productName: name,
           productQuantity: quantity,
           singleUnitPrice: vendorPrice,
-          paid:true
-        })}
-      else {
+          paid: true,
+        })
+        await ledger.create({
+          user: req.user.id,
+          journalEntry: "cr",
+          Description: "Purchase",
+          amount: -(vendorPrice * quantity),
+        })
+      } else {
         await venderTrails.create({
           user: req.user.id,
           venderId: vendorId,
@@ -59,7 +66,13 @@ router.post(
           productName: name,
           productQuantity: quantity,
           singleUnitPrice: vendorPrice,
-          paid:false
+          paid: false,
+        })
+        await payable.create({
+          user: req.user.id,
+          journalEntry: "cr",
+          Description: "Purchase",
+          amount: -(vendorPrice * quantity),
         })
       }
 
