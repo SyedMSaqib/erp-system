@@ -40,6 +40,11 @@ import VenderPaymentStatus from "./components/paymentStatus/venderPaymentStatus"
 import SalePaymentStatus from "./components/paymentStatus/salePaymentStatus";
 import SalaryState from "./context/salary/salaryState";
 import Payroll from "./components/payrollManagement/payroll/payroll";
+import EntriesState from "./context/accountEntries/EntriesState";
+import Payables from "./components/accountEntries/payables";
+import Receivables from "./components/accountEntries/receivables";
+import Ledger from "./components/accountEntries/ledger";
+
 
 function PrivateRoute({ element, authenticated }) {
   return authenticated ? element : <Navigate to="/signIn" />;
@@ -68,6 +73,7 @@ function App() {
   
   return (
     <div className="bg-slate-50  dark:bg-gray-900 ">
+      <EntriesState>
       <SalaryState>
       <VenderTrailState>
       <VendorState>
@@ -311,6 +317,36 @@ function App() {
                               }
                             
                             />
+                            <Route
+                              path="/ledger"
+                              element={
+                                <PrivateRoute
+                                  element={<Ledger/>}
+                                  authenticated={authenticated}
+                                />
+                              }
+                            
+                            />
+                            <Route
+                              path="/payables"
+                              element={
+                                <PrivateRoute
+                                  element={<Payables/>}
+                                  authenticated={authenticated}
+                                />
+                              }
+                            
+                            />
+                            <Route
+                              path="/receivables"
+                              element={
+                                <PrivateRoute
+                                  element={<Receivables/>}
+                                  authenticated={authenticated}
+                                />
+                              }
+                            
+                            />
                           <Route path="/sidebar" element={<SignIn />} />
                           <Route path="/signUp" element={<SignUp />} />
                           </Routes>
@@ -327,6 +363,7 @@ function App() {
       </VendorState>
       </VenderTrailState>
       </SalaryState>
+      </EntriesState>
     </div>
   );
 }
