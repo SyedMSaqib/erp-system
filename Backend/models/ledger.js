@@ -20,6 +20,10 @@ const ledger = new Schema({
     type: Number,
     required: true,
   },
+  TransactionId: {
+    type: String,
+    required: true,
+  },
   date: {
     type: Date,
     default: Date.now,

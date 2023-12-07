@@ -20,6 +20,11 @@ const receivable = new Schema({
     type: Number,
     required: true,
   },
+  saleId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref:"sales",
+    required: true,
+  },
   date: {
     type: Date,
     default: Date.now,
