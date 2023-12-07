@@ -25,12 +25,14 @@ router.put(
         journalEntry: "cr",
         Description: saleRecord.customerName,
         amount: -saleRecord.saleAmount,
+        saleId:saleRecord.saleId
       })
       await ledger.create({
         user: req.user.id,
         journalEntry: "dr",
         Description: "Receivable",
         amount:saleRecord.saleAmount,
+        TransactionId:saleRecord.saleId
       })
         res.status(200).send({status:200,msg:"Updated"})
       } catch (err) {

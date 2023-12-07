@@ -29,6 +29,7 @@ router.put(
       journalEntry: "cr",
       Description: "Payable",
       amount:-venderDetials.purchaseAmount,
+      TransactionId:venderDetials.id.toString()
     })
      
       res.status(200).send({ status: 200, msg: "Updated" });

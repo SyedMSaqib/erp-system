@@ -55,6 +55,7 @@ router.post(
           journalEntry: "cr",
           Description: "Purchase",
           amount: -(vendorPrice * quantity),
+          TransactionId:newProduct.id.toString()
         })
       } else {
         await venderTrails.create({
