@@ -102,8 +102,6 @@ router.delete("/deleteCustomerSale/:id", validator, async (req, res) => {
 
     const customerProductId = await customerSale.findById(id)
 
- 
-
     const productDetails = await Product.findById(customerProductId.productId)
     const returnQuantity = parseInt(CustomerSalesFromDb.quantity, 10)
     if (productDetails) {
@@ -114,33 +112,37 @@ router.delete("/deleteCustomerSale/:id", validator, async (req, res) => {
     }
     const customerSaleDelete = await customerSale.findByIdAndDelete(id)
     const salesTrailRecord = await salesTrail.findOne({ saleId: id })
-    const receivableRecord=await receivable.findOne({saleId:id})
-    if(receivableRecord)
-    {
-      await receivable.create({
-        user: req.user.id,
-        journalEntry: "cr",
-        Description: "Sale Refund",
-        amount:-(salesTrailRecord.saleAmount),
-        saleId: id,
-      })
-    }
-    else{
+    const receivableRecord = await receivable.findOne({ saleId: id })
+    if (!receivableRecord) {
       await ledger.create({
         user: req.user.id,
-        journalEntry: "cr",
+        journalEntry: "rr",
         Description: "Sale Refund",
-        amount: -(salesTrailRecord.saleAmount),
+        amount: -salesTrailRecord.saleAmount,
         TransactionId: salesTrailRecord.saleId,
       })
+    } else {
+      if (!salesTrailRecord.paid) {
+        await receivable.create({
+          user: req.user.id,
+          journalEntry: "rr",
+          Description: "Sale Refund",
+          amount: -salesTrailRecord.saleAmount,
+          saleId: id,
+        })
+      } else {
+        await ledger.create({
+          user: req.user.id,
+          journalEntry: "rr",
+          Description: "Sale Refund",
+          amount: -salesTrailRecord.saleAmount,
+          TransactionId: salesTrailRecord.saleId,
+        })
+      }
     }
     if (salesTrailRecord) {
-     
       await salesTrail.findByIdAndDelete(salesTrailRecord._id)
     }
-   
-
-   
 
     res.json(customerSaleDelete)
   } catch (err) {
