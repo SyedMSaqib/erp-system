@@ -160,17 +160,17 @@ export default function Sidebar() {
         },
         {
           name: "General Ledger",
-          path: "/ViewVenderTrail",
+          path: "/ledger",
           key: 18,
         },
         {
           name: "Payables",
-          path: "/ViewVenderTrail",
+          path: "/payables",
           key: 18,
         },
         {
           name: "Receivables",
-          path: "/ViewVenderTrail",
+          path: "/receivables",
           key: 18,
         },
         // {
