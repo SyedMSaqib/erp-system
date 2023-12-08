@@ -26,7 +26,7 @@ const ledger = new Schema({
   },
   date: {
     type: Date,
-    default: Date.now,
+    default: Date.now, 
   },
 })
 module.exports = mongoose.model("ledger", ledger)
