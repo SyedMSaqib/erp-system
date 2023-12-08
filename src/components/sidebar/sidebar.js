@@ -156,22 +156,22 @@ export default function Sidebar() {
         {
           name: "View Vendors Trails",
           path: "/ViewVenderTrail",
-          key: 18,
+          key: 20,
         },
         {
           name: "General Ledger",
           path: "/ledger",
-          key: 18,
+          key: 21,
         },
         {
           name: "Payables",
           path: "/payables",
-          key: 18,
+          key: 22,
         },
         {
           name: "Receivables",
           path: "/receivables",
-          key: 18,
+          key: 23,
         },
         // {
         //   name: "Accounts",
