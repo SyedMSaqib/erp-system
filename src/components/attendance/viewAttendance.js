@@ -36,7 +36,7 @@ const ViewAttendance = () => {
               <th scope="col" className="px-20 py-4 font-medium text-gray-900 dark:text-gray-300">
                 Date
               </th>
-              <th scope="col" className="px-20 py-4 font-medium text-gray-900 dark:text-gray-300"></th>
+              {/* <th scope="col" className="px-20 py-4 font-medium text-gray-900 dark:text-gray-300"></th> */}
             </tr>
           </thead>
           
@@ -61,7 +61,7 @@ const ViewAttendance = () => {
                 <td className="px-20 py-4">
                   {new Date(attendance.date).toLocaleDateString()}
                 </td>
-                <td className="px-6 py-4">
+                {/* <td className="px-6 py-4">
                   <div className="flex justify-end gap-4">
                     <button
                       x-data="{ tooltip: 'Delete' }"
@@ -86,7 +86,7 @@ const ViewAttendance = () => {
                       </svg>
                     </button>
                   </div>
-                </td>
+                </td> */}
               </tr>
             ))}
           </tbody>
