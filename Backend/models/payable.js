@@ -20,6 +20,11 @@ const payable = new Schema({
     type: Number,
     required: true,
   },
+  id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "product",
+    required: true,
+  },
   date: {
     type: Date,
     default: Date.now,
