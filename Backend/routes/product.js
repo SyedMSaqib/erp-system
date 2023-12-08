@@ -11,7 +11,7 @@ router.post(
   "/add",
   [
     check("name").isLength({ min: 3 }),
-    check("description").isLength({ min: 3 }),
+    check("description").isLength({ min: 1 }),
     check("category").isLength({ min: 3 }),
     check("quantity").isLength({ min: 1 }),
     check("price").isLength({ min: 1 }),
@@ -55,7 +55,7 @@ router.post(
           journalEntry: "cr",
           Description: "Purchase",
           amount: -(vendorPrice * quantity),
-          TransactionId:newProduct.id.toString()
+          TransactionId: newProduct.id.toString(),
         })
       } else {
         await venderTrails.create({
@@ -74,6 +74,7 @@ router.post(
           journalEntry: "cr",
           Description: "Purchase",
           amount: -(vendorPrice * quantity),
+          id: newProduct._id,
         })
       }
 
@@ -108,6 +109,27 @@ router.delete("/delete/:id", validator, async (req, res) => {
     const VenderTrailRecord = await venderTrails.findOne({ productId: id })
     if (VenderTrailRecord) {
       await venderTrails.findByIdAndDelete(VenderTrailRecord._id)
+      if(VenderTrailRecord.paid)
+      {
+        await ledger.create({
+          user: req.user.id,
+          journalEntry: "rr",
+          Description: "Purchase Return",
+          amount: VenderTrailRecord.purchaseAmount,
+          TransactionId: id,
+        })
+       
+      }
+      else{
+        await payable.create({
+          user: req.user.id,
+          journalEntry: "rr",
+          Description: "Purchase Return",
+          amount: (VenderTrailRecord.purchaseAmount),
+          id: id,
+        })
+      }
+      
     }
 
     res.json(productDelete)
