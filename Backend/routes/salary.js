@@ -5,6 +5,7 @@ const Salary = require("../models/salary")
 const { check, validationResult } = require("express-validator")
 const employee = require("../models/employee")
 const Attendance = require("../models/attendance")
+const ledger = require("../models/ledger")
 
 router.post(
   "/addSalary",
@@ -13,7 +14,7 @@ router.post(
   async (req, res) => {
     const result = validationResult(req)
     if (!result.isEmpty()) return res.json(result)
-
+    let totalPayExpense=0
     try {
       if (req.user == null) return res.status(404).send("Invalid token or empty")
       const { Month, days } = req.body
@@ -26,7 +27,7 @@ router.post(
         const { name, basePay, _id } = emp
 
         const monthlyPay = basePay * days
-
+        totalPayExpense+=monthlyPay
         await Salary.create({
           user: req.user.id,
           employeeName: name,
@@ -36,6 +37,13 @@ router.post(
           monthlyPay: monthlyPay,
         })
       }
+      
+      await ledger.create({
+        user: req.user.id,
+        journalEntry: "cr",
+        Description: "Salary Expense",
+        amount: -totalPayExpense,
+      })
       return res.status(202).json({ message: "Salaries created successfully" })
     } catch (err) {
       return res.status(500).json(err)
@@ -142,7 +150,7 @@ router.post(
     try {
       const { Month } = req.body
       const monthInNumber = monthNameToNumber[Month]
-
+      let totalPayExpense=0
       const attendanceFromDb = await Attendance.find({ user: req.user.id })
       const EmployeesFromDb = await employee.find({ user: req.user.id })
       const desiredMonthSalaries = attendanceFromDb.filter((attendanceFromDb) => {
@@ -163,6 +171,7 @@ router.post(
           }
         }
         monthlySalary = emp.basePay * days
+        totalPayExpense+=monthlySalary
         deductedPEmployee.push({
           employeeName: emp.name,
           employeeId: emp._id,
@@ -180,8 +189,15 @@ router.post(
             basePay: emp.basePay,
             monthlyPay: monthlySalary,
           })
-        
-      }
+
+          
+        }
+        await ledger.create({
+          user: req.user.id,
+          journalEntry: "cr",
+          Description: "Salary Expense",
+          amount: -totalPayExpense,
+        })
       return res.status(202).json(deductedPEmployee)
     } catch (err) {
       res.json(err)

@@ -22,7 +22,7 @@ const ledger = new Schema({
   },
   TransactionId: {
     type: String,
-    required: true,
+   
   },
   date: {
     type: Date,
