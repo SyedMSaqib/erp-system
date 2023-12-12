@@ -34,7 +34,7 @@ router.post("/addCustomerSales", [check("quantity").isLength({ min: 1 })], valid
       productId: productId,
     })
     const saleAmount = quantity * productDetails.price
-
+    const profit= saleAmount-(quantity* productDetails.vendorPrice)
     if (paid) {
       await salesTrail.create({
         user: req.user.id,
@@ -46,6 +46,7 @@ router.post("/addCustomerSales", [check("quantity").isLength({ min: 1 })], valid
         productQuantity: quantity,
         singleUnitPrice: productDetails.price,
         paid: true,
+        profit:profit
       })
       await ledger.create({
         user: req.user.id,
@@ -65,6 +66,7 @@ router.post("/addCustomerSales", [check("quantity").isLength({ min: 1 })], valid
         productQuantity: quantity,
         singleUnitPrice: productDetails.price,
         paid: false,
+        profit:profit
       })
       await receivable.create({
         user: req.user.id,

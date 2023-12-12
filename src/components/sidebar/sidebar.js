@@ -173,6 +173,11 @@ export default function Sidebar() {
           path: "/receivables",
           key: 23,
         },
+        {
+          name: "Profit / Loss",
+          path: "/profit",
+          key: 24,
+        },
         // {
         //   name: "Accounts",
         //   path: "/",

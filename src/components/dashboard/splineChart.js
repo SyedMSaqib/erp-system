@@ -16,7 +16,7 @@ const SplineChart = () => {
   }, [customerSale]);
 
   const formatChartData = () => {
-    const seriesData = customerSale.map((sale) => ({
+    const seriesData = customerSale.map((sale,index) => ({
       x: new Date(sale.date).getTime(),
       y: sale.quantity,
       name: sale.product,

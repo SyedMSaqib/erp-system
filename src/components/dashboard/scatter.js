@@ -32,7 +32,7 @@ const PieChart = () => {
 
     const seriesData = product.map((product) => parseInt(product.quantity));
     const labels = product.map((product) => `${product.name} - ${calculatePercentage(product.quantity, totalQuantity)}%`);
-    const colors = product.map(() => getRandomColor()); // Assign a random color to each slice
+    const colors = product.map(() => getRandomColor()); 
 
     return {
       series: seriesData,
