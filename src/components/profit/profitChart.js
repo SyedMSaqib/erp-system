@@ -10,18 +10,6 @@ const ProfitChart = () => {
   const colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#00D9E9", "#FF66C3", "#FFD26F", ...additionalColors];
 
 
-  const formatMongoDate = (mongoDate) => {
-    const dateObject = new Date(mongoDate);
-
-    const year = dateObject.getFullYear();
-    const month = (dateObject.getMonth() + 1).toString().padStart(2, "0");
-    const day = dateObject.getDate().toString().padStart(2, "0");
-    const hours = dateObject.getHours().toString().padStart(2, "0");
-    const minutes = dateObject.getMinutes().toString().padStart(2, "0");
-
-    return `${year}-${month}-${day} ${hours}:${minutes}`;
-  };
-
   const [chartData, setChartData] = useState({
     series: [
       {
@@ -72,7 +60,15 @@ const ProfitChart = () => {
   useEffect(() => {
     if (profit && profit.saleTrails) {
       const newData = profit.saleTrails.map((prof) => Math.abs(prof.profit).toFixed(0));
-      const newTime = profit.saleTrails.map((prof) => formatMongoDate(prof.date));
+      const newTime = profit.saleTrails.map((prof) => {
+        const dateObject = new Date(prof.date);
+        const day = dateObject.getDate().toString().padStart(2, "0");
+        const hours = dateObject.getHours().toString().padStart(2, "0");
+        const minutes = dateObject.getMinutes().toString().padStart(2, "0");
+      
+        return `${day} ${hours}:${minutes}`;
+      });
+
 
       setChartData((prevData) => ({
         ...prevData,
