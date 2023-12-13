@@ -4,7 +4,10 @@ import profitContext from "../../context/profit/profitContext";
 
 
 const ProfitChart = () => {
+  const { getProfit, Month, profit } = useContext(profitContext);
+
 const colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#00D9E9", "#FF66C3", "#FFD26F"];
+
 
   const formatMongoDate = (mongoDate) => {
     const dateObject = new Date(mongoDate);
@@ -18,7 +21,6 @@ const colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#00D9E9"
     return `${year}-${month}-${day} ${hours}:${minutes}`;
   };
 
-  const { getProfit, Month, profit } = useContext(profitContext);
   const [chartData, setChartData] = useState({
     series: [
       {
@@ -30,9 +32,7 @@ const colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#00D9E9"
         height: 350,
         type: "bar",
         events: {
-          click: function (chart, w, e) {
-            // console.log(chart, w, e)
-          },
+          click:""
         },
       },
       colors: colors,
@@ -81,7 +81,9 @@ const colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#00D9E9"
           xaxis: {
             ...prevData.options.xaxis,
             categories: newTime,
+            
           },
+          
         },
       }));
     }
