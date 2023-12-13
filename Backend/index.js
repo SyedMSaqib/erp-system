@@ -14,6 +14,7 @@ const vendor = require('./routes/vendor')
 const vendorTrails = require('./routes/venderTrails')
 const salary= require('./routes/salary')
 const accountEntries= require('./routes/accountEntries')
+const profit= require('./routes/profit')
 
 
 dbConnection()
@@ -30,7 +31,8 @@ app.use('/saleTrail',salesTrails)
 app.use('/vendor', vendor)
 app.use('/venderTrail', vendorTrails)
 app.use('/salary',salary)
-app.use('/entries',accountEntries)
+app.use('/entries',accountEntries) 
+app.use('/revenue',profit) 
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`)
