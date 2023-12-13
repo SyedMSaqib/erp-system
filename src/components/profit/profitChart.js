@@ -6,7 +6,8 @@ import profitContext from "../../context/profit/profitContext";
 const ProfitChart = () => {
   const { getProfit, Month, profit } = useContext(profitContext);
 
-const colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#00D9E9", "#FF66C3", "#FFD26F"];
+  const additionalColors = ["#BC8F8F", "#3CB371", "#FF6347", "#9370DB", "#20B2AA", "#FFA07A", "#4682B4", "#CD853F"];
+  const colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#00D9E9", "#FF66C3", "#FFD26F", ...additionalColors];
 
 
   const formatMongoDate = (mongoDate) => {
@@ -53,7 +54,7 @@ const colors = ["#008FFB", "#00E396", "#FEB019", "#FF4560", "#775DD0", "#00D9E9"
         labels: {
           style: {
             colors: colors,
-            fontSize: "12px",
+            fontSize: "10px",
           },
         },
       },
