@@ -45,6 +45,7 @@ import Payables from "./components/accountEntries/payables"
 import Receivables from "./components/accountEntries/receivables"
 import Ledger from "./components/accountEntries/ledger"
 import Profit from "./components/profit/profit"
+import ProfitState from "./context/profit/profitState"
 
 function PrivateRoute({ element, authenticated }) {
   return authenticated ? element : <Navigate to="/signIn" />
@@ -73,6 +74,7 @@ function App() {
 
   return (
     <div className="bg-slate-50  dark:bg-gray-900 ">
+      <ProfitState>
       <EntriesState>
         <SalaryState>
           <VenderTrailState>
@@ -257,6 +259,7 @@ function App() {
           </VenderTrailState>
         </SalaryState>
       </EntriesState>
+      </ProfitState>
     </div>
   )
 }
