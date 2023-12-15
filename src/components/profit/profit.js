@@ -51,8 +51,8 @@ const Profit = () => {
                   {Math.abs(profit.profit).toFixed(0)} Rs
                 </td>
               ) : (
-                <td className="px-40 py-4 font-semibold text-red-600 border-l">
-                  {Math.abs(profit.profit).toFixed(0)} Rs
+                <td className="px-40 py-4 font-semibold text-red-600 border-l">(
+                  {Math.abs(profit.profit).toFixed(0)}) Rs
                 </td>
               )}
             </tr>

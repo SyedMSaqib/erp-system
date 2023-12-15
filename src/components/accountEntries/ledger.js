@@ -47,7 +47,7 @@ const Ledger = () => {
             <tr key={entry._id} className={`${entry.journalEntry==="rr"?"bg-red-200 border-b dark:text-gray-600 text-gray-600 border-gray-300":entry.journalEntry==="dr"?"bg-green-200 border-b dark:text-gray-600 text-gray-600 border-gray-300":entry.journalEntry==="cr"?"bg-yellow-200 border-b dark:text-gray-600 text-gray-600 border-gray-300":""}`}>
               <td className="px-6 py-4">{(entry.journalEntry).toUpperCase()}</td>
               <td className="px-20 py-4">{entry.Description}</td>
-              <td className="px-20 py-4">{Math.abs(entry.amount)}</td>
+             {entry.amount>0? <td className="px-20 py-4">{Math.abs(entry.amount)}</td>:<td className="px-20 py-4">({Math.abs(entry.amount)})</td>}
               <td className="px-20 py-4">{formatMongoDate(entry.date)}</td>
             </tr>
           ))}

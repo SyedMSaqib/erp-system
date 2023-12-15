@@ -7,7 +7,7 @@
     const [profit, setprofit] = useState("")
     const authToken = localStorage.getItem("authToken")
     const [Days, setDays] = useState("")
-    const [Month, setMonth] = useState("December")
+    const [Month, setMonth] = useState("January")
 
 
     const getProfit = async () => {
