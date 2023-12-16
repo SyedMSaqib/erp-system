@@ -20,7 +20,7 @@ def get_predictions():
         sales_df = sales_df.rename(columns={'date': 'ds', 'profit': 'y'})
 
         # Create and fit the Prophet model
-        model = Prophet(changepoint_prior_scale=0.05)  # Adjust the value as needed
+        model = Prophet(changepoint_prior_scale=0.05)  
         model.fit(sales_df)
 
         # Create a DataFrame for the next month's dates
