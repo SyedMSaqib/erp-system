@@ -178,6 +178,11 @@ export default function Sidebar() {
           path: "/profit",
           key: 24,
         },
+        {
+          name: "Profit Predictions",
+          path: "/predictions",
+          key: 25,
+        },
         // {
         //   name: "Accounts",
         //   path: "/",
