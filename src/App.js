@@ -46,6 +46,7 @@ import Receivables from "./components/accountEntries/receivables"
 import Ledger from "./components/accountEntries/ledger"
 import Profit from "./components/profit/profit"
 import ProfitState from "./context/profit/profitState"
+import ProfitPredictions from "./components/profitPredictions/profitPredictions"
 
 function PrivateRoute({ element, authenticated }) {
   return authenticated ? element : <Navigate to="/signIn" />
@@ -241,6 +242,10 @@ function App() {
                                     <Route
                                       path="/profit"
                                       element={<PrivateRoute element={<Profit/>} authenticated={authenticated} />}
+                                    />
+                                    <Route
+                                      path="/predictions"
+                                      element={<PrivateRoute element={<ProfitPredictions/>} authenticated={authenticated} />}
                                     />
                                     <Route path="/sidebar" element={<SignIn />} />
                                     <Route path="/signUp" element={<SignUp />} />
