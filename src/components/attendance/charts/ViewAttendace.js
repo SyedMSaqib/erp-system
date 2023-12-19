@@ -47,9 +47,9 @@ const ViewAttendance = () => {
       bar: {
         borderRadius: 10,
         dataLabels: {
-          position: 'top', // top, center, bottom
+          position: 'top', 
           style: {
-            colors: ["#000000"], // Set the color of data labels to black
+            colors: ["#000000"], 
           },
         },
       },
