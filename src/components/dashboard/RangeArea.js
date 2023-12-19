@@ -77,8 +77,8 @@ useEffect(() => {
 
 
 const generateChartData = () => {
-  const vendorPriceData = product.map((item) => parseFloat(item.vendorPrice))
-  const priceData = product.map((item) => parseFloat(item.price))
+  const vendorPriceData = product.map((item) => parseInt(item.vendorPrice))
+  const priceData = product.map((item) => parseInt(item.price))
 
   return [
     {
