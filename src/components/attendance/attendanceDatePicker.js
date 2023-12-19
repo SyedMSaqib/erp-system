@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import attendanceContext from '../../context/attendance/attendanceContext';
 import { useNavigate } from 'react-router-dom';
 import Datepicker from "react-tailwindcss-datepicker";
+import ViewAttendance from './charts/ViewAttendace';
 
 
 
@@ -29,23 +30,21 @@ const AttendanceDatePicker = () => {
   //   setdate(value.startDate);
   //   Navigate('/viewAttendance');
   // }}
-
   return (
-    <div className="flex  h-screen  w-screen">
-      <div className="pl-96 ml-60   "> 
+    <div className="flex flex-col h-screen w-screen justify-center items-center">
+      <div className="flex items-center justify-center w-[10rem] ml-[10rem]">
         <Datepicker
           primaryColor={"indigo"}
           showShortcuts={true}
           theme={"light"}
           value={value}
           onChange={handleValueChange}
-          
         />
       </div>
-      
-  {/* <button onClick={()=>{onClickSet()}} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded h-9">
-    Set
-  </button> */}
+
+      <div className="flex items-center justify-center w-full ml-[10rem]">
+        <ViewAttendance />
+      </div>
     </div>
   );
 };

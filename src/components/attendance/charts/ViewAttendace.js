@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
-import AttendanceContext from '../../context/attendance/attendanceContext';
+import AttendanceContext from '../../../context/attendance/attendanceContext';
 
-const LineChart = () => {
+const ViewAttendance = () => {
   const { attendance, getAllAttendance } = useContext(AttendanceContext);
 
   useEffect(() => {
@@ -65,12 +65,10 @@ const LineChart = () => {
 
   return (
     <div style={{ position: 'relative' }}>
-      <ReactApexChart options={chartOptions} series={chartSeries} type="bar" height={200} width={350} />
-      <div style={{ position: 'absolute', top: '200px', left: '160px', zIndex: '999' }}>
-        <p className='font-semibold text-xs dark:text-gray-400'>Attendance</p>
-      </div>
+      <ReactApexChart options={chartOptions} series={chartSeries} type="bar" height={400} width={1000} />
+     
     </div>
   );
 };
 
-export default LineChart;
+export default ViewAttendance;
