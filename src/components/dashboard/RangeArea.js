@@ -11,7 +11,6 @@ const RangeArea = () => {
 
 
 useEffect(() => {
-  // Update chart data when product state changes
   setchart({
     series: generateChartData(),
     options: {
@@ -54,12 +53,12 @@ useEffect(() => {
       xaxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
         title: {
-          text: 'Month'
+          text: ''
         }
       },
       yaxis: {
         title: {
-          text: 'Temperature'
+          text: ''
         },
         min: 5,
         max: 40
@@ -86,7 +85,7 @@ const generateChartData = () => {
       data: vendorPriceData
     },
     {
-      name: "Price",
+      name: "Sale Price",
       data: priceData
     }
   ]
