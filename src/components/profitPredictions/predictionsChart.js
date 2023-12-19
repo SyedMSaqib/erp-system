@@ -100,10 +100,7 @@ const PredictionsChart = () => {
       )}
     </div>
   );
- if(predictions.status===500)
-  {
-    toast.error("Check server or Flask APi, or data length is less than 2")
-  }
+
 };
 
 export default PredictionsChart;

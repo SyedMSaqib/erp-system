@@ -1,13 +1,40 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import profitContext from "../../context/profit/profitContext"
 import PredictionsChart from "./predictionsChart"
-
+import toast from "react-hot-toast"
+import Lottie from "lottie-react"
+import modelLoading from "./animations/modelLoading.json"
 const ProfitPredictions = () => {
   const { predictions, getProfitForecast } = useContext(profitContext)
   useEffect(() => {
-    getProfitForecast()
+    getProfitForecast() 
   }, [])
-  console.log(predictions)
+  const [loading, setloading] = useState(true)
+  useEffect(() => {
+    setTimeout(() => {
+      setloading(false)
+    }, 10000)
+  }, []) 
+  if(predictions.status===500)
+  {
+   return toast.error("Check server or Flask APi, or data length is less than 2")
+  }
+  if (predictions.status===200)
+  {
+    if(loading)
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+        marginLeft: "190px",
+      }}
+    >
+      <Lottie animationData={modelLoading} loop={true} style={{ width: "150px", height: "150px" }} />
+    </div>
+  )}
   return (
     <div className="flex flex-col items-center dark:bg-gray-900 bg-slate-50">
       <div className="text-center  ml-[10rem]  font-semibold text-lg dark:text-gray-300">Profit Predictions</div>
