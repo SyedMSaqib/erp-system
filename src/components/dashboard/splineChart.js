@@ -17,7 +17,7 @@ const SplineChart = () => {
 
   const formatChartData = () => {
     const seriesData = customerSale.map((sale,index) => ({
-      x: new Date(sale.date).getTime(),
+      x: index+1,
       y: sale.quantity,
       name: sale.product,
     }));
@@ -62,7 +62,7 @@ const SplineChart = () => {
 
   return (
     <div style={{ position: 'relative' }}>
-      <ReactApexChart options={chart.options} series={chart.series} type="area" height={200} width={350} />
+      <ReactApexChart options={chart.options} series={chart.series} type="area" height={250} width={350} />
       <div style={{ position: 'absolute', top: '220px', left: '80px', zIndex: '999' }}>
         <p className='font-semibold text-xs dark:text-gray-400'>{salePeriod()}</p>
       </div>
