@@ -38,13 +38,13 @@ useEffect(() => {
         curve: 'smooth'
       },
       title: {
-        text: 'Average High & Low Temperature',
+        text: 'Purchase Price vs Sale Price',
         align: 'left'
       },
       grid: {
         borderColor: '#e7e7e7',
         row: {
-          colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+          colors: ['#f3f3f3', 'transparent'], 
           opacity: 0.5
         },
       },
@@ -119,7 +119,7 @@ const generateChartData = () => {
         curve: 'smooth'
       },
       title: {
-        text: 'Average High & Low Temperature',
+        text: 'Purchase Price vs Sale Price',
         align: 'left'
       },
       grid: {
