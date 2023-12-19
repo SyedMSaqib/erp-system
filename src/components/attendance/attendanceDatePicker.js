@@ -32,7 +32,7 @@ const AttendanceDatePicker = () => {
   // }}
   return (
     <div className="flex flex-col h-screen w-screen justify-center items-center">
-      <div className="flex items-center justify-center w-[10rem] ml-[10rem]">
+      <div className="flex items-center justify-center w-[10rem] ml-[63rem] mb-10">
         <Datepicker
           primaryColor={"indigo"}
           showShortcuts={true}
