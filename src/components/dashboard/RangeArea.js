@@ -1,224 +1,162 @@
-import React, { useState } from 'react'
-import ReactApexChart from 'react-apexcharts'
+import React, { useContext, useEffect, useState } from "react"
+import ReactApexChart from "react-apexcharts"
+import ProductContext from "../../context/product/productContext"
 
 const RangeArea = () => {
-    const [chart, setchart] = useState({
-        series: [
-            {
-              type: 'rangeArea',
-              name: 'Team B Range',
-          
-              data: [
-                {
-                  x: 'Jan',
-                  y: [1100, 1900]
-                },
-                {
-                  x: 'Feb',
-                  y: [1200, 1800]
-                },
-                {
-                  x: 'Mar',
-                  y: [900, 2900]
-                },
-                {
-                  x: 'Apr',
-                  y: [1400, 2700]
-                },
-                {
-                  x: 'May',
-                  y: [2600, 3900]
-                },
-                {
-                  x: 'Jun',
-                  y: [500, 1700]
-                },
-                {
-                  x: 'Jul',
-                  y: [1900, 2300]
-                },
-                {
-                  x: 'Aug',
-                  y: [1000, 1500]
-                }
-              ]
-            },
-          
-            {
-              type: 'rangeArea',
-              name: 'Team A Range',
-              data: [
-                {
-                  x: 'Jan',
-                  y: [3100, 3400]
-                },
-                {
-                  x: 'Feb',
-                  y: [4200, 5200]
-                },
-                {
-                  x: 'Mar',
-                  y: [3900, 4900]
-                },
-                {
-                  x: 'Apr',
-                  y: [3400, 3900]
-                },
-                {
-                  x: 'May',
-                  y: [5100, 5900]
-                },
-                {
-                  x: 'Jun',
-                  y: [5400, 6700]
-                },
-                {
-                  x: 'Jul',
-                  y: [4300, 4600]
-                },
-                {
-                  x: 'Aug',
-                  y: [2100, 2900]
-                }
-              ]
-            },
-          
-            {
-              type: 'line',
-              name: 'Team B Median',
-              data: [
-                {
-                  x: 'Jan',
-                  y: 1500
-                },
-                {
-                  x: 'Feb',
-                  y: 1700
-                },
-                {
-                  x: 'Mar',
-                  y: 1900
-                },
-                {
-                  x: 'Apr',
-                  y: 2200
-                },
-                {
-                  x: 'May',
-                  y: 3000
-                },
-                {
-                  x: 'Jun',
-                  y: 1000
-                },
-                {
-                  x: 'Jul',
-                  y: 2100
-                },
-                {
-                  x: 'Aug',
-                  y: 1200
-                },
-                {
-                  x: 'Sep',
-                  y: 1800
-                },
-                {
-                  x: 'Oct',
-                  y: 2000
-                }
-              ]
-            },
-            {
-              type: 'line',
-              name: 'Team A Median',
-              data: [
-                {
-                  x: 'Jan',
-                  y: 3300
-                },
-                {
-                  x: 'Feb',
-                  y: 4900
-                },
-                {
-                  x: 'Mar',
-                  y: 4300
-                },
-                {
-                  x: 'Apr',
-                  y: 3700
-                },
-                {
-                  x: 'May',
-                  y: 5500
-                },
-                {
-                  x: 'Jun',
-                  y: 5900
-                },
-                {
-                  x: 'Jul',
-                  y: 4500
-                },
-                {
-                  x: 'Aug',
-                  y: 2400
-                },
-                {
-                  x: 'Sep',
-                  y: 2100
-                },
-                {
-                  x: 'Oct',
-                  y: 1500
-                }
-              ]
-            }
-          ],
-          options: {
-            chart: {
-              height: 350,
-              type: 'rangeArea',
-              animations: {
-                speed: 500
-              }
-            },
-            colors: ['#d4526e', '#33b2df', '#d4526e', '#33b2df'],
-            dataLabels: {
-              enabled: false
-            },
-            fill: {
-              opacity: [0.24, 0.24, 1, 1]
-            },
-            forecastDataPoints: {
-              count: 2
-            },
-            stroke: {
-              curve: 'straight',
-              width: [0, 0, 2, 2]
-            },
-            legend: {
-              show: true,
-              customLegendItems: ['Team B', 'Team A'],
-              inverseOrder: true
-            },
-            title: {
-              text: ''
-            },
-            markers: {
-              hover: {
-                sizeOffset: 5
-              }
-            }
-          },
-        
-        
-        
-    })
+  const { product, getAllProducts } = useContext(ProductContext)
+
+  useEffect(() => {
+    getAllProducts()
+  }, [])
+
+
+useEffect(() => {
+  // Update chart data when product state changes
+  setchart({
+    series: generateChartData(),
+    options: {
+      chart: {
+        height: 350,
+        type: 'line',
+        dropShadow: {
+          enabled: true,
+          color: '#000',
+          top: 18,
+          left: 7,
+          blur: 10,
+          opacity: 0.2
+        },
+        toolbar: {
+          show: false
+        }
+      },
+      colors: ['#77B6EA', '#545454'],
+      dataLabels: {
+        enabled: true,
+      },
+      stroke: {
+        curve: 'smooth'
+      },
+      title: {
+        text: 'Average High & Low Temperature',
+        align: 'left'
+      },
+      grid: {
+        borderColor: '#e7e7e7',
+        row: {
+          colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+          opacity: 0.5
+        },
+      },
+      markers: {
+        size: 1
+      },
+      xaxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+        title: {
+          text: 'Month'
+        }
+      },
+      yaxis: {
+        title: {
+          text: 'Temperature'
+        },
+        min: 5,
+        max: 40
+      },
+      legend: {
+        position: 'top',
+        horizontalAlign: 'right',
+        floating: true,
+        offsetY: -25,
+        offsetX: -5
+      }
+    },
+  })
+}, [product]);
+
+
+const generateChartData = () => {
+  const vendorPriceData = product.map((item) => parseFloat(item.vendorPrice))
+  const priceData = product.map((item) => parseFloat(item.price))
+
+  return [
+    {
+      name: "Vendor Price",
+      data: vendorPriceData
+    },
+    {
+      name: "Price",
+      data: priceData
+    }
+  ]
+}
+
+
+  const [chart, setchart] = useState({
+    series:   generateChartData(),
+    options: {
+      chart: {
+        height: 350,
+        type: 'line',
+        dropShadow: {
+          enabled: true,
+          color: '#000',
+          top: 18,
+          left: 7,
+          blur: 10,
+          opacity: 0.2
+        },
+        toolbar: {
+          show: false
+        }
+      },
+      colors: ['#77B6EA', '#545454'],
+      dataLabels: {
+        enabled: true,
+      },
+      stroke: {
+        curve: 'smooth'
+      },
+      title: {
+        text: 'Average High & Low Temperature',
+        align: 'left'
+      },
+      grid: {
+        borderColor: '#e7e7e7',
+        row: {
+          colors: ['#f3f3f3', 'transparent'], 
+          opacity: 0.5
+        },
+      },
+      markers: {
+        size: 1
+      },
+      xaxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+        title: {
+          text: 'Month'
+        }
+      },
+      yaxis: {
+        title: {
+          text: 'Temperature'
+        },
+        min: 5,
+        max: 40
+      },
+      legend: {
+        position: 'top',
+        horizontalAlign: 'right',
+        floating: true,
+        offsetY: -25,
+        offsetX: -5
+      }
+    },
+  })
   return (
     <div>
-      <ReactApexChart options={chart.options} series={chart.series} type="rangeArea"  height={200} width={350}/>
+      <ReactApexChart options={chart.options} series={chart.series} type="line" height={200} width={350} />
     </div>
   )
 }
