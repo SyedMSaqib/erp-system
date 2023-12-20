@@ -26,7 +26,6 @@ const AttendanceState = (props) => {
   }
 
   const getAllAttendance = async () => {
-    // Get attendance records API call
     const response = await fetch(`${host}/Attendance/fetchAllAttendance`, {
       method: 'GET',
       headers: {
