@@ -183,43 +183,7 @@ export default function Sidebar() {
           path: "/predictions",
           key: 25,
         },
-        // {
-        //   name: "Accounts",
-        //   path: "/",
-        //   key: 20,
-        //   subTabs: [
-        //     {
-        //       name: "Cash A/c",
-        //       path: "",
-        //       key: 22,
-        //     },
-        //     {
-        //       name: "Purchase A/c",
-        //       path: "",
-        //       key: 23,
-        //     },
-        //     {
-        //       name: "Sales A/c",
-        //       path: "",
-        //       key: 24,
-        //     },
-        //     {
-        //       name: "Expense A/c",
-        //       path: "",
-        //       key: 25,
-        //     },
-        //     {
-        //       name: "Recievable A/c",
-        //       path: "",
-        //       key: 25,
-        //     },
-        //     {
-        //       name: "Payable A/c",
-        //       path: "",
-        //       key: 25,
-        //     },
-        //   ],
-        // },
+        
       ],
     },
   ]
@@ -244,9 +208,9 @@ export default function Sidebar() {
           <div className="space-y-3">
             <div className="flex items-center">
               {darkMode ? (
-                <img className="ml-10 w-36 py-10 filter-invert" src={Saslogo} alt="Logo" />
+                <img className="ml-12 w-[8rem] py-10 filter-invert" src={Saslogo} alt="Logo" />
               ) : (
-                <img className="ml-10 w-36 py-10 " src={Saslogo} alt="Logo" />
+                <img className="ml-12 w-[8rem] py-10 " src={Saslogo} alt="Logo" />
               )}
               <div className="absolute mb-28">
                 <div
