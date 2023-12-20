@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SplineChart from './splineChart';
 import ColoumnChart from './coloumnChart';
 import Scatter from './scatter';
@@ -8,7 +8,11 @@ import LineChart from './lineChart';
 import Footer from '../loginSignup/footer';
 
 
+
 const Dashboard = () => {
+  const authToken =  localStorage.getItem('authToken');
+useEffect(() => { 
+}, [authToken])
   return (
     <div className="dark:bg-gray-950 flex justify-center">
     <div className='pt-5 '>
