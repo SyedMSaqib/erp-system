@@ -26,7 +26,7 @@ const AddAttendanceDate = () => {
 
   return (
     <div className="flex  h-screen  w-screen">
-      <div className="pl-96 ml-60   "> 
+      <div className="pl-96 ml-[30rem]   "> 
         <Datepicker
           primaryColor={"indigo"}
           showShortcuts={true}
