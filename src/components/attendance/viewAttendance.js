@@ -13,11 +13,14 @@ const ViewAttendance = () => {
  
   const formattedDate = formatDate(date);  
 
+  const formattedDateObject = new Date(formattedDate);
+  const formattedDateWithoutTime = new Date(formattedDateObject.toDateString());
   const filteredAttendance = attendance.filter((attendance) => {
-    console.log(new Date(attendance.date).toLocaleDateString() +"alocal")
-    console.log(formattedDate)
-    return new Date(attendance.date).toLocaleDateString() === formattedDate;
+    const attendanceDateObject = new Date(attendance.date);
+    const attendanceDateWithoutTime = new Date(attendanceDateObject.toDateString());
+    return attendanceDateWithoutTime.getTime() === formattedDateWithoutTime.getTime();
   });
+  
 
   return (
     <div className="flex justify-center items-center dark:bg-gray-900  " >
