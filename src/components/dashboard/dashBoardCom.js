@@ -28,14 +28,17 @@ if(authToken)
     <div className='mt-16'>
      <Scatter/>
     </div>
-    <div className='mt-16'>
-      <MixedChart/>
-    </div>
+    
+    
+    <div className=' grid grid-cols-2 '>
+    
+    
     <div className='mt-16'>
     <RangeArea/>
     </div>
-    <div className='mt-16'>
-    <LineChart/>
+      <div className='mt-16 ml-[22rem]'>
+      <LineChart/>
+      </div>
     </div>
     </div>
     <div className='ml-52'>

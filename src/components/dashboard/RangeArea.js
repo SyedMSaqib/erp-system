@@ -157,7 +157,7 @@ const generateChartData = () => {
   })
   return (
     <div>
-      <ReactApexChart options={chart.options} series={chart.series} type="line" height={200} width={350} />
+      <ReactApexChart options={chart.options} series={chart.series} type="line" height={200} width={500} />
     </div>
   )
 }
