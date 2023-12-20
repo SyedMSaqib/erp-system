@@ -9,21 +9,14 @@ const ViewAttendance = () => {
     getAllAttendance();
   }, []);
 
-  const formatMongoDate = (mongoDate) => {
-    const dateObject = new Date(mongoDate)
-
-    const year = dateObject.getFullYear()
-    const month = (dateObject.getMonth() + 1).toString().padStart(2, "0")
-    const day = dateObject.getDate().toString().padStart(2, "0")
-
-    return `${month}/${day}/${year}`
-  }
+  
  
   const formattedDate = formatDate(date);  
 
   const filteredAttendance = attendance.filter((attendance) => {
-  
-    return formatMongoDate(attendance.date) === formattedDate;
+    console.log(new Date(attendance.date).toLocaleDateString() +"alocal")
+    console.log(formattedDate)
+    return new Date(attendance.date).toLocaleDateString() === formattedDate;
   });
 
   return (
