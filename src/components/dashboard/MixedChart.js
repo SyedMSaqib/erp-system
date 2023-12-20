@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import ReactApexChart from 'react-apexcharts'
 
 
 const MixedChart = () => {
+  const authToken =  localStorage.getItem('authToken');
+  useEffect(() => { 
+  }, [authToken])
     const [chart, setchart] = useState({
         series: [{
             name: 'Income',

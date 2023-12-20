@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import ReactApexChart from 'react-apexcharts'
 
 
 const ColoumnChart = () => {
-
+  const authToken =  localStorage.getItem('authToken');
+  useEffect(() => { 
+  }, [authToken])
     const [chart, setChart] = useState({
         series: [{
             name: 'Net Profit',

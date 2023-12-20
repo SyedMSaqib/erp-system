@@ -4,7 +4,9 @@ import ProductContext from '../../context/product/productContext';
 
 const PieChart = () => {
   const { product, getAllProducts } = useContext(ProductContext);
-
+  const authToken =  localStorage.getItem('authToken');
+  useEffect(() => { 
+  }, [authToken])
   useEffect(() => {
     getAllProducts();
   }, []);

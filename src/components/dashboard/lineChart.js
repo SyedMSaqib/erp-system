@@ -4,7 +4,9 @@ import AttendanceContext from '../../context/attendance/attendanceContext';
 
 const LineChart = () => {
   const { attendance, getAllAttendance } = useContext(AttendanceContext);
-
+  const authToken =  localStorage.getItem('authToken');
+  useEffect(() => { 
+  }, [authToken])
   useEffect(() => {
     getAllAttendance();
   }, []);

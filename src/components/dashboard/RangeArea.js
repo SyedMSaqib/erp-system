@@ -8,7 +8,9 @@ const RangeArea = () => {
   useEffect(() => {
     getAllProducts()
   }, [])
-
+  const authToken =  localStorage.getItem('authToken');
+  useEffect(() => { 
+  }, [authToken])
 
 useEffect(() => {
   setchart({

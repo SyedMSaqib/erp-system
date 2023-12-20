@@ -8,6 +8,9 @@ const SplineChart = () => {
   useEffect(() => {
     getAllcustomersSales();
   }, []);
+  const authToken =  localStorage.getItem('authToken');
+  useEffect(() => { 
+  }, [authToken]) 
   useEffect(() => {
    
     if (customerSale) {
