@@ -13,6 +13,8 @@ const Dashboard = () => {
   const authToken =  localStorage.getItem('authToken');
 useEffect(() => { 
 }, [authToken])
+
+if(authToken)
   return (
     <div className="dark:bg-gray-950 flex justify-center">
     <div className='pt-5 '>

@@ -266,13 +266,14 @@ export default function Sidebar() {
 
             <div className="flex-1 ">
               <ul className="pt-2 pb-4 space-y-1 text-sm">
-                <Link to={"/dashboard"}>
+                
+               {authToken? <Link to={"/dashboard"}>
                   <div className=" dark:bg-gray-900 dark:border-gray-800 dark:text-gray-400 rounded-lg shadow-lg pt-2 max-w-xs transition duration-300 ease-in-out hover:scale-100 text-gray-600 font-semibold cursor-pointer h-10 bg-gray-100 border border-slate-300">
                     <span to={"/dashboard"} className="pl-5 ">
                       Dashboard
                     </span>
                   </div>
-                </Link>
+                </Link>:""}
 
                 {data.map((tab) => (
                   <li key={tab.key} onClick={() => toggleTab(tab.key)}>
