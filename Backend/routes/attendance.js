@@ -19,6 +19,8 @@ router.post(
     if (!result.isEmpty()) return res.json(result);
 
     try {
+      if(req.user.role==="admin"||req.user.role==="hr")
+      {
       const { employeeId, name, attendance, date } = req.body;
       if (req.user == null) return res.status(404).send("Invalid token or empty");
       
@@ -54,6 +56,7 @@ router.post(
 
       });
       res.json(newAttendance);
+    }
     } catch (err) {
       res.status(500).json(err);
     }
@@ -63,8 +66,11 @@ router.post(
 // Retrieve all attendance records for a user
 router.get("/fetchAllAttendance", validator, async (req, res) => {
   try {
+    if(req.user.role==="admin"||req.user.role==="hr")
+      {
     const attendanceFromDb = await Attendance.find({ user: req.user.id });
     res.json(attendanceFromDb);
+      }
   } catch (err) {
     res.json(err);
   }
@@ -76,6 +82,8 @@ router.delete("/deleteAttendance/:id", validator, async (req, res) => {
   if (id === null) return res.status(500).send("Input correct ID");
 
   try {
+    if(req.user.role==="admin"||req.user.role==="hr")
+      {
     const attendanceFromDb = await Attendance.findById(id);
     if (!attendanceFromDb) return res.status(404).json("No such attendance record exists");
 
@@ -83,6 +91,7 @@ router.delete("/deleteAttendance/:id", validator, async (req, res) => {
 
     const attendanceDelete = await Attendance.findByIdAndDelete(id);
     res.json(attendanceDelete);
+      }
   } catch (err) {
     res.json(`${err}`);
   }
