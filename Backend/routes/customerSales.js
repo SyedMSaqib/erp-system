@@ -15,7 +15,8 @@ router.post("/addCustomerSales", [check("quantity").isLength({ min: 1 })], valid
   try {
     if (req.user == null) return res.status(404).send("Invalid token, or empty")
     const { customerId, product, quantity, customerName, productId, paid } = req.body
-
+    if(req.user.role==="admin"||req.user.role==="cashier")
+      {
     const productDetails = await Product.findById(productId)
     if (productDetails.user.toString() !== req.user.id) return res.status(404).send("Unauthorized user")
     const requestedQuantity = parseInt(quantity, 10)
@@ -78,16 +79,20 @@ router.post("/addCustomerSales", [check("quantity").isLength({ min: 1 })], valid
     }
 
     res.json(newCustomersale)
+  }
   } catch (err) {
     res.status(500).json(err)
   }
 })
 router.get("/fetchAllCustomerSale", validator, async (req, res) => {
   try {
+    if(req.user.role==="admin"||req.user.role==="cashier")
+      {
     const CustomerSalesFromDb = await customerSale.find({ user: req.user.id })
 
     res.json(CustomerSalesFromDb)
-  } catch (err) {
+  }
+} catch (err) {
     res.json(err)
   }
 })
@@ -97,6 +102,8 @@ router.delete("/deleteCustomerSale/:id", validator, async (req, res) => {
   if (id === null) return res.status(500).send("input correct id")
 
   try {
+    if(req.user.role==="admin"||req.user.role==="cashier")
+    {
     const CustomerSalesFromDb = await customerSale.findById(id)
     if (!CustomerSalesFromDb) return res.status(404).json("No such customer exists")
 
@@ -147,7 +154,8 @@ router.delete("/deleteCustomerSale/:id", validator, async (req, res) => {
     }
 
     res.json(customerSaleDelete)
-  } catch (err) {
+  } 
+}catch (err) {
     res.json(`${err}`)
   }
 })
@@ -159,6 +167,8 @@ router.put("/updateCustomerSale/:id", validator, async (req, res) => {
   if (id === null) return res.status(500).send("input correct id")
 
   try {
+    if(req.user.role==="admin"||req.user.role==="cashier")
+    {
     const CustomerSalesFromDb = await customerSale.findById(id)
     if (!CustomerSalesFromDb) return res.status(404).json("No such Customer exists")
 
@@ -171,7 +181,9 @@ router.put("/updateCustomerSale/:id", validator, async (req, res) => {
     const customerUpdate = await customerSale.findByIdAndUpdate(id, { $set: newSale }, { new: true })
 
     res.status(200).json(customerUpdate)
-  } catch (err) {
+  } 
+}
+  catch (err) {
     res.json(`${err}`)
   }
 })
