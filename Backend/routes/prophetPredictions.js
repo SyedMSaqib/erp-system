@@ -5,6 +5,8 @@ const salesTrail = require("../models/salesTrails")
 
 router.get("/predictions", validator, async (req, res) => {
   try {
+    if(req.user.role==="admin"||req.user.role==="accountant")
+    {
     const currentMonth = new Date().getMonth();
 
     const startDate = new Date(new Date().getFullYear(), currentMonth, 1);
@@ -41,7 +43,7 @@ router.get("/predictions", validator, async (req, res) => {
     } else {
       console.error("Error calling Flask API:", response.statusText)
       res.status(500).send({error:"Flask API error processing data",status:500})
-    }
+    }}
   } catch (error) {
     console.error("Error calling Flask API:", error.message)
     res.status(500).send({error:"Internal Server Error",status:500})
