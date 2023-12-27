@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const user = require("../models/users")
+const roles = require("../models/roles")
 const { check, validationResult } = require("express-validator")
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
@@ -50,27 +51,69 @@ router.post("/signup", [check("name").isLength({min:3}),check("email").isEmail()
 router.post("/login",[check("email").isEmail(), check("password").isLength({ min: 6 })], async (req, res) => {
   const result = validationResult(req)
   if (!result.isEmpty()) return res.status(500).json(result)
-
-  let checkUser = await user.findOne({email:req.body.email})
+  const {email}=req.body
+const role="admin"
+if(role==="admin")
+{
+  let checkUser = await user.findOne({email:email})
   if(checkUser===null)
   return res.status(400).send({error:"Email does not match",status:400})
   const password=checkUser.password  
   const compare=bcrypt.compareSync(req.body.password,password )
   const User={
     user:{
-      id:checkUser.id
+      id:checkUser.id,
+      email:checkUser.email,
+      role:role
     }
   }
+
   var token = jwt.sign(User,key);
   if(compare)
   return res.status(200).json({
     token: token,
     name: checkUser.name,
+    role:role,
     status:200
   });  
   return res.status(401).send({error:"Password does not match",status:401})
   
 
+}
+else
+{
+  let checkUser = await roles.findOne({email:email,role:role})
+  if(checkUser===null)
+  return res.status(400).send({error:"Email does not match",status:400})
+  let checkAccount = await user.findOne({email:email})
+  if(checkAccount)
+  {
+  const password=checkUser.password  
+  const compare=bcrypt.compareSync(req.body.password,password )
+  const User={
+    user:{
+      id:checkAccount.id,
+      email:checkUser.email,
+      role:role
+    }
+  }
+
+  var token = jwt.sign(User,key);
+  if(compare)
+  return res.status(200).json({
+    token: token,
+    name: role,
+    role:role,
+    status:200
+  });  }
+  else
+  {
+    return res.send("we can't find the parent account")
+  }
+  return res.status(401).send({error:"Password does not match",status:401})
+  
+
+}
 }
 )
 

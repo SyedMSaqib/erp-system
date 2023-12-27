@@ -17,6 +17,8 @@ router.post(
     if (!result.isEmpty()) return res.json(result)
     try {
       if (req.user == null) return res.status(404).send("Invalid token, or empty")
+      if(req.user.role==="admin"||req.user.role==="cashier")
+      {
       const { name, email, phone, } = req.body
       const newCustomer = await customer.create({
         user: req.user.id,
@@ -25,17 +27,22 @@ router.post(
         phone:phone,
       })
       res.json(newCustomer)
-    } catch (err) {
+    }
+  } catch (err) {
       res.status(500).json(err)
     }
   }
 )
 router.get("/fetchAllCustomer", validator, async (req, res) => {
     try {
+      console.log(req.user)
+      if(req.user.role==="admin"||req.user.role==="cashier")
+      {
       const CustomerFromDb = await customer.find({ user: req.user.id })
   
       res.json(CustomerFromDb)
-    } catch (err) {
+    } 
+  }catch (err) {
       res.json(err)
     }
   })
@@ -45,6 +52,8 @@ router.get("/fetchAllCustomer", validator, async (req, res) => {
     if (id === null) return res.status(500).send("input correct id")
   
     try {
+      if(req.user.role==="admin"||req.user.role==="cashier")
+      {
       const customerFromDb = await customer.findById(id)
       if (!customerFromDb) return res.status(404).json("No such customer exists")
   
@@ -52,7 +61,8 @@ router.get("/fetchAllCustomer", validator, async (req, res) => {
       const customerDelete = await customer.findByIdAndDelete(id)
   
       res.json(customerDelete)
-    } catch (err) {
+    }
+   } catch (err) {
       res.json(`${err}`)
     }
   })
@@ -67,6 +77,9 @@ router.get("/fetchAllCustomer", validator, async (req, res) => {
     if (id === null) return res.status(500).send("input correct id")
   
     try {
+    
+      if(req.user.role==="admin"||req.user.role==="cashier")
+      {
       const CustomerFromDb = await customer.findById(id)
       if (!CustomerFromDb) return res.status(404).json("No such Customer exists")
   
@@ -82,7 +95,9 @@ router.get("/fetchAllCustomer", validator, async (req, res) => {
       const customerUpdate = await customer.findByIdAndUpdate(id,{$set:newCustomer},{new:true})
   
       res.json(customerUpdate)
-    } catch (err) {
+    }
+   }
+    catch (err) {
       res.json(`${err}`)
     }
   })

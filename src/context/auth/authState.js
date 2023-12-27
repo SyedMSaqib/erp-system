@@ -14,6 +14,7 @@ const AuthState = (props) => {
   const [SignUpPopUpVisible, setSignUpPopUpVisible] = useState(false)
   const [credentialMatchFail, setcredentialMatchFail] = useState(null)
 
+
   const login = async (email, password) => {
     try {
       const response = await fetch(`${host}/auth/login`, {
@@ -28,7 +29,9 @@ const AuthState = (props) => {
         const data = await response.json()
         const token = data.token
         setUserName(data.name)
+        const role=data.role
         localStorage.setItem("authToken", token)
+        localStorage.setItem("userRole", role)
       } else {
         const responseBody = await response.json();
         setcredentialMatchFail(responseBody)
@@ -73,7 +76,9 @@ const AuthState = (props) => {
         UserName,
         SignUpPopUpVisible,
         setSignUpPopUpVisible,
-        credentialMatchFail
+        credentialMatchFail,
+       
+        
       }}
     >
       {props.children}

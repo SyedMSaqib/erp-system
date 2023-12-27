@@ -16,6 +16,8 @@ router.post(
     if (!result.isEmpty()) return res.json(result);
 
     try {
+      if(req.user.role==="admin"||req.user.role==="inventoryManager")
+      {
       if (req.user == null) return res.status(404).send("Invalid token, or empty");
 
       const { name, email } = req.body;
@@ -27,6 +29,7 @@ router.post(
       });
 
       res.json(newVendor);
+    }
     } catch (err) {
       res.status(500).json(err);
     }
@@ -35,9 +38,12 @@ router.post(
 
 router.get("/fetchAll", validator, async (req, res) => {
   try {
+    if(req.user.role==="admin"||req.user.role==="inventoryManager")
+    {
     const vendorsFromDb = await vendor.find({ user: req.user.id });
     res.json(vendorsFromDb);
-  } catch (err) {
+  } 
+}catch (err) {
     res.json(err);
   }
 });
@@ -47,6 +53,8 @@ router.delete("/delete/:id", validator, async (req, res) => {
   if (id === null) return res.status(500).send("Input correct id");
 
   try {
+    if(req.user.role==="admin"||req.user.role==="inventoryManager")
+    {
     const vendorFromDb = await vendor.findById(id);
     if (!vendorFromDb) return res.status(404).json("No such vendor exists");
 
@@ -54,7 +62,8 @@ router.delete("/delete/:id", validator, async (req, res) => {
 
     const vendorDelete = await vendor.findByIdAndDelete(id);
     res.json(vendorDelete);
-  } catch (err) {
+  } 
+}catch (err) {
     res.json(`${err}`);
   }
 });
@@ -67,6 +76,8 @@ router.put("/update/:id", validator, async (req, res) => {
   if (id === null) return res.status(500).send("Input correct id");
 
   try {
+    if(req.user.role==="admin"||req.user.role==="inventoryManager")
+    {
     const vendorFromDb = await vendor.findById(id);
     if (!vendorFromDb) return res.status(404).json("No such vendor exists");
 
@@ -79,7 +90,8 @@ router.put("/update/:id", validator, async (req, res) => {
 
     const vendorUpdate = await vendor.findByIdAndUpdate(id, { $set: newVendor }, { new: true });
     res.json(vendorUpdate);
-  } catch (err) {
+  } 
+}catch (err) {
     res.json(`${err}`);
   }
 });

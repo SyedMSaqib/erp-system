@@ -8,8 +8,9 @@ import authContext from "../../context/auth/authContext"
 import Sun1 from "./logos/sun1.json"
 import Moon1 from "./logos/moon2.json"
 import Lottie from "lottie-react"
-
 export default function Sidebar() {
+
+  var data=[]
   useEffect(() => {
     const storedThemeMode = localStorage.getItem("DarkTheme")
     if (storedThemeMode) {
@@ -19,9 +20,16 @@ export default function Sidebar() {
   }, [])
 
   const { UserName } = useContext(authContext)
+  // const [role, setRole] = useState("")
+  // useEffect(() => {
+  //   // setRole(responeFromServer.role)
+ 
+  // }, [role])
+  
   var userNameLocal = localStorage.getItem("name")
   if (userNameLocal === null) localStorage.setItem("name", UserName)
   const nameFromStorage = localStorage.getItem("name")
+  const role = localStorage.getItem("userRole")
 
   const containsSaqib = (text) => {
     if (text) return text.toLowerCase().includes("saqib")
@@ -29,7 +37,7 @@ export default function Sidebar() {
 
   const authToken = localStorage.getItem("authToken")
   const [openTab, setOpenTab] = useState(null)
-  const [openInSubTab, setopenInSubTab] = useState(null)
+  // const [openInSubTab, setopenInSubTab] = useState(null)
 
   const [darkMode, setdarkMode] = useState(false)
   const toggleMode = () => {
@@ -45,8 +53,10 @@ export default function Sidebar() {
   }
 
   if (authToken === null) return null
-
-  const data = [
+  console.log(role&&role)
+  if(role==="admin")
+  {
+  data = [
     {
       name: "Inventory",
       path: "/inventory",
@@ -186,18 +196,178 @@ export default function Sidebar() {
         
       ],
     },
-  ]
+  ]}
+  if(role==="cashier")
+  {
+  data = [  
+    {
+      name: "Customers",
+      path: "/customers",
+      key: 4,
+      subTabs: [
+        {
+          name: "View Customers",
+          path: "/viewCustomers",
+          key: 5,
+        },
+        {
+          name: "View Sales",
+          path: "/viewCustomerSale",
+          key: 6,
+        },
+        {
+          name: "Sale Payment Status",
+          path: "/salePaymentStatus",
+          key: 6,
+        },
+        {
+          name: "Add Customer",
+          path: "/addCustomers",
+          key: 8,
+        },
+        {
+          name: "Add Sale",
+          path: "/AddCustomersSale",
+          key: 9,
+        },
+      ],
+    },
+    
+  ]}
+
+  if(role==="hr")
+  {
+   data=[ 
+    {
+      name: "Employees",
+      path: "/employees",
+      key: 10,
+      subTabs: [
+        {
+          name: "Add Employees",
+          path: "/addEmployee",
+          key: 11,
+        },
+        {
+          name: "Add Attendance",
+          path: "/addAttendanceDate",
+          key: 12,
+        },
+        {
+          name: "View Employees",
+          path: "/viewEmployee",
+          key: 13,
+        },
+        {
+          name: "View Attendance",
+          path: "/attendanceDate",
+          key: 14,
+        },
+        {
+          name: "Payroll",
+          path: "/payroll",
+          key: 14,
+        },
+      ],
+    },
+   ]}
+
+  if(role==="accountant")
+  {
+    data=[
+      {
+        name: "Finance",
+        path: "/finance",
+        key: 15,
+        subTabs: [
+          {
+            name: "View Sales Trails",
+            path: "/ViewSalesTrail",
+            key: 19,
+          },
+          {
+            name: "View Vendors Trails",
+            path: "/ViewVenderTrail",
+            key: 20,
+          },
+          {
+            name: "General Ledger",
+            path: "/ledger",
+            key: 21,
+          },
+          {
+            name: "Payables",
+            path: "/payables",
+            key: 22,
+          },
+          {
+            name: "Receivables",
+            path: "/receivables",
+            key: 23,
+          },
+          {
+            name: "Profit / Loss",
+            path: "/profit",
+            key: 24,
+          },
+          {
+            name: "Profit Predictions",
+            path: "/predictions",
+            key: 25,
+          },]
+        }
+    ]
+    
+  }
+  if(role==="inventoryManager")
+  {
+    data=[
+      {
+        name: "Inventory",
+        path: "/inventory",
+        key: 1,
+        subTabs: [
+          {
+            name: "View Products",
+            path: "/viewProduct",
+            key: 2,
+          },
+          {
+            name: "View Vendors",
+            path: "/viewVendors",
+            key: 15,
+          },
+          {
+            name: "Vender Payment Status",
+            path: "/venderPaymentStatus",
+            key: 17,
+          },
+          {
+            name: "Add Product",
+            path: "/addProduct",
+            key: 3,
+          },
+          {
+            name: "Add Vendor",
+            path: "/addVendor",
+            key: 16,
+          },
+        ],
+      },
+    ]
+  }
 
   const toggleTab = (tabKey) => {
     setOpenTab(openTab === tabKey ? null : tabKey)
   }
-  const toggleInSubtab = (tabKey) => {
-    setopenInSubTab(openInSubTab === tabKey ? null : tabKey)
-  }
+  // const toggleInSubtab = (tabKey) => {
+  //   setopenInSubTab(openInSubTab === tabKey ? null : tabKey)
+  // }
 
   const logout = () => {
     localStorage.removeItem("authToken")
     localStorage.removeItem("name")
+    localStorage.removeItem("userRole")
     return (window.location.href = "/signIn")
   }
 
@@ -231,13 +401,13 @@ export default function Sidebar() {
             <div className="flex-1 ">
               <ul className="pt-2 pb-4 space-y-1 text-sm">
                 
-               {authToken? <Link to={"/dashboard"}>
+               {authToken && role==="admin" && (<Link to={"/dashboard"}>
                   <div className=" dark:bg-gray-900 dark:border-gray-800 dark:text-gray-400 rounded-lg shadow-lg pt-2 max-w-xs transition duration-300 ease-in-out hover:scale-100 text-gray-600 font-semibold cursor-pointer h-10 bg-gray-100 border border-slate-300">
                     <span to={"/dashboard"} className="pl-5 ">
                       Dashboard
                     </span>
                   </div>
-                </Link>:""}
+                </Link>)}
 
                 {data.map((tab) => (
                   <li key={tab.key} onClick={() => toggleTab(tab.key)}>
@@ -302,7 +472,7 @@ export default function Sidebar() {
               </div>
             </div>
             <div>
-              <div onClick={logout} className="cursor-pointer flex pt-10 space-x-2">
+              <div onClick={logout} className="cursor-pointer flex pt-10 space-x-2 absolute left-[9rem]">
                 <div className="font-semibold text-sm dark:text-gray-400 text-gray-600 ">LOGOUT</div>
                 <div>
                   <LogoutUser />

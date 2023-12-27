@@ -15,6 +15,8 @@ router.post(
     try {
       if (req.user == null) return res.status(404).send("Invalid token, or empty")
       const { name, email, phone, basePay } = req.body
+      if(req.user.role==="admin"||req.user.role==="hr")
+      {
       const newEmployee = await employee.create({
         user: req.user.id,
         name: name,
@@ -23,6 +25,7 @@ router.post(
         basePay:basePay
       })
       res.json(newEmployee)
+    }
     } catch (err) {
       res.status(500).json(err)
     }
@@ -32,9 +35,12 @@ router.post(
 // Fetch All Employees
 router.get("/fetchAllEmployees", validator, async (req, res) => {
   try {
+    if(req.user.role==="admin"||req.user.role==="hr")
+      {
     const EmployeesFromDb = await employee.find({ user: req.user.id })
     res.json(EmployeesFromDb)
-  } catch (err) {
+  } 
+}catch (err) {
     res.json(err)
   }
 })
@@ -45,6 +51,8 @@ router.delete("/deleteEmployee/:id", validator, async (req, res) => {
   if (id === null) return res.status(500).send("Input correct id")
 
   try {
+    if(req.user.role==="admin"||req.user.role==="hr")
+    {
     const employeeFromDb = await employee.findById(id)
     if (!employeeFromDb) return res.status(404).json("No such employee exists")
 
@@ -52,7 +60,8 @@ router.delete("/deleteEmployee/:id", validator, async (req, res) => {
     const employeeDelete = await employee.findByIdAndDelete(id)
 
     res.json(employeeDelete)
-  } catch (err) {
+  } 
+}catch (err) {
     res.json(`${err}`)
   }
 })
@@ -65,6 +74,8 @@ router.put("/updateEmployee/:id", validator, async (req, res) => {
   if (id === null) return res.status(500).send("Input correct id")
 
   try {
+    if(req.user.role==="admin"||req.user.role==="hr")
+      {
     const EmployeeFromDb = await employee.findById(id)
     if (!EmployeeFromDb) return res.status(404).json("No such employee exists")
 
@@ -77,8 +88,9 @@ router.put("/updateEmployee/:id", validator, async (req, res) => {
     if (basePay) newEmployee.basePay = basePay
     const employeeUpdate = await employee.findByIdAndUpdate(id, { $set: newEmployee }, { new: true })
 
-    res.json(employeeUpdate)
-  } catch (err) {
+      res.json(employeeUpdate)
+  } 
+}catch (err) {
     res.json(`${err}`)
   }
 })

@@ -148,6 +148,8 @@ router.post(
       December: 11,
     }
     try {
+      if(req.user.role==="admin"||req.user.role==="hr")
+      {
       const { Month } = req.body
       const monthInNumber = monthNameToNumber[Month]
       let totalPayExpense=0
@@ -198,8 +200,10 @@ router.post(
           Description: "Salary Expense",
           amount: -totalPayExpense,
         })
+        
       return res.status(202).json(deductedPEmployee)
-    } catch (err) {
+    }
+  } catch (err) {
       res.json(err)
     }
   }
@@ -211,6 +215,8 @@ router.delete("/deleteSalary/:id", validator, async (req, res) => {
   if (id === null) return res.status(500).send("Input correct id")
 
   try {
+    if(req.user.role==="admin"||req.user.role==="hr")
+    {
     const salaryFromDb = await Salary.findById(id)
     if (!salaryFromDb) return res.status(404).json("No such salary exists")
 
@@ -218,7 +224,8 @@ router.delete("/deleteSalary/:id", validator, async (req, res) => {
     const salaryDelete = await Salary.findByIdAndDelete(id)
 
     res.json(salaryDelete)
-  } catch (err) {
+  } 
+}catch (err) {
     res.json(`${err}`)
   }
 })
@@ -232,6 +239,8 @@ router.put("/updateSalary/:id", validator, async (req, res) => {
   if (id === null) return res.status(500).send("Input correct id")
 
   try {
+    if(req.user.role==="admin"||req.user.role==="hr")
+    {
     const salaryFromDb = await Salary.findById(id)
     if (!salaryFromDb) return res.status(404).json("No such salary exists")
 
@@ -248,7 +257,8 @@ router.put("/updateSalary/:id", validator, async (req, res) => {
     const salaryUpdate = await Salary.findByIdAndUpdate(id, { $set: newSalary }, { new: true })
 
     res.json(salaryUpdate)
-  } catch (err) {
+  } 
+}catch (err) {
     res.json(`${err}`)
   }
 })

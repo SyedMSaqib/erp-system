@@ -21,6 +21,7 @@ const [border, setborder] = useState("border-gray-300")
 const [borderEmail, setborderEmail] = useState("border-gray-300")
 const navigate = useNavigate();
 
+const role=localStorage.getItem('userRole')
 
 
 
@@ -111,7 +112,9 @@ const onClick = async(event) => {
 const AuthToken =  localStorage.getItem('authToken');
 if(AuthToken!==null||value===false)
 {
+  if(role==="admin"){
   navigate("/dashboard")
+  }
   return null
 }
 
