@@ -6,6 +6,8 @@ const ledger = require("../models/ledger")
 
 router.get("/profit/:month", validator, async (req, res) => {
   try {
+    if(req.user.role==="admin"||req.user.role==="accountant")
+      {
     const monthName = req.params.month
     const monthIndex = new Date(Date.parse(`1 ${monthName} 2000`)).getMonth()
     const requestedMonth = monthIndex+1
@@ -37,6 +39,7 @@ router.get("/profit/:month", validator, async (req, res) => {
     }
 
     res.status(200).json({ saleTrails: saleTrails, profit: totalProfitLoss,totalTransaction:totalTransaction,totalSales:totalSales, status: 200 })
+  }
   } catch (err) {
     res.status(500).json(err)
   }
