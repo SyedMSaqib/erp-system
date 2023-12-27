@@ -10,6 +10,8 @@ router.put("/addVenderTrail/:id", validator, async (req, res) => {
 
   try {
     if (req.user == null) return res.status(404).send("Invalid token, or empty")
+    if(req.user.role==="admin"||req.user.role==="accountant"||req.user.role==="cashier")
+    {
     const updatedVenderTrails = {
       paid: true,
       date: new Date(),
@@ -31,6 +33,7 @@ router.put("/addVenderTrail/:id", validator, async (req, res) => {
     })
 
     res.status(200).send({ status: 200, msg: "Updated" })
+  }
   } catch (err) {
     res.status(500).json(err)
   }
@@ -38,10 +41,13 @@ router.put("/addVenderTrail/:id", validator, async (req, res) => {
 
 router.get("/fetchAllVenderTrails", validator, async (req, res) => {
   try {
+    if(req.user.role==="admin"||req.user.role==="accountant"||req.user.role==="cashier")
+    {
     const VenderTrails = await venderTrails.find({ user: req.user.id })
 
     res.status(200).json({ venderTrails: VenderTrails, status: 200 })
-  } catch (err) {
+  } 
+}catch (err) {
     res.json(err)
   }
 })
