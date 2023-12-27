@@ -9,22 +9,18 @@ const ViewAttendance = () => {
     getAllAttendance();
   }, []);
 
-  const formatMongoDate = (mongoDate) => {
-    const dateObject = new Date(mongoDate)
-
-    const year = dateObject.getFullYear()
-    const month = (dateObject.getMonth() + 1).toString().padStart(2, "0")
-    const day = dateObject.getDate().toString().padStart(2, "0")
-
-    return `${month}/${day}/${year}`
-  }
+  
  
   const formattedDate = formatDate(date);  
 
+  const formattedDateObject = new Date(formattedDate);
+  const formattedDateWithoutTime = new Date(formattedDateObject.toDateString());
   const filteredAttendance = attendance.filter((attendance) => {
-  
-    return formatMongoDate(attendance.date) === formattedDate;
+    const attendanceDateObject = new Date(attendance.date);
+    const attendanceDateWithoutTime = new Date(attendanceDateObject.toDateString());
+    return attendanceDateWithoutTime.getTime() === formattedDateWithoutTime.getTime();
   });
+  
 
   return (
     <div className="flex justify-center items-center dark:bg-gray-900  " >

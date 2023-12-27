@@ -63,7 +63,7 @@ useEffect(() => {
           text: ''
         },
         min: 5,
-        max: 40
+        max: 4000
       },
       legend: {
         position: 'top',
@@ -78,8 +78,9 @@ useEffect(() => {
 
 
 const generateChartData = () => {
-  const vendorPriceData = product.map((item) => parseInt(item.vendorPrice))
-  const priceData = product.map((item) => parseInt(item.price))
+  const vendorPriceData = product.map((item) =>Math.abs (item.vendorPrice).toFixed(0))
+  const priceData = product.map((item) => Math.abs(item.price).toFixed(0));
+
 
   return [
     {

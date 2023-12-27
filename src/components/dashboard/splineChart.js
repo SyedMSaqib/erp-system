@@ -65,7 +65,7 @@ const SplineChart = () => {
 
   return (
     <div style={{ position: 'relative' }}>
-      <ReactApexChart options={chart.options} series={chart.series} type="area" height={250} width={350} />
+      <ReactApexChart options={chart.options} series={chart.series} type="area" height={250} width={500} />
       <div style={{ position: 'absolute', top: '220px', left: '80px', zIndex: '999' }}>
         <p className='font-semibold text-xs dark:text-gray-400'>{salePeriod()}</p>
       </div>
