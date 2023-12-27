@@ -208,9 +208,9 @@ export default function Sidebar() {
           <div className="space-y-3">
             <div className="flex items-center">
               {darkMode ? (
-                <img className="ml-12 w-[8rem] py-10 filter-invert" src={Saslogo} alt="Logo" />
+                <img className="ml-14 w-[6rem] py-10 filter-invert" src={Saslogo} alt="Logo" />
               ) : (
-                <img className="ml-12 w-[8rem] py-10 " src={Saslogo} alt="Logo" />
+                <img className="ml-14 w-[6rem] py-10 " src={Saslogo} alt="Logo" />
               )}
               <div className="absolute mb-28">
                 <div
