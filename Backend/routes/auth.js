@@ -52,7 +52,7 @@ router.post("/login",[check("email").isEmail(), check("password").isLength({ min
   const result = validationResult(req)
   if (!result.isEmpty()) return res.status(500).json(result)
   const {email}=req.body
-const role="cashier"
+const role="admin"
 if(role==="admin")
 {
   let checkUser = await user.findOne({email:email})
