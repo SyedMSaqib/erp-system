@@ -18,13 +18,13 @@ if(authToken)
   return (
     <div className="dark:bg-gray-950 flex justify-center">
     <div className='pt-5 '>
-    <div className='ml-64 bg-slate-100 dark:bg-gray-950 dark:border-gray-600 grid grid-cols-3 border border-slate-200 shadow-2xl rounded-xl w-[68rem]   '>
+    <div className='ml-64 bg-slate-100 dark:bg-gray-950 dark:border-gray-600 grid grid-cols-2 border border-slate-200 shadow-2xl rounded-xl w-[68rem]   '>
     <div className='mt-16'>
     <SplineChart/>
     </div>
-    <div className='mt-16 '>
+    {/* <div className='mt-16 '>
       <ColoumnChart/>
-    </div>
+    </div> */}
     <div className='mt-16'>
      <Scatter/>
     </div>
