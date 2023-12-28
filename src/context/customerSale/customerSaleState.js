@@ -12,9 +12,14 @@ const CustomerSaleState = (props) => {
   const [isVisibleConfirmDelete, setisVisibleConfirmDelete] = useState(false)
   const [customerSaleGraph, setcustomerSaleGraph] = useState({ isvisible: false, customerId: "" })
   const [saleSearch, setsaleSearch] = useState("")
-
+  const logout = () => {
+    localStorage.removeItem("authToken")
+    localStorage.removeItem("name")
+    localStorage.removeItem("userRole")
+    return (window.location.href = "/signIn")
+  }
   const getAllcustomersSales = async () => {
-    //get notes Api call
+   
 
     const response = await fetch(`${host}/customerSale/fetchAllCustomerSale`, {
       method: "GET",
@@ -24,6 +29,10 @@ const CustomerSaleState = (props) => {
         "auth-token": authToken,
       },
     })
+    if(response.status===401)
+    {
+      logout()
+    }
     const data = await response.json()
     setCustomerSale(data)
     setsaleSearch(data)
