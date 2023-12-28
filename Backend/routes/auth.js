@@ -68,7 +68,7 @@ if(role==="admin")
     }
   }
 
-  var token = jwt.sign(User,key);
+  var token = jwt.sign(User,key,{expiresIn:'1h'});
   if(compare)
   return res.status(200).json({
     token: token,

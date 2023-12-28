@@ -1,18 +1,26 @@
-var jwt = require("jsonwebtoken");
-
-
-
+const jwt = require("jsonwebtoken");
+require('dotenv').config()
 const validator = (req, res, next) => {
-    const token=req.header("auth-token")
-    const verifyToken=jwt.verify(token, "02192000");
-    if(!verifyToken)
-    return req.status(401).json({"Error":"Empty token"})
+    const token = req.header("auth-token");
+
+    if (!token) {
+        return res.status(401).json({"Error": "Empty token"});
+    }
+
     try {
-        req.user=verifyToken.user;
-        next()
+  
+        const verifyToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
+
+        const currentTime = Math.floor(Date.now() / 1000);
+        if (verifyToken.exp && verifyToken.exp < currentTime) {
+            return res.status(400).json({"Error": "Token is expired"});
+        }
+
+        req.user = verifyToken.user;
+        next();
     } catch (error) {
-        res.status(401).send("Invalid Token")
-        
+        res.status(401).send("Invalid Token");
     }
 };
-module.exports=validator;
+
+module.exports = validator;
