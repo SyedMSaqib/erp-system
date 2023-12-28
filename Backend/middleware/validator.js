@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-
+require('dotenv').config()
 const validator = (req, res, next) => {
     const token = req.header("auth-token");
 
@@ -8,7 +8,8 @@ const validator = (req, res, next) => {
     }
 
     try {
-        const verifyToken = jwt.verify(token, "02192000");
+  
+        const verifyToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
         const currentTime = Math.floor(Date.now() / 1000);
         if (verifyToken.exp && verifyToken.exp < currentTime) {
