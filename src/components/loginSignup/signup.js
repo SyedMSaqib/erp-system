@@ -103,7 +103,7 @@ const SignUp = () => {
     <SignUpSuccess/>
     <div className="flex justify-center items-center w-screen h-screen bg-cover" style={{ backgroundImage: `url(${BgImg})` }} >
       
-      <section className='mb-9'> 
+      <section className='mb-14'> 
       
         <div className="max-w-md w-full">
           
