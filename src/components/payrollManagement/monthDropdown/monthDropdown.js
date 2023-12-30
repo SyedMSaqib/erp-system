@@ -2,9 +2,9 @@ import React, { useContext, useState } from "react"
 import SalaryContext from "../../../context/salary/salaryContext"
 
 const MonthDropdown = () => {
-  const { Days, setDays,Month, setMonth,isChecked, setIsChecked} = useContext(SalaryContext)
-    const [firstDay, setFirstDay] = useState("");
-  const [lastDay, setLastDay] = useState("");
+  const { Days, setDays, Month, setMonth, isChecked, setIsChecked } = useContext(SalaryContext)
+  const [firstDay, setFirstDay] = useState("")
+  const [lastDay, setLastDay] = useState("")
 
   const months = [
     "January",
@@ -22,10 +22,10 @@ const MonthDropdown = () => {
   ]
 
   const handleChange = (e) => {
-    getFirstAndLastDay(e.target.value);
-    setMonth(e.target.value);
-    console.log(Days)
-  };
+    getFirstAndLastDay(e.target.value)
+    setMonth(e.target.value)
+    // console.log(Days)
+  }
 
   const getFirstAndLastDay = (selectedMonth) => {
     const date = new Date(`${selectedMonth} 1, 2023`)
@@ -36,17 +36,15 @@ const MonthDropdown = () => {
     const offset = new Date().getTimezoneOffset()
     firstDay.setMinutes(firstDay.getMinutes() - offset)
     lastDay.setMinutes(lastDay.getMinutes() - offset)
-    
-      setFirstDay( firstDay.toISOString().slice(0, 10))
-      setLastDay(lastDay.toISOString().slice(0, 10))
-    }
 
+    setFirstDay(firstDay.toISOString().slice(0, 10))
+    setLastDay(lastDay.toISOString().slice(0, 10))
+  }
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked)
   }
-  
-  
+
   return (
     <div className="flex">
       <div className="mt-4 flex pr-4">
@@ -66,36 +64,27 @@ const MonthDropdown = () => {
             </option>
           ))}
         </select>
-        
-
-
       </div>
       <div className="mt-5">
-      <label className=' relative inline-flex cursor-pointer select-none items-center'>
-        <input
-          type='checkbox'
-          checked={isChecked}
-          onChange={handleCheckboxChange}
-          className='sr-only'
-        />
-        <span className='label flex items-center text-sm font-medium text-black dark:text-gray-300'>
-          Attendance filter
-        </span>
-        <span
-          className={`slider mx-4 flex h-6 w-[40px] items-center rounded-full p-1 duration-200 ${
-            isChecked ? 'bg-green-400' : 'bg-red-200'
-          }`}
-        >
+        <label className=" relative inline-flex cursor-pointer select-none items-center">
+          <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} className="sr-only" />
+          <span className="label flex items-center text-sm font-medium text-black dark:text-gray-300">
+            Attendance filter
+          </span>
           <span
-            className={`dot h-4 w-4 rounded-full   duration-200 ${
-              isChecked ? 'bg-green-700 translate-x-[18px] ' : 'bg-red-500'
+            className={`slider mx-4 flex h-6 w-[40px] items-center rounded-full p-1 duration-200 ${
+              isChecked ? "bg-green-400" : "bg-red-200"
             }`}
-          ></span>
-        </span>
-       
-      </label>
-    </div>
-      
+          >
+            <span
+              className={`dot h-4 w-4 rounded-full   duration-200 ${
+                isChecked ? "bg-green-700 translate-x-[18px] " : "bg-red-500"
+              }`}
+            ></span>
+          </span>
+        </label>
+      </div>
+
       <div className="mt-6 flex">
         <p className="text-sm font-medium text-gray-700 dark:text-gray-400 ml-5 w-[7rem]  ">Selected Month:</p>
         <p className="text-sm   dark:text-gray-300">{Month}</p>
@@ -104,7 +93,6 @@ const MonthDropdown = () => {
         <p className="text-sm font-medium pl-10 dark:text-gray-400">End:</p>
         <p className="text-sm   dark:text-gray-300 w-[5rem] pl-1 ">{lastDay}</p>
       </div>
-      
     </div>
   )
 }
