@@ -138,7 +138,7 @@ const SignUp = () => {
                 required=""
               />
             </div>
-            <form className="space-y-4 w-60" >
+            <form className="space-y-2 w-60" >
               <div className="mb-4">
                 <label for="email" className="block mb-2 text-sm font-medium text-gray-900">
                   Your email
