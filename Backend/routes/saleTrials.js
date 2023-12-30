@@ -15,7 +15,7 @@ router.put(
     
       try {
         if (req.user == null) return res.status(404).send("Invalid token, or empty")
-        if(req.user.role==="admin"||req.user.role==="accountant"||req.user.role==="cashier")
+        if(req.user.role==="admin"||req.user.role==="accountant"||req.user.role==="sales manager")
         {
         const updatedSaleTrails={
             paid:true,
@@ -46,7 +46,7 @@ router.put(
 
   router.get("/fetchAllSaleTrails", validator, async (req, res) => {
     try {
-      if(req.user.role==="admin"||req.user.role==="accountant"||req.user.role==="cashier")
+      if(req.user.role==="admin"||req.user.role==="accountant"||req.user.role==="sales manager")
       {
       const saleTrails = await salesTrail.find({ user: req.user.id })
   

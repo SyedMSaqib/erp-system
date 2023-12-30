@@ -16,7 +16,7 @@ router.post(
     if (!result.isEmpty()) return res.json(result);
 
     try {
-      if(req.user.role==="admin"||req.user.role==="inventoryManager")
+      if(req.user.role==="admin"||req.user.role==="inventory manager")
       {
       if (req.user == null) return res.status(404).send("Invalid token, or empty");
 
@@ -38,7 +38,7 @@ router.post(
 
 router.get("/fetchAll", validator, async (req, res) => {
   try {
-    if(req.user.role==="admin"||req.user.role==="inventoryManager")
+    if(req.user.role==="admin"||req.user.role==="inventory manager")
     {
     const vendorsFromDb = await vendor.find({ user: req.user.id });
     res.json(vendorsFromDb);
@@ -53,7 +53,7 @@ router.delete("/delete/:id", validator, async (req, res) => {
   if (id === null) return res.status(500).send("Input correct id");
 
   try {
-    if(req.user.role==="admin"||req.user.role==="inventoryManager")
+    if(req.user.role==="admin"||req.user.role==="inventory manager")
     {
     const vendorFromDb = await vendor.findById(id);
     if (!vendorFromDb) return res.status(404).json("No such vendor exists");
@@ -76,7 +76,7 @@ router.put("/update/:id", validator, async (req, res) => {
   if (id === null) return res.status(500).send("Input correct id");
 
   try {
-    if(req.user.role==="admin"||req.user.role==="inventoryManager")
+    if(req.user.role==="admin"||req.user.role==="inventory manager")
     {
     const vendorFromDb = await vendor.findById(id);
     if (!vendorFromDb) return res.status(404).json("No such vendor exists");

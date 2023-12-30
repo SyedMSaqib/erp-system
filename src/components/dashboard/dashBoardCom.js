@@ -16,7 +16,7 @@ useEffect(() => {
 
 if(authToken)
   return (
-    <div className="dark:bg-gray-900 flex justify-center">
+    <div className="dark:bg-gray-900 bg-slate-50  flex justify-center">
     <div className='pt-5 '>
     <div className='ml-64 bg-slate-100 dark:bg-gray-950 dark:border-gray-600 grid grid-cols-2 border border-slate-200 shadow-2xl rounded-xl w-[68rem]   '>
     <div className='mt-16'>
