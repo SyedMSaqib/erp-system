@@ -197,7 +197,7 @@ export default function Sidebar() {
       ],
     },
   ]}
-  if(role==="cashier")
+  if(role==="sales manager")
   {
   data = [  
     {
@@ -319,7 +319,7 @@ export default function Sidebar() {
     ]
     
   }
-  if(role==="inventoryManager")
+  if(role==="inventory manager")
   {
     data=[
       {

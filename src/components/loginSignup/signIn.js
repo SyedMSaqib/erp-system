@@ -19,7 +19,7 @@ const SignIn = ({ settokenUpdate }) => {
   const navigate = useNavigate()
 
   const roles = ["Admin", "Sales Manager", "Inventory Manager", "Accountant", "HR"]
-  const [Role, setRole] = useState("Admin")
+  const [Role, setRole] = useState("admin")
   const handleRole = (e) => {
     setRole(e.target.value)
   }
@@ -56,6 +56,16 @@ const SignIn = ({ settokenUpdate }) => {
         }
       )
     }
+    else if (credentialMatchFail && credentialMatchFail.status === 405) {
+      toast.error(
+        <span>
+          <span className="font-bold">Authentication:</span> Role does not exist against this email, contact admin for more info.
+        </span>,
+        {
+          icon: "⚠️",
+        }
+      )
+    }
   }, [credentialMatchFail])
 
   useEffect(() => {
@@ -83,7 +93,7 @@ const SignIn = ({ settokenUpdate }) => {
     }
   }
   const checkLogin = async () => {
-    await login(email, password)
+    await login(email, password, Role)
 
     authToken = localStorage.getItem("authToken")
     if (authToken !== null) {
