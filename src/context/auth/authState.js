@@ -15,14 +15,15 @@ const AuthState = (props) => {
   const [credentialMatchFail, setcredentialMatchFail] = useState(null)
 
 
-  const login = async (email, password) => {
+  const login = async (email, password, role) => {
     try {
       const response = await fetch(`${host}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        
+        body: JSON.stringify({ email, password ,role }),
       })
       if (response.ok) {
         setresponeFromServer(response)

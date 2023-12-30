@@ -86,7 +86,7 @@ router.post("/addCustomerSales", [check("quantity").isLength({ min: 1 })], valid
 })
 router.get("/fetchAllCustomerSale", validator, async (req, res) => {
   try {
-    if(req.user.role==="admin"||req.user.role==="cashier")
+    if(req.user.role==="admin"||req.user.role==="sales manager")
       {
     const CustomerSalesFromDb = await customerSale.find({ user: req.user.id })
 
@@ -102,7 +102,7 @@ router.delete("/deleteCustomerSale/:id", validator, async (req, res) => {
   if (id === null) return res.status(500).send("input correct id")
 
   try {
-    if(req.user.role==="admin"||req.user.role==="cashier")
+    if(req.user.role==="admin"||req.user.role==="sales manager")
     {
     const CustomerSalesFromDb = await customerSale.findById(id)
     if (!CustomerSalesFromDb) return res.status(404).json("No such customer exists")
@@ -167,7 +167,7 @@ router.put("/updateCustomerSale/:id", validator, async (req, res) => {
   if (id === null) return res.status(500).send("input correct id")
 
   try {
-    if(req.user.role==="admin"||req.user.role==="cashier")
+    if(req.user.role==="admin"||req.user.role==="sales manager")
     {
     const CustomerSalesFromDb = await customerSale.findById(id)
     if (!CustomerSalesFromDb) return res.status(404).json("No such Customer exists")

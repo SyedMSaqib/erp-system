@@ -10,7 +10,7 @@ router.put("/addVenderTrail/:id", validator, async (req, res) => {
 
   try {
     if (req.user == null) return res.status(404).send("Invalid token, or empty")
-    if(req.user.role==="admin"||req.user.role==="accountant"||req.user.role==="cashier")
+    if(req.user.role==="admin"||req.user.role==="accountant"||req.user.role==="sales manager")
     {
     const updatedVenderTrails = {
       paid: true,
@@ -41,7 +41,7 @@ router.put("/addVenderTrail/:id", validator, async (req, res) => {
 
 router.get("/fetchAllVenderTrails", validator, async (req, res) => {
   try {
-    if(req.user.role==="admin"||req.user.role==="accountant"||req.user.role==="cashier")
+    if(req.user.role==="admin"||req.user.role==="accountant"||req.user.role==="sales manager")
     {
     const VenderTrails = await venderTrails.find({ user: req.user.id })
 

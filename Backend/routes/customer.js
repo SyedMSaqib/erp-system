@@ -17,7 +17,7 @@ router.post(
     if (!result.isEmpty()) return res.json(result)
     try {
       if (req.user == null) return res.status(404).send("Invalid token, or empty")
-      if(req.user.role==="admin"||req.user.role==="cashier")
+      if(req.user.role==="admin"||req.user.role==="sales manager")
       {
       const { name, email, phone, } = req.body
       const newCustomer = await customer.create({
@@ -36,7 +36,7 @@ router.post(
 router.get("/fetchAllCustomer", validator, async (req, res) => {
     try {
       console.log(req.user)
-      if(req.user.role==="admin"||req.user.role==="cashier")
+      if(req.user.role==="admin"||req.user.role==="sales manager")
       {
       const CustomerFromDb = await customer.find({ user: req.user.id })
   
@@ -52,7 +52,7 @@ router.get("/fetchAllCustomer", validator, async (req, res) => {
     if (id === null) return res.status(500).send("input correct id")
   
     try {
-      if(req.user.role==="admin"||req.user.role==="cashier")
+      if(req.user.role==="admin"||req.user.role==="sales manager")
       {
       const customerFromDb = await customer.findById(id)
       if (!customerFromDb) return res.status(404).json("No such customer exists")
@@ -78,7 +78,7 @@ router.get("/fetchAllCustomer", validator, async (req, res) => {
   
     try {
     
-      if(req.user.role==="admin"||req.user.role==="cashier")
+      if(req.user.role==="admin"||req.user.role==="sales manager")
       {
       const CustomerFromDb = await customer.findById(id)
       if (!CustomerFromDb) return res.status(404).json("No such Customer exists")

@@ -25,7 +25,7 @@ router.post(
     try {
       if (req.user == null) return res.status(404).send("Invalid token, or empty")
       const { name, description, category, price, quantity, vendorPrice, vendor, vendorId, paid } = req.body
-      if(req.user.role==="admin"||req.user.role==="inventoryManager")
+      if(req.user.role==="admin"||req.user.role==="inventory manager")
       {
       const newProduct = await product.create({
         user: req.user.id,
@@ -90,7 +90,7 @@ router.post(
 
 router.get("/fetchAll", validator, async (req, res) => {
   try {
-    if(req.user.role==="admin"||req.user.role==="inventoryManager")
+    if(req.user.role==="admin"||req.user.role==="inventory manager")
 {
     const productFromDb = await product.find({ user: req.user.id })
 
@@ -106,7 +106,7 @@ router.delete("/delete/:id", validator, async (req, res) => {
   if (id === null) return res.status(500).send("input correct id")
 
   try {
-    if(req.user.role==="admin"||req.user.role==="inventoryManager")
+    if(req.user.role==="admin"||req.user.role==="inventory manager")
     {
     const productFromDb = await product.findById(id)
     if (!productFromDb) return res.status(404).json("No such product exists")
@@ -154,7 +154,7 @@ router.put("/update/:id", validator, async (req, res) => {
   if (id === null) return res.status(500).send("input correct id")
 
   try {
-    if(req.user.role==="admin"||req.user.role==="inventoryManager")
+    if(req.user.role==="admin"||req.user.role==="inventory manager")
     {
     const productFromDb = await product.findById(id)
     if (!productFromDb) return res.status(404).json("No such product exists")

@@ -51,9 +51,9 @@ router.post("/signup", [check("name").isLength({min:3}),check("email").isEmail()
 router.post("/login",[check("email").isEmail(), check("password").isLength({ min: 6 })], async (req, res) => {
   const result = validationResult(req)
   if (!result.isEmpty()) return res.status(500).json(result)
-  const {email}=req.body
-const role="admin"
-if(role==="admin")
+  const {email,role}=req.body
+  let roleToLowerCase=role.toLowerCase()
+if(roleToLowerCase==="admin")
 {
   let checkUser = await user.findOne({email:email})
   if(checkUser===null)
@@ -64,7 +64,7 @@ if(role==="admin")
     user:{
       id:checkUser.id,
       email:checkUser.email,
-      role:role
+      role:roleToLowerCase
     }
   }
 
@@ -73,7 +73,7 @@ if(role==="admin")
   return res.status(200).json({
     token: token,
     name: checkUser.name,
-    role:role,
+    role:roleToLowerCase,
     status:200
   });  
   return res.status(401).send({error:"Password does not match",status:401})
@@ -82,9 +82,9 @@ if(role==="admin")
 }
 else
 {
-  let checkUser = await roles.findOne({email:email,role:role})
+  let checkUser = await roles.findOne({email:email,role:roleToLowerCase})
   if(checkUser===null)
-  return res.status(400).send({error:"Email does not match",status:400})
+  return res.status(405).send({error:"Email does not match...",status:405})
   let checkAccount = await user.findOne({email:email})
   if(checkAccount)
   {
@@ -94,7 +94,7 @@ else
     user:{
       id:checkAccount.id,
       email:checkUser.email,
-      role:role
+      role:roleToLowerCase
     }
   }
 
@@ -103,7 +103,7 @@ else
   return res.status(200).json({
     token: token,
     name: role,
-    role:role,
+    role:roleToLowerCase,
     status:200
   });  }
   else
