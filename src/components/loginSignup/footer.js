@@ -4,7 +4,7 @@ import { useTypewriter,Cursor } from 'react-simple-typewriter'
 
 const Footer = () => {
   const [text] = useTypewriter({
-    words: ['SAS Erp', 'SAQIB', 'ABDULLAH', 'SHAMEER','Erp'],
+    words: ['SAS Erp', 'S', 'A', 'S','Erp'],
     loop: 0
   })
   return (
