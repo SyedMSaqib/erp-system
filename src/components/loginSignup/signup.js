@@ -107,7 +107,7 @@ const SignUp = () => {
       
         <div className="max-w-md w-full">
           
-          <div className="bg-gray-50 rounded-lg shadow-md p-6 ">
+          <div className="bg-gray-50 rounded-lg shadow-md p-8 ">
           <div className=' flex justify-center'>
 
          <img className="w-24" src={SasLogo} alt="Logo" />
