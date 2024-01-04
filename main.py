@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 import pandas as pd
 from prophet import Prophet
 from flask_cors import CORS
-
+#from new machine
 app = Flask(__name__)
 CORS(app)
 
