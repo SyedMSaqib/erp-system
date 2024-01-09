@@ -30,7 +30,7 @@ const MonthDropdown = () => {
   };
 
   const getFirstAndLastDay = (selectedMonth) => {
-    const date = new Date(`${selectedMonth} 1, 2023`)
+    const date = new Date(`${selectedMonth} 1, 2024`)
     const firstDay = new Date(date.getFullYear(), date.getMonth(), 1)
     const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0)
     setDays(lastDay.getDate())
@@ -42,6 +42,7 @@ const MonthDropdown = () => {
       setFirstDay( firstDay.toISOString().slice(0, 10))
       setLastDay(lastDay.toISOString().slice(0, 10))
     }
+    
 
 
  
