@@ -50,6 +50,7 @@ router.post("/signup", [check("name").isLength({min:3}),check("email").isEmail()
 //Login authentication
 router.post("/login",[check("email").isEmail(), check("password").isLength({ min: 6 })], async (req, res) => {
   const result = validationResult(req)
+  try{
   if (!result.isEmpty()) return res.status(500).json(result)
   const {email,role}=req.body
   let roleToLowerCase=role.toLowerCase()
@@ -85,14 +86,16 @@ else
   let checkUser = await roles.findOne({email:email,role:roleToLowerCase})
   if(checkUser===null)
   return res.status(405).send({error:"Email does not match...",status:405})
-  let checkAccount = await user.findOne({email:email})
-  if(checkAccount)
-  {
+  // let checkAccount = await user.findOne({id:pare})
+  // if(checkAccount)
+  // {
+    if(!checkUser.access)
+    return res.status(408).send({access:"Denied",status:408})
   const password=checkUser.password  
   const compare=bcrypt.compareSync(req.body.password,password )
   const User={
     user:{
-      id:checkAccount.id,
+      id:checkUser.parent_id,
       email:checkUser.email,
       role:roleToLowerCase
     }
@@ -105,14 +108,17 @@ else
     name: role,
     role:roleToLowerCase,
     status:200
-  });  }
+  });  
   else
-  {
-    return res.send("we can't find the parent account")
-  }
   return res.status(401).send({error:"Password does not match",status:401})
-  
+}
 
+
+}
+catch(err)
+{
+  res.status(500).json({err})
+  
 }
 }
 )
