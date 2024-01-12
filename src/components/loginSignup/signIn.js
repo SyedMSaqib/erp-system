@@ -66,6 +66,16 @@ const SignIn = ({ settokenUpdate }) => {
         }
       )
     }
+    else if (credentialMatchFail && credentialMatchFail.status === 408) {
+      toast.error(
+        <span>
+          <span className="font-bold">Authentication:</span>User access denied!
+        </span>,
+        {
+          icon: "⚠️",
+        }
+      )
+    }
   }, [credentialMatchFail])
 
   useEffect(() => {
