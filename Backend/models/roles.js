@@ -2,10 +2,6 @@ const mongoose = require("mongoose")
 const { Schema } = mongoose
 
 const rolesSchema = new Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
-  },
   role: {
     type: String,
     required: true,
@@ -14,6 +10,13 @@ const rolesSchema = new Schema({
     type: String,
     required: true,
   },
+ parent_id:
+ {
+  type:mongoose.Schema.Types.ObjectId,
+  ref:"user",
+  required:true
+ }
+  ,
   password: {
     type: String,
     required: true,
@@ -23,5 +26,10 @@ const rolesSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  access:
+  {
+    type:Boolean,
+    default:true
+  }
 })
 module.exports = mongoose.model("roles", rolesSchema)
