@@ -8,16 +8,16 @@ const key="02192000"
 var salt = bcrypt.genSaltSync(10);
 const validator=require('./../middleware/validator')
 
-router.post("/createRole", validator,[ check("password").isLength({ min: 8 })], async (req, res) => {
+router.post("/createRole", validator,[ check("password").isLength({ min: 8 }),check("email").isEmail()], async (req, res) => {
     const result = validationResult(req)
     if (!result.isEmpty()) return res.status(500).json(result)
   
     try{
         
       if (req.user == null) return res.status(404).send("Invalid token, or empty")
-    const { role, password } = req.body
+    const { role, password , email } = req.body
 
-      let role_exists = await roles.findOne({ email: req.user.email, role:role });
+      let role_exists = await roles.findOne({ email: email, role:role });
       if (role_exists !== null) {
         return res.status(403).send({ error: `${role_exists.role} already exists`,status:403});
       }
@@ -28,20 +28,21 @@ router.post("/createRole", validator,[ check("password").isLength({ min: 8 })], 
   
     await roles.create({
       role:role,
-      email: req.user.email,
+      email: email,
       password: hashedPassword,
+      parent_id:req.user.id
     })
-    role_exists={
-      user:{
-        id:req.user.id,
-        role:role
-      }
-    }
+    // role_exists={
+    //   user:{
+    //     id:req.user.id,
+    //     role:role
+    //   }
+    // }
   
-    var token = jwt.sign(role_exists,key);
+    // var token = jwt.sign(role_exists,key);
   }
     
-   return res.status(200).json({token:token,status:200})
+   return res.status(200).json({Msg:"Role created successfully",status:200})
     }
     catch(err)
     {
