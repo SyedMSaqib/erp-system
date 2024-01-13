@@ -58,6 +58,19 @@ export default function Sidebar() {
   {
   data = [
     {
+      name: "Roles",
+      path: "/manageRoles",
+      key: 31,
+      subTabs: [
+        {
+          name: "Manage Roles",
+          path: "/ManageRoles",
+          key: 29,
+        },
+        
+      ],
+    },
+    {
       name: "Inventory",
       path: "/inventory",
       key: 1,
@@ -196,6 +209,8 @@ export default function Sidebar() {
         
       ],
     },
+
+    
   ]}
   if(role==="sales manager")
   {
