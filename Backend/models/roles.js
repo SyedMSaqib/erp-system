@@ -10,15 +10,18 @@ const rolesSchema = new Schema({
     type: String,
     required: true,
   },
- parent_id:
- {
-  type:mongoose.Schema.Types.ObjectId,
-  ref:"user",
-  required:true
- }
-  ,
+  parent_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
+    required: true,
+  },
   password: {
     type: String,
+    required: true,
+  },
+  employee_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "employee",
     required: true,
   },
 
@@ -26,10 +29,9 @@ const rolesSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  access:
-  {
-    type:Boolean,
-    default:true
-  }
+  access: {
+    type: Boolean,
+    default: true,
+  },
 })
 module.exports = mongoose.model("roles", rolesSchema)
