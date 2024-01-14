@@ -7,6 +7,8 @@ const RolesState = (props) => {
   const host = config.apiurl
   const authToken = localStorage.getItem("authToken")
   const [Roles, setRoles] = useState(null)
+  const [isVisible, setisVisible] = useState(false)
+  const [roleData, setroleData] = useState(null)
 
   const getAllRoles = async () => {
     const response = await fetch(`${host}/roles/getRoles`, {
@@ -20,7 +22,7 @@ const RolesState = (props) => {
     const data = await response.json()
     setRoles(data)
   }
-  const createRole = async (role, email, password) => {
+  const createRole = async (role, email, password, employeeId) => {
     const response = await fetch(`${host}/roles/createRole`, {
       method: "POST",
 
@@ -32,6 +34,7 @@ const RolesState = (props) => {
         role,
         email,
         password,
+        employeeId,
       }),
     })
   }
@@ -53,6 +56,10 @@ const RolesState = (props) => {
         createRole,
         Roles,
         getAllRoles,
+        isVisible,
+        setisVisible,
+        roleData,
+        setroleData,
       }}
     >
       {props.children}
