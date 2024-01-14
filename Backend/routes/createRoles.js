@@ -7,6 +7,7 @@ var jwt = require("jsonwebtoken")
 const key = "02192000"
 var salt = bcrypt.genSaltSync(10)
 const validator = require("./../middleware/validator")
+const employee = require("../models/employee")
 
 router.post(
   "/createRole",
@@ -18,15 +19,16 @@ router.post(
     try {
       if (req.user == null) return res.status(404).send("Invalid token, or empty")
       const { role, password, email, employeeId } = req.body
-
-      let role_exists = await roles.findOne({ email: email, role: role })
+      let roleToLowerCase = role.toLowerCase()
+      const Employee = await employee.findOne({ _id: employeeId })
+      let role_exists = await roles.findOne({ parent_id: Employee.user, role: roleToLowerCase })
       if (role_exists !== null) {
         return res.status(403).send({ error: `${role_exists.role} already exists`, status: 403 })
       } else {
         var hashedPassword = bcrypt.hashSync(password, salt)
 
         await roles.create({
-          role: role,
+          role: roleToLowerCase,
           email: email,
           password: hashedPassword,
           parent_id: req.user.id,
