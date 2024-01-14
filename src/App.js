@@ -49,6 +49,7 @@ import ProfitState from "./context/profit/profitState"
 import ProfitPredictions from "./components/profitPredictions/profitPredictions"
 import Roles from "./components/roles/roles"
 import RolesState from "./context/roles/rolesState"
+import AddRoles from "./components/roles/addRoles"
 
 function PrivateRoute({ element, authenticated }) {
   return authenticated ? element : <Navigate to="/signIn" />
@@ -363,6 +364,15 @@ function App() {
                                           element={
                                             <PrivateRoute
                                               element={<Roles />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/AddRoles"
+                                          element={
+                                            <PrivateRoute
+                                              element={<AddRoles />}
                                               authenticated={authenticated}
                                             />
                                           }
