@@ -71,6 +71,8 @@ router.delete("/deleteRole/:id", validator, async (req, res) => {
   try {
     if (req.user.role === "admin") {
       const id = req.params.id
+      console.log(id)
+
       if (req.user == null) return res.status(400).json({ msg: "Invalid token", status: 400 })
       const role_Exist = await roles.findById(id)
 
@@ -81,7 +83,7 @@ router.delete("/deleteRole/:id", validator, async (req, res) => {
       return res.status(400).json({ msg: "No such role exist", status: 401 })
     }
   } catch (err) {
-    res.send(500).json("Some error occurred")
+    res.status(500).json("Some error occurred")
   }
 })
 
