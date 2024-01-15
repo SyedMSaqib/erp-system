@@ -8,7 +8,7 @@ import toast from "react-hot-toast"
 
 const AddRoles = () => {
   const roles = ["Sales Manager", "Inventory Manager", "Accountant", "HR"]
-  const { isVisible, setisVisible, roleData, createRole } = useContext(RolesContext)
+  const { isVisible, setisVisible, roleData, createRole, setroleData } = useContext(RolesContext)
   const [Emp_email, setEmp_email] = useState(null)
   const [Emp_id, setEmp_id] = useState("")
   const [Role, setRole] = useState("Sales Manager")
@@ -16,9 +16,14 @@ const AddRoles = () => {
   const handleRole = (e) => {
     setRole(e.target.value)
   }
-  const onClick = () => {
+  const onClick = async () => {
     if (validator.isLength(Password, { min: 8 })) {
-      createRole(Role, Emp_email, Password, Emp_id)
+      const response = await createRole(Role, Emp_email, Password, Emp_id)
+      if (response.status === 200) {
+        toast.success(`${Role} Added successfully`)
+        setEmp_email("")
+        setPassword("")
+      } else if (response.status === 403) toast.error(`${Role} already exists within organization`)
     } else {
       toast.error("Enter Valid password")
     }
@@ -40,7 +45,7 @@ const AddRoles = () => {
   }
   return (
     <>
-      <Employees />
+      {isVisible && <Employees />}
 
       <div className="lg:flex lg:justify-center lg:content-center sm:ml-64">
         <div className="shadow-xl md:w-[27rem] lg:mt-10 sm:w-[20rem] mb-5  mx-auto  border dark:text-gray-300 dark:bg-gray-950 bg-slate-50 border-gray-300 dark:border-gray-600 rounded-xl">
@@ -116,6 +121,7 @@ const AddRoles = () => {
                     placeholder="••••••••"
                     className={`bg-gray-100 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5`}
                     required=""
+                    value={Password}
                   />
                 </div>
               </div>

@@ -30,6 +30,7 @@ const RolesState = (props) => {
         "Content-Type": "application/json",
         "auth-token": authToken,
       },
+
       body: JSON.stringify({
         role,
         email,
@@ -37,6 +38,7 @@ const RolesState = (props) => {
         employeeId,
       }),
     })
+    return response.json()
   }
   const deleteRole = async (id) => {
     const response = await fetch(`${host}/roles/deleteRole/${id}`, {
