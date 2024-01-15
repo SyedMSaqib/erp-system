@@ -47,6 +47,9 @@ import Ledger from "./components/accountEntries/ledger"
 import Profit from "./components/profit/profit"
 import ProfitState from "./context/profit/profitState"
 import ProfitPredictions from "./components/profitPredictions/profitPredictions"
+import Roles from "./components/roles/roles"
+import RolesState from "./context/roles/rolesState"
+import AddRoles from "./components/roles/addRoles"
 
 function PrivateRoute({ element, authenticated }) {
   return authenticated ? element : <Navigate to="/signIn" />
@@ -75,196 +78,324 @@ function App() {
 
   return (
     <div className="bg-slate-50  dark:bg-gray-900 ">
-      <ProfitState>
-      <EntriesState>
-        <SalaryState>
-          <VenderTrailState>
-            <VendorState>
-              <SaleTrailState>
-                <AuthState>
-                  <Toaster />
-                  <CustomerState>
-                    <ProductState>
-                      <CustomerSaleState>
-                        <EmployeeState>
-                          <AttendanceState>
-                            <BrowserRouter>
-                              {loading ? (
-                                <div className="flex flex-col justify-center items-center w-screen h-screen bg-white">
-                                  <img src={loadingGif} alt="Loading" className="w-48 h-32 bg-white" />
-                                  <span>Loading...</span>
-                                </div>
-                              ) : (
-                                <div className="h-screen ">
-                                  {authenticated ? <Sidebar /> : null}
-                                  <Routes>
-                                    <Route
-                                      path="/addProduct"
-                                      element={<PrivateRoute element={<AddProduct />} authenticated={authenticated} />}
-                                    />
-                                    <Route
-                                      path="/viewProduct"
-                                      element={<PrivateRoute element={<ViewProduct />} authenticated={authenticated} />}
-                                    />
-                                    <Route path="/update" element={<UpdateModal />} />
-                                    <Route
-                                      path="/viewCustomers"
-                                      element={
-                                        <PrivateRoute element={<ViewCustomer />} authenticated={authenticated} />
-                                      }
-                                    />
-                                    <Route
-                                      path="/updateCustomers"
-                                      element={
-                                        <PrivateRoute element={<UpdateCustomer />} authenticated={authenticated} />
-                                      }
-                                    />
-                                    <Route
-                                      path="/addCustomers"
-                                      element={
-                                        <PrivateRoute element={<AddCustomers />} authenticated={authenticated} />
-                                      }
-                                    />
-                                    <Route
-                                      path="/AddCustomersSale"
-                                      element={
-                                        <PrivateRoute element={<AddCustomersSale />} authenticated={authenticated} />
-                                      }
-                                    />
-                                    <Route
-                                      path="/viewCustomerSale"
-                                      element={
-                                        <PrivateRoute element={<ViewCustomerSale />} authenticated={authenticated} />
-                                      }
-                                    />
-                                    <Route
-                                      path="/viewEmployee"
-                                      element={
-                                        <PrivateRoute element={<ViewEmployee />} authenticated={authenticated} />
-                                      }
-                                    />
-                                    <Route
-                                      path="/AddEmployee"
-                                      element={
-                                        <PrivateRoute element={<AddEmployees />} authenticated={authenticated} />
-                                      }
-                                    />
-                                    <Route
-                                      path="/UpdateEmployee"
-                                      element={
-                                        <PrivateRoute element={<UpdateEmployee />} authenticated={authenticated} />
-                                      }
-                                    />
-                                    <Route
-                                      path="/viewAttendance"
-                                      element={
-                                        <PrivateRoute element={<ViewAttendance />} authenticated={authenticated} />
-                                      }
-                                    />
-                                    <Route
-                                      path="/attendanceDate"
-                                      element={
-                                        <PrivateRoute
-                                          element={<AttendanceDatePicker />}
-                                          authenticated={authenticated}
+      <RolesState>
+        <ProfitState>
+          <EntriesState>
+            <SalaryState>
+              <VenderTrailState>
+                <VendorState>
+                  <SaleTrailState>
+                    <AuthState>
+                      <Toaster />
+                      <CustomerState>
+                        <ProductState>
+                          <CustomerSaleState>
+                            <EmployeeState>
+                              <AttendanceState>
+                                <BrowserRouter>
+                                  {loading ? (
+                                    <div className="flex flex-col justify-center items-center w-screen h-screen bg-white">
+                                      <img
+                                        src={loadingGif}
+                                        alt="Loading"
+                                        className="w-48 h-32 bg-white"
+                                      />
+                                      <span>Loading...</span>
+                                    </div>
+                                  ) : (
+                                    <div className="h-screen ">
+                                      {authenticated ? <Sidebar /> : null}
+                                      <Routes>
+                                        <Route
+                                          path="/addProduct"
+                                          element={
+                                            <PrivateRoute
+                                              element={<AddProduct />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
                                         />
-                                      }
-                                    />
-                                    <Route
-                                      path="/addAttendance"
-                                      element={
-                                        <PrivateRoute element={<AddAttendance />} authenticated={authenticated} />
-                                      }
-                                    />
-                                    <Route
-                                      path="/addAttendanceDate"
-                                      element={
-                                        <PrivateRoute element={<AddAttendanceDate />} authenticated={authenticated} />
-                                      }
-                                    />
-                                    <Route
-                                      path="/addVendor"
-                                      element={<PrivateRoute element={<AddVendor />} authenticated={authenticated} />}
-                                    />
-                                    <Route
-                                      path="/updateVendor"
-                                      element={
-                                        <PrivateRoute element={<UpdateVendor />} authenticated={authenticated} />
-                                      }
-                                    />
-                                    <Route
-                                      path="/viewVendors"
-                                      element={<PrivateRoute element={<ViewVendors />} authenticated={authenticated} />}
-                                    />
-                                    <Route path="/" element={<SignIn settokenUpdate={settokenUpdate} />} />
-                                    <Route path="/signIn" element={<SignIn settokenUpdate={settokenUpdate} />} />
-                                    <Route path="/dashboard" element={<Dashboard />} />
-                                    <Route
-                                      path="/ViewSalesTrail"
-                                      element={
-                                        <PrivateRoute element={<ViewSaleTrails />} authenticated={authenticated} />
-                                      }
-                                    />
-                                    <Route
-                                      path="/ViewVenderTrail"
-                                      element={
-                                        <PrivateRoute element={<ViewVenderTrails />} authenticated={authenticated} />
-                                      }
-                                    />
-                                    <Route
-                                      path="/venderPaymentStatus"
-                                      element={
-                                        <PrivateRoute element={<VenderPaymentStatus />} authenticated={authenticated} />
-                                      }
-                                    />
-                                    <Route
-                                      path="/salePaymentStatus"
-                                      element={
-                                        <PrivateRoute element={<SalePaymentStatus />} authenticated={authenticated} />
-                                      }
-                                    />
-                                    <Route
-                                      path="/payroll"
-                                      element={<PrivateRoute element={<Payroll />} authenticated={authenticated} />}
-                                    />
-                                    <Route
-                                      path="/ledger"
-                                      element={<PrivateRoute element={<Ledger />} authenticated={authenticated} />}
-                                    />
-                                    <Route
-                                      path="/payables"
-                                      element={<PrivateRoute element={<Payables />} authenticated={authenticated} />}
-                                    />
-                                    <Route
-                                      path="/receivables"
-                                      element={<PrivateRoute element={<Receivables />} authenticated={authenticated} />}
-                                    />
-                                    <Route
-                                      path="/profit"
-                                      element={<PrivateRoute element={<Profit/>} authenticated={authenticated} />}
-                                    />
-                                    <Route
-                                      path="/predictions"
-                                      element={<PrivateRoute element={<ProfitPredictions/>} authenticated={authenticated} />}
-                                    />
-                                    <Route path="/sidebar" element={<SignIn />} />
-                                    <Route path="/signUp" element={<SignUp />} />
-                                  </Routes>
-                                </div>
-                              )}
-                            </BrowserRouter>
-                          </AttendanceState>
-                        </EmployeeState>
-                      </CustomerSaleState>
-                    </ProductState>
-                  </CustomerState>
-                </AuthState>
-              </SaleTrailState>
-            </VendorState>
-          </VenderTrailState>
-        </SalaryState>
-      </EntriesState>
-      </ProfitState>
+                                        <Route
+                                          path="/viewProduct"
+                                          element={
+                                            <PrivateRoute
+                                              element={<ViewProduct />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route path="/update" element={<UpdateModal />} />
+                                        <Route
+                                          path="/viewCustomers"
+                                          element={
+                                            <PrivateRoute
+                                              element={<ViewCustomer />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/updateCustomers"
+                                          element={
+                                            <PrivateRoute
+                                              element={<UpdateCustomer />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/addCustomers"
+                                          element={
+                                            <PrivateRoute
+                                              element={<AddCustomers />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/AddCustomersSale"
+                                          element={
+                                            <PrivateRoute
+                                              element={<AddCustomersSale />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/viewCustomerSale"
+                                          element={
+                                            <PrivateRoute
+                                              element={<ViewCustomerSale />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/viewEmployee"
+                                          element={
+                                            <PrivateRoute
+                                              element={<ViewEmployee />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/AddEmployee"
+                                          element={
+                                            <PrivateRoute
+                                              element={<AddEmployees />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/UpdateEmployee"
+                                          element={
+                                            <PrivateRoute
+                                              element={<UpdateEmployee />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/viewAttendance"
+                                          element={
+                                            <PrivateRoute
+                                              element={<ViewAttendance />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/attendanceDate"
+                                          element={
+                                            <PrivateRoute
+                                              element={<AttendanceDatePicker />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/addAttendance"
+                                          element={
+                                            <PrivateRoute
+                                              element={<AddAttendance />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/addAttendanceDate"
+                                          element={
+                                            <PrivateRoute
+                                              element={<AddAttendanceDate />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/addVendor"
+                                          element={
+                                            <PrivateRoute
+                                              element={<AddVendor />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/updateVendor"
+                                          element={
+                                            <PrivateRoute
+                                              element={<UpdateVendor />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/viewVendors"
+                                          element={
+                                            <PrivateRoute
+                                              element={<ViewVendors />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/"
+                                          element={<SignIn settokenUpdate={settokenUpdate} />}
+                                        />
+                                        <Route
+                                          path="/signIn"
+                                          element={<SignIn settokenUpdate={settokenUpdate} />}
+                                        />
+                                        <Route path="/dashboard" element={<Dashboard />} />
+                                        <Route
+                                          path="/ViewSalesTrail"
+                                          element={
+                                            <PrivateRoute
+                                              element={<ViewSaleTrails />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/ViewVenderTrail"
+                                          element={
+                                            <PrivateRoute
+                                              element={<ViewVenderTrails />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/venderPaymentStatus"
+                                          element={
+                                            <PrivateRoute
+                                              element={<VenderPaymentStatus />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/salePaymentStatus"
+                                          element={
+                                            <PrivateRoute
+                                              element={<SalePaymentStatus />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/payroll"
+                                          element={
+                                            <PrivateRoute
+                                              element={<Payroll />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/ledger"
+                                          element={
+                                            <PrivateRoute
+                                              element={<Ledger />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/payables"
+                                          element={
+                                            <PrivateRoute
+                                              element={<Payables />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/receivables"
+                                          element={
+                                            <PrivateRoute
+                                              element={<Receivables />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/profit"
+                                          element={
+                                            <PrivateRoute
+                                              element={<Profit />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/predictions"
+                                          element={
+                                            <PrivateRoute
+                                              element={<ProfitPredictions />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/manageRoles"
+                                          element={
+                                            <PrivateRoute
+                                              element={<Roles />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route
+                                          path="/AddRoles"
+                                          element={
+                                            <PrivateRoute
+                                              element={<AddRoles />}
+                                              authenticated={authenticated}
+                                            />
+                                          }
+                                        />
+                                        <Route path="/sidebar" element={<SignIn />} />
+                                        <Route path="/signUp" element={<SignUp />} />
+                                      </Routes>
+                                    </div>
+                                  )}
+                                </BrowserRouter>
+                              </AttendanceState>
+                            </EmployeeState>
+                          </CustomerSaleState>
+                        </ProductState>
+                      </CustomerState>
+                    </AuthState>
+                  </SaleTrailState>
+                </VendorState>
+              </VenderTrailState>
+            </SalaryState>
+          </EntriesState>
+        </ProfitState>
+      </RolesState>
     </div>
   )
 }
