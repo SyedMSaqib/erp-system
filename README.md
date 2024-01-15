@@ -45,7 +45,7 @@ ledger:
 ![image](https://github.com/SyedMSaqib/erp-system/assets/85156814/0579a4b2-64a6-46fb-b488-5ab4254dc7fa)
 
 
-Profit forecast(using profit model):
+Profit forecast(using prophet model):
 
 ![image](https://github.com/SyedMSaqib/erp-system/assets/85156814/8998fe4a-bf5d-4f5c-b5e1-68690ba76c50)
 
