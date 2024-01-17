@@ -1,7 +1,7 @@
 ERP by Syed Muhammad Saqib
 install dependencies for frontend and backend-->npm install
 npm run both for starting both the node server and the react app.
-some of the screenshots are below(limited functionalities, for more run the project yourself)
+some of the screenshots are below(limited functionalities, for more run the project)
 
 SignUp:
 
