@@ -29,10 +29,7 @@ const CustomerSaleState = (props) => {
         "auth-token": authToken,
       },
     })
-    if(response.status===401)
-    {
-      logout()
-    }
+   
     const data = await response.json()
     setCustomerSale(data)
     setsaleSearch(data)
