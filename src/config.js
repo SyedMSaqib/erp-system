@@ -1,3 +1,3 @@
-const config={apiurl:"erp-xi-jade.vercel.app"}
+const config={ apiurl: "https://erp-xi-jade.vercel.app", }
 export default config;
 //
