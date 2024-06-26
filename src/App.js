@@ -60,6 +60,12 @@ function App() {
   const [authenticated, setauthenticated] = useState(false)
   const [tokenUpdate, settokenUpdate] = useState(false)
   const [loading, setloading] = useState(true)
+  const [sidebarVisible, setSidebarVisible] = useState(false);
+
+const toggleSidebar = () => {
+  setSidebarVisible(!sidebarVisible);
+};
+
 
   useEffect(() => {
     setTimeout(() => {
@@ -104,8 +110,28 @@ function App() {
                                     </div>
                                   ) : (
                                     <div className="h-screen ">
-                                      
-                                        <Sidebar />
+                                      <Sidebar sidebarVisible={sidebarVisible} />
+                                      <button 
+  className="block md:hidden p-4" 
+  onClick={toggleSidebar}
+>
+  <svg 
+    className="w-6 h-6" 
+    fill="none" 
+    stroke="currentColor" 
+    viewBox="0 0 24 24" 
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path 
+      strokeLinecap="round" 
+      strokeLinejoin="round" 
+      strokeWidth="2" 
+      d="M4 6h16M4 12h16M4 18h16"
+    />
+  </svg>
+</button>
+
+
                                       <Routes>
                                         <Route
                                           path="/addProduct"

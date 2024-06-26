@@ -8,7 +8,7 @@ import authContext from "../../context/auth/authContext"
 import Sun1 from "./logos/sun1.json"
 import Moon1 from "./logos/moon2.json"
 import Lottie from "lottie-react"
-export default function Sidebar() {
+export default function Sidebar({ sidebarVisible }) {
   var data = []
   useEffect(() => {
     const storedThemeMode = localStorage.getItem("DarkTheme")
@@ -384,7 +384,7 @@ export default function Sidebar() {
   }
 
   return (
-    <div className="w-60 fixed dark:bg-gray-950 z-50 ">
+    <div className={`w-60 fixed dark:bg-gray-950 z-50 ${sidebarVisible ? 'block' : 'hidden'} md:block` }>
       <div className="flex">
         <div className=" flex flex-col h-screen p-3 bg-slate-100 dark:bg-gray-950 dark:border-gray-800  text-gray shadow-xl z-[999] w-60 border border-slate-200 overflow-y-scroll no-scrollbar">
           <div className="space-y-3">
