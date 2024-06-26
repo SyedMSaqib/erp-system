@@ -64,7 +64,7 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setloading(false)
-    }, 3000)
+    }, 1000)
   }, [])
 
   useEffect(() => {
@@ -104,7 +104,9 @@ function App() {
                                     </div>
                                   ) : (
                                     <div className="h-screen ">
-                                      {authenticated ? <Sidebar /> : null}
+                                      <div className="hidden sm:block">
+                                        <Sidebar />
+                                      </div>
                                       <Routes>
                                         <Route
                                           path="/addProduct"
