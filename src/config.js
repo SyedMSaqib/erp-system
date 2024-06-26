@@ -1,2 +1,2 @@
-const config={apiurl:"https://erp-system-pied.vercel.app"}
+const config={apiurl:"erp-xi-jade.vercel.app"}
 export default config;
