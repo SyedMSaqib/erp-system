@@ -26,6 +26,7 @@ app.use(cors({
   methods: ['GET', 'POST','PUT','DELETE'], // Include other methods as needed
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 app.use(express.json())
 app.use("/auth", auth)
 app.use("/product", product)
