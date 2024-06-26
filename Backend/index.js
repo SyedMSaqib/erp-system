@@ -22,8 +22,8 @@ dbConnection()
 
 const cors = require('cors');
 app.use(cors({
-  origin: '*', // Adjust this to your frontend's origin for more security
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  origin: 'https://erp-system-pied.vercel.app',
+  methods: ['GET', 'POST'], // Include other methods as needed
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json())
