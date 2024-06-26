@@ -1,2 +1,2 @@
-const config={apiurl:"http://localhost:5000"}
+const config={apiurl:"https://erp-system-pied.vercel.app"}
 export default config;
