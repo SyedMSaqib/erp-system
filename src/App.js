@@ -104,9 +104,8 @@ function App() {
                                     </div>
                                   ) : (
                                     <div className="h-screen ">
-                                      <div className="hidden sm:block">
+                                      
                                         <Sidebar />
-                                      </div>
                                       <Routes>
                                         <Route
                                           path="/addProduct"
