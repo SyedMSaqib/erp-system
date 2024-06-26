@@ -9,7 +9,9 @@ const validator = (req, res, next) => {
 
     try {
   
+        console.log(token)
         const verifyToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
+        console.log(verifyToken)
 
         const currentTime = Math.floor(Date.now() / 1000);
         if (verifyToken.exp && verifyToken.exp < currentTime) {
@@ -19,7 +21,7 @@ const validator = (req, res, next) => {
         req.user = verifyToken.user;
         next();
     } catch (error) {
-        res.status(401).send("Invalid Token");
+        res.status(401).send("Invalid Token..");
     }
 };
 
