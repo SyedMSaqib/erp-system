@@ -20,7 +20,7 @@ const roles = require("./routes/createRoles")
 
 dbConnection()
 
-const cors = require('cors');
+
 app.use(cors({
   origin: '*', // Adjust this to your frontend's origin for more security
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
